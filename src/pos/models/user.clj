@@ -1,0 +1,1 @@
+(ns pos.models.user)
