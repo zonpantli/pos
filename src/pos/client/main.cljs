@@ -9,8 +9,8 @@
 ;; Dev stuff
 ;;************************************************
 
-(watcher/init)
-;;(repl/connect "http://localhost:9000/repl")
+; (watcher/init)
+; (repl/connect "http://localhost:9000/repl")
 
 ;;************************************************
 ;; Code
@@ -22,4 +22,5 @@
   [:p.alert "CLJS is compiled and active... Time to build something!"])
 
 (append $content (up-and-running))
+
 
