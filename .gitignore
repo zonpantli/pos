@@ -6,3 +6,5 @@ pom.xml
 resources/public/cljs/
 .lein-cljsbuild-repl/
 .lein-plugins/
+.sass-cache
+**/*/.#*
