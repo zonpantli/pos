@@ -7,9 +7,8 @@
             (html5
               [:head
                [:title "KovaLOPOS"]
-;               (include-css "/css/reset.css")
-;               (include-css "/css/default.css")
                (include-css "css/bootstrap.css")
+               (include-css "css/main.css")               
                ]
               [:body
                [:div#wrapper

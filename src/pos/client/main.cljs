@@ -11,8 +11,11 @@
 ;; Dev stuff
 ;;************************************************
 
-; (watcher/init)
-; (repl/connect "http://localhost:9000/repl")
+;; watcher interface to switch between compilation modes
+;; (watcher/init)
+
+;; Browser connected repl, run clojure in inferior-lisp
+;; (repl/connect "http://localhost:9000/repl")
 
 ;;************************************************
 ;; Code
@@ -26,7 +29,7 @@
 (append $content (up-and-running))
 
 
-;;;;;;;
+;; fetch remote examples
 
 (defn adder [a b]
   (fm/remote (adder a b) [result]
@@ -36,5 +39,9 @@
   (fm/remote (get-user id) [{:keys [username age]}]
              (js/alert (str "Name: " username ", Age: " age))))
 
+
+(defn shout [msg]
+  (fm/remote (shouter msg) [res]
+             (js/alert res)))
 
 

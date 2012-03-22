@@ -1,6 +1,7 @@
 (ns pos.server
   (:require [noir.server :as server]
-            [noir.cljs.core :as cljs]))
+            [noir.cljs.core :as cljs]
+            [pos.api]))
 
 (server/load-views-ns 'pos.views)
 (def cljs-options {:advanced {:externs ["externs/jquery.js"]}})
