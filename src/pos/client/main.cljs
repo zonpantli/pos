@@ -3,7 +3,8 @@
             [clojure.browser.repl :as repl]
             [crate.core :as crate]
             [fetch.remotes :as remotes])
-  (:use [jayq.core :only [$ append]])
+  (:use [jayq.core :only [$ append]]
+        [fetch.util :only [clj->js]])
   (:use-macros [crate.macros :only [defpartial]])
   (:require-macros [fetch.macros :as fm]))
 
@@ -15,33 +16,47 @@
 ;; (watcher/init)
 
 ;; Browser connected repl, run clojure in inferior-lisp
-;; (repl/connect "http://localhost:9000/repl")
-
-;;************************************************
-;; Code
-;;************************************************
+(repl/connect "http://localhost:9000/repl")
 
 (def $content ($ :#content))
+(def $typeahead-test ($ :#typeahead-test))
+
+
 
 (defpartial up-and-running []
   [:p.alert "CLJS is compiled and active... Time to build something!"])
 
 (append $content (up-and-running))
 
+;;************************************************
+;; Code
+;;************************************************
+(defn document-ready [func]
+  (.ready ($ js/document) func))
+
+;; etusivu kenttien leiska
+;; hae kaikki data pos.client.model
+;; kiinnitä data dropdowneihin
+;; kuuntelijat droppeihin (vaihtuu, mätsää johonkin modelin kenttään)
+;; google comboBox ?
+
+;; typeahead
+(document-ready
+ (fn [] 
+   (do
+     (def $typeahead-test ($ :#typeahead-test))
+     (.typeahead $typeahead-test (clj->js
+                                  {:source ["foo" "bar" "fofo"]})))))
+
+
+
+
+
+
+
+
 
 ;; fetch remote examples
-
-(defn adder [a b]
-  (fm/remote (adder a b) [result]
-             (js/alert result)))
-
-(defn get-user [id]
-  (fm/remote (get-user id) [{:keys [username age]}]
-             (js/alert (str "Name: " username ", Age: " age))))
-
-
 (defn shout [msg]
   (fm/remote (shouter msg) [res]
              (js/alert res)))
-
-

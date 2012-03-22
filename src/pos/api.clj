@@ -4,6 +4,7 @@
             [pos.models.item :as item]
             [pos.models.customer :as customer]))
 
+;; mock database ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defonce ^:dynamic *database* (atom {:items     []
                                      :customers []
                                      :employees []}))
@@ -18,5 +19,6 @@
     (swap! *database* #(update-in %1 [:items] replace []))
     (swap! *database* #(update-in %1 [:customers] replace []))))
 
+;; remote endpoints for accessing database
 (defremote shouter [message]
            (clojure.string/upper-case message))

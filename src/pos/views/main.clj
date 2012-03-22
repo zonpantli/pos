@@ -9,7 +9,7 @@
 
 (defpartial header []
   [:div#header
-   [:div.btn-group
+   [:div.btn-group.offset1
     [:a {:class       "btn dropdown-toggle"
          :data-toggle "dropdown"
          :href        "#"}

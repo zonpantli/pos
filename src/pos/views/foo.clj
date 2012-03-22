@@ -17,8 +17,8 @@
 
 (defpartial formel []
   (form-to [:post "/login"]
-           (text-field "Username")
-           (password-field "Password")
+           (text-field "username")
+           (password-field "password")
            (submit-button {:class "btn"} "Login")))
 
 (def items [{:name "Foo" :class "foo"}
@@ -40,12 +40,19 @@
     (item-list items)
     ]))
 
-;;;;; remote endpoints
+;;-- Twitter bootstrap ------------------------------------------
 
-(defremote adder [& nums]
-           (apply + nums))
+(defpartial autocomplete []
+  [:div#content
+    [:h2 "Typeahead"]
+    [:p "Strato Tpying"]
+    [:div
+     [:input#typeahead-test {:type "text"
+                             :class "span3"
+                             :data-provide "typeahead"}]]])
 
-(defremote get-user [id]
-           {:username "Miika"
-            :age 29})
+(defpage "/bootstrap" []
+  (common/layout
+   (autocomplete)))
+
 

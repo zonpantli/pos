@@ -8,9 +8,10 @@
               [:head
                [:title "KovaLOPOS"]
                (include-css "css/bootstrap.css")
-               (include-css "css/main.css")               
+               (include-css "css/main.css")
                ]
               [:body
                [:div#wrapper
                 content]
-               (cljs/include-scripts :with-jquery)]))
+               (cljs/include-scripts :with-jquery)
+               (include-js  "js/bootstrap-typeahed.js")]))
