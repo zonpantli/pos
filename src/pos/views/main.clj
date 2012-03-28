@@ -26,7 +26,9 @@
   [:div#selects
    [:div.row
     [:div.span4.offset1
-     [:input#customer-dropdown {:placeholder "Customer name"}]
+     [:input#customer-dropdown {:placeholder  "Customer name"
+                                :type         "text"
+                                :data-provide "typeahead"}]
      [:a {:id          "customer-dropdown-button"
           :class       "btn dropdown-toggle"
           :data-toggle "dropdown"
@@ -37,7 +39,9 @@
       [:li "bar"]]]]
    [:div.row
     [:div.span4.offset1
-      [:input#item-dropdown {:placeholder "Product name"}]
+     [:input#item-dropdown {:placeholder  "Product name"
+                            :type         "text"
+                            :data-provide "typeahead"}]
       [:a {:id          "item-dropdown-button"
            :class       "btn dropdown-toggle"
            :data-toggle "dropdown"

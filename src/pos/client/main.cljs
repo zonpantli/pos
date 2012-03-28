@@ -33,18 +33,28 @@
 ;;************************************************
 
 ;; etusivu kenttien leiska
-;; hae kaikki data pos.client.model
+
+
+;; datan haun jälkeen eventeillä vasta kiinnitä.
 ;; kiinnitä data dropdowneihin
 ;; kuuntelijat droppeihin (vaihtuu, mätsää johonkin modelin kenttään)
 ;; google comboBox ?
 
+;; data model
+(fm/remote (get-db) [res]
+           (def data res))
+
 ;; typeahead
+(defn get-dropdown-data [data-key]
+  (map #(merge % {:value (:name %)}) (data-key data)))
 
 (jq/ready
- (do
-   (def $typeahead-test ($ :#typeahead-test))
-   (.typeahead $typeahead-test (clj->js
-                                {:source ["foo" "bar" "fofo"]}))))
+
+ (js/alert (-> data :items first :name))
+
+ ;; prepare dropdowns 
+ (.typeahead ($ :#customer-dropdown) (clj->js
+                                      {:source (get-dropdown-data :customers)}))
 
 
 
@@ -53,4 +63,4 @@
 ;; fetch remote examples
 (defn shout [msg]
   (fm/remote (shouter msg) [res]
-             (js/alert res)))
+             (js/alert res))))

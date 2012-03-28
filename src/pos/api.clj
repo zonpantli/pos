@@ -20,5 +20,5 @@
     (swap! *database* #(update-in %1 [:customers] replace []))))
 
 ;; remote endpoints for accessing database
-(defremote shouter [message]
-           (clojure.string/upper-case message))
+(defremote get-db []
+  @*database*)

@@ -9,6 +9,9 @@
 (def handler (server/gen-handler {:mode :dev
                                   :ns 'pos}))
 
+;; init in mem database
+(pos.api/init-database)
+
 (defn -main [& m]
   (let [mode (keyword (or (first m) :dev))
         port (Integer. (get (System/getenv) "PORT" "8090"))]
