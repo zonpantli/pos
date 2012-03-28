@@ -1,6 +1,19 @@
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  color: #333;
+  background: #eee;
+  font-family: "helvetica neue", helvetica, sans-serif;
+}
+
+
 #header {
     margin: 50px 0;
 }
+
+
 
 #selects {
     

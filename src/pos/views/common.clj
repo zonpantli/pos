@@ -14,4 +14,6 @@
                [:div#wrapper
                 content]
                (cljs/include-scripts :with-jquery)
-               (include-js  "js/bootstrap-typeahed.js")]))
+               (include-js  "js/bootstrap-typeahead.js")]))
+
+;; use modified version of [bootstrap-typeahead.js](https://gist.github.com/1891669)

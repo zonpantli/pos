@@ -1,16 +1,28 @@
 /* line 1, ../../../src/pos/scss/main.scss */
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 5, ../../../src/pos/scss/main.scss */
+body {
+  color: #333;
+  background: #eee;
+  font-family: "helvetica neue", helvetica, sans-serif;
+}
+
+/* line 12, ../../../src/pos/scss/main.scss */
 #header {
   margin: 50px 0;
 }
 
-/* line 7, ../../../src/pos/scss/main.scss */
+/* line 20, ../../../src/pos/scss/main.scss */
 #selects a {
   position: relative;
   top: -4px;
   left: 4px;
 }
 
-/* line 17, ../../../src/pos/scss/main.scss */
+/* line 30, ../../../src/pos/scss/main.scss */
 p.alert {
   margin-top: 50px;
 }

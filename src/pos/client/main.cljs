@@ -2,11 +2,12 @@
   (:require [noir.cljs.client.watcher :as watcher]
             [clojure.browser.repl :as repl]
             [crate.core :as crate]
-            [fetch.remotes :as remotes])
+            [fetch.remotes :as fm])
   (:use [jayq.core :only [$ append]]
         [fetch.util :only [clj->js]])
   (:use-macros [crate.macros :only [defpartial]])
-  (:require-macros [fetch.macros :as fm]))
+  (:require-macros [fetch.macros :as fm]
+                   [jayq.macros :as jq]))
 
 ;;************************************************
 ;; Dev stuff
@@ -22,7 +23,6 @@
 (def $typeahead-test ($ :#typeahead-test))
 
 
-
 (defpartial up-and-running []
   [:p.alert "CLJS is compiled and active... Time to build something!"])
 
@@ -31,8 +31,6 @@
 ;;************************************************
 ;; Code
 ;;************************************************
-(defn document-ready [func]
-  (.ready ($ js/document) func))
 
 ;; etusivu kenttien leiska
 ;; hae kaikki data pos.client.model
@@ -41,16 +39,12 @@
 ;; google comboBox ?
 
 ;; typeahead
-(document-ready
- (fn [] 
-   (do
-     (def $typeahead-test ($ :#typeahead-test))
-     (.typeahead $typeahead-test (clj->js
-                                  {:source ["foo" "bar" "fofo"]})))))
 
-
-
-
+(jq/ready
+ (do
+   (def $typeahead-test ($ :#typeahead-test))
+   (.typeahead $typeahead-test (clj->js
+                                {:source ["foo" "bar" "fofo"]}))))
 
 
 
