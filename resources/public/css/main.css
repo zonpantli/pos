@@ -11,18 +11,86 @@ body {
 }
 
 /* line 12, ../../../src/pos/scss/main.scss */
-#header {
-  margin: 50px 0;
+#pos-header {
+  margin: 50px 0 20px 0;
+  border: 1px dashed red;
+}
+/* line 16, ../../../src/pos/scss/main.scss */
+#pos-header .btn-group {
+  margin-left: 0;
 }
 
-/* line 20, ../../../src/pos/scss/main.scss */
+/* line 24, ../../../src/pos/scss/main.scss */
+#weather {
+  position: relative;
+}
+/* line 28, ../../../src/pos/scss/main.scss */
+#weather img {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* line 41, ../../../src/pos/scss/main.scss */
 #selects a {
   position: relative;
   top: -4px;
   left: 4px;
+  width: 30px;
+  height: 30px;
+}
+/* line 48, ../../../src/pos/scss/main.scss */
+#selects a .caret {
+  position: relative;
+  top: 6px;
+}
+/* line 54, ../../../src/pos/scss/main.scss */
+#selects .typeahead-dropdown {
+  line-height: 20px;
+  height: 30px;
+  font-size: 20px;
+  padding-left: 35px;
 }
 
-/* line 30, ../../../src/pos/scss/main.scss */
+/* line 64, ../../../src/pos/scss/main.scss */
+ul#transaction-buttons {
+  float: right;
+  list-style-type: none;
+  margin-left: 0px;
+}
+/* line 70, ../../../src/pos/scss/main.scss */
+ul#transaction-buttons li button {
+  width: 160px;
+  height: 60px;
+  margin-top: 2px;
+  margin-bottom: 3px;
+}
+
+/* line 82, ../../../src/pos/scss/main.scss */
+table#keypad button {
+  width: 80px;
+  height: 60px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+}
+
+/* line 104, ../../../src/pos/scss/main.scss */
+#grid {
+  padding-top: 100px;
+  margin-bottom: 30px;
+}
+
+/* line 109, ../../../src/pos/scss/main.scss */
+.show-grid > div {
+  background: #888;
+  margin-top: 10px;
+}
+
+/* line 116, ../../../src/pos/scss/main.scss */
 p.alert {
-  margin-top: 50px;
+  position: absolute;
+  bottom: 10px;
+  display: none;
 }

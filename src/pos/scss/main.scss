@@ -9,24 +9,113 @@ body {
 }
 
 
-#header {
-    margin: 50px 0;
+#pos-header {
+    margin: 50px 0 20px 0;
+    border: 1px dashed red;
+    
+    .btn-group {
+        margin-left: 0;
+    }
+    
 }
 
 
-
-#selects {
+//-- weather box --------------------------------------------
+#weather {
     
-    a {
-        position: relative;
-        top: -4px;
-        left: 4px;
+    position: relative;
+
+    img {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
 }
 
+//-- customer and product dropdowns -------------------------
+#selects {
 
+    a {
+        position: relative;
+        top: -4px;
+        left: 4px;
+        width: 30px;
+        height: 30px;
+        
+        .caret {
+            position: relative;
+            top: 6px;
+        }
+    }
 
-p.alert {
-    margin-top: 50px;
+    .typeahead-dropdown {
+        line-height: 20px;
+        height: 30px;
+        font-size: 20px;
+        padding-left: 35px;
+    }
+
 }
+
+//-- transaction buttons ------------------------------------
+ul#transaction-buttons {
+    float: right;
+    list-style-type: none;
+    margin-left: 0px;
+
+    li {
+        button {
+            width: 160px;
+            height: 60px;
+            margin-top: 2px;
+            margin-bottom: 3px;
+        }
+    }
+}
+
+
+//-- keypad -------------------------------------------------
+table#keypad {
+    button {
+        width: 80px;
+        height: 60px;
+        margin-right: 3px;
+        margin-bottom: 3px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-- dev stuff ------------------------------------------------
+#grid {
+    padding-top: 100px;
+    margin-bottom: 30px;
+}
+
+.show-grid > div {
+        background: #888;
+        margin-top: 10px;
+}
+
+
+//-- cljs compiler notification -------------------------------
+p.alert {
+    position: absolute;
+    bottom: 10px;
+    display: none;
+}
+

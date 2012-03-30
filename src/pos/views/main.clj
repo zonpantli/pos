@@ -1,14 +1,15 @@
 (ns pos.views.main
   (:require [pos.views.common :as common])
   (:use [noir.core :only [defpage defpartial]]
-        [hiccup.core :only [html]]))
+        [hiccup.core :only [html]]
+        [net.cgrand.enlive-html]))
 
 ;;*********************************************************
 ;; Partials
 ;;*********************************************************
 
 (defpartial header []
-  [:div#header
+  [:div#pos-header
    [:div.btn-group.offset1
     [:a {:class       "btn dropdown-toggle"
          :data-toggle "dropdown"
@@ -25,7 +26,7 @@
 (defpartial selects []
   [:div#selects
    [:div.row
-    [:div.span4.offset1
+    [:div.offset1
      [:input#customer-dropdown {:placeholder  "Customer name"
                                 :type         "text"
                                 :data-provide "typeahead"}]
@@ -38,7 +39,7 @@
       [:li "foo"]
       [:li "bar"]]]]
    [:div.row
-    [:div.span4.offset1
+    [:div.offset1
      [:input#item-dropdown {:placeholder  "Product name"
                             :type         "text"
                             :data-provide "typeahead"}]
@@ -52,9 +53,10 @@
        [:li "bar"]]]]])
 
 
-(defpage "/" []
-         (common/layout
-          [:div#content
-           (header)
-           (selects)
-           ]))
+(defpage "/hiccup" []
+  (common/layout
+   [:div#content
+    (header)
+    (selects)
+    ]))
+

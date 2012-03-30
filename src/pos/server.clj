@@ -1,4 +1,6 @@
 (ns pos.server
+  (:use [noir.core :only [defpage]]
+        [net.cgrand.enlive-html :only [html-resource emit*]])
   (:require [noir.server :as server]
             [noir.cljs.core :as cljs]
             [pos.api]))
@@ -11,6 +13,9 @@
 
 ;; init in mem database
 (pos.api/init-database)
+
+;; serve base html directly from application.html
+(defpage "/" [] (emit* (html-resource "application.html")))
 
 (defn -main [& m]
   (let [mode (keyword (or (first m) :dev))

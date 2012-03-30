@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Vako Lopos</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    <!-- Le styles -->
+    <!-- <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"> -->
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+  </head>
+
+  <body>
+    
+    <div id="content" class="container">
+      
+      <!-- Header -->
+      <div id="pos-header" class="row">
+        <div id="dashboard-mode-select" class="btn-group span3" data-toggle="buttons-radio">
+          <button class="btn">Hot keys</button>
+          <button class="btn">Dashboard</button>
+        </div>
+        
+        <div id="employee-select" class="btn-group span3">
+          <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">Location <span class="caret" /></a>
+          <ul id="employee-dropdown-list" class="dropdown-menu">
+            <li>Lexah</li>
+            <li>Gondor</li>
+          </ul>
+        </div>
+        
+        <div id="location-select" class="btn-group span3">
+          <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">Employee <span class="caret" /></a>
+          <ul id="employee-dropdown-list" class="dropdown-menu">
+            <li>Helsinki Bulevardi</li>
+            <li>Helsinki Lönnrotinkatu</li>
+          </ul>
+        </div>
+        
+        <div id="clock" class="span3">
+          12.02 Thu 14:51
+        </div>
+      </div>
+      
+      <!-- Main controls -->
+      <div id="main-controls" class="row">
+        
+        <!-- Left column -->
+        <div class="left-col span6">
+          
+          <div id="weather">
+            <img src="img/weather_icon.png" alt="Mostly cloudy">
+            <div class="top-row">
+              <span id="temperature">9&deg;C</span>
+              <span id="humidity" class="weather-number">93%</span>
+              <span class="weather-unit">humidity</span>
+              <span id="mmHg" class="weather-number">785</span>
+              <span class="weather-unit">mmHg</span>
+              <span id="wind" class="weather-number">3</span>
+              <span class="weather-unit">m/s NE</span>
+            </div>
+            <div class="bottom-row">
+              <table id="sales-stats">
+                <tr>
+                  <td></td>
+                  <td class="blue">Sales</td>
+                  <td class="green">Profit</td>
+                  <td>Pie</td>
+                </tr>
+                <tr>
+                  <td class="gray small">Real</td>
+                  <td class="blue"><span id="real-sales-number">2140,00</span> <span id="real-sales-percent">(91%)</span></td>
+                  <td class="blue"><span id="real-profit-number">720,00</span> <span id="real-profit-percent">(73%)</span></td>
+                  <td id="real-profit-of-sales-percent">41%</td>
+                </tr>
+                <tr>
+                  <td class="gray small">Budget</td>
+                  <td class="gray small">2350,00</td>
+                  <td class="gray small">980,00</td>
+                  <td class="gray small">51%</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          
+          <div id="selects">
+            <div class="row">
+              <div class="span6">
+                <input type="text" placeholder="Customer name" data-provide="typeahead" id="customer-dropdown" class="typeahead-dropdown span5">
+                <span class="btn-group.offset1">
+                  <a href="#" class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret" /></a>
+                  <ul id="customer-dropdown-button-list" class="dropdown-menu">
+                  </ul>  
+                </span>  
+              </div>
+            </div>
+        
+            <div class="row">
+              <div class="span6">
+                <input type="text" placeholder="Item description or id" data-provide="typeahead" id="item-dropdown" class="typeahead-dropdown span5">
+                <span class="btn-group.offset1">
+                  <a href="#" class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret" /></a>
+                  <ul id="item-dropdown-button-list" class="dropdown-menu">
+                  </ul>  
+                </span>  
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        
+        <!-- Right column -->
+        <div class="right-col span6">
+          
+          <ul id="transaction-buttons">
+            <li><button id="transaction-cash" class="btn btn-large">Cash</button></li>
+            <li><button id="transaction-credit" class="btn btn-large">Creditcard</button></li>
+            <li><button id="transaction-gift" class="btn btn-large">Gift Voucher</button></li>
+            <li><button id="transaction-compensation" class="btn btn-large">Compensation</button></li>
+          </ul>
+          
+          <table id="keypad">
+            <tbody>
+              <tr>
+                <td><button id="keypad-7" class="btn btn-large">7</button></td>
+                <td><button id="keypad-8" class="btn btn-large">8</button></td>
+                <td><button id="keypad-9" class="btn btn-large">9</button></td>
+              </tr>
+              <tr>
+                <td><button id="keypad-4" class="btn btn-large">4</button></td>
+                <td><button id="keypad-5" class="btn btn-large">5</button></td>
+                <td><button id="keypad-6" class="btn btn-large">6</button></td>
+              </tr>
+              <tr>
+                <td><button id="keypad-1" class="btn btn-large">1</button></td>
+                <td><button id="keypad-2" class="btn btn-large">2</button></td>
+                <td><button id="keypad-3" class="btn btn-large">3</button></td>
+              </tr>
+              <tr>
+                <td><button id="keypad-0" class="btn btn-large">0</button></td>
+                <td><button id="keypad-comma" class="btn btn-large">,</button></td>
+                <td><button id="keypad-correct" class="btn btn-large"><i class="icon-arrow-left"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
+
+      
+      <div id="grid">
+        <div class="row show-grid">
+          <div class="offset1">1</div>
+          <div class="offset2">1</div>
+          <div class="offset3">1</div>
+          <div class="offset4">1</div>
+          <div class="offset5">1</div>
+          <div class="offset6">1</div>
+          <div class="offset7">1</div>
+          <div class="offset8">1</div>
+          <div class="offset9">1</div>
+          <div class="offset10">1</div>
+          <div class="offset11">1</div>
+        </div>
+        
+        <div class="row show-grid">
+          <div class="span1">1</div>
+          <div class="span1">1</div>
+          <div class="span1">1</div>
+          <div class="span1">1</div>
+          <div class="span1">1</div>
+          <div class="span1">1</div>
+          <div class="span1">1</div>
+          <div class="span1">1</div>
+          <div class="span1">1</div>
+          <div class="span1">1</div>
+          <div class="span1">1</div>
+          <div class="span1">1</div>
+          </div>
+          <div class="row show-grid">
+            <div class="span4">4</div>
+            <div class="span4">4</div>
+            <div class="span4">4</div>
+          </div>
+          <div class="row show-grid">
+            <div class="span4">4</div>
+            <div class="span8">8</div>
+          </div>
+          <div class="row show-grid">
+            <div class="span6">6</div>
+            <div class="span6">6</div>
+          </div>
+          <div class="row show-grid">
+            <div class="span12">12</div>
+          </div>
+      </div>
+      
+    </div> <!-- #content -->
+    
+    <footer>
+      
+    </footer>
+    
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap-typeahead.js" type="text/javascript"></script>
+  <script src="js/bootstrap-dropdown.js" type="text/javascript"></script>
+  <script src="/cljs/bootstrap.js" type="text/javascript"></script>
+
+</html>
