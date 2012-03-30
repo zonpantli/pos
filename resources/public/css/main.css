@@ -51,16 +51,25 @@ body {
   line-height: 20px;
   height: 30px;
   font-size: 20px;
-  padding-left: 35px;
+  width: 350px;
+}
+/* line 61, ../../../src/pos/scss/main.scss */
+#selects #customer-dropdown {
+  width: 313px;
+  padding-left: 40px;
+  background-image: url("/img/user_placeholder.png");
+  background-repeat: no-repeat;
+  background-position-x: 4px;
+  background-position-y: 4px;
 }
 
-/* line 64, ../../../src/pos/scss/main.scss */
+/* line 73, ../../../src/pos/scss/main.scss */
 ul#transaction-buttons {
   float: right;
   list-style-type: none;
   margin-left: 0px;
 }
-/* line 70, ../../../src/pos/scss/main.scss */
+/* line 79, ../../../src/pos/scss/main.scss */
 ul#transaction-buttons li button {
   width: 160px;
   height: 60px;
@@ -68,7 +77,7 @@ ul#transaction-buttons li button {
   margin-bottom: 3px;
 }
 
-/* line 82, ../../../src/pos/scss/main.scss */
+/* line 91, ../../../src/pos/scss/main.scss */
 table#keypad button {
   width: 80px;
   height: 60px;
@@ -76,19 +85,19 @@ table#keypad button {
   margin-bottom: 3px;
 }
 
-/* line 104, ../../../src/pos/scss/main.scss */
+/* line 113, ../../../src/pos/scss/main.scss */
 #grid {
   padding-top: 100px;
   margin-bottom: 30px;
 }
 
-/* line 109, ../../../src/pos/scss/main.scss */
+/* line 118, ../../../src/pos/scss/main.scss */
 .show-grid > div {
   background: #888;
   margin-top: 10px;
 }
 
-/* line 116, ../../../src/pos/scss/main.scss */
+/* line 125, ../../../src/pos/scss/main.scss */
 p.alert {
   position: absolute;
   bottom: 10px;

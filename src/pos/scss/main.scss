@@ -55,7 +55,16 @@ body {
         line-height: 20px;
         height: 30px;
         font-size: 20px;
-        padding-left: 35px;
+        width: 350px
+    }
+
+    #customer-dropdown {
+        width: 313px;
+        padding-left: 40px;
+        background-image: url('/img/user_placeholder.png');
+        background-repeat:no-repeat;
+        background-position-x: 4px;
+        background-position-y: 4px;
     }
 
 }
