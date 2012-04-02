@@ -42,19 +42,25 @@
           </td>
           <td class="middle-left">
             <div id="employee-select" class="btn-group">
-              <a href="#" class="btn btn-large middle dropdown-toggle" data-toggle="dropdown">Location <span class="caret" /></a>
-              <ul id="employee-dropdown-list" class="dropdown-menu">
-                <li>Lexah</li>
-                <li>Gondor</li>
+              <button class="btn btn-large middle"><i class="icon-home"></i> Location</button>
+              <button class="btn btn-large dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+              </button>
+              <ul id="location-dropdown-list" class="dropdown-menu">
+                <li>Helsinki Bulevardi</li>
+                <li>Helsinki Lönnrotinkatu</li>
               </ul>
             </div>
           </td>
           <td class="middle-right">
             <div id="location-select" class="btn-group">
-              <a href="#" id="location-select-button" class="btn btn-large middle dropdown-toggle" data-toggle="dropdown">Employee <span class="caret" /></a>
+              <button class="btn btn-large middle"><i class="icon-user"></i> Employee</button>
+              <button class="btn btn-large dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+              </button>
               <ul id="employee-dropdown-list" class="dropdown-menu">
-                <li>Helsinki Bulevardi</li>
-                <li>Helsinki Lönnrotinkatu</li>
+                <li>Milton</li>
+                <li>Morris</li>
               </ul>
             </div>
           </td>
@@ -110,7 +116,7 @@
           <div id="selects">
             <div class="row">
               <div class="span6">
-                <input type="text" placeholder="Customer name" data-provide="typeahead" id="customer-dropdown" class="typeahead-dropdown span4">
+                <input type="text" placeholder="Customer name" data-provide="typeahead" id="customer-dropdown" class="span4">
                 <span class="btn-group.offset1">
                   <a href="#" class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret" /></a>
                   <ul id="customer-dropdown-button-list" class="dropdown-menu">
@@ -121,7 +127,7 @@
 
             <div class="row">
               <div class="span6">
-                <input type="text" placeholder="Item description or id" data-provide="typeahead" id="item-dropdown" class="typeahead-dropdown span4">
+                <input type="text" placeholder="Item description or number" data-provide="typeahead" id="item-dropdown" class="span4">
                 <span class="btn-group.offset1">
                   <a href="#" class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret" /></a>
                   <ul id="item-dropdown-button-list" class="dropdown-menu">
@@ -170,54 +176,79 @@
           
         </div>
       </div>
-
       
-      <div id="grid">
-        <div class="row show-grid">
-          <div class="offset1">1</div>
-          <div class="offset2">1</div>
-          <div class="offset3">1</div>
-          <div class="offset4">1</div>
-          <div class="offset5">1</div>
-          <div class="offset6">1</div>
-          <div class="offset7">1</div>
-          <div class="offset8">1</div>
-          <div class="offset9">1</div>
-          <div class="offset10">1</div>
-          <div class="offset11">1</div>
+      <!-- Receipt -->
+      <div id="receipt-container">
+        
+        <div id="receipt-header-panel">
+          
+          <div id="receipt-number-container">
+            Receipt: <span id="receipt-number">215</span>
+          </div>
+          
+          <button id="proceed-button" class="btn btn-large btn-success">Proceed</button>
+          <div id="total-price">169,00</div>
+          <div id="vat-container">
+            Incl. VAT: <span id="vat-number">18,90</span>
+          </div>
+          <div id="discount-container">
+            Discount: <span id="discount-number">32,00</span>
+          </div>
+          <div class="clear"></div>
+        
         </div>
         
-        <div class="row show-grid">
-          <div class="span1">1</div>
-          <div class="span1">1</div>
-          <div class="span1">1</div>
-          <div class="span1">1</div>
-          <div class="span1">1</div>
-          <div class="span1">1</div>
-          <div class="span1">1</div>
-          <div class="span1">1</div>
-          <div class="span1">1</div>
-          <div class="span1">1</div>
-          <div class="span1">1</div>
-          <div class="span1">1</div>
-          </div>
-          <div class="row show-grid">
-            <div class="span4">4</div>
-            <div class="span4">4</div>
-            <div class="span4">4</div>
-          </div>
-          <div class="row show-grid">
-            <div class="span4">4</div>
-            <div class="span8">8</div>
-          </div>
-          <div class="row show-grid">
-            <div class="span6">6</div>
-            <div class="span6">6</div>
-          </div>
-          <div class="row show-grid">
-            <div class="span12">12</div>
-          </div>
-      </div>
+        <!-- Receipt rows -->
+        <div id="receipt-table-container">
+          <table id="receipt-table"  cellpadding="5">
+            <tr>
+              <th>Product</th>
+              <th>Num</th>
+              <th>Size</th>
+              <th>Color</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Discount</th>
+              <th colspan="2">Total</th>
+            </tr>
+            
+            <!-- Mock producti -->
+            <tr>
+              <td class="bold">Cotton byxor</td>
+              <td>123456-456</td>
+              <td>M</td>
+              <td>Khaki</td>
+              <td class="qty"><input type="text" value="1"></td>
+              <td>10,00</td>
+              <td class="discount"><input type="text" value="0">%</td>
+              <td class="bold">9,00</td>
+              <td class="close-container"><a class="close">×</a></td>
+            </tr>
+            <tr>
+              <td class="bold">Cristal bag by Method</td>
+              <td>123456-234</td>
+              <td></td>
+              <td>Blue</td>
+              <td class="qty"><input type="text" value="2"></td>
+              <td>80,00</td>
+              <td class="discount"><input type="text" value="0">%</td>
+              <td class="bold">160,00</td>
+              <td class="close-container"><a class="close">×</a></td>
+            </tr>
+          </table>
+        </div>
+      </div> <!-- Receipt -->
+      
+        <table id="footer-buttons">
+          <tr>
+            <td><button class="btn btn-large">Begin day</button></td>
+            <td><button class="btn btn-large">Add message</button></td>
+            <td><button class="btn btn-large">Register Report</button></td>
+            <td><button class="btn btn-large">Sales Report</button></td>
+            <td><button class="btn btn-large">Return</button></td>
+            <td><button class="btn btn-large btn-danger">Close</button></td>
+          </tr>
+        </table>
       
     </div> <!-- #content -->
     

@@ -18,7 +18,7 @@ body {
 
 //-- header -------------------------------------------------
 #pos-header {
-  margin: 50px 0 20px 0;
+  margin: 0px 0 20px 0;
   width: 100%;
   
   td {
@@ -27,13 +27,10 @@ body {
     &.middle-right, &.middle-left {
       padding-left: 11px;
     }
-    
-
   }
   
   .btn.middle {
     min-width: 120px;
-    
   }
   
   .btn-group {
@@ -153,10 +150,10 @@ body {
     }
   }
 
-  .typeahead-dropdown {
+  input[id*='-dropdown'] {
     width: 313px;
     height: 30px;
-    padding-left: 40px;
+    padding-left: 45px;
     background-repeat:no-repeat;
     background-position-x: 4px;
     background-position-y: 3px;
@@ -203,11 +200,114 @@ table#keypad {
 }
 
 
+//-- receipt -----------------------------------------------
+#receipt-header-panel {
+  @include background(linear-gradient(top, #2d2d2d, #000));
+  margin-top: 10px;
+  height: 57px;
+  line-height: 57px;
+  color: $text-gray;
 
+  span[id*='-number'] {
+    color: white;
+    font-weight: bold;
+  }
 
+}
 
+#receipt-number-container {
+ float: left;
+ margin-left: 10px;
 
+ 
 
+}
+
+#proceed-button {
+  margin-top: 10px;
+  margin-right: 10px;
+  float: right;
+  min-width: 120px;
+}
+
+#total-price {
+  color: $green;
+  font-size: 34px;
+  float: right;
+  margin-right: 20px;
+}
+
+#vat-container {
+  float: right;
+  margin-right: 20px;
+}
+
+#discount-container {
+  float: right;
+  margin-right: 20px;
+}
+
+.clear {
+  clear: both;
+}
+
+//-- receipt table ---------------------------------------------
+#receipt-table-container {
+  background: #fff9dc;
+  min-height: 50px;
+  max-height: 160px;
+  overflow-y: scroll;
+  @include box-shadow(gray 0px 0px 5px);
+}
+
+#receipt-table {
+  
+  width: 100%;
+
+  th {
+    background: #9e998b;
+    border-top: 1px solid #a39e8f;
+    color: #fff;
+    line-height: 26px;
+    text-align: left;
+  }
+
+  td {
+    border-top: 1px solid #cdc6b1;
+    
+    &.bold {
+      font-weight: bold;
+    }
+    
+    &.close-container {
+      padding-right: 15px;
+      width: 15px;
+    }
+
+    input {
+      position: relative;
+      top: 4px;
+      background: transparent;
+      width: 25px;
+      margin-right: 5px;
+    }
+    
+  }
+}
+
+//-- footer buttons ------------------------------------------
+table#footer-buttons {
+  margin-top: 15px;
+  width: 100%;
+
+  td: {
+    text-align: center;
+  }
+  
+  .btn {
+    width: 150px;
+  }
+}
 
 
 
