@@ -1,4 +1,4 @@
-# pos
+# Kovalo Pos
 
 A website written with Noir and ClojureScript.
 
@@ -9,17 +9,21 @@ lein deps
 lein run
 ```
 
-TODO:
+## Deps
+
+use modified version of [bootstrap-typeahead.js](https://gist.github.com/1891669)
+
+
+## TODO:
 
 facebook login
 https://github.com/maxweber/clj-facebook-graph
 
 
-
 ## License
 
-Copyright (C) 2012 Kovalo Incorporated
+Copyright (C) 2012 Kovalo Limited Liability Company
 
-Distributed under the Eclipse Public License, the same as Clojure.
+Distributed under Most Closed licence you have ever seen.
 
 

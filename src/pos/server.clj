@@ -5,7 +5,6 @@
             [noir.cljs.core :as cljs]
             [pos.api]))
 
-(server/load-views-ns 'pos.views)
 (def cljs-options {:advanced {:externs ["externs/jquery.js"]}})
 
 (def handler (server/gen-handler {:mode :dev
@@ -14,7 +13,7 @@
 ;; init in mem database
 (pos.api/init-database)
 
-;; serve base html directly from application.html
+;; serve static html directly from application.html
 (defpage "/" [] (emit* (html-resource "application.html")))
 
 (defn -main [& m]
