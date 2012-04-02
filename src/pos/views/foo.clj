@@ -1,9 +1,11 @@
 (ns pos.views.foo
   (:require [pos.views.common :as common])
   (:use [noir.core :only [defpage defpartial]]
-        [hiccup.core :only [html escape-html h]]
-        [hiccup.page-helpers]
-        [hiccup.form-helpers]
+        [hiccup.core :only [html h]]
+        [hiccup.util :only [escape-html]]
+        [hiccup.element :only [link-to]]
+        [hiccup.page]
+        [hiccup.form]
         [noir.fetch.remotes]))
 
 
