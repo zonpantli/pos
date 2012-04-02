@@ -32,32 +32,39 @@
     <div id="content" class="container">
       
       <!-- Header -->
-      <div id="pos-header" class="row">
-        <div id="dashboard-mode-select" class="btn-group" data-toggle="buttons-radio">
-          <button class="btn btn-large">Hot keys</button>
-          <button class="btn btn-large">Dashboard</button>
-        </div>
-        
-        <div id="employee-select" class="btn-group">
-          <a href="#" class="btn btn-large dropdown-toggle" data-toggle="dropdown">Location <span class="caret" /></a>
-          <ul id="employee-dropdown-list" class="dropdown-menu">
-            <li>Lexah</li>
-            <li>Gondor</li>
-          </ul>
-        </div>
-        
-        <div id="location-select" class="btn-group">
-          <a href="#" class="btn btn-large dropdown-toggle" data-toggle="dropdown">Employee <span class="caret" /></a>
-          <ul id="employee-dropdown-list" class="dropdown-menu">
-            <li>Helsinki Bulevardi</li>
-            <li>Helsinki Lönnrotinkatu</li>
-          </ul>
-        </div>
-        
-        <div id="clock" class="">
-          Thu, Apr 4&nbsp;&nbsp;14:51
-        </div>
-      </div>
+      <table id="pos-header">
+        <tr>
+          <td>
+            <div id="dashboard-mode-select" class="btn-group" data-toggle="buttons-radio">
+              <button class="btn btn-large">Hot keys</button>
+              <button class="btn btn-large">Dashboard</button>
+            </div>
+          </td>
+          <td class="middle-left">
+            <div id="employee-select" class="btn-group">
+              <a href="#" class="btn btn-large middle dropdown-toggle" data-toggle="dropdown">Location <span class="caret" /></a>
+              <ul id="employee-dropdown-list" class="dropdown-menu">
+                <li>Lexah</li>
+                <li>Gondor</li>
+              </ul>
+            </div>
+          </td>
+          <td class="middle-right">
+            <div id="location-select" class="btn-group">
+              <a href="#" id="location-select-button" class="btn btn-large middle dropdown-toggle" data-toggle="dropdown">Employee <span class="caret" /></a>
+              <ul id="employee-dropdown-list" class="dropdown-menu">
+                <li>Helsinki Bulevardi</li>
+                <li>Helsinki Lönnrotinkatu</li>
+              </ul>
+            </div>
+          </td>
+          <td>
+            <div id="clock" class="">
+              Thu, Apr 4&nbsp;&nbsp;14:51
+            </div>
+          </td>
+        </tr>
+      </table>
       
       <!-- Main controls -->
       <div id="main-controls" class="row">

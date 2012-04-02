@@ -13,14 +13,26 @@ body {
 /* line 20, ../../../src/pos/scss/main.scss */
 #pos-header {
   margin: 50px 0 20px 0;
-  border: 1px dashed red;
+  width: 100%;
 }
 /* line 24, ../../../src/pos/scss/main.scss */
+#pos-header td {
+  width: 25%;
+}
+/* line 27, ../../../src/pos/scss/main.scss */
+#pos-header td.middle-right, #pos-header td.middle-left {
+  padding-left: 11px;
+}
+/* line 34, ../../../src/pos/scss/main.scss */
+#pos-header .btn.middle {
+  min-width: 120px;
+}
+/* line 39, ../../../src/pos/scss/main.scss */
 #pos-header .btn-group {
   margin-left: 0;
 }
 
-/* line 30, ../../../src/pos/scss/main.scss */
+/* line 45, ../../../src/pos/scss/main.scss */
 #clock {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5e5e5e), color-stop(100%, #3c3c3c));
   background: -webkit-linear-gradient(top, #5e5e5e, #3c3c3c);
@@ -47,14 +59,14 @@ body {
   height: 37px;
 }
 
-/* line 45, ../../../src/pos/scss/main.scss */
+/* line 60, ../../../src/pos/scss/main.scss */
 #weather {
   position: relative;
   top: 3px;
   height: 160px;
   width: 420px;
 }
-/* line 53, ../../../src/pos/scss/main.scss */
+/* line 68, ../../../src/pos/scss/main.scss */
 #weather .top-row {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5e5e5e), color-stop(100%, #3c3c3c));
   background: -webkit-linear-gradient(top, #5e5e5e, #3c3c3c);
@@ -76,7 +88,7 @@ body {
   -o-box-shadow: 0px 0px 5px #333333;
   box-shadow: 0px 0px 5px #333333;
 }
-/* line 62, ../../../src/pos/scss/main.scss */
+/* line 77, ../../../src/pos/scss/main.scss */
 #weather .bottom-row {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #2b2b2b), color-stop(100%, #303030));
   background: -webkit-linear-gradient(top, #2b2b2b, #303030);
@@ -96,19 +108,19 @@ body {
   box-shadow: 0px 0px 5px #333333;
   padding: 10px;
 }
-/* line 68, ../../../src/pos/scss/main.scss */
+/* line 83, ../../../src/pos/scss/main.scss */
 #weather .bottom-row table#sales-stats {
   color: #fff;
 }
-/* line 71, ../../../src/pos/scss/main.scss */
+/* line 86, ../../../src/pos/scss/main.scss */
 #weather .bottom-row table#sales-stats td {
   padding-left: 10px;
 }
-/* line 75, ../../../src/pos/scss/main.scss */
+/* line 90, ../../../src/pos/scss/main.scss */
 #weather .bottom-row table#sales-stats td.top-left-td {
   width: 50px;
 }
-/* line 82, ../../../src/pos/scss/main.scss */
+/* line 97, ../../../src/pos/scss/main.scss */
 #weather img {
   width: 60px;
   height: 60px;
@@ -116,41 +128,41 @@ body {
   top: 3px;
   left: 3px;
 }
-/* line 90, ../../../src/pos/scss/main.scss */
+/* line 105, ../../../src/pos/scss/main.scss */
 #weather span#temperature {
   font-wight: bold;
   font-size: 24px;
 }
-/* line 95, ../../../src/pos/scss/main.scss */
+/* line 110, ../../../src/pos/scss/main.scss */
 #weather .weather-unit {
   color: #999999;
 }
-/* line 99, ../../../src/pos/scss/main.scss */
+/* line 114, ../../../src/pos/scss/main.scss */
 #weather .weather-number {
   margin-left: 10px;
 }
-/* line 103, ../../../src/pos/scss/main.scss */
+/* line 118, ../../../src/pos/scss/main.scss */
 #weather .gray.small {
   color: #999999;
 }
-/* line 107, ../../../src/pos/scss/main.scss */
+/* line 122, ../../../src/pos/scss/main.scss */
 #weather .blue {
   color: #52c5c8;
 }
-/* line 111, ../../../src/pos/scss/main.scss */
+/* line 126, ../../../src/pos/scss/main.scss */
 #weather .green {
   color: #28c800;
 }
-/* line 115, ../../../src/pos/scss/main.scss */
+/* line 130, ../../../src/pos/scss/main.scss */
 #weather .large {
   font-size: 18px;
 }
-/* line 119, ../../../src/pos/scss/main.scss */
+/* line 134, ../../../src/pos/scss/main.scss */
 #weather span#real-sales-number, #weather span#real-profit-number {
   font-weight: bold;
 }
 
-/* line 128, ../../../src/pos/scss/main.scss */
+/* line 143, ../../../src/pos/scss/main.scss */
 #selects a {
   position: relative;
   top: -4px;
@@ -158,12 +170,12 @@ body {
   width: 30px;
   height: 30px;
 }
-/* line 135, ../../../src/pos/scss/main.scss */
+/* line 150, ../../../src/pos/scss/main.scss */
 #selects a .caret {
   position: relative;
   top: 6px;
 }
-/* line 141, ../../../src/pos/scss/main.scss */
+/* line 156, ../../../src/pos/scss/main.scss */
 #selects .typeahead-dropdown {
   width: 313px;
   height: 30px;
@@ -174,22 +186,22 @@ body {
   line-height: 20px;
   font-size: 20px;
 }
-/* line 152, ../../../src/pos/scss/main.scss */
+/* line 167, ../../../src/pos/scss/main.scss */
 #selects #customer-dropdown {
   background-image: url("/img/user_placeholder.png");
 }
-/* line 156, ../../../src/pos/scss/main.scss */
+/* line 171, ../../../src/pos/scss/main.scss */
 #selects #item-dropdown {
   background-image: url("/img/item_placeholder.png");
 }
 
-/* line 163, ../../../src/pos/scss/main.scss */
+/* line 178, ../../../src/pos/scss/main.scss */
 ul#transaction-buttons {
   float: right;
   list-style-type: none;
   margin-left: 0px;
 }
-/* line 169, ../../../src/pos/scss/main.scss */
+/* line 184, ../../../src/pos/scss/main.scss */
 ul#transaction-buttons li button {
   width: 160px;
   height: 60px;
@@ -197,7 +209,7 @@ ul#transaction-buttons li button {
   margin-bottom: 3px;
 }
 
-/* line 182, ../../../src/pos/scss/main.scss */
+/* line 197, ../../../src/pos/scss/main.scss */
 table#keypad button {
   width: 80px;
   height: 60px;
@@ -205,19 +217,19 @@ table#keypad button {
   margin-bottom: 3px;
 }
 
-/* line 204, ../../../src/pos/scss/main.scss */
+/* line 219, ../../../src/pos/scss/main.scss */
 #grid {
   padding-top: 100px;
   margin-bottom: 30px;
 }
 
-/* line 209, ../../../src/pos/scss/main.scss */
+/* line 224, ../../../src/pos/scss/main.scss */
 .show-grid > div {
   background: #888;
   margin-top: 10px;
 }
 
-/* line 216, ../../../src/pos/scss/main.scss */
+/* line 231, ../../../src/pos/scss/main.scss */
 p.alert {
   position: absolute;
   bottom: 10px;

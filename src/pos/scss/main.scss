@@ -19,7 +19,22 @@ body {
 //-- header -------------------------------------------------
 #pos-header {
   margin: 50px 0 20px 0;
-  border: 1px dashed red;
+  width: 100%;
+  
+  td {
+    width: 25%;
+
+    &.middle-right, &.middle-left {
+      padding-left: 11px;
+    }
+    
+
+  }
+  
+  .btn.middle {
+    min-width: 120px;
+    
+  }
   
   .btn-group {
     margin-left: 0;
