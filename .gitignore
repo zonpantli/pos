@@ -9,4 +9,6 @@ resources/public/cljs/
 .sass-cache
 **/*/.#*
 **/*/#*
+**/*/.DS_Store
 .DS_Store
+resources/public/.DS_Store
