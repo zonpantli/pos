@@ -5,7 +5,8 @@
             [fetch.remotes :as fm]
             [lib.dispatch :as dispatch])
   (:use [jayq.core :only [$ append]]
-        [fetch.util :only [clj->js]])
+        [fetch.util :only [clj->js]]
+        [pos.client.util :only [log]])
   (:use-macros [crate.macros :only [defpartial]])
   (:require-macros [fetch.macros :as fm]
                    [jayq.macros :as jq]))
@@ -33,41 +34,40 @@
 ;; Code
 ;;************************************************
 
-;; datan haun jälkeen eventeillä vasta kiinnitä.
-;; kiinnitä data dropdowneihin
 ;; kuuntelijat droppeihin (vaihtuu, mätsää johonkin modelin kenttään)
 
 
-;; data model
-(defn init-client-data
+;;== fetch and bind data  =====================================
+(def *data* (atom {:foo "bar"}))
+
+(defn fetch-client-data
   "Fetch inventory and user data"
   []
-  (fm/remote (get-db) [res]
-             res))
+  (fm/letrem [res (get-db)]
+             (do
+               (swap! *data* merge res)
+               (dispatch/fire :init-data-done))))
 
-;; typeahead
 (defn get-dropdown-data [data-key data]
   (map #(merge % {:value (:name %)}) (data-key data)))
 
+(defn prepare-typeaheads
+  "Attach data to typeahead fields for customer and item selcetion"
+  [data]
+  (do
+    (log "preparing typeaheads")
+    (.typeahead ($ :#customer-dropdown) (clj->js
+                                         {:source (get-dropdown-data :customers data)}))
+    (.typeahead ($ :#item-dropdown) (clj->js
+                                        {:source (get-dropdown-data :items data)}))))
 
 
-;; prepare dropdowns 
-(.typeahead ($ :#customer-dropdown) (clj->js
-                                     {:source (get-dropdown-data :customers)}))
 
-
-
+;;== init app =========================================
 (jq/ready
+ (fetch-client-data))
 
- (js/alert (-> data :items first :name))
-
-
-
-
-
-
-
-;; fetch remote examples
-(defn shout [msg]
-  (fm/remote (shouter msg) [res]
-             (js/alert res))))
+(dispatch/react-to #{:init-data-done}
+                   (fn [t d]
+                     (do
+                       (prepare-typeaheads @*data*))))
