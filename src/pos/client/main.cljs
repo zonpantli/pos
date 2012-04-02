@@ -2,7 +2,8 @@
   (:require [noir.cljs.client.watcher :as watcher]
             [clojure.browser.repl :as repl]
             [crate.core :as crate]
-            [fetch.remotes :as fm])
+            [fetch.remotes :as fm]
+            [lib.dispatch :as dispatch])
   (:use [jayq.core :only [$ append]]
         [fetch.util :only [clj->js]])
   (:use-macros [crate.macros :only [defpartial]])
@@ -32,29 +33,35 @@
 ;; Code
 ;;************************************************
 
-;; etusivu kenttien leiska
-
-
 ;; datan haun jälkeen eventeillä vasta kiinnitä.
 ;; kiinnitä data dropdowneihin
 ;; kuuntelijat droppeihin (vaihtuu, mätsää johonkin modelin kenttään)
-;; google comboBox ?
+
 
 ;; data model
-(fm/remote (get-db) [res]
-           (def data res))
+(defn init-client-data
+  "Fetch inventory and user data"
+  []
+  (fm/remote (get-db) [res]
+             res))
 
 ;; typeahead
-(defn get-dropdown-data [data-key]
+(defn get-dropdown-data [data-key data]
   (map #(merge % {:value (:name %)}) (data-key data)))
+
+
+
+;; prepare dropdowns 
+(.typeahead ($ :#customer-dropdown) (clj->js
+                                     {:source (get-dropdown-data :customers)}))
+
+
 
 (jq/ready
 
  (js/alert (-> data :items first :name))
 
- ;; prepare dropdowns 
- (.typeahead ($ :#customer-dropdown) (clj->js
-                                      {:source (get-dropdown-data :customers)}))
+
 
 
 
