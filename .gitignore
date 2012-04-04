@@ -3,7 +3,6 @@ pom.xml
 /lib/
 /classes/
 .lein-deps-sum
-resources/public/cljs/
 .lein-cljsbuild-repl/
 .lein-plugins/
 .sass-cache
