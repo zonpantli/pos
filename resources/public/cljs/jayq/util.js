@@ -1,37 +1,37 @@
 goog.provide('jayq.util');
 goog.require('cljs.core');
 jayq.util.map__GT_js = (function map__GT_js(m){
-var out__9028 = cljs.core.js_obj.call(null);
+var out__9456 = cljs.core.js_obj.call(null);
 
-var G__9029__9030 = cljs.core.seq.call(null,m);
+var G__9457__9458 = cljs.core.seq.call(null,m);
 
-if(cljs.core.truth_(G__9029__9030))
-{var G__9032__9034 = cljs.core.first.call(null,G__9029__9030);
-var vec__9033__9035 = G__9032__9034;
-var k__9036 = cljs.core.nth.call(null,vec__9033__9035,0,null);
-var v__9037 = cljs.core.nth.call(null,vec__9033__9035,1,null);
-var G__9029__9038 = G__9029__9030;
+if(cljs.core.truth_(G__9457__9458))
+{var G__9460__9462 = cljs.core.first.call(null,G__9457__9458);
+var vec__9461__9463 = G__9460__9462;
+var k__9464 = cljs.core.nth.call(null,vec__9461__9463,0,null);
+var v__9465 = cljs.core.nth.call(null,vec__9461__9463,1,null);
+var G__9457__9466 = G__9457__9458;
 
-var G__9032__9039 = G__9032__9034;
-var G__9029__9040 = G__9029__9038;
+var G__9460__9467 = G__9460__9462;
+var G__9457__9468 = G__9457__9466;
 
 while(true){
-var vec__9041__9042 = G__9032__9039;
-var k__9043 = cljs.core.nth.call(null,vec__9041__9042,0,null);
-var v__9044 = cljs.core.nth.call(null,vec__9041__9042,1,null);
-var G__9029__9045 = G__9029__9040;
+var vec__9469__9470 = G__9460__9467;
+var k__9471 = cljs.core.nth.call(null,vec__9469__9470,0,null);
+var v__9472 = cljs.core.nth.call(null,vec__9469__9470,1,null);
+var G__9457__9473 = G__9457__9468;
 
-(out__9028[cljs.core.name.call(null,k__9043)] = v__9044);
-var temp__3698__auto____9046 = cljs.core.next.call(null,G__9029__9045);
+(out__9456[cljs.core.name.call(null,k__9471)] = v__9472);
+var temp__3698__auto____9474 = cljs.core.next.call(null,G__9457__9473);
 
-if(cljs.core.truth_(temp__3698__auto____9046))
-{var G__9029__9047 = temp__3698__auto____9046;
+if(cljs.core.truth_(temp__3698__auto____9474))
+{var G__9457__9475 = temp__3698__auto____9474;
 
 {
-var G__9048 = cljs.core.first.call(null,G__9029__9047);
-var G__9049 = G__9029__9047;
-G__9032__9039 = G__9048;
-G__9029__9040 = G__9049;
+var G__9476 = cljs.core.first.call(null,G__9457__9475);
+var G__9477 = G__9457__9475;
+G__9460__9467 = G__9476;
+G__9457__9468 = G__9477;
 continue;
 }
 } else
@@ -40,7 +40,7 @@ break;
 }
 } else
 {}
-return out__9028;
+return out__9456;
 });
 jayq.util.wait = (function wait(ms,func){
 return setTimeout(func, ms);
@@ -50,9 +50,9 @@ return setTimeout(func, ms);
 */
 jayq.util.log = (function() { 
 var log__delegate = function (v,text){
-var vs__9050 = (cljs.core.truth_(cljs.core.string_QMARK_.call(null,v))?cljs.core.apply.call(null,cljs.core.str,v,text):v);
+var vs__9478 = (cljs.core.truth_(cljs.core.string_QMARK_.call(null,v))?cljs.core.apply.call(null,cljs.core.str,v,text):v);
 
-return console.log(vs__9050);
+return console.log(vs__9478);
 };
 var log = function (v,var_args){
 var text = null;
@@ -62,9 +62,9 @@ if (goog.isDef(var_args)) {
 return log__delegate.call(this, v, text);
 };
 log.cljs$lang$maxFixedArity = 1;
-log.cljs$lang$applyTo = (function (arglist__9051){
-var v = cljs.core.first(arglist__9051);
-var text = cljs.core.rest(arglist__9051);
+log.cljs$lang$applyTo = (function (arglist__9479){
+var v = cljs.core.first(arglist__9479);
+var text = cljs.core.rest(arglist__9479);
 return log__delegate.call(this, v, text);
 });
 return log;
@@ -83,12 +83,12 @@ if(cljs.core.truth_(cljs.core.string_QMARK_.call(null,x)))
 {return cljs.core.name.call(null,x);
 } else
 {if(cljs.core.truth_(cljs.core.map_QMARK_.call(null,x)))
-{return cljs.core.reduce.call(null,(function (m,p__9052){
-var vec__9053__9054 = p__9052;
-var k__9055 = cljs.core.nth.call(null,vec__9053__9054,0,null);
-var v__9056 = cljs.core.nth.call(null,vec__9053__9054,1,null);
+{return cljs.core.reduce.call(null,(function (m,p__9480){
+var vec__9481__9482 = p__9480;
+var k__9483 = cljs.core.nth.call(null,vec__9481__9482,0,null);
+var v__9484 = cljs.core.nth.call(null,vec__9481__9482,1,null);
 
-return cljs.core.assoc.call(null,m,clj__GT_js.call(null,k__9055),clj__GT_js.call(null,v__9056));
+return cljs.core.assoc.call(null,m,clj__GT_js.call(null,k__9483),clj__GT_js.call(null,v__9484));
 }),cljs.core.ObjMap.fromObject([],{}),x).strobj;
 } else
 {if(cljs.core.truth_(cljs.core.coll_QMARK_.call(null,x)))

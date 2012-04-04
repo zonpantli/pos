@@ -13,12 +13,12 @@ if(cljs.core.truth_(cljs.core.string_QMARK_.call(null,x)))
 {return cljs.core.name.call(null,x);
 } else
 {if(cljs.core.truth_(cljs.core.map_QMARK_.call(null,x)))
-{return cljs.core.reduce.call(null,(function (m,p__8519){
-var vec__8520__8521 = p__8519;
-var k__8522 = cljs.core.nth.call(null,vec__8520__8521,0,null);
-var v__8523 = cljs.core.nth.call(null,vec__8520__8521,1,null);
+{return cljs.core.reduce.call(null,(function (m,p__8947){
+var vec__8948__8949 = p__8947;
+var k__8950 = cljs.core.nth.call(null,vec__8948__8949,0,null);
+var v__8951 = cljs.core.nth.call(null,vec__8948__8949,1,null);
 
-return cljs.core.assoc.call(null,m,clj__GT_js.call(null,k__8522),clj__GT_js.call(null,v__8523));
+return cljs.core.assoc.call(null,m,clj__GT_js.call(null,k__8950),clj__GT_js.call(null,v__8951));
 }),cljs.core.ObjMap.fromObject([],{}),x).strobj;
 } else
 {if(cljs.core.truth_(cljs.core.coll_QMARK_.call(null,x)))
