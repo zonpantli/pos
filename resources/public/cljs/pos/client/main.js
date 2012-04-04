@@ -21,8 +21,8 @@ return lib.dispatch.fire.call(null,"\uFDD0'init-data-done");
 }));
 });
 pos.client.main.get_dropdown_data = (function get_dropdown_data(data_key,data){
-return cljs.core.map.call(null,(function (p1__7269_SHARP_){
-return cljs.core.merge.call(null,p1__7269_SHARP_,cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":"\uFDD0'name".call(null,p1__7269_SHARP_)}));
+return cljs.core.map.call(null,(function (p1__7142_SHARP_){
+return cljs.core.merge.call(null,p1__7142_SHARP_,cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":"\uFDD0'name".call(null,p1__7142_SHARP_)}));
 }),data_key.call(null,data));
 });
 /**
@@ -43,10 +43,10 @@ pos.client.main.set_customer = (function set_customer(id){
 return alert.call(null,cljs.core.str.call(null,"Customer set - id: ",id.data));
 });
 pos.client.main.bind_pusher_listener = (function bind_pusher_listener(){
-var pusher__7270 = (new Pusher("a32696b95bcc47185377"));
-var channel__7271 = pusher__7270.subscribe("kovalo-pos");
+var pusher__7143 = (new Pusher("a32696b95bcc47185377"));
+var channel__7144 = pusher__7143.subscribe("kovalo-pos");
 
-return channel__7271.bind("customer-nfc",pos.client.main.set_customer);
+return channel__7144.bind("customer-nfc",pos.client.main.set_customer);
 });
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'init-data-done"]),(function (t,d){
 pos.client.main.prepare_typeaheads.call(null,cljs.core.deref.call(null,pos.client.main._STAR_data_STAR_));
