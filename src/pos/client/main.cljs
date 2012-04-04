@@ -22,13 +22,12 @@
 (repl/connect "http://localhost:9000/repl")
 
 (def $content ($ :#content))
-(def $typeahead-test ($ :#typeahead-test))
 
+(comment
+ (defpartial up-and-running []
+   [:p.alert "CLJS is compiled and active... Time to build something!"])
 
-(defpartial up-and-running []
-  [:p.alert "CLJS is compiled and active... Time to build something!"])
-
-(append $content (up-and-running))
+ (append $content (up-and-running)))
 
 ;;************************************************
 ;; Code
@@ -61,11 +60,16 @@
     (.typeahead ($ :#item-dropdown) (clj->js
                                         {:source (get-dropdown-data :items data)}))))
 
+;; == Pusher websockets ========================================
 
+(comment (defn set-customer [id]
+  
+   ))
 
-;;== init app =========================================
+;;== init app ==================================================
 (jq/ready
- (fetch-client-data))
+ (fetch-client-data)
+ )
 
 (dispatch/react-to #{:init-data-done}
                    (fn [t d]
