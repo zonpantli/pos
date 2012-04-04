@@ -61,17 +61,26 @@
                                         {:source (get-dropdown-data :items data)}))))
 
 ;; == Pusher websockets ========================================
+(defn set-customer [id]
+ (js/alert (str "Customer set - id: " (.-data id))))
 
-(comment (defn set-customer [id]
-  
-   ))
+(defn bind-pusher-listener []
+  (do
+    (let [pusher (js/Pusher. "a32696b95bcc47185377")
+          channel (.subscribe pusher "kovalo-pos")]
+      (.bind channel "customer-nfc" set-customer))))
 
-;;== init app ==================================================
-(jq/ready
- (fetch-client-data)
- )
 
+;;== reactors ==================================================
 (dispatch/react-to #{:init-data-done}
                    (fn [t d]
                      (do
                        (prepare-typeaheads @*data*))))
+
+
+
+;;== init app ==================================================
+(jq/ready
+ (do
+   (fetch-client-data)
+   (bind-pusher-listener)))
