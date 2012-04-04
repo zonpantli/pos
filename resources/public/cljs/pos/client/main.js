@@ -21,8 +21,8 @@ return lib.dispatch.fire.call(null,"\uFDD0'init-data-done");
 }));
 });
 pos.client.main.get_dropdown_data = (function get_dropdown_data(data_key,data){
-return cljs.core.map.call(null,(function (p1__7147_SHARP_){
-return cljs.core.merge.call(null,p1__7147_SHARP_,cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":"\uFDD0'name".call(null,p1__7147_SHARP_)}));
+return cljs.core.map.call(null,(function (p1__7251_SHARP_){
+return cljs.core.merge.call(null,p1__7251_SHARP_,cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":"\uFDD0'name".call(null,p1__7251_SHARP_)}));
 }),data_key.call(null,data));
 });
 /**
@@ -33,19 +33,29 @@ pos.client.util.log.call(null,"preparing typeaheads");
 jayq.core.$.call(null,"\uFDD0'#customer-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source"],{"\uFDD0'source":pos.client.main.get_dropdown_data.call(null,"\uFDD0'customers",data)})));
 return jayq.core.$.call(null,"\uFDD0'#item-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source"],{"\uFDD0'source":pos.client.main.get_dropdown_data.call(null,"\uFDD0'items",data)})));
 });
+pos.client.main.pie_data = (function pie_data(){
+return fetch.util.clj__GT_js.call(null,cljs.core.PersistentVector.fromArray([cljs.core.ObjMap.fromObject(["\uFDD0'label","\uFDD0'data","\uFDD0'color"],{"\uFDD0'label":"","\uFDD0'data":33,"\uFDD0'color":"#5bb75b"}),cljs.core.ObjMap.fromObject(["\uFDD0'label","\uFDD0'data","\uFDD0'color"],{"\uFDD0'label":"","\uFDD0'data":67,"\uFDD0'color":"#52c5c8"})]));
+});
 pos.client.main.set_customer = (function set_customer(id){
 return alert.call(null,cljs.core.str.call(null,"Customer set - id: ",id.data));
 });
 pos.client.main.bind_pusher_listener = (function bind_pusher_listener(){
-var pusher__7148 = (new Pusher("a32696b95bcc47185377"));
-var channel__7149 = pusher__7148.subscribe("kovalo-pos");
+var pusher__7252 = (new Pusher("a32696b95bcc47185377"));
+var channel__7253 = pusher__7252.subscribe("kovalo-pos");
 
-return channel__7149.bind("customer-nfc",pos.client.main.set_customer);
+return channel__7253.bind("customer-nfc",pos.client.main.set_customer);
 });
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'init-data-done"]),(function (t,d){
 return pos.client.main.prepare_typeaheads.call(null,cljs.core.deref.call(null,pos.client.main._STAR_data_STAR_));
 }));
+pos.client.main.draw_pie = (function draw_pie(){
+return $.plot(jayq.core.$.call(null,"\uFDD0'#pie"),pos.client.main.pie_data.call(null),fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'series"],{"\uFDD0'series":cljs.core.ObjMap.fromObject(["\uFDD0'pie"],{"\uFDD0'pie":cljs.core.ObjMap.fromObject(["\uFDD0'show","\uFDD0'stroke"],{"\uFDD0'show":true,"\uFDD0'stroke":cljs.core.ObjMap.fromObject(["\uFDD0'color","\uFDD0'width"],{"\uFDD0'color":"#2b2b2b","\uFDD0'width":0})})})})));
+});
+pos.client.main.prepare_ui = (function prepare_ui(){
+return pos.client.main.draw_pie.call(null);
+});
 jayq.core.document_ready.call(null,(function (){
 pos.client.main.fetch_client_data.call(null);
-return pos.client.main.bind_pusher_listener.call(null);
+pos.client.main.bind_pusher_listener.call(null);
+return pos.client.main.prepare_ui.call(null);
 }));

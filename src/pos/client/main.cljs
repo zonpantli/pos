@@ -58,7 +58,12 @@
     (.typeahead ($ :#customer-dropdown) (clj->js
                                          {:source (get-dropdown-data :customers data)}))
     (.typeahead ($ :#item-dropdown) (clj->js
-                                        {:source (get-dropdown-data :items data)}))))
+                                     {:source (get-dropdown-data :items data)}))))
+
+(defn pie-data []
+  (clj->js
+   [{:label "" :data 33 :color "#5bb75b"}
+    {:label "" :data 67 :color "#52c5c8"}]))
 
 ;; == Pusher websockets ========================================
 (defn set-customer [id]
@@ -78,9 +83,22 @@
                        (prepare-typeaheads @*data*))))
 
 
+;;== ui =======================================================
+(defn draw-pie []
+  (.plot js/$ ($ :#pie)
+         (pie-data)
+         (clj->js {:series {:pie {:show true
+                                  :stroke {:color "#2b2b2b"
+                                           :width 0}}}})))
+
+(defn prepare-ui []
+  (do
+    (draw-pie)))
+
 
 ;;== init app ==================================================
 (jq/ready
  (do
    (fetch-client-data)
-   (bind-pusher-listener)))
+   (bind-pusher-listener)
+   (prepare-ui)))

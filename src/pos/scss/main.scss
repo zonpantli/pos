@@ -1,8 +1,10 @@
 @import "compass";
 
 // app colors
+$bright-blue: #52c5c8;
+$bright-green: #28c800;
 $blue: #52c5c8;
-$green: #28c800;
+$green: #5bb75b;
 $text-gray: #999;
 
 html {
@@ -130,6 +132,13 @@ body {
   
   span#real-sales-number, span#real-profit-number {
     font-weight: bold;
+  }
+
+  #pie {
+    position: relative;
+    left: 5px;
+    width: 16px;
+    height: 16px;
   }
 
 }
