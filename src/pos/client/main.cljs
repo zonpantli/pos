@@ -54,11 +54,15 @@
   "Attach data to typeahead fields for customer and item selcetion"
   [data]
   (do
-    (log "preparing typeaheads")
-    (.typeahead ($ :#customer-dropdown) (clj->js
+    (.typeahead ($ :#customers-dropdown) (clj->js
                                          {:source (get-dropdown-data :customers data)}))
-    (.typeahead ($ :#item-dropdown) (clj->js
+    (.typeahead ($ :#items-dropdown) (clj->js
                                      {:source (get-dropdown-data :items data)}))))
+
+(defn prepare-dropdowns []
+  (do
+    (.dropdown ($ :#location-dropdown-list))
+    (.dropdown ($ :#employee-dropdown-list))))
 
 (defn pie-data []
   (clj->js
@@ -80,7 +84,8 @@
 (dispatch/react-to #{:init-data-done}
                    (fn [t d]
                      (do
-                       (prepare-typeaheads @*data*))))
+                       (prepare-typeaheads @*data*)
+                       (prepare-dropdowns))))
 
 
 ;;== ui =======================================================
