@@ -14755,7 +14755,7 @@ pos.client.main = {};
 clojure.browser.repl.connect.call(null, "http://localhost:9000/repl");
 pos.client.main.$content = jayq.core.$.call(null, "\ufdd0'#content");
 pos.client.main._STAR_data_STAR_ = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {}));
-pos.client.main._STAR_state_STAR_ = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {}));
+pos.client.main._STAR_state_STAR_ = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'dashboard-mode", "\ufdd0'location", "\ufdd0'employee", "\ufdd0'customer", "\ufdd0'receipt"], {"\ufdd0'dashboard-mode":!0, "\ufdd0'location":null, "\ufdd0'employee":null, "\ufdd0'customer":null, "\ufdd0'receipt":cljs.core.ObjMap.fromObject(["\ufdd0'items"], {"\ufdd0'items":cljs.core.PersistentVector.fromArray([])})}));
 pos.client.main.fetch_client_data = function() {
   return fetch.remotes.remote_callback.call(null, "get-db", cljs.core.PersistentVector.fromArray([]), function(a) {
     cljs.core.swap_BANG_.call(null, pos.client.main._STAR_data_STAR_, cljs.core.merge, a);

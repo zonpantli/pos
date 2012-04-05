@@ -38,7 +38,13 @@
 
 ;;== fetch and bind data  =====================================
 (def *data* (atom {}))
-(def *state* (atom {}))
+
+;; initial state of the app
+(def *state* (atom {:dashboard-mode true
+                    :location nil
+                    :employee nil
+                    :customer nil
+                    :receipt {:items []}}))
 
 (defn fetch-client-data
   "Fetch inventory and user data"

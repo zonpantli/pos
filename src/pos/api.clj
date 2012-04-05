@@ -5,7 +5,9 @@
   (:require [noir.response :as response]
             [clj-http.client :as client]
             [pos.models.item :as item]
-            [pos.models.customer :as customer])
+            [pos.models.customer :as customer]
+            [pos.models.loaction :as location]
+            [pos.models.employee :as employee])
   (:import [java.io BufferedReader InputStreamReader]))
 
 ;; helpers
@@ -28,6 +30,8 @@
   (do 
     (swap! *database* #(update-in %1 [:items] into %2) item/fake-data)
     (swap! *database* #(update-in %1 [:customers] into %2) customer/fake-data)))
+
+(defn init-data)
 
 (defn clean-database []
   (do
