@@ -6,19 +6,9 @@
             [clj-http.client :as client]
             [pos.models.item :as item]
             [pos.models.customer :as customer]
-            [pos.models.loaction :as location]
+            [pos.models.location :as location]
             [pos.models.employee :as employee])
   (:import [java.io BufferedReader InputStreamReader]))
-
-;; helpers
-(defn cmd [p] (.. Runtime getRuntime (exec (str p)))) 
-(defn cmdout [o] 
-  (let [r (BufferedReader. 
-             (InputStreamReader. 
-               (.getInputStream o)))] 
-    (dorun (map println (line-seq r))))) 
-
-
 
 ;; mock database ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defonce ^:dynamic *database* (atom {:items     []
@@ -31,8 +21,6 @@
     (swap! *database* #(update-in %1 [:items] into %2) item/fake-data)
     (swap! *database* #(update-in %1 [:customers] into %2) customer/fake-data)))
 
-(defn init-data)
-
 (defn clean-database []
   (do
     (swap! *database* #(update-in %1 [:items] replace []))
@@ -40,8 +28,8 @@
 
 ;; remote endpoints for accessing database
 (defremote get-db []
-  @*database*)
-
+  (do
+    @*database*))
 
 ;; endpoints for Kovalo Merch NFC reader
 (defpage "/nfc/customer/:id" {:keys [id]}
@@ -51,4 +39,3 @@
       (with-pusher-channel "kovalo-pos"
         (trigger "customer-nfc" {:data id})))
     (response/json {:success true})))
-

@@ -4,12 +4,12 @@ goog.require('clojure.browser.net');
 goog.require('clojure.browser.event');
 clojure.browser.repl.xpc_connection = cljs.core.atom.call(null,null);
 clojure.browser.repl.repl_print = (function repl_print(data){
-var temp__3695__auto____8952 = cljs.core.deref.call(null,clojure.browser.repl.xpc_connection);
+var temp__3695__auto____9320 = cljs.core.deref.call(null,clojure.browser.repl.xpc_connection);
 
-if(cljs.core.truth_(temp__3695__auto____8952))
-{var conn__8953 = temp__3695__auto____8952;
+if(cljs.core.truth_(temp__3695__auto____9320))
+{var conn__9321 = temp__3695__auto____9320;
 
-return clojure.browser.net.transmit.call(null,conn__8953,"\uFDD0'print",cljs.core.pr_str.call(null,data));
+return clojure.browser.net.transmit.call(null,conn__9321,"\uFDD0'print",cljs.core.pr_str.call(null,data));
 } else
 {return null;
 }
@@ -18,21 +18,21 @@ return clojure.browser.net.transmit.call(null,conn__8953,"\uFDD0'print",cljs.cor
 * Process a single block of JavaScript received from the server
 */
 clojure.browser.repl.evaluate_javascript = (function evaluate_javascript(conn,block){
-var result__8956 = (function (){try{return cljs.core.ObjMap.fromObject(["\uFDD0'status","\uFDD0'value"],{"\uFDD0'status":"\uFDD0'success","\uFDD0'value":cljs.core.str.call(null,eval(block))});
-}catch (e8954){if(cljs.core.truth_(cljs.core.instance_QMARK_.call(null,Error,e8954)))
-{var e__8955 = e8954;
+var result__9324 = (function (){try{return cljs.core.ObjMap.fromObject(["\uFDD0'status","\uFDD0'value"],{"\uFDD0'status":"\uFDD0'success","\uFDD0'value":cljs.core.str.call(null,eval(block))});
+}catch (e9322){if(cljs.core.truth_(cljs.core.instance_QMARK_.call(null,Error,e9322)))
+{var e__9323 = e9322;
 
-return cljs.core.ObjMap.fromObject(["\uFDD0'status","\uFDD0'value","\uFDD0'stacktrace"],{"\uFDD0'status":"\uFDD0'exception","\uFDD0'value":cljs.core.pr_str.call(null,e__8955),"\uFDD0'stacktrace":(cljs.core.truth_(e__8955.hasOwnProperty("stack"))?e__8955.stack:"No stacktrace available.")});
+return cljs.core.ObjMap.fromObject(["\uFDD0'status","\uFDD0'value","\uFDD0'stacktrace"],{"\uFDD0'status":"\uFDD0'exception","\uFDD0'value":cljs.core.pr_str.call(null,e__9323),"\uFDD0'stacktrace":(cljs.core.truth_(e__9323.hasOwnProperty("stack"))?e__9323.stack:"No stacktrace available.")});
 } else
 {if(cljs.core.truth_("\uFDD0'else"))
-{throw e8954;
+{throw e9322;
 } else
 {return null;
 }
 }
 }})();
 
-return cljs.core.pr_str.call(null,result__8956);
+return cljs.core.pr_str.call(null,result__9324);
 });
 clojure.browser.repl.send_result = (function send_result(connection,url,data){
 return clojure.browser.net.transmit.call(null,connection,url,"POST",data,null,0);
@@ -43,27 +43,27 @@ return clojure.browser.net.transmit.call(null,connection,url,"POST",data,null,0)
 */
 clojure.browser.repl.send_print = (function() {
 var send_print = null;
-var send_print__8958 = (function (url,data){
+var send_print__9326 = (function (url,data){
 return send_print.call(null,url,data,0);
 });
-var send_print__8959 = (function (url,data,n){
-var conn__8957 = clojure.browser.net.xhr_connection.call(null);
+var send_print__9327 = (function (url,data,n){
+var conn__9325 = clojure.browser.net.xhr_connection.call(null);
 
-clojure.browser.event.listen.call(null,conn__8957,"\uFDD0'error",(function (_){
+clojure.browser.event.listen.call(null,conn__9325,"\uFDD0'error",(function (_){
 if(cljs.core.truth_((n < 10)))
 {return send_print.call(null,url,data,(n + 1));
 } else
 {return console.log(cljs.core.str.call(null,"Could not send ",data," after ",n," attempts."));
 }
 }));
-return clojure.browser.net.transmit.call(null,conn__8957,url,"POST",data,null,0);
+return clojure.browser.net.transmit.call(null,conn__9325,url,"POST",data,null,0);
 });
 send_print = function(url,data,n){
 switch(arguments.length){
 case  2 :
-return send_print__8958.call(this,url,data);
+return send_print__9326.call(this,url,data);
 case  3 :
-return send_print__8959.call(this,url,data,n);
+return send_print__9327.call(this,url,data,n);
 }
 throw('Invalid arity: ' + arguments.length);
 };
@@ -78,25 +78,25 @@ return cljs.core.pr_str.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'type","\u
 * Start the REPL server connection.
 */
 clojure.browser.repl.start_evaluator = (function start_evaluator(url){
-var temp__3695__auto____8961 = clojure.browser.net.xpc_connection.call(null);
+var temp__3695__auto____9329 = clojure.browser.net.xpc_connection.call(null);
 
-if(cljs.core.truth_(temp__3695__auto____8961))
-{var repl_connection__8962 = temp__3695__auto____8961;
+if(cljs.core.truth_(temp__3695__auto____9329))
+{var repl_connection__9330 = temp__3695__auto____9329;
 
-var connection__8963 = clojure.browser.net.xhr_connection.call(null);
+var connection__9331 = clojure.browser.net.xhr_connection.call(null);
 
-clojure.browser.event.listen.call(null,connection__8963,"\uFDD0'success",(function (e){
-return clojure.browser.net.transmit.call(null,repl_connection__8962,"\uFDD0'evaluate-javascript",e.currentTarget.getResponseText(cljs.core.List.EMPTY));
+clojure.browser.event.listen.call(null,connection__9331,"\uFDD0'success",(function (e){
+return clojure.browser.net.transmit.call(null,repl_connection__9330,"\uFDD0'evaluate-javascript",e.currentTarget.getResponseText(cljs.core.List.EMPTY));
 }));
-clojure.browser.net.register_service.call(null,repl_connection__8962,"\uFDD0'send-result",(function (data){
-return clojure.browser.repl.send_result.call(null,connection__8963,url,clojure.browser.repl.wrap_message.call(null,"\uFDD0'result",data));
+clojure.browser.net.register_service.call(null,repl_connection__9330,"\uFDD0'send-result",(function (data){
+return clojure.browser.repl.send_result.call(null,connection__9331,url,clojure.browser.repl.wrap_message.call(null,"\uFDD0'result",data));
 }));
-clojure.browser.net.register_service.call(null,repl_connection__8962,"\uFDD0'print",(function (data){
+clojure.browser.net.register_service.call(null,repl_connection__9330,"\uFDD0'print",(function (data){
 return clojure.browser.repl.send_print.call(null,url,clojure.browser.repl.wrap_message.call(null,"\uFDD0'print",data));
 }));
-clojure.browser.net.connect.call(null,repl_connection__8962,cljs.core.constantly.call(null,null));
+clojure.browser.net.connect.call(null,repl_connection__9330,cljs.core.constantly.call(null,null));
 return setTimeout.call(null,(function (){
-return clojure.browser.repl.send_result.call(null,connection__8963,url,clojure.browser.repl.wrap_message.call(null,"\uFDD0'ready","ready"));
+return clojure.browser.repl.send_result.call(null,connection__9331,url,clojure.browser.repl.wrap_message.call(null,"\uFDD0'ready","ready"));
 }),50);
 } else
 {return alert.call(null,"No 'xpc' param provided to child iframe.");
@@ -108,13 +108,13 @@ return clojure.browser.repl.send_result.call(null,connection__8963,url,clojure.b
 * the document that called this function.
 */
 clojure.browser.repl.connect = (function connect(repl_server_url){
-var repl_connection__8964 = clojure.browser.net.xpc_connection.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'peer_uri"],{"\uFDD0'peer_uri":repl_server_url}));
+var repl_connection__9332 = clojure.browser.net.xpc_connection.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'peer_uri"],{"\uFDD0'peer_uri":repl_server_url}));
 
-cljs.core.swap_BANG_.call(null,clojure.browser.repl.xpc_connection,cljs.core.constantly.call(null,repl_connection__8964));
-clojure.browser.net.register_service.call(null,repl_connection__8964,"\uFDD0'evaluate-javascript",(function (js){
-return clojure.browser.net.transmit.call(null,repl_connection__8964,"\uFDD0'send-result",clojure.browser.repl.evaluate_javascript.call(null,repl_connection__8964,js));
+cljs.core.swap_BANG_.call(null,clojure.browser.repl.xpc_connection,cljs.core.constantly.call(null,repl_connection__9332));
+clojure.browser.net.register_service.call(null,repl_connection__9332,"\uFDD0'evaluate-javascript",(function (js){
+return clojure.browser.net.transmit.call(null,repl_connection__9332,"\uFDD0'send-result",clojure.browser.repl.evaluate_javascript.call(null,repl_connection__9332,js));
 }));
-return clojure.browser.net.connect.call(null,repl_connection__8964,cljs.core.constantly.call(null,null),(function (iframe){
+return clojure.browser.net.connect.call(null,repl_connection__9332,cljs.core.constantly.call(null,null),(function (iframe){
 return iframe.style.display = "none";
 }));
 });
