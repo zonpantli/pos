@@ -37,5 +37,5 @@
     (println (str "Customer Id: " id))
     (with-pusher-auth ["17901" "a32696b95bcc47185377" "919327202b26cfbf512a"]
       (with-pusher-channel "kovalo-pos"
-        (trigger "customer-nfc" {:data id})))
+        (trigger "customer-nfc" {:id id})))
     (response/json {:success true})))

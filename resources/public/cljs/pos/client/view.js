@@ -5,17 +5,46 @@ goog.require('fetch.util');
 goog.require('jayq.core');
 goog.require('lib.dispatch');
 goog.require('pos.client.model');
+/**
+* Get/set value of input element
+*/
+pos.client.view.value = (function() {
+var value = null;
+var value__7190 = (function (el){
+return el.attr("value");
+});
+var value__7191 = (function (el,val){
+return el.attr("value",val);
+});
+value = function(el,val){
+switch(arguments.length){
+case  1 :
+return value__7190.call(this,el);
+case  2 :
+return value__7191.call(this,el,val);
+}
+throw('Invalid arity: ' + arguments.length);
+};
+return value;
+})()
+;
+pos.client.view.swap_image_url = (function swap_image_url(el,url){
+return el.attr("src",url);
+});
+pos.client.view.background_image = (function background_image(el,url){
+return jayq.core.css.call(null,el,cljs.core.ObjMap.fromObject(["\uFDD0'background-image"],{"\uFDD0'background-image":cljs.core.str.call(null,"url(",url,")")}));
+});
 pos.client.view.get_dropdown_data = (function get_dropdown_data(data_key,data){
-return cljs.core.map.call(null,(function (p1__7120_SHARP_){
-return cljs.core.merge.call(null,p1__7120_SHARP_,cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":"\uFDD0'name".call(null,p1__7120_SHARP_)}));
+return cljs.core.map.call(null,(function (p1__7193_SHARP_){
+return cljs.core.merge.call(null,p1__7193_SHARP_,cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":"\uFDD0'name".call(null,p1__7193_SHARP_)}));
 }),data_key.call(null,data));
 });
 /**
 * Attach data to typeahead fields for customer and item selcetion
 */
 pos.client.view.prepare_typeaheads = (function prepare_typeaheads(data){
-jayq.core.$.call(null,"\uFDD0'#customers-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'customers",data)})));
-return jayq.core.$.call(null,"\uFDD0'#items-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'items",data)})));
+jayq.core.$.call(null,"\uFDD0'#customer-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'customers",data)})));
+return jayq.core.$.call(null,"\uFDD0'#item-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'items",data)})));
 });
 pos.client.view.prepare_dropdowns = (function prepare_dropdowns(){
 jayq.core.$.call(null,"\uFDD0'#location-dropdown-list").dropdown();
@@ -31,8 +60,27 @@ return fetch.util.clj__GT_js.call(null,cljs.core.PersistentVector.fromArray([clj
 pos.client.view.draw_pie = (function draw_pie(){
 return $.plot(jayq.core.$.call(null,"\uFDD0'#pie"),pos.client.view.pie_data.call(null),fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'series"],{"\uFDD0'series":cljs.core.ObjMap.fromObject(["\uFDD0'pie"],{"\uFDD0'pie":cljs.core.ObjMap.fromObject(["\uFDD0'show","\uFDD0'stroke"],{"\uFDD0'show":true,"\uFDD0'stroke":cljs.core.ObjMap.fromObject(["\uFDD0'color","\uFDD0'width"],{"\uFDD0'color":"#2b2b2b","\uFDD0'width":0})})})})));
 });
-lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-change"]),(function (_,d){
-return alert.call(null,cljs.core.str.call(null,"customer change: ",d));
+pos.client.view.render_customer = (function (){var method_table__3162__auto____7194 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____7195 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____7196 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____7197 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____7198 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+
+return (new cljs.core.MultiFn("render-customer","\uFDD0'event","\uFDD0'default",hierarchy__3166__auto____7198,method_table__3162__auto____7194,prefer_table__3163__auto____7195,method_cache__3164__auto____7196,cached_hierarchy__3165__auto____7197));
+})();
+cljs.core._add_method.call(null,pos.client.view.render_customer,"\uFDD0'customer-change",(function (p__7199){
+var map__7200__7201 = p__7199;
+var map__7200__7202 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7200__7201))?cljs.core.apply.call(null,cljs.core.hash_map,map__7200__7201):map__7200__7201);
+var id__7203 = cljs.core.get.call(null,map__7200__7202,"\uFDD0'id");
+
+var customer__7204 = cljs.core.first.call(null,"\uFDD0'customers".call(null,cljs.core.deref.call(null,pos.client.model.data)));
+var el__7205 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
+
+pos.client.view.value.call(null,el__7205,"\uFDD0'name".call(null,customer__7204));
+return pos.client.view.background_image.call(null,el__7205,"\uFDD0'image".call(null,customer__7204));
+}));
+lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-change"]),(function (t,d){
+return pos.client.view.render_customer.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'event","\uFDD0'id"],{"\uFDD0'event":t,"\uFDD0'id":"\uFDD0'id".call(null,d)}));
 }));
 pos.client.view.prepare_ui = (function prepare_ui(){
 return pos.client.view.draw_pie.call(null);

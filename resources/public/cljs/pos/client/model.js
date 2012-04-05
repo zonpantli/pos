@@ -16,5 +16,5 @@ if(cljs.core.truth_(cljs.core.not_EQ_.call(null,o,n)))
 }
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'pusher-customer-nfc"]),(function (_,d){
-return cljs.core.swap_BANG_.call(null,pos.client.model.customer,cljs.core.assoc,"\uFDD0'id","\uFDD0'id".call(null,d));
+return cljs.core.swap_BANG_.call(null,pos.client.model.customer,cljs.core.assoc,"\uFDD0'id",d.id);
 }));

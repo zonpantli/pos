@@ -194,11 +194,11 @@ body {
   font-size: 20px;
 }
 /* line 173, ../../../src/pos/scss/main.scss */
-#selects #customers-dropdown {
+#selects #customer-dropdown {
   background-image: url("/img/user_placeholder.png");
 }
 /* line 177, ../../../src/pos/scss/main.scss */
-#selects #items-dropdown {
+#selects #item-dropdown {
   background-image: url("/img/item_placeholder.png");
 }
 

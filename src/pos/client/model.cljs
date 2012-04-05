@@ -19,5 +19,7 @@ items, eployees and locations"}
                (dispatch/fire :customer-change n))))
 
 (dispatch/react-to #{:pusher-customer-nfc}
-                   (fn [_ d] (swap! customer assoc :id (:id d))))
+                   (fn [_ d]
+                     (swap! customer assoc :id (.-id d))))
+
 

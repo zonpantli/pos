@@ -1,10 +1,24 @@
 (ns pos.client.view
   (:require [lib.dispatch :as dispatch]
             [pos.client.model :as model])
-  (:use [jayq.core :only [$ append]]
+  (:use [jayq.core :only [$ css append]]
         [fetch.util :only [clj->js]]
         [pos.client.util :only [log]])
   (:require-macros [jayq.macros :as jq]))
+
+(defn value
+  "Get/set value of input element"
+  ([el]
+     (.attr el "value"))
+  ([el val]
+     (.attr el "value" val)))
+
+(defn swap-image-url [el url]
+  (.attr el "src" url))
+
+(defn background-image [el url]
+  (css el {:background-image (str "url(" url ")")}))
+
 
 ;;== populate typeaheads and dropdowns ======================
 (defn get-dropdown-data [data-key data]
@@ -14,9 +28,9 @@
   "Attach data to typeahead fields for customer and item selcetion"
   [data]
   (do
-    (.typeahead ($ :#customers-dropdown) (clj->js
+    (.typeahead ($ :#customer-dropdown) (clj->js
                                          {:source (get-dropdown-data :customers data)}))
-    (.typeahead ($ :#items-dropdown) (clj->js
+    (.typeahead ($ :#item-dropdown) (clj->js
                                      {:source (get-dropdown-data :items data)}))))
 
 (defn prepare-dropdowns []
@@ -47,11 +61,20 @@
 
 ;;== bind events ============================================
 
+;; customer dropdown
 
-;;== customer dropdown
+(defmulti render-customer :event)
+
+(defmethod render-customer :customer-change [{:keys [id]}]
+  (let [customer (-> (:customers @model/data) first)
+        el       ($ :#customer-dropdown)]
+    (value el (:name customer))
+    (background-image el (:image customer))))
+
 (dispatch/react-to #{:customer-change}
-                   (fn [_ d] (js/alert (str "customer change: " d))))
-
+                   (fn [t d]
+                     (render-customer {:event t
+                                       :id (:id d)})))
 
 
 ;;== init ui ================================================
