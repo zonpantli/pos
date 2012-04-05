@@ -21,7 +21,8 @@
 ;; mock database ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defonce ^:dynamic *database* (atom {:items     []
                                      :customers []
-                                     :employees []}))
+                                     :employees []
+                                     :locations []}))
 
 (defn init-database []
   (do 

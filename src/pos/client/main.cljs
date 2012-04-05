@@ -37,7 +37,8 @@
 
 
 ;;== fetch and bind data  =====================================
-(def *data* (atom {:foo "bar"}))
+(def *data* (atom {}))
+(def *state* (atom {}))
 
 (defn fetch-client-data
   "Fetch inventory and user data"
