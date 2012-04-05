@@ -26,11 +26,7 @@
 
 ;;== init app =================================================
 (defn init []
- (do
-   (log "init")
-   (fetch-client-data)
-   (log "afet fetch")
-   (bind-pusher-listener)
-      (log "afet push")
-      (view/prepare-ui)
-      (log "after prepare-ui")))
+  (do
+    (fetch-client-data)
+    (bind-pusher-listener)
+    (view/prepare-ui)))

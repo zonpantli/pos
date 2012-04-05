@@ -16,19 +16,15 @@ return lib.dispatch.fire.call(null,"\uFDD0'init-data-done");
 }));
 });
 pos.client.controller.bind_pusher_listener = (function bind_pusher_listener(){
-var pusher__7187 = (new Pusher("a32696b95bcc47185377"));
-var channel__7188 = pusher__7187.subscribe("kovalo-pos");
+var pusher__7231 = (new Pusher("a32696b95bcc47185377"));
+var channel__7232 = pusher__7231.subscribe("kovalo-pos");
 
-return channel__7188.bind("customer-nfc",(function (p1__7186_SHARP_){
-return lib.dispatch.fire.call(null,"\uFDD0'pusher-customer-nfc",p1__7186_SHARP_);
+return channel__7232.bind("customer-nfc",(function (p1__7230_SHARP_){
+return lib.dispatch.fire.call(null,"\uFDD0'pusher-customer-nfc",p1__7230_SHARP_);
 }));
 });
 pos.client.controller.init = (function init(){
-pos.client.util.log.call(null,"init");
 pos.client.controller.fetch_client_data.call(null);
-pos.client.util.log.call(null,"afet fetch");
 pos.client.controller.bind_pusher_listener.call(null);
-pos.client.util.log.call(null,"afet push");
-pos.client.view.prepare_ui.call(null);
-return pos.client.util.log.call(null,"after prepare-ui");
+return pos.client.view.prepare_ui.call(null);
 });
