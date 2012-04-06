@@ -15,11 +15,13 @@ items, eployees and locations"}
 
 (add-watch customer :customer-change-key
            (fn [k r o n]
-             (when (not= o n)
+             (when (or (nil? (:id n)) (not= o n))
                (dispatch/fire :customer-change n))))
 
 (dispatch/react-to #{:pusher-customer-nfc}
                    (fn [_ d]
                      (swap! customer assoc :id (.-id d))))
 
-
+(dispatch/react-to #{:customer-clear}
+                   (fn [& _]
+                     (swap! customer assoc :id nil)))
