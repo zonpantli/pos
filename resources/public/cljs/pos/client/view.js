@@ -11,18 +11,18 @@ goog.require('pos.client.animation');
 */
 pos.client.view.value = (function() {
 var value = null;
-var value__7233 = (function (el){
+var value__7493 = (function (el){
 return el.attr("value");
 });
-var value__7234 = (function (el,val){
+var value__7494 = (function (el,val){
 return el.attr("value",val);
 });
 value = function(el,val){
 switch(arguments.length){
 case  1 :
-return value__7233.call(this,el);
+return value__7493.call(this,el);
 case  2 :
-return value__7234.call(this,el,val);
+return value__7494.call(this,el,val);
 }
 throw('Invalid arity: ' + arguments.length);
 };
@@ -33,18 +33,27 @@ pos.client.view.background_image = (function background_image(el,url){
 return jayq.core.css.call(null,el,cljs.core.ObjMap.fromObject(["\uFDD0'background-image"],{"\uFDD0'background-image":cljs.core.str.call(null,"url(",url,")")}));
 });
 pos.client.view.get_dropdown_data = (function get_dropdown_data(data_key,data){
-return cljs.core.map.call(null,(function (p1__7236_SHARP_){
-return cljs.core.merge.call(null,p1__7236_SHARP_,cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":"\uFDD0'name".call(null,p1__7236_SHARP_)}));
+return cljs.core.map.call(null,(function (p1__7496_SHARP_){
+return cljs.core.merge.call(null,p1__7496_SHARP_,cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":"\uFDD0'name".call(null,p1__7496_SHARP_)}));
 }),data_key.call(null,data));
 });
 /**
 * Attach data to typeahead fields for customer and item selcetion
 */
 pos.client.view.prepare_typeaheads = (function prepare_typeaheads(data){
-jayq.core.$.call(null,"\uFDD0'#customer-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'customers",data)})));
+jayq.core.$.call(null,"\uFDD0'#customer-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source","\uFDD0'onselect"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'customers",data),"\uFDD0'onselect":(function (p1__7497_SHARP_){
+return lib.dispatch.fire.call(null,"\uFDD0'customer-select",p1__7497_SHARP_.id);
+})})));
 return jayq.core.$.call(null,"\uFDD0'#item-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'items",data)})));
 });
-pos.client.view.add_typeahead_clear_eventlisteners = (function add_typeahead_clear_eventlisteners(){
+pos.client.view.attach_typeahead_event_listeners = (function attach_typeahead_event_listeners(){
+var el__7498 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
+
+return jayq.core.bind.call(null,el__7498,"keyup",(function (){
+return lib.dispatch.fire.call(null,"\uFDD0'customer-field-changed",pos.client.view.value.call(null,el__7498));
+}));
+});
+pos.client.view.attach_typeahead_clear_event_listeners = (function attach_typeahead_clear_event_listeners(){
 jayq.core.bind.call(null,jayq.core.$.call(null,"\uFDD0'#customer-clear"),"click",(function (){
 return lib.dispatch.fire.call(null,"\uFDD0'customer-clear");
 }));
@@ -66,38 +75,38 @@ return fetch.util.clj__GT_js.call(null,cljs.core.PersistentVector.fromArray([clj
 pos.client.view.draw_pie = (function draw_pie(){
 return $.plot(jayq.core.$.call(null,"\uFDD0'#pie"),pos.client.view.pie_data.call(null),fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'series"],{"\uFDD0'series":cljs.core.ObjMap.fromObject(["\uFDD0'pie"],{"\uFDD0'pie":cljs.core.ObjMap.fromObject(["\uFDD0'show","\uFDD0'stroke"],{"\uFDD0'show":true,"\uFDD0'stroke":cljs.core.ObjMap.fromObject(["\uFDD0'color","\uFDD0'width"],{"\uFDD0'color":"#2b2b2b","\uFDD0'width":0})})})})));
 });
-pos.client.view.render_customer = (function (){var method_table__3162__auto____7237 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var prefer_table__3163__auto____7238 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var method_cache__3164__auto____7239 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var cached_hierarchy__3165__auto____7240 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var hierarchy__3166__auto____7241 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+pos.client.view.render_customer = (function (){var method_table__3162__auto____7499 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____7500 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____7501 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____7502 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____7503 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
 
-return (new cljs.core.MultiFn("render-customer","\uFDD0'event","\uFDD0'default",hierarchy__3166__auto____7241,method_table__3162__auto____7237,prefer_table__3163__auto____7238,method_cache__3164__auto____7239,cached_hierarchy__3165__auto____7240));
+return (new cljs.core.MultiFn("render-customer","\uFDD0'event","\uFDD0'default",hierarchy__3166__auto____7503,method_table__3162__auto____7499,prefer_table__3163__auto____7500,method_cache__3164__auto____7501,cached_hierarchy__3165__auto____7502));
 })();
-cljs.core._add_method.call(null,pos.client.view.render_customer,"\uFDD0'customer-selected",(function (p__7242){
-var map__7243__7244 = p__7242;
-var map__7243__7245 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7243__7244))?cljs.core.apply.call(null,cljs.core.hash_map,map__7243__7244):map__7243__7244);
-var id__7246 = cljs.core.get.call(null,map__7243__7245,"\uFDD0'id");
+cljs.core._add_method.call(null,pos.client.view.render_customer,"\uFDD0'customer-selected",(function (p__7504){
+var map__7505__7506 = p__7504;
+var map__7505__7507 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7505__7506))?cljs.core.apply.call(null,cljs.core.hash_map,map__7505__7506):map__7505__7506);
+var id__7508 = cljs.core.get.call(null,map__7505__7507,"\uFDD0'id");
 
-var customers__7247 = "\uFDD0'customers".call(null,cljs.core.deref.call(null,pos.client.model.data));
-var customer__7248 = cljs.core.rand_nth.call(null,customers__7247);
-var el__7249 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
+var customers__7509 = "\uFDD0'customers".call(null,cljs.core.deref.call(null,pos.client.model.data));
+var customer__7510 = cljs.core.rand_nth.call(null,customers__7509);
+var el__7511 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
 
-pos.client.view.value.call(null,el__7249,"\uFDD0'name".call(null,customer__7248));
-pos.client.animation.flash_input_border.call(null,el__7249);
-return pos.client.animation.slide_in_customer_icon.call(null,"\uFDD0'image".call(null,customer__7248));
+pos.client.view.value.call(null,el__7511,"\uFDD0'name".call(null,customer__7510));
+pos.client.animation.flash_input_border.call(null,el__7511);
+return pos.client.animation.slide_in_customer_icon.call(null,"\uFDD0'image".call(null,customer__7510));
 }));
 cljs.core._add_method.call(null,pos.client.view.render_customer,"\uFDD0'customer-deselected",(function (_){
-var el__7250 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
+var el__7512 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
 
-pos.client.view.value.call(null,el__7250,null);
+pos.client.view.value.call(null,el__7512,null);
 return pos.client.animation.reset_customer_icon.call(null);
 }));
-lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-change"]),(function (t,d){
-var temp__3695__auto____7251 = "\uFDD0'id".call(null,d);
+lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-change"]),(function (_,d){
+var temp__3695__auto____7513 = "\uFDD0'id".call(null,d);
 
-if(cljs.core.truth_(temp__3695__auto____7251))
-{var id__7252 = temp__3695__auto____7251;
+if(cljs.core.truth_(temp__3695__auto____7513))
+{var id__7514 = temp__3695__auto____7513;
 
 return pos.client.view.render_customer.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'event","\uFDD0'id"],{"\uFDD0'event":"\uFDD0'customer-selected","\uFDD0'id":"\uFDD0'id".call(null,d)}));
 } else
@@ -106,5 +115,6 @@ return pos.client.view.render_customer.call(null,cljs.core.ObjMap.fromObject(["\
 }));
 pos.client.view.prepare_ui = (function prepare_ui(){
 pos.client.view.draw_pie.call(null);
-return pos.client.view.add_typeahead_clear_eventlisteners.call(null);
+pos.client.view.attach_typeahead_event_listeners.call(null);
+return pos.client.view.attach_typeahead_clear_event_listeners.call(null);
 });

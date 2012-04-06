@@ -1,10 +1,7 @@
 (ns pos.client.view
   (:require [lib.dispatch :as dispatch]
             [pos.client.model :as model]
-            [pos.client.animation :as animation]
-;            [goog.events.KeyCodes :as key-codes]
-;            [goog.events.KeyHandler :as key-handler]
-            )
+            [pos.client.animation :as animation])
   (:use [jayq.core :only [$ css append bind]]
         [fetch.util :only [clj->js]]
         [pos.client.util :only [log]])
@@ -30,14 +27,21 @@
   [data]
   (do
     (.typeahead ($ :#customer-dropdown) (clj->js
-                                         {:source (get-dropdown-data :customers data)}))
+                                         {:source (get-dropdown-data :customers data)
+                                          :onselect #(dispatch/fire :customer-select (.-id %1))}))
     (.typeahead ($ :#item-dropdown) (clj->js
                                      {:source (get-dropdown-data :items data)}))))
 
-(defn add-typeahead-clear-eventlisteners []
+(defn attach-typeahead-event-listeners []
+  (let [el ($ :#customer-dropdown)]
+    (bind el
+         "keyup"
+         #(dispatch/fire :customer-field-changed (value el)))))
+
+(defn attach-typeahead-clear-event-listeners []
   (bind ($ :#customer-clear)
-                "click"
-                #(dispatch/fire :customer-clear))
+        "click"
+        #(dispatch/fire :customer-clear))
   (bind ($ :#item-clear)
         "click"
         #(dispatch/fire :item-clear)))
@@ -89,7 +93,7 @@
     (animation/reset-customer-icon)))
 
 (dispatch/react-to #{:customer-change}
-                   (fn [t d]
+                   (fn [_ d]
                      (if-let [id (:id d)]
                        (render-customer {:event :customer-selected :id (:id d)})
                        (render-customer {:event :customer-deselected}))))
@@ -99,5 +103,6 @@
 (defn prepare-ui []
   (do
     (draw-pie)
-    (add-typeahead-clear-eventlisteners)))
+    (attach-typeahead-event-listeners)
+    (attach-typeahead-clear-event-listeners)))
 

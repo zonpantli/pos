@@ -11,7 +11,9 @@ items, eployees and locations"}
   data (atom {}))
 
 
-(def customer (atom {:id nil}))
+(def ^{:doc "Atom containing selected customer and related reactors
+controlling the customer typeahead"}
+  customer (atom {:id nil}))
 
 (add-watch customer :customer-change-key
            (fn [k r o n]
@@ -21,6 +23,15 @@ items, eployees and locations"}
 (dispatch/react-to #{:pusher-customer-nfc}
                    (fn [_ d]
                      (swap! customer assoc :id (.-id d))))
+
+(dispatch/react-to #{:customer-field-changed}
+                   (fn [_ d]
+                     (when (:id @customer)
+                       (dispatch/fire :customer-clear))))
+
+(dispatch/react-to #{:customer-select}
+                   (fn [_ d]
+                     (swap! customer assoc :id d)))
 
 (dispatch/react-to #{:customer-clear}
                    (fn [& _]
