@@ -3,8 +3,9 @@
             [pos.client.model :as model]
             [pos.client.animation :as animation])
   (:use [jayq.core :only [$ css append bind]]
+        [jayq.util :only [log]]
         [fetch.util :only [clj->js]]
-        [pos.client.util :only [log]])
+        [pos.client.util :only [from-arr-by-id]])
   (:require-macros [jayq.macros :as jq]))
 
 (defn value
@@ -79,8 +80,7 @@
 (defmulti render-customer :event)
 
 (defmethod render-customer :customer-selected [{:keys [id]}]
-  (let [customers (:customers @model/data)
-        customer  (rand-nth customers)
+  (let [ customer  (from-arr-by-id (:customers @model/data) id)
         el        ($ :#customer-dropdown)]
     (do
       (value el (:name customer))

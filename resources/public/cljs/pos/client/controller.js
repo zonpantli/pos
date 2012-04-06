@@ -1,6 +1,6 @@
 goog.provide('pos.client.controller');
 goog.require('cljs.core');
-goog.require('pos.client.util');
+goog.require('jayq.util');
 goog.require('fetch.util');
 goog.require('fetch.remotes');
 goog.require('lib.dispatch');
@@ -16,11 +16,11 @@ return lib.dispatch.fire.call(null,"\uFDD0'init-data-done");
 }));
 });
 pos.client.controller.bind_pusher_listener = (function bind_pusher_listener(){
-var pusher__7195 = (new Pusher("a32696b95bcc47185377"));
-var channel__7196 = pusher__7195.subscribe("kovalo-pos");
+var pusher__7571 = (new Pusher("a32696b95bcc47185377"));
+var channel__7572 = pusher__7571.subscribe("kovalo-pos");
 
-return channel__7196.bind("customer-nfc",(function (p1__7194_SHARP_){
-return lib.dispatch.fire.call(null,"\uFDD0'pusher-customer-nfc",p1__7194_SHARP_);
+return channel__7572.bind("customer-nfc",(function (p1__7570_SHARP_){
+return lib.dispatch.fire.call(null,"\uFDD0'pusher-customer-nfc",p1__7570_SHARP_);
 }));
 });
 pos.client.controller.init = (function init(){

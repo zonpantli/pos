@@ -4,7 +4,7 @@
             [pos.client.model :as model]
             [pos.client.view :as view])
   (:use [fetch.util :only [clj->js]]
-        [pos.client.util :only [log]])
+        [jayq.util :only [log]])
   (:require-macros [fetch.macros :as fm]))
 
 

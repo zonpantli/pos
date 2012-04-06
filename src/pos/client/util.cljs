@@ -1,10 +1,5 @@
-(ns pos.client.util)
+(ns pos.client.util
+  (:use [jayq.util :only [log]]))
 
-(defn wait [ms func]
-  (js* "setTimeout(~{func}, ~{ms})"))
-
-(defn log [v & text]
-  (let [vs (if (string? v)
-             (apply str v text)
-             v)]
-    (. js/console (log vs))))
+(defn from-arr-by-id [arr id]
+  (first (filter #(= (:id %1) id) arr)))

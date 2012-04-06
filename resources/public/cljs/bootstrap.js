@@ -8157,27 +8157,6 @@ cljs.core.get_method = function(a, b) {
 cljs.core.prefers = function(a) {
   return cljs.core._prefers.call(null, a)
 };
-var pos = {client:{}};
-pos.client.util = {};
-pos.client.util.wait = function(a, b) {
-  return setTimeout(b, a)
-};
-pos.client.util.log = function() {
-  var a = function(a, b) {
-    var e = cljs.core.truth_(cljs.core.string_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.str, a, b) : a;
-    return console.log(e)
-  }, b = function(b, d) {
-    var e = null;
-    goog.isDef(d) && (e = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1), 0));
-    return a.call(this, b, e)
-  };
-  b.cljs$lang$maxFixedArity = 1;
-  b.cljs$lang$applyTo = function(b) {
-    var d = cljs.core.first(b), b = cljs.core.rest(b);
-    return a.call(this, d, b)
-  };
-  return b
-}();
 var lib = {dispatch:{}};
 lib.dispatch.reactions = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {}));
 lib.dispatch.react_to = function() {
@@ -8236,46 +8215,6 @@ lib.dispatch.fire = function() {
     throw"Invalid arity: " + arguments.length;
   }
 }();
-pos.client.model = {};
-pos.client.model.data = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {}));
-pos.client.model.customer = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":null}));
-cljs.core.add_watch.call(null, pos.client.model.customer, "\ufdd0'customer-change-key", function(a, b, c, d) {
-  return cljs.core.truth_(function() {
-    var a = null === "\ufdd0'id".call(null, d);
-    return cljs.core.truth_(a) ? a : cljs.core.not_EQ_.call(null, c, d)
-  }()) ? lib.dispatch.fire.call(null, "\ufdd0'customer-change", d) : null
-});
-lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'pusher-customer-nfc"]), function(a, b) {
-  return cljs.core.swap_BANG_.call(null, pos.client.model.customer, cljs.core.assoc, "\ufdd0'id", b.id)
-});
-lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-field-changed"]), function() {
-  return cljs.core.truth_("\ufdd0'id".call(null, cljs.core.deref.call(null, pos.client.model.customer))) ? lib.dispatch.fire.call(null, "\ufdd0'customer-clear") : null
-});
-lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-select"]), function(a, b) {
-  return cljs.core.swap_BANG_.call(null, pos.client.model.customer, cljs.core.assoc, "\ufdd0'id", b)
-});
-lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-clear"]), function() {
-  var a = function() {
-    return cljs.core.swap_BANG_.call(null, pos.client.model.customer, cljs.core.assoc, "\ufdd0'id", null)
-  }, b = function(b) {
-    var d = null;
-    goog.isDef(b) && (d = cljs.core.array_seq(Array.prototype.slice.call(arguments, 0), 0));
-    return a.call(this, d)
-  };
-  b.cljs$lang$maxFixedArity = 0;
-  b.cljs$lang$applyTo = function(b) {
-    b = cljs.core.seq(b);
-    return a.call(this, b)
-  };
-  return b
-}());
-var fetch = {util:{}};
-fetch.util.clj__GT_js = function clj__GT_js(b) {
-  return cljs.core.truth_(cljs.core.string_QMARK_.call(null, b)) ? b : cljs.core.truth_(cljs.core.keyword_QMARK_.call(null, b)) ? cljs.core.name.call(null, b) : cljs.core.truth_(cljs.core.map_QMARK_.call(null, b)) ? cljs.core.reduce.call(null, function(b, d) {
-    var e = cljs.core.nth.call(null, d, 0, null), f = cljs.core.nth.call(null, d, 1, null);
-    return cljs.core.assoc.call(null, b, clj__GT_js.call(null, e), clj__GT_js.call(null, f))
-  }, cljs.core.ObjMap.fromObject([], {}), b).strobj : cljs.core.truth_(cljs.core.coll_QMARK_.call(null, b)) ? cljs.core.apply.call(null, cljs.core.array, cljs.core.map.call(null, clj__GT_js, b)) : cljs.core.truth_("\ufdd0'else") ? b : null
-};
 var jayq = {util:{}};
 jayq.util.map__GT_js = function(a) {
   var b = cljs.core.js_obj.call(null), a = cljs.core.seq.call(null, a);
@@ -8315,6 +8254,53 @@ jayq.util.log = function() {
   return b
 }();
 jayq.util.clj__GT_js = function clj__GT_js(b) {
+  return cljs.core.truth_(cljs.core.string_QMARK_.call(null, b)) ? b : cljs.core.truth_(cljs.core.keyword_QMARK_.call(null, b)) ? cljs.core.name.call(null, b) : cljs.core.truth_(cljs.core.map_QMARK_.call(null, b)) ? cljs.core.reduce.call(null, function(b, d) {
+    var e = cljs.core.nth.call(null, d, 0, null), f = cljs.core.nth.call(null, d, 1, null);
+    return cljs.core.assoc.call(null, b, clj__GT_js.call(null, e), clj__GT_js.call(null, f))
+  }, cljs.core.ObjMap.fromObject([], {}), b).strobj : cljs.core.truth_(cljs.core.coll_QMARK_.call(null, b)) ? cljs.core.apply.call(null, cljs.core.array, cljs.core.map.call(null, clj__GT_js, b)) : cljs.core.truth_("\ufdd0'else") ? b : null
+};
+var pos = {client:{}};
+pos.client.model = {};
+pos.client.model.data = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {}));
+pos.client.model.customer = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":null}));
+cljs.core.add_watch.call(null, pos.client.model.customer, "\ufdd0'customer-change-key", function(a, b, c, d) {
+  return cljs.core.truth_(function() {
+    var a = null === "\ufdd0'id".call(null, d);
+    return cljs.core.truth_(a) ? a : cljs.core.not_EQ_.call(null, c, d)
+  }()) ? lib.dispatch.fire.call(null, "\ufdd0'customer-change", d) : null
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'pusher-customer-nfc"]), function() {
+  return cljs.core.swap_BANG_.call(null, pos.client.model.customer, cljs.core.assoc, "\ufdd0'id", "\ufdd0'id".call(null, cljs.core.rand_nth.call(null, "\ufdd0'customers".call(null, cljs.core.deref.call(null, pos.client.model.data)))))
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-field-changed"]), function() {
+  return cljs.core.truth_("\ufdd0'id".call(null, cljs.core.deref.call(null, pos.client.model.customer))) ? lib.dispatch.fire.call(null, "\ufdd0'customer-clear") : null
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-select"]), function(a, b) {
+  return cljs.core.swap_BANG_.call(null, pos.client.model.customer, cljs.core.assoc, "\ufdd0'id", b)
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-clear"]), function() {
+  var a = function() {
+    return cljs.core.swap_BANG_.call(null, pos.client.model.customer, cljs.core.assoc, "\ufdd0'id", null)
+  }, b = function(b) {
+    var d = null;
+    goog.isDef(b) && (d = cljs.core.array_seq(Array.prototype.slice.call(arguments, 0), 0));
+    return a.call(this, d)
+  };
+  b.cljs$lang$maxFixedArity = 0;
+  b.cljs$lang$applyTo = function(b) {
+    b = cljs.core.seq(b);
+    return a.call(this, b)
+  };
+  return b
+}());
+pos.client.util = {};
+pos.client.util.from_arr_by_id = function(a, b) {
+  return cljs.core.first.call(null, cljs.core.filter.call(null, function(a) {
+    return cljs.core._EQ_.call(null, "\ufdd0'id".call(null, a), b)
+  }, a))
+};
+var fetch = {util:{}};
+fetch.util.clj__GT_js = function clj__GT_js(b) {
   return cljs.core.truth_(cljs.core.string_QMARK_.call(null, b)) ? b : cljs.core.truth_(cljs.core.keyword_QMARK_.call(null, b)) ? cljs.core.name.call(null, b) : cljs.core.truth_(cljs.core.map_QMARK_.call(null, b)) ? cljs.core.reduce.call(null, function(b, d) {
     var e = cljs.core.nth.call(null, d, 0, null), f = cljs.core.nth.call(null, d, 1, null);
     return cljs.core.assoc.call(null, b, clj__GT_js.call(null, e), clj__GT_js.call(null, f))
@@ -8916,9 +8902,7 @@ pos.client.view.render_customer = function() {
   return new cljs.core.MultiFn("render-customer", "\ufdd0'event", "\ufdd0'default", e, a, b, c, d)
 }();
 cljs.core._add_method.call(null, pos.client.view.render_customer, "\ufdd0'customer-selected", function(a) {
-  a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a;
-  cljs.core.get.call(null, a, "\ufdd0'id");
-  var a = "\ufdd0'customers".call(null, cljs.core.deref.call(null, pos.client.model.data)), a = cljs.core.rand_nth.call(null, a), b = jayq.core.$.call(null, "\ufdd0'#customer-dropdown");
+  var a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, a, "\ufdd0'id"), a = pos.client.util.from_arr_by_id.call(null, "\ufdd0'customers".call(null, cljs.core.deref.call(null, pos.client.model.data)), a), b = jayq.core.$.call(null, "\ufdd0'#customer-dropdown");
   pos.client.view.value.call(null, b, "\ufdd0'name".call(null, a));
   pos.client.animation.flash_input_border.call(null, b);
   return pos.client.animation.slide_in_customer_icon.call(null, "\ufdd0'image".call(null, a))

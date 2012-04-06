@@ -2,8 +2,7 @@
   (:require [lib.dispatch :as dispatch])
   (:use [jayq.core :only [$ anim attr css add-class remove-class]]
         [fetch.util :only [clj->js wait]]
-        [jayq.util :only [wait]]
-        [pos.client.util :only [log]]))
+        [jayq.util :only [wait log]]))
 
 ;;== swap customer and item icons ==
 (defn slide-in-icon [type url]
