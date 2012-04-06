@@ -1,6 +1,7 @@
 (ns pos.client.view
   (:require [lib.dispatch :as dispatch]
-            [pos.client.model :as model])
+            [pos.client.model :as model]
+            [pos.client.animation :as animation])
   (:use [jayq.core :only [$ css append]]
         [fetch.util :only [clj->js]]
         [pos.client.util :only [log]])
@@ -12,9 +13,6 @@
      (.attr el "value"))
   ([el val]
      (.attr el "value" val)))
-
-(defn swap-image-url [el url]
-  (.attr el "src" url))
 
 (defn background-image [el url]
   (css el {:background-image (str "url(" url ")")}))
@@ -65,6 +63,7 @@
 
 (defmulti render-customer :event)
 
+;; TODO - select customer based on id, not first
 (defmethod render-customer :customer-change [{:keys [id]}]
   (let [customer (-> (:customers @model/data) first)
         el       ($ :#customer-dropdown)]

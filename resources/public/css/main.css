@@ -170,6 +170,10 @@ body {
 }
 
 /* line 149, ../../../src/pos/scss/main.scss */
+#selects .span6 {
+  position: relative;
+}
+/* line 153, ../../../src/pos/scss/main.scss */
 #selects a {
   position: relative;
   top: -4px;
@@ -177,12 +181,12 @@ body {
   width: 30px;
   height: 30px;
 }
-/* line 156, ../../../src/pos/scss/main.scss */
+/* line 160, ../../../src/pos/scss/main.scss */
 #selects a .caret {
   position: relative;
   top: 6px;
 }
-/* line 162, ../../../src/pos/scss/main.scss */
+/* line 166, ../../../src/pos/scss/main.scss */
 #selects input[id*='-dropdown'] {
   width: 313px;
   height: 30px;
@@ -193,22 +197,27 @@ body {
   line-height: 20px;
   font-size: 20px;
 }
-/* line 173, ../../../src/pos/scss/main.scss */
-#selects #customer-dropdown {
-  background-image: url("/img/user_placeholder.png");
-}
 /* line 177, ../../../src/pos/scss/main.scss */
-#selects #item-dropdown {
-  background-image: url("/img/item_placeholder.png");
+#selects img[id*='-icon'] {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 32px;
+  height: 32px;
+}
+/* line 185, ../../../src/pos/scss/main.scss */
+#selects img[id*='slider-icon'] {
+  z-index: 1;
+  height: 0px;
 }
 
-/* line 184, ../../../src/pos/scss/main.scss */
+/* line 193, ../../../src/pos/scss/main.scss */
 ul#transaction-buttons {
   float: right;
   list-style-type: none;
   margin-left: 0px;
 }
-/* line 190, ../../../src/pos/scss/main.scss */
+/* line 199, ../../../src/pos/scss/main.scss */
 ul#transaction-buttons li button {
   width: 160px;
   height: 60px;
@@ -216,7 +225,7 @@ ul#transaction-buttons li button {
   margin-bottom: 3px;
 }
 
-/* line 203, ../../../src/pos/scss/main.scss */
+/* line 212, ../../../src/pos/scss/main.scss */
 table#keypad button {
   width: 80px;
   height: 60px;
@@ -224,7 +233,7 @@ table#keypad button {
   margin-bottom: 3px;
 }
 
-/* line 213, ../../../src/pos/scss/main.scss */
+/* line 222, ../../../src/pos/scss/main.scss */
 #receipt-header-panel {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #2d2d2d), color-stop(100%, #000000));
   background: -webkit-linear-gradient(top, #2d2d2d, #000000);
@@ -237,19 +246,19 @@ table#keypad button {
   line-height: 57px;
   color: #999999;
 }
-/* line 220, ../../../src/pos/scss/main.scss */
+/* line 229, ../../../src/pos/scss/main.scss */
 #receipt-header-panel span[id*='-number'] {
   color: white;
   font-weight: bold;
 }
 
-/* line 227, ../../../src/pos/scss/main.scss */
+/* line 236, ../../../src/pos/scss/main.scss */
 #receipt-number-container {
   float: left;
   margin-left: 10px;
 }
 
-/* line 235, ../../../src/pos/scss/main.scss */
+/* line 244, ../../../src/pos/scss/main.scss */
 #proceed-button {
   margin-top: 10px;
   margin-right: 10px;
@@ -257,7 +266,7 @@ table#keypad button {
   min-width: 120px;
 }
 
-/* line 242, ../../../src/pos/scss/main.scss */
+/* line 251, ../../../src/pos/scss/main.scss */
 #total-price {
   color: #5bb75b;
   font-size: 34px;
@@ -265,40 +274,38 @@ table#keypad button {
   margin-right: 20px;
 }
 
-/* line 249, ../../../src/pos/scss/main.scss */
+/* line 258, ../../../src/pos/scss/main.scss */
 #vat-container {
   float: right;
   margin-right: 20px;
 }
 
-/* line 254, ../../../src/pos/scss/main.scss */
+/* line 263, ../../../src/pos/scss/main.scss */
 #discount-container {
   float: right;
   margin-right: 20px;
 }
 
-/* line 259, ../../../src/pos/scss/main.scss */
+/* line 268, ../../../src/pos/scss/main.scss */
 .clear {
   clear: both;
 }
 
-/* line 264, ../../../src/pos/scss/main.scss */
+/* line 273, ../../../src/pos/scss/main.scss */
 #receipt-table-container {
   background: #fff9dc;
   min-height: 50px;
-  max-height: 160px;
-  overflow-y: scroll;
   -moz-box-shadow: gray 0px 0px 5px;
   -webkit-box-shadow: gray 0px 0px 5px;
   -o-box-shadow: gray 0px 0px 5px;
   box-shadow: gray 0px 0px 5px;
 }
 
-/* line 272, ../../../src/pos/scss/main.scss */
+/* line 281, ../../../src/pos/scss/main.scss */
 #receipt-table {
   width: 100%;
 }
-/* line 276, ../../../src/pos/scss/main.scss */
+/* line 285, ../../../src/pos/scss/main.scss */
 #receipt-table th {
   background: #9e998b;
   border-top: 1px solid #a39e8f;
@@ -306,20 +313,20 @@ table#keypad button {
   line-height: 26px;
   text-align: left;
 }
-/* line 284, ../../../src/pos/scss/main.scss */
+/* line 293, ../../../src/pos/scss/main.scss */
 #receipt-table td {
   border-top: 1px solid #cdc6b1;
 }
-/* line 287, ../../../src/pos/scss/main.scss */
+/* line 296, ../../../src/pos/scss/main.scss */
 #receipt-table td.bold {
   font-weight: bold;
 }
-/* line 291, ../../../src/pos/scss/main.scss */
+/* line 300, ../../../src/pos/scss/main.scss */
 #receipt-table td.close-container {
   padding-right: 15px;
   width: 15px;
 }
-/* line 296, ../../../src/pos/scss/main.scss */
+/* line 305, ../../../src/pos/scss/main.scss */
 #receipt-table td input {
   position: relative;
   top: 4px;
@@ -328,30 +335,30 @@ table#keypad button {
   margin-right: 5px;
 }
 
-/* line 308, ../../../src/pos/scss/main.scss */
+/* line 317, ../../../src/pos/scss/main.scss */
 table#footer-buttons {
   margin-top: 15px;
   width: 100%;
   td-text-align: center;
 }
-/* line 316, ../../../src/pos/scss/main.scss */
+/* line 325, ../../../src/pos/scss/main.scss */
 table#footer-buttons .btn {
   width: 150px;
 }
 
-/* line 328, ../../../src/pos/scss/main.scss */
+/* line 337, ../../../src/pos/scss/main.scss */
 #grid {
   padding-top: 100px;
   margin-bottom: 30px;
 }
 
-/* line 333, ../../../src/pos/scss/main.scss */
+/* line 342, ../../../src/pos/scss/main.scss */
 .show-grid > div {
   background: #888;
   margin-top: 10px;
 }
 
-/* line 340, ../../../src/pos/scss/main.scss */
+/* line 349, ../../../src/pos/scss/main.scss */
 p.alert {
   position: absolute;
   bottom: 10px;

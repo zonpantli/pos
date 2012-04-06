@@ -145,6 +145,10 @@ body {
 
 //-- customer and product dropdowns -------------------------
 #selects {
+  
+  .span6 {
+    position: relative;
+  }
 
   a {
     position: relative;
@@ -169,15 +173,20 @@ body {
     line-height: 20px;
     font-size: 20px;
   }
-
-  #customer-dropdown {
-    background-image: url('/img/user_placeholder.png');
+  
+  img[id*='-icon'] {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 32px;
+    height: 32px;
   }
 
-  #item-dropdown {
-    background-image: url('/img/item_placeholder.png');
+  img[id*='slider-icon'] {
+    z-index: 1;
+    height: 0px;
   }
-
+  
 }
 
 //-- transaction buttons ------------------------------------
@@ -264,8 +273,8 @@ table#keypad {
 #receipt-table-container {
   background: #fff9dc;
   min-height: 50px;
-  max-height: 160px;
-  overflow-y: scroll;
+//  max-height: 200px;
+//  overflow-y: scroll;
   @include box-shadow(gray 0px 0px 5px);
 }
 
