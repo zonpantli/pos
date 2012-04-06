@@ -1,30 +1,30 @@
 @-webkit-keyframes flashBorder {
-  /* line 2, /Users/mepihlaj/projects/kovalo/pos/pos-demo/src/pos/scss/_animation.scss */
+  /* line 2, ../../../src/pos/scss/_animation.scss */
   from {
-    border-color: rgba(82, 168, 236, 0.8);
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.6);
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.6);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.8);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.8);
+    -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.8);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.8);
   }
 
-  /* line 8, /Users/mepihlaj/projects/kovalo/pos/pos-demo/src/pos/scss/_animation.scss */
+  /* line 5, ../../../src/pos/scss/_animation.scss */
   50% {
-    border-color: rgba(82, 168, 236, 0.8);
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 35px rgba(82, 168, 236, 0.6);
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 35px rgba(82, 168, 236, 0.6);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 35px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 35px rgba(82, 168, 236, 0.8);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 35px rgba(82, 168, 236, 0.8);
+    -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 35px rgba(82, 168, 236, 0.8);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 35px rgba(82, 168, 236, 0.8);
   }
 
-  /* line 14, /Users/mepihlaj/projects/kovalo/pos/pos-demo/src/pos/scss/_animation.scss */
+  /* line 8, ../../../src/pos/scss/_animation.scss */
   to {
-    border-color: rgba(82, 168, 236, 0.8);
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.6);
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.6);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.8);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.8);
+    -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.8);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0px rgba(82, 168, 236, 0.8);
   }
 }
 
-/* line 22, /Users/mepihlaj/projects/kovalo/pos/pos-demo/src/pos/scss/_animation.scss */
+/* line 14, ../../../src/pos/scss/_animation.scss */
 .flashing-animation {
   -webkit-animation-name: flashBorder;
   -webkit-animation-duration: 1s;
