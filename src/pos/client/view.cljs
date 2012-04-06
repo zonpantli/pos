@@ -57,23 +57,30 @@
                                            :width 0}}}})))
 
 
-;;== bind events ============================================
+;;== customer dropdown =====================================
 
-;; customer dropdown
 
 (defmulti render-customer :event)
 
-;; TODO - select customer based on id, not first
-(defmethod render-customer :customer-change [{:keys [id]}]
-  (let [customer (-> (:customers @model/data) first)
-        el       ($ :#customer-dropdown)]
-    (value el (:name customer))
-    (background-image el (:image customer))))
+(defmethod render-customer :customer-selected [{:keys [id]}]
+  (let [customers (:customers @model/data)
+        customer  (rand-nth customers)
+        el        ($ :#customer-dropdown)]
+    (do
+      (value el (:name customer))
+      (animation/flash-input-border el)
+      (animation/slide-in-customer-icon (:image customer)))))
+
+(defmethod render-customer :customer-deselected [_]
+  (let [el ($ :#customer-dropdown)]
+    (value el nil)
+    (reset-customer-icon)))
 
 (dispatch/react-to #{:customer-change}
                    (fn [t d]
-                     (render-customer {:event t
-                                       :id (:id d)})))
+                     (if-let [id (:id d)]
+                       (render-customer {:event :customer-selected :id (:id d)})
+                       (render-customer {:event :customer-deselected}))))
 
 
 ;;== init ui ================================================

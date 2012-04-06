@@ -32,10 +32,15 @@
     @*database*))
 
 ;; endpoints for Kovalo Merch NFC reader
+(defn trigger-nfc-customer
+  ([] (trigger-nfc-customer (rand-int 100)))
+  ([id]
+   (with-pusher-auth ["17901" "a32696b95bcc47185377" "919327202b26cfbf512a"]
+     (with-pusher-channel "kovalo-pos"
+       (trigger "customer-nfc" {:id id})))))
+
 (defpage "/nfc/customer/:id" {:keys [id]}
   (do
     (println (str "Customer Id: " id))
-    (with-pusher-auth ["17901" "a32696b95bcc47185377" "919327202b26cfbf512a"]
-      (with-pusher-channel "kovalo-pos"
-        (trigger "customer-nfc" {:id id})))
+    (trigger-nfc-customer (rand-int 100))
     (response/json {:success true})))
