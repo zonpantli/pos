@@ -165,9 +165,10 @@ body {
   }
 
   input[id*='-dropdown'] {
-    width: 313px;
+    width: 288px;
     height: 30px;
     padding-left: 45px;
+    padding-right: 25px;
     background-repeat:no-repeat;
     background-position-x: 4px;
     background-position-y: 3px;
@@ -186,6 +187,12 @@ body {
   img[id*='slider-icon'] {
     z-index: 1;
     height: 0px;
+  }
+
+  a.close {
+    position: absolute;
+    left: 340px;
+    top: 9px;
   }
   
 }
