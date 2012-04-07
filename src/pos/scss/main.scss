@@ -18,6 +18,13 @@ body {
   font-family: "helvetica neue", helvetica, sans-serif;
 }
 
+// make dropdowns bigger
+.dropdown-menu {
+  font-size: 20px;
+  line-height: 26px;
+  min-width: 150px;
+}
+
 
 //-- header -------------------------------------------------
 #pos-header {
