@@ -12,6 +12,7 @@ lein run
 ## Deps
 
 use modified version of [bootstrap-typeahead.js](https://gist.github.com/1891669)
+with further custom modifications to trigger the dropdown from separate element
 
 
 ## TODO:
