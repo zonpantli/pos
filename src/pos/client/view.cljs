@@ -29,7 +29,8 @@
   (do
     (.typeahead ($ :#customer-dropdown) (clj->js
                                          {:source (get-dropdown-data :customers data)
-                                          :onselect #(dispatch/fire :customer-select (.-id %1))}))
+                                          :onselect #(dispatch/fire :customer-select (.-id %1))
+                                          :trigger ($ :#customer-dropdown-toggle)}))
     (.typeahead ($ :#item-dropdown) (clj->js
                                      {:source (get-dropdown-data :items data)}))))
 

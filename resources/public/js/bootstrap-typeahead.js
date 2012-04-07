@@ -95,7 +95,7 @@
       var that = this
         , items
         , q
-
+      
       if (results.length && typeof results[0] != "string")
           this.strings = false
 
@@ -110,7 +110,7 @@
           item = item[that.options.property]
         if (that.matcher(item)) return item
       })
-
+    
       items = this.sorter(items)
 
       if (!items.length) {
@@ -134,7 +134,7 @@
       while (item = items.shift()) {
         if (this.strings) sortby = item
         else sortby = item[this.options.property]
-
+        
         if (!sortby.toLowerCase().indexOf(this.query.toLowerCase())) beginswith.push(item)
         else if (~sortby.indexOf(this.query)) caseSensitive.push(item)
         else caseInsensitive.push(item)
@@ -144,9 +144,11 @@
     }
 
   , highlighter: function (item) {
-      return item.replace(new RegExp('(' + this.query + ')', 'ig'), function ($1, match) {
-        return '<strong>' + match + '</strong>'
-      })
+      if (this.query) {
+        return item.replace(new RegExp('(' + this.query + ')', 'ig'), function ($1, match) {
+          return '<strong>' + match + '</strong>'
+        })
+      }
     }
 
   , render: function (items) {
@@ -200,6 +202,11 @@
       this.$menu
         .on('click', $.proxy(this.click, this))
         .on('mouseenter', 'li', $.proxy(this.mouseenter, this))
+      
+      // trigger menu from external event
+      if (this.options.trigger) {
+        this.options.trigger.on('click', $.proxy(this.all, this))
+      }
     }
 
   , keyup: function (e) {
@@ -268,6 +275,26 @@
       $(e.currentTarget).addClass('active')
     }
 
+  , all: function(e) {
+      e.stopPropagation()
+      e.preventDefault()
+      
+      var that = this
+        , items
+      
+      this.query = " "
+      items = this.source.slice()
+
+      if (items && typeof items[0] != "string")
+          this.strings = false
+      
+      items = this.sorter(items)
+      
+
+      this.render(items.slice(0, this.options.items)).show()
+      this.$element.focus()
+    }
+  
   }
 
 
@@ -291,6 +318,7 @@
   , item: '<li><a href="#"></a></li>'
   , onselect: null
   , property: 'value'
+  , trigger: null
   }
 
   $.fn.typeahead.Constructor = Typeahead
