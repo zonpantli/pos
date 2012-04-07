@@ -6,19 +6,9 @@
   (:use [jayq.core :only [$ css append bind inner]]
         [jayq.util :only [log]]
         [fetch.util :only [clj->js]]
-        [pos.client.util :only [from-arr-by-id]])
+        [pos.client.util :only [from-arr-by-id value]])
   (:require-macros [jayq.macros :as jq])
   (:use-macros [crate.macros :only [defpartial]]))
-
-(defn value
-  "Get/set value of input element"
-  ([el]
-     (.attr el "value"))
-  ([el val]
-     (.attr el "value" val)))
-
-(defn background-image [el url]
-  (css el {:background-image (str "url(" url ")")}))
 
 
 ;;== populate typeaheads and dropdowns ======================

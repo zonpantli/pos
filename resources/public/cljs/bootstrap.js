@@ -8313,6 +8313,21 @@ pos.client.util.from_arr_by_id = function(a, b) {
     return cljs.core._EQ_.call(null, "\ufdd0'id".call(null, a), b)
   }, a))
 };
+pos.client.util.value = function() {
+  var a = null;
+  return function(a, c) {
+    switch(arguments.length) {
+      case 1:
+        return a.attr("value");
+      case 2:
+        return a.attr("value", c)
+    }
+    throw"Invalid arity: " + arguments.length;
+  }
+}();
+pos.client.util.background_image = function(a, b) {
+  return pos.client.util.css.call(null, a, cljs.core.ObjMap.fromObject(["\ufdd0'background-image"], {"\ufdd0'background-image":cljs.core.str.call(null, "url(", b, ")")}))
+};
 var fetch = {util:{}};
 fetch.util.clj__GT_js = function clj__GT_js(b) {
   return cljs.core.truth_(cljs.core.string_QMARK_.call(null, b)) ? b : cljs.core.truth_(cljs.core.keyword_QMARK_.call(null, b)) ? cljs.core.name.call(null, b) : cljs.core.truth_(cljs.core.map_QMARK_.call(null, b)) ? cljs.core.reduce.call(null, function(b, d) {
@@ -9867,21 +9882,6 @@ crate.core.html = function() {
   return b
 }();
 pos.client.view = {};
-pos.client.view.value = function() {
-  var a = null;
-  return function(a, c) {
-    switch(arguments.length) {
-      case 1:
-        return a.attr("value");
-      case 2:
-        return a.attr("value", c)
-    }
-    throw"Invalid arity: " + arguments.length;
-  }
-}();
-pos.client.view.background_image = function(a, b) {
-  return jayq.core.css.call(null, a, cljs.core.ObjMap.fromObject(["\ufdd0'background-image"], {"\ufdd0'background-image":cljs.core.str.call(null, "url(", b, ")")}))
-};
 pos.client.view.get_dropdown_data = function(a, b) {
   return cljs.core.map.call(null, function(a) {
     return cljs.core.merge.call(null, a, cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":"\ufdd0'name".call(null, a)}))
@@ -9896,7 +9896,7 @@ pos.client.view.prepare_typeaheads = function(a) {
 pos.client.view.attach_typeahead_event_listeners = function() {
   var a = jayq.core.$.call(null, "\ufdd0'#customer-dropdown");
   return jayq.core.bind.call(null, a, "keyup", function() {
-    return lib.dispatch.fire.call(null, "\ufdd0'customer-field-changed", pos.client.view.value.call(null, a))
+    return lib.dispatch.fire.call(null, "\ufdd0'customer-field-changed", pos.client.util.value.call(null, a))
   })
 };
 pos.client.view.attach_typeahead_clear_event_listeners = function() {
@@ -9907,13 +9907,13 @@ pos.client.view.attach_typeahead_clear_event_listeners = function() {
     return lib.dispatch.fire.call(null, "\ufdd0'item-clear")
   })
 };
-var group__6008__auto____7247 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6008__auto____7400 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.dropdown_row = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'li", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'value":b}), a])]));
-  a.setAttribute("crateGroup", group__6008__auto____7247);
+  a.setAttribute("crateGroup", group__6008__auto____7400);
   return a
 };
-pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____7247;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____7400;
 pos.client.view.populate_dropdowns = function(a) {
   var b = cljs.core.seq.call(null, "\ufdd0'locations".call(null, a));
   if(cljs.core.truth_(b)) {
@@ -9971,13 +9971,13 @@ pos.client.view.render_customer = function() {
 }();
 cljs.core._add_method.call(null, pos.client.view.render_customer, "\ufdd0'customer-selected", function(a) {
   var a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, a, "\ufdd0'id"), a = pos.client.util.from_arr_by_id.call(null, "\ufdd0'customers".call(null, cljs.core.deref.call(null, pos.client.model.data)), a), b = jayq.core.$.call(null, "\ufdd0'#customer-dropdown");
-  pos.client.view.value.call(null, b, "\ufdd0'name".call(null, a));
+  pos.client.util.value.call(null, b, "\ufdd0'name".call(null, a));
   pos.client.animation.flash_input_border.call(null, b);
   return pos.client.animation.slide_in_customer_icon.call(null, "\ufdd0'image".call(null, a))
 });
 cljs.core._add_method.call(null, pos.client.view.render_customer, "\ufdd0'customer-deselected", function() {
   var a = jayq.core.$.call(null, "\ufdd0'#customer-dropdown");
-  pos.client.view.value.call(null, a, null);
+  pos.client.util.value.call(null, a, null);
   return pos.client.animation.reset_customer_icon.call(null)
 });
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-change"]), function(a, b) {
