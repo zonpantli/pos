@@ -3,4 +3,4 @@
 (def fake-data [{:id 1
                  :name "Helsinki Bulevardi"}
                 {:id 2
-                 :name "Helsinki Lönnrotinkatu"}])
+                 :name "Helsinki Erottaja"}])

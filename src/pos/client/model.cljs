@@ -37,3 +37,15 @@ controlling the customer typeahead"}
 (dispatch/react-to #{:customer-clear}
                    (fn [& _]
                      (swap! customer assoc :id nil)))
+
+(def ^{:doc "Atom containing selected location"}
+  location (atom {:id nil}))
+
+(add-watch location :location-change-key
+           (fn [k r o n]
+              (when (not= o n)
+                (dispatch/fire :location-change n))))
+
+(dispatch/react-to #{:location-select}
+                   (fn [_ d]
+                     (swap! location assoc :id d)))

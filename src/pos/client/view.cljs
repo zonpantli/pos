@@ -1,12 +1,14 @@
 (ns pos.client.view
   (:require [lib.dispatch :as dispatch]
+            [crate.core :as crate]
             [pos.client.model :as model]
             [pos.client.animation :as animation])
-  (:use [jayq.core :only [$ css append bind]]
+  (:use [jayq.core :only [$ css append bind inner]]
         [jayq.util :only [log]]
         [fetch.util :only [clj->js]]
         [pos.client.util :only [from-arr-by-id]])
-  (:require-macros [jayq.macros :as jq]))
+  (:require-macros [jayq.macros :as jq])
+  (:use-macros [crate.macros :only [defpartial]]))
 
 (defn value
   "Get/set value of input element"
@@ -48,6 +50,16 @@
         "click"
         #(dispatch/fire :item-clear)))
 
+(defpartial dropdown-row [{:keys [id name]}]
+  [:li
+   [:a {:href "#" :value id} name]])
+
+(defn populate-dropdowns [data]
+  (doseq [loc (:locations data)]
+    (let [el (dropdown-row loc)]
+      (do
+        (append ($ :#location-dropdown-list) el)
+        (bind ($ el) "click" #(dispatch/fire :location-select (:id loc)))))))
 
 (defn prepare-dropdowns []
   (do
@@ -58,6 +70,7 @@
                    (fn [t d]
                      (do
                        (prepare-typeaheads @model/data)
+                       (populate-dropdowns @model/data)
                        (prepare-dropdowns))))
 
 
@@ -76,12 +89,10 @@
 
 
 ;;== customer dropdown =====================================
-
-
 (defmulti render-customer :event)
 
 (defmethod render-customer :customer-selected [{:keys [id]}]
-  (let [ customer  (from-arr-by-id (:customers @model/data) id)
+  (let [customer  (from-arr-by-id (:customers @model/data) id)
         el        ($ :#customer-dropdown)]
     (do
       (value el (:name customer))
@@ -99,6 +110,15 @@
                        (render-customer {:event :customer-selected :id (:id d)})
                        (render-customer {:event :customer-deselected}))))
 
+;;== location and employee selects =========================
+(defn render-location [{id :id}]
+  (if-let [location (from-arr-by-id (:locations @model/data) id)]
+    (inner ($ :#location-name) (:name location))
+    (inner ($ :#location-name) "Location")))
+
+(dispatch/react-to #{:location-change}
+                   (fn [_ d]
+                     (render-location d)))
 
 ;;== init ui ================================================
 (defn prepare-ui []
