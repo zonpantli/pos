@@ -59,7 +59,12 @@
     (let [el (dropdown-row loc)]
       (do
         (append ($ :#location-dropdown-list) el)
-        (bind ($ el) "click" #(dispatch/fire :location-select (:id loc)))))))
+        (bind ($ el) "click" #(dispatch/fire :location-select (:id loc))))))
+  (doseq [empl (:employees data)]
+    (let [el (dropdown-row empl)]
+      (do
+        (append ($ :#employee-dropdown-list) el)
+        (bind ($ el) "click" #(dispatch/fire :employee-select (:id empl)))))))
 
 (defn prepare-dropdowns []
   (do
@@ -119,6 +124,15 @@
 (dispatch/react-to #{:location-change}
                    (fn [_ d]
                      (render-location d)))
+
+(defn render-employee [{id :id}]
+  (if-let [employee (from-arr-by-id (:employees @model/data) id)]
+    (inner ($ :#employee-name) (:name employee))
+    (inner ($ :#employee-name) "Employee")))
+
+(dispatch/react-to #{:employee-change}
+                   (fn [_ d]
+                     (render-employee d)))
 
 ;;== init ui ================================================
 (defn prepare-ui []

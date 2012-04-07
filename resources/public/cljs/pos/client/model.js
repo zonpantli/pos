@@ -13,10 +13,10 @@ pos.client.model.data = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],
 */
 pos.client.model.customer = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'id"],{"\uFDD0'id":null}));
 cljs.core.add_watch.call(null,pos.client.model.customer,"\uFDD0'customer-change-key",(function (k,r,o,n){
-if(cljs.core.truth_((function (){var or__3548__auto____7804 = ("\uFDD0'id".call(null,n) === null);
+if(cljs.core.truth_((function (){var or__3548__auto____7287 = ("\uFDD0'id".call(null,n) === null);
 
-if(cljs.core.truth_(or__3548__auto____7804))
-{return or__3548__auto____7804;
+if(cljs.core.truth_(or__3548__auto____7287))
+{return or__3548__auto____7287;
 } else
 {return cljs.core.not_EQ_.call(null,o,n);
 }
@@ -40,22 +40,22 @@ lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-select"]),(funct
 return cljs.core.swap_BANG_.call(null,pos.client.model.customer,cljs.core.assoc,"\uFDD0'id",d);
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-clear"]),(function() { 
-var G__7805__delegate = function (_){
+var G__7288__delegate = function (_){
 return cljs.core.swap_BANG_.call(null,pos.client.model.customer,cljs.core.assoc,"\uFDD0'id",null);
 };
-var G__7805 = function (var_args){
+var G__7288 = function (var_args){
 var _ = null;
 if (goog.isDef(var_args)) {
   _ = cljs.core.array_seq(Array.prototype.slice.call(arguments, 0),0);
 } 
-return G__7805__delegate.call(this, _);
+return G__7288__delegate.call(this, _);
 };
-G__7805.cljs$lang$maxFixedArity = 0;
-G__7805.cljs$lang$applyTo = (function (arglist__7806){
-var _ = cljs.core.seq( arglist__7806 );;
-return G__7805__delegate.call(this, _);
+G__7288.cljs$lang$maxFixedArity = 0;
+G__7288.cljs$lang$applyTo = (function (arglist__7289){
+var _ = cljs.core.seq( arglist__7289 );;
+return G__7288__delegate.call(this, _);
 });
-return G__7805;
+return G__7288;
 })()
 );
 /**
@@ -71,4 +71,18 @@ if(cljs.core.truth_(cljs.core.not_EQ_.call(null,o,n)))
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'location-select"]),(function (_,d){
 return cljs.core.swap_BANG_.call(null,pos.client.model.location,cljs.core.assoc,"\uFDD0'id",d);
+}));
+/**
+* Atom containing selected employee
+*/
+pos.client.model.employee = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'id"],{"\uFDD0'id":null}));
+cljs.core.add_watch.call(null,pos.client.model.employee,"\uFDD0'employee-change-key",(function (k,r,o,n){
+if(cljs.core.truth_(cljs.core.not_EQ_.call(null,o,n)))
+{return lib.dispatch.fire.call(null,"\uFDD0'employee-change",n);
+} else
+{return null;
+}
+}));
+lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'employee-select"]),(function (_,d){
+return cljs.core.swap_BANG_.call(null,pos.client.model.employee,cljs.core.assoc,"\uFDD0'id",d);
 }));

@@ -21,14 +21,14 @@
     (swap! *database* #(update-in %1 [:items] into %2) item/fake-data)
     (swap! *database* #(update-in %1 [:customers] into %2) customer/fake-data)
     (swap! *database* #(update-in %1 [:locations] into %2) location/fake-data)
-    (swap! *database* #(update-in %1 [:items] into %2) item/fake-data)))
+    (swap! *database* #(update-in %1 [:employees] into %2) employee/fake-data)))
 
 (defn clean-database []
   (do
     (swap! *database* #(update-in %1 [:items] replace []))
     (swap! *database* #(update-in %1 [:customers] replace []))
     (swap! *database* #(update-in %1 [:locations] replace []))
-    (swap! *database* #(update-in %1 [:items] replace []))))
+    (swap! *database* #(update-in %1 [:employees] replace []))))
 
 ;; remote endpoints for accessing database
 (defremote get-db []

@@ -8300,6 +8300,13 @@ cljs.core.add_watch.call(null, pos.client.model.location, "\ufdd0'location-chang
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'location-select"]), function(a, b) {
   return cljs.core.swap_BANG_.call(null, pos.client.model.location, cljs.core.assoc, "\ufdd0'id", b)
 });
+pos.client.model.employee = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":null}));
+cljs.core.add_watch.call(null, pos.client.model.employee, "\ufdd0'employee-change-key", function(a, b, c, d) {
+  return cljs.core.truth_(cljs.core.not_EQ_.call(null, c, d)) ? lib.dispatch.fire.call(null, "\ufdd0'employee-change", d) : null
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'employee-select"]), function(a, b) {
+  return cljs.core.swap_BANG_.call(null, pos.client.model.employee, cljs.core.assoc, "\ufdd0'id", b)
+});
 pos.client.util = {};
 pos.client.util.from_arr_by_id = function(a, b) {
   return cljs.core.first.call(null, cljs.core.filter.call(null, function(a) {
@@ -9900,27 +9907,41 @@ pos.client.view.attach_typeahead_clear_event_listeners = function() {
     return lib.dispatch.fire.call(null, "\ufdd0'item-clear")
   })
 };
-var group__6008__auto____7215 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6008__auto____7247 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.dropdown_row = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'li", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'value":b}), a])]));
-  a.setAttribute("crateGroup", group__6008__auto____7215);
+  a.setAttribute("crateGroup", group__6008__auto____7247);
   return a
 };
-pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____7215;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____7247;
 pos.client.view.populate_dropdowns = function(a) {
   var b = cljs.core.seq.call(null, "\ufdd0'locations".call(null, a));
   if(cljs.core.truth_(b)) {
-    for(a = cljs.core.first.call(null, b);;) {
-      var c = pos.client.view.dropdown_row.call(null, a);
-      jayq.core.append.call(null, jayq.core.$.call(null, "\ufdd0'#location-dropdown-list"), c);
-      jayq.core.bind.call(null, jayq.core.$.call(null, c), "click", function(a) {
+    for(var c = cljs.core.first.call(null, b);;) {
+      var d = pos.client.view.dropdown_row.call(null, c);
+      jayq.core.append.call(null, jayq.core.$.call(null, "\ufdd0'#location-dropdown-list"), d);
+      jayq.core.bind.call(null, jayq.core.$.call(null, d), "click", function(a) {
         return function() {
           return lib.dispatch.fire.call(null, "\ufdd0'location-select", "\ufdd0'id".call(null, a))
         }
-      }(a, b, c));
-      a = cljs.core.next.call(null, b);
-      if(cljs.core.truth_(a)) {
-        b = a, a = cljs.core.first.call(null, b)
+      }(c, b, d));
+      c = cljs.core.next.call(null, b);
+      if(cljs.core.truth_(c)) {
+        b = c, c = cljs.core.first.call(null, b)
+      }else {
+        break
+      }
+    }
+  }
+  c = cljs.core.seq.call(null, "\ufdd0'employees".call(null, a));
+  if(cljs.core.truth_(c)) {
+    for(a = cljs.core.first.call(null, c);;) {
+      if(b = pos.client.view.dropdown_row.call(null, a), jayq.core.append.call(null, jayq.core.$.call(null, "\ufdd0'#employee-dropdown-list"), b), jayq.core.bind.call(null, jayq.core.$.call(null, b), "click", function(a) {
+        return function() {
+          return lib.dispatch.fire.call(null, "\ufdd0'employee-select", "\ufdd0'id".call(null, a))
+        }
+      }(a, c, b)), a = cljs.core.next.call(null, c), cljs.core.truth_(a)) {
+        c = a, a = cljs.core.first.call(null, c)
       }else {
         return null
       }
@@ -9971,6 +9992,15 @@ pos.client.view.render_location = function(a) {
 };
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'location-change"]), function(a, b) {
   return pos.client.view.render_location.call(null, b)
+});
+pos.client.view.render_employee = function(a) {
+  a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a;
+  a = cljs.core.get.call(null, a, "\ufdd0'id");
+  a = pos.client.util.from_arr_by_id.call(null, "\ufdd0'employees".call(null, cljs.core.deref.call(null, pos.client.model.data)), a);
+  return cljs.core.truth_(a) ? jayq.core.inner.call(null, jayq.core.$.call(null, "\ufdd0'#employee-name"), "\ufdd0'name".call(null, a)) : jayq.core.inner.call(null, jayq.core.$.call(null, "\ufdd0'#employee-name"), "Employee")
+};
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'employee-change"]), function(a, b) {
+  return pos.client.view.render_employee.call(null, b)
 });
 pos.client.view.prepare_ui = function() {
   pos.client.view.draw_pie.call(null);

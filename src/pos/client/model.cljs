@@ -49,3 +49,15 @@ controlling the customer typeahead"}
 (dispatch/react-to #{:location-select}
                    (fn [_ d]
                      (swap! location assoc :id d)))
+
+(def ^{:doc "Atom containing selected employee"}
+  employee (atom {:id nil}))
+
+(add-watch employee :employee-change-key
+           (fn [k r o n]
+              (when (not= o n)
+                (dispatch/fire :employee-change n))))
+
+(dispatch/react-to #{:employee-select}
+                   (fn [_ d]
+                     (swap! employee assoc :id d)))
