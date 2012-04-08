@@ -16,11 +16,11 @@ return lib.dispatch.fire.call(null,"\uFDD0'init-data-done");
 }));
 });
 pos.client.controller.bind_pusher_listener = (function bind_pusher_listener(){
-var pusher__7571 = (new Pusher("a32696b95bcc47185377"));
-var channel__7572 = pusher__7571.subscribe("kovalo-pos");
+var pusher__7496 = (new Pusher("a32696b95bcc47185377"));
+var channel__7497 = pusher__7496.subscribe("kovalo-pos");
 
-return channel__7572.bind("customer-nfc",(function (p1__7570_SHARP_){
-return lib.dispatch.fire.call(null,"\uFDD0'pusher-customer-nfc",p1__7570_SHARP_);
+return channel__7497.bind("customer-nfc",(function (p1__7495_SHARP_){
+return lib.dispatch.fire.call(null,"\uFDD0'pusher-customer-nfc",p1__7495_SHARP_);
 }));
 });
 pos.client.controller.init = (function init(){

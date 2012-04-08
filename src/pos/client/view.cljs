@@ -1,12 +1,16 @@
 (ns pos.client.view
   (:require [lib.dispatch :as dispatch]
             [crate.core :as crate]
+            [goog.date.DateTime :as date-time]
+            [goog.i18n.DateTimeFormat :as date-time-format]
+            [goog.Timer :as timer]
+            [goog.events :as events]
             [pos.client.model :as model]
             [pos.client.animation :as animation])
   (:use [jayq.core :only [$ css append bind inner]]
         [jayq.util :only [log]]
         [fetch.util :only [clj->js]]
-        [pos.client.util :only [from-arr-by-id value]])
+        [pos.client.util :only [from-arr-by-id value start-timer get-formatted-datetime]])
   (:require-macros [jayq.macros :as jq])
   (:use-macros [crate.macros :only [defpartial]]))
 
@@ -68,6 +72,12 @@
                        (populate-dropdowns @model/data)
                        (prepare-dropdowns))))
 
+;;== DateTime ===============================================
+(defn render-time []
+  (let [t (get-formatted-datetime)
+        el ($ :#clock)]
+    (inner el t)))
+
 
 ;;== populate info box ======================================
 (defn pie-data []
@@ -127,6 +137,7 @@
 ;;== init ui ================================================
 (defn prepare-ui []
   (do
+    (start-timer render-time)
     (draw-pie)
     (attach-typeahead-event-listeners)
     (attach-typeahead-clear-event-listeners)))
