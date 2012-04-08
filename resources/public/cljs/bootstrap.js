@@ -11974,13 +11974,13 @@ pos.client.view.attach_typeahead_clear_event_listeners = function() {
     return lib.dispatch.fire.call(null, "\ufdd0'item-clear")
   })
 };
-var group__6008__auto____8547 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6008__auto____9367 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.dropdown_row = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'li", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'value":b}), a])]));
-  a.setAttribute("crateGroup", group__6008__auto____8547);
+  a.setAttribute("crateGroup", group__6008__auto____9367);
   return a
 };
-pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____8547;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____9367;
 pos.client.view.populate_dropdowns = function(a) {
   var b = cljs.core.seq.call(null, "\ufdd0'locations".call(null, a));
   if(cljs.core.truth_(b)) {
@@ -12048,16 +12048,15 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-change"]), func
 pos.client.view.add_product = function() {
   return lib.dispatch.fire.call(null, "\ufdd0'basket-add", "1234567-456")
 };
-var group__6008__auto____8588 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6008__auto____9408 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.basket_item = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'price"), c = cljs.core.get.call(null, b, "\ufdd0'size"), d = cljs.core.get.call(null, b, "\ufdd0'color"), e = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'tr", cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":b}), 
   cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold", e]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", b]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", c]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", d]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.qty", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":1})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.price", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", 
-  cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.discount", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":0})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold.total", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.close-container", 
-  cljs.core.PersistentVector.fromArray(["\ufdd0'a.close", "x"])])]));
-  a.setAttribute("crateGroup", group__6008__auto____8588);
+  cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.discount", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":0})]), "%"]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold.total", cljs.core.str.call(null, a)]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.close-container", cljs.core.PersistentVector.fromArray(["\ufdd0'a.close", "x"])])]));
+  a.setAttribute("crateGroup", group__6008__auto____9408);
   return a
 };
-pos.client.view.basket_item.prototype._crateGroup = group__6008__auto____8588;
+pos.client.view.basket_item.prototype._crateGroup = group__6008__auto____9408;
 pos.client.view.render_basket = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
   return new cljs.core.MultiFn("render-basket", "\ufdd0'type", "\ufdd0'default", e, a, b, c, d)

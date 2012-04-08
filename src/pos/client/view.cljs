@@ -147,8 +147,8 @@
    [:td color]
    [:td.qty [:input.num {:value 1}]]
    [:td.price [:input.price {:value price}]]
-   [:td.discount [:input.num {:value 0}]]
-   [:td.bold.total [:input.price {:value price}]]
+   [:td.discount [:input.num {:value 0}] "%"]
+   [:td.bold.total (str price)]
    [:td.close-container [:a.close "x"]]])
 
 (defmulti render-basket :type)

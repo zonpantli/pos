@@ -381,31 +381,35 @@ table#keypad button {
   width: 25px;
   margin-right: 5px;
 }
+/* line 327, ../../../src/pos/scss/main.scss */
+#receipt-table td input.price {
+  width: 40px;
+}
 
-/* line 332, ../../../src/pos/scss/main.scss */
+/* line 336, ../../../src/pos/scss/main.scss */
 table#footer-buttons {
   margin-top: 15px;
   width: 100%;
   td-text-align: center;
 }
-/* line 340, ../../../src/pos/scss/main.scss */
+/* line 344, ../../../src/pos/scss/main.scss */
 table#footer-buttons .btn {
   width: 150px;
 }
 
-/* line 352, ../../../src/pos/scss/main.scss */
+/* line 356, ../../../src/pos/scss/main.scss */
 #grid {
   padding-top: 100px;
   margin-bottom: 30px;
 }
 
-/* line 357, ../../../src/pos/scss/main.scss */
+/* line 361, ../../../src/pos/scss/main.scss */
 .show-grid > div {
   background: #888;
   margin-top: 10px;
 }
 
-/* line 364, ../../../src/pos/scss/main.scss */
+/* line 368, ../../../src/pos/scss/main.scss */
 p.alert {
   position: absolute;
   bottom: 10px;

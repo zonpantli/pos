@@ -323,8 +323,12 @@ table#keypad {
       background: transparent;
       width: 25px;
       margin-right: 5px;
+
+      &.price {
+        width: 40px;
+      }
     }
-    
+
   }
 }
 
