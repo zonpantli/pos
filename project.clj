@@ -9,7 +9,8 @@
                  [clj-pusher "0.3.0"]
                  [clj-http "0.3.5"]
                  [crate "0.1.0-alpha3"]]
-  :dev-dependencies [[ring-serve "0.1.1"]]
+  :dev-dependencies [[ring-serve "0.1.1"]
+                     [lein-marginalia "0.7.0"]]
   :plugins [[lein-cljsbuild "0.1.2"]]
   :cljsbuild {:builds [{}]}
   :ring {:handler pos.server/handler}
