@@ -7,13 +7,51 @@
             [goog.events :as events]
             [pos.client.model :as model]
             [pos.client.animation :as animation])
-  (:use [jayq.core :only [$ css append bind inner]]
+  (:use [jayq.core :only [$ css append bind inner find]]
         [jayq.util :only [log]]
         [fetch.util :only [clj->js]]
         [pos.client.util :only [from-arr-by-id value start-timer get-formatted-datetime]])
   (:require-macros [jayq.macros :as jq])
   (:use-macros [crate.macros :only [defpartial]]))
 
+;;== location and employee selects =========================
+(defn render-location [{id :id}]
+  (if-let [location (from-arr-by-id (:locations @model/data) id)]
+    (inner ($ :#location-name) (:name location))
+    (inner ($ :#location-name) "Location")))
+
+(dispatch/react-to #{:location-change}
+                   (fn [_ d]
+                     (render-location d)))
+
+(defn render-employee [{id :id}]
+  (if-let [employee (from-arr-by-id (:employees @model/data) id)]
+    (inner ($ :#employee-name) (:name employee))
+    (inner ($ :#employee-name) "Employee")))
+
+(dispatch/react-to #{:employee-change}
+                   (fn [_ d]
+                     (render-employee d)))
+
+;;== DateTime ===============================================
+(defn render-time []
+  (let [t (get-formatted-datetime)
+        el ($ :#clock)]
+    (inner el t)))
+
+
+;;== populate info box ======================================
+(defn pie-data []
+  (clj->js
+   [{:label "" :data 33 :color "#5bb75b"}
+    {:label "" :data 67 :color "#52c5c8"}]))
+
+(defn draw-pie []
+  (.plot js/$ ($ :#pie)
+         (pie-data)
+         (clj->js {:series {:pie {:show true
+                                  :stroke {:color "#2b2b2b"
+                                           :width 0}}}})))
 
 ;;== populate typeaheads and dropdowns ======================
 (defn get-dropdown-data [data-key data]
@@ -72,26 +110,6 @@
                        (populate-dropdowns @model/data)
                        (prepare-dropdowns))))
 
-;;== DateTime ===============================================
-(defn render-time []
-  (let [t (get-formatted-datetime)
-        el ($ :#clock)]
-    (inner el t)))
-
-
-;;== populate info box ======================================
-(defn pie-data []
-  (clj->js
-   [{:label "" :data 33 :color "#5bb75b"}
-    {:label "" :data 67 :color "#52c5c8"}]))
-
-(defn draw-pie []
-  (.plot js/$ ($ :#pie)
-         (pie-data)
-         (clj->js {:series {:pie {:show true
-                                  :stroke {:color "#2b2b2b"
-                                           :width 0}}}})))
-
 
 ;;== customer dropdown =====================================
 (defmulti render-customer :event)
@@ -115,24 +133,36 @@
                        (render-customer {:event :customer-selected :id (:id d)})
                        (render-customer {:event :customer-deselected}))))
 
-;;== location and employee selects =========================
-(defn render-location [{id :id}]
-  (if-let [location (from-arr-by-id (:locations @model/data) id)]
-    (inner ($ :#location-name) (:name location))
-    (inner ($ :#location-name) "Location")))
 
-(dispatch/react-to #{:location-change}
+;;== product dropdown ======================================
+(defn add-product []
+  (dispatch/fire :basket-add "1234567-456"))
+
+;;== basket ================================================
+(defpartial basket-item [{:keys [id name color size price]}]
+  [:tr {:id id}
+   [:td.bold name]
+   [:td id]
+   [:td size]
+   [:td color]
+   [:td.qty [:input.num {:value 1}]]
+   [:td.price [:input.price {:value price}]]
+   [:td.discount [:input.num {:value 0}]]
+   [:td.bold.total [:input.price {:value price}]]
+   [:td.close-container [:a.close "x"]]])
+
+(defmulti render-basket :type)
+
+(defmethod render-basket :add [{:keys [item]}]
+  (let [el (basket-item item)]
+    (do
+      (append ($ :#receipt-table) el)
+      (bind (find ($ el) ".qty > input") "click" #(js/alert "qty clicked")))))
+
+(dispatch/react-to #{:basket-change}
                    (fn [_ d]
-                     (render-location d)))
+                     (render-basket d)))
 
-(defn render-employee [{id :id}]
-  (if-let [employee (from-arr-by-id (:employees @model/data) id)]
-    (inner ($ :#employee-name) (:name employee))
-    (inner ($ :#employee-name) "Employee")))
-
-(dispatch/react-to #{:employee-change}
-                   (fn [_ d]
-                     (render-employee d)))
 
 ;;== init ui ================================================
 (defn prepare-ui []

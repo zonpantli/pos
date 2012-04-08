@@ -9485,6 +9485,50 @@ jayq.util.clj__GT_js = function clj__GT_js(b) {
     return cljs.core.assoc.call(null, b, clj__GT_js.call(null, e), clj__GT_js.call(null, f))
   }, cljs.core.ObjMap.fromObject([], {}), b).strobj : cljs.core.truth_(cljs.core.coll_QMARK_.call(null, b)) ? cljs.core.apply.call(null, cljs.core.array, cljs.core.map.call(null, clj__GT_js, b)) : cljs.core.truth_("\ufdd0'else") ? b : null
 };
+var pos = {client:{}};
+pos.client.util = {};
+pos.client.util.from_arr_by_id = function(a, b) {
+  return cljs.core.first.call(null, cljs.core.filter.call(null, function(a) {
+    return cljs.core._EQ_.call(null, "\ufdd0'id".call(null, a), b)
+  }, a))
+};
+pos.client.util.default_variant = function() {
+  var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
+  return new cljs.core.MultiFn("default-variant", cljs.core.coll_QMARK_, "\ufdd0'default", e, a, b, c, d)
+}();
+cljs.core._add_method.call(null, pos.client.util.default_variant, !0, function(a) {
+  return cljs.core.first.call(null, a)
+});
+cljs.core._add_method.call(null, pos.client.util.default_variant, !1, function(a) {
+  return a
+});
+pos.client.util.default_variant_of_item = function(a) {
+  return cljs.core.zipmap.call(null, cljs.core.keys.call(null, a), cljs.core.map.call(null, pos.client.util.default_variant, cljs.core.vals.call(null, a)))
+};
+pos.client.util.value = function() {
+  var a = null;
+  return function(a, c) {
+    switch(arguments.length) {
+      case 1:
+        return a.attr("value");
+      case 2:
+        return a.attr("value", c)
+    }
+    throw"Invalid arity: " + arguments.length;
+  }
+}();
+pos.client.util.background_image = function(a, b) {
+  return pos.client.util.css.call(null, a, cljs.core.ObjMap.fromObject(["\ufdd0'background-image"], {"\ufdd0'background-image":cljs.core.str.call(null, "url(", b, ")")}))
+};
+pos.client.util.get_formatted_datetime = function() {
+  var a = new goog.date.DateTime;
+  return(new goog.i18n.DateTimeFormat("EEE, MMM d  h:mm a")).format(a)
+};
+pos.client.util.start_timer = function(a) {
+  var b = new goog.Timer(1E3);
+  b.start();
+  return goog.events.listen(b, goog.Timer.TICK, a)
+};
 var lib = {dispatch:{}};
 lib.dispatch.reactions = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {}));
 lib.dispatch.react_to = function() {
@@ -9543,9 +9587,222 @@ lib.dispatch.fire = function() {
     throw"Invalid arity: " + arguments.length;
   }
 }();
-var pos = {client:{}};
+var clojure = {set:{}};
+clojure.set.bubble_max_key = function(a, b) {
+  var c = cljs.core.apply.call(null, cljs.core.max_key, a, b);
+  return cljs.core.cons.call(null, c, cljs.core.remove.call(null, function(a) {
+    return c === a
+  }, b))
+};
+clojure.set.union = function() {
+  var a = null, b = function() {
+    var a = function(a, b, c) {
+      a = clojure.set.bubble_max_key.call(null, cljs.core.count, cljs.core.conj.call(null, c, b, a));
+      return cljs.core.reduce.call(null, cljs.core.into, cljs.core.first.call(null, a), cljs.core.rest.call(null, a))
+    }, b = function(b, d, g) {
+      var h = null;
+      goog.isDef(g) && (h = cljs.core.array_seq(Array.prototype.slice.call(arguments, 2), 0));
+      return a.call(this, b, d, h)
+    };
+    b.cljs$lang$maxFixedArity = 2;
+    b.cljs$lang$applyTo = function(b) {
+      var d = cljs.core.first(b), g = cljs.core.first(cljs.core.next(b)), b = cljs.core.rest(cljs.core.next(b));
+      return a.call(this, d, g, b)
+    };
+    return b
+  }(), a = function(a, d, e) {
+    switch(arguments.length) {
+      case 0:
+        return cljs.core.set([]);
+      case 1:
+        return a;
+      case 2:
+        return cljs.core.truth_(cljs.core.count.call(null, a) < cljs.core.count.call(null, d)) ? cljs.core.reduce.call(null, cljs.core.conj, d, a) : cljs.core.reduce.call(null, cljs.core.conj, a, d);
+      default:
+        return b.apply(this, arguments)
+    }
+    throw"Invalid arity: " + arguments.length;
+  };
+  a.cljs$lang$maxFixedArity = 2;
+  a.cljs$lang$applyTo = b.cljs$lang$applyTo;
+  return a
+}();
+clojure.set.intersection = function() {
+  var a = null, b = function(a, b) {
+    for(;;) {
+      if(cljs.core.truth_(cljs.core.count.call(null, b) < cljs.core.count.call(null, a))) {
+        var c = a, a = b, b = c
+      }else {
+        return cljs.core.reduce.call(null, function(a, b) {
+          return function(a, c) {
+            return cljs.core.truth_(cljs.core.contains_QMARK_.call(null, b, c)) ? a : cljs.core.disj.call(null, a, c)
+          }
+        }(a, b), a, a)
+      }
+    }
+  }, c = function() {
+    var b = function(b, c, d) {
+      b = clojure.set.bubble_max_key.call(null, function(a) {
+        return-cljs.core.count.call(null, a)
+      }, cljs.core.conj.call(null, d, c, b));
+      return cljs.core.reduce.call(null, a, cljs.core.first.call(null, b), cljs.core.rest.call(null, b))
+    }, c = function(a, c, e) {
+      var i = null;
+      goog.isDef(e) && (i = cljs.core.array_seq(Array.prototype.slice.call(arguments, 2), 0));
+      return b.call(this, a, c, i)
+    };
+    c.cljs$lang$maxFixedArity = 2;
+    c.cljs$lang$applyTo = function(a) {
+      var c = cljs.core.first(a), e = cljs.core.first(cljs.core.next(a)), a = cljs.core.rest(cljs.core.next(a));
+      return b.call(this, c, e, a)
+    };
+    return c
+  }(), a = function(a, e, f) {
+    switch(arguments.length) {
+      case 1:
+        return a;
+      case 2:
+        return b.call(this, a, e);
+      default:
+        return c.apply(this, arguments)
+    }
+    throw"Invalid arity: " + arguments.length;
+  };
+  a.cljs$lang$maxFixedArity = 2;
+  a.cljs$lang$applyTo = c.cljs$lang$applyTo;
+  return a
+}();
+clojure.set.difference = function() {
+  var a = null, b = function(a, b) {
+    return cljs.core.truth_(cljs.core.count.call(null, a) < cljs.core.count.call(null, b)) ? cljs.core.reduce.call(null, function(a, c) {
+      return cljs.core.truth_(cljs.core.contains_QMARK_.call(null, b, c)) ? cljs.core.disj.call(null, a, c) : a
+    }, a, a) : cljs.core.reduce.call(null, cljs.core.disj, a, b)
+  }, c = function() {
+    var b = function(b, c, d) {
+      var h = null;
+      goog.isDef(d) && (h = cljs.core.array_seq(Array.prototype.slice.call(arguments, 2), 0));
+      return cljs.core.reduce.call(null, a, b, cljs.core.conj.call(null, h, c))
+    };
+    b.cljs$lang$maxFixedArity = 2;
+    b.cljs$lang$applyTo = function(b) {
+      var c = cljs.core.first(b), d = cljs.core.first(cljs.core.next(b)), b = cljs.core.rest(cljs.core.next(b));
+      return cljs.core.reduce.call(null, a, c, cljs.core.conj.call(null, b, d))
+    };
+    return b
+  }(), a = function(a, e, f) {
+    switch(arguments.length) {
+      case 1:
+        return a;
+      case 2:
+        return b.call(this, a, e);
+      default:
+        return c.apply(this, arguments)
+    }
+    throw"Invalid arity: " + arguments.length;
+  };
+  a.cljs$lang$maxFixedArity = 2;
+  a.cljs$lang$applyTo = c.cljs$lang$applyTo;
+  return a
+}();
+clojure.set.select = function(a, b) {
+  return cljs.core.reduce.call(null, function(b, d) {
+    return cljs.core.truth_(a.call(null, d)) ? b : cljs.core.disj.call(null, b, d)
+  }, b, b)
+};
+clojure.set.project = function(a, b) {
+  return cljs.core.set.call(null, cljs.core.map.call(null, function(a) {
+    return cljs.core.select_keys.call(null, a, b)
+  }, a))
+};
+clojure.set.rename_keys = function(a, b) {
+  return cljs.core.reduce.call(null, function(a, b) {
+    var e = cljs.core.nth.call(null, b, 0, null), f = cljs.core.nth.call(null, b, 1, null);
+    return cljs.core.truth_(function() {
+      var b = cljs.core.not_EQ_.call(null, e, f);
+      return cljs.core.truth_(b) ? cljs.core.contains_QMARK_.call(null, a, e) : b
+    }()) ? cljs.core.dissoc.call(null, cljs.core.assoc.call(null, a, f, cljs.core.get.call(null, a, e)), e) : a
+  }, a, b)
+};
+clojure.set.rename = function(a, b) {
+  return cljs.core.set.call(null, cljs.core.map.call(null, function(a) {
+    return clojure.set.rename_keys.call(null, a, b)
+  }, a))
+};
+clojure.set.index = function(a, b) {
+  return cljs.core.reduce.call(null, function(a, d) {
+    var e = cljs.core.select_keys.call(null, d, b);
+    return cljs.core.assoc.call(null, a, e, cljs.core.conj.call(null, cljs.core.get.call(null, a, e, cljs.core.set([])), d))
+  }, cljs.core.ObjMap.fromObject([], {}), a)
+};
+clojure.set.map_invert = function(a) {
+  return cljs.core.reduce.call(null, function(a, c) {
+    var d = cljs.core.nth.call(null, c, 0, null), e = cljs.core.nth.call(null, c, 1, null);
+    return cljs.core.assoc.call(null, a, e, d)
+  }, cljs.core.ObjMap.fromObject([], {}), a)
+};
+clojure.set.join = function() {
+  var a = null, b = function(a, b) {
+    if(cljs.core.truth_(function() {
+      var c = cljs.core.seq.call(null, a);
+      return cljs.core.truth_(c) ? cljs.core.seq.call(null, b) : c
+    }())) {
+      var c = clojure.set.intersection.call(null, cljs.core.set.call(null, cljs.core.keys.call(null, cljs.core.first.call(null, a))), cljs.core.set.call(null, cljs.core.keys.call(null, cljs.core.first.call(null, b)))), g = cljs.core.truth_(cljs.core.count.call(null, a) <= cljs.core.count.call(null, b)) ? cljs.core.PersistentVector.fromArray([a, b]) : cljs.core.PersistentVector.fromArray([b, a]), h = cljs.core.nth.call(null, g, 0, null), g = cljs.core.nth.call(null, g, 1, null), i = clojure.set.index.call(null, 
+      h, c);
+      return cljs.core.reduce.call(null, function(a, b) {
+        var d = i.call(null, cljs.core.select_keys.call(null, b, c));
+        return cljs.core.truth_(d) ? cljs.core.reduce.call(null, function(a, c) {
+          return cljs.core.conj.call(null, a, cljs.core.merge.call(null, c, b))
+        }, a, d) : a
+      }, cljs.core.set([]), g)
+    }
+    return cljs.core.set([])
+  }, c = function(a, b, c) {
+    var a = cljs.core.truth_(cljs.core.count.call(null, a) <= cljs.core.count.call(null, b)) ? cljs.core.PersistentVector.fromArray([a, b, clojure.set.map_invert.call(null, c)]) : cljs.core.PersistentVector.fromArray([b, a, c]), b = cljs.core.nth.call(null, a, 0, null), c = cljs.core.nth.call(null, a, 1, null), g = cljs.core.nth.call(null, a, 2, null), h = clojure.set.index.call(null, b, cljs.core.vals.call(null, g));
+    return cljs.core.reduce.call(null, function(a, b) {
+      var c = h.call(null, clojure.set.rename_keys.call(null, cljs.core.select_keys.call(null, b, cljs.core.keys.call(null, g)), g));
+      return cljs.core.truth_(c) ? cljs.core.reduce.call(null, function(a, c) {
+        return cljs.core.conj.call(null, a, cljs.core.merge.call(null, c, b))
+      }, a, c) : a
+    }, cljs.core.set([]), c)
+  };
+  return function(a, e, f) {
+    switch(arguments.length) {
+      case 2:
+        return b.call(this, a, e);
+      case 3:
+        return c.call(this, a, e, f)
+    }
+    throw"Invalid arity: " + arguments.length;
+  }
+}();
+clojure.set.subset_QMARK_ = function(a, b) {
+  var c = cljs.core.count.call(null, a) <= cljs.core.count.call(null, b);
+  return cljs.core.truth_(c) ? cljs.core.every_QMARK_.call(null, function(a) {
+    return cljs.core.contains_QMARK_.call(null, b, a)
+  }, a) : c
+};
+clojure.set.superset_QMARK_ = function(a, b) {
+  var c = cljs.core.count.call(null, a) >= cljs.core.count.call(null, b);
+  return cljs.core.truth_(c) ? cljs.core.every_QMARK_.call(null, function(b) {
+    return cljs.core.contains_QMARK_.call(null, a, b)
+  }, b) : c
+};
 pos.client.model = {};
 pos.client.model.data = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {}));
+pos.client.model.location = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":null}));
+cljs.core.add_watch.call(null, pos.client.model.location, "\ufdd0'location-change-key", function(a, b, c, d) {
+  return cljs.core.truth_(cljs.core.not_EQ_.call(null, c, d)) ? lib.dispatch.fire.call(null, "\ufdd0'location-change", d) : null
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'location-select"]), function(a, b) {
+  return cljs.core.swap_BANG_.call(null, pos.client.model.location, cljs.core.assoc, "\ufdd0'id", b)
+});
+pos.client.model.employee = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":null}));
+cljs.core.add_watch.call(null, pos.client.model.employee, "\ufdd0'employee-change-key", function(a, b, c, d) {
+  return cljs.core.truth_(cljs.core.not_EQ_.call(null, c, d)) ? lib.dispatch.fire.call(null, "\ufdd0'employee-change", d) : null
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'employee-select"]), function(a, b) {
+  return cljs.core.swap_BANG_.call(null, pos.client.model.employee, cljs.core.assoc, "\ufdd0'id", b)
+});
 pos.client.model.customer = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":null}));
 cljs.core.add_watch.call(null, pos.client.model.customer, "\ufdd0'customer-change-key", function(a, b, c, d) {
   return cljs.core.truth_(function() {
@@ -9577,50 +9834,16 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-clear"]), funct
   };
   return b
 }());
-pos.client.model.location = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":null}));
-cljs.core.add_watch.call(null, pos.client.model.location, "\ufdd0'location-change-key", function(a, b, c, d) {
-  return cljs.core.truth_(cljs.core.not_EQ_.call(null, c, d)) ? lib.dispatch.fire.call(null, "\ufdd0'location-change", d) : null
+pos.client.model.item = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":null}));
+pos.client.model.basket = cljs.core.atom.call(null, cljs.core.set([]));
+cljs.core.add_watch.call(null, pos.client.model.basket, "\ufdd0'basket-change-key", function(a, b, c, d) {
+  return cljs.core.truth_(cljs.core.count.call(null, d) > cljs.core.count.call(null, c)) ? lib.dispatch.fire.call(null, "\ufdd0'basket-change", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'item"], {"\ufdd0'type":"\ufdd0'add", "\ufdd0'item":cljs.core.first.call(null, clojure.set.difference.call(null, d, c))})) : null
 });
-lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'location-select"]), function(a, b) {
-  return cljs.core.swap_BANG_.call(null, pos.client.model.location, cljs.core.assoc, "\ufdd0'id", b)
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-add"]), function(a, b) {
+  var c = pos.client.util.from_arr_by_id.call(null, "\ufdd0'items".call(null, cljs.core.deref.call(null, pos.client.model.data)), b), c = pos.client.util.default_variant_of_item.call(null, c);
+  jayq.util.log.call(null, c);
+  return cljs.core.swap_BANG_.call(null, pos.client.model.basket, cljs.core.conj, c)
 });
-pos.client.model.employee = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":null}));
-cljs.core.add_watch.call(null, pos.client.model.employee, "\ufdd0'employee-change-key", function(a, b, c, d) {
-  return cljs.core.truth_(cljs.core.not_EQ_.call(null, c, d)) ? lib.dispatch.fire.call(null, "\ufdd0'employee-change", d) : null
-});
-lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'employee-select"]), function(a, b) {
-  return cljs.core.swap_BANG_.call(null, pos.client.model.employee, cljs.core.assoc, "\ufdd0'id", b)
-});
-pos.client.util = {};
-pos.client.util.from_arr_by_id = function(a, b) {
-  return cljs.core.first.call(null, cljs.core.filter.call(null, function(a) {
-    return cljs.core._EQ_.call(null, "\ufdd0'id".call(null, a), b)
-  }, a))
-};
-pos.client.util.value = function() {
-  var a = null;
-  return function(a, c) {
-    switch(arguments.length) {
-      case 1:
-        return a.attr("value");
-      case 2:
-        return a.attr("value", c)
-    }
-    throw"Invalid arity: " + arguments.length;
-  }
-}();
-pos.client.util.background_image = function(a, b) {
-  return pos.client.util.css.call(null, a, cljs.core.ObjMap.fromObject(["\ufdd0'background-image"], {"\ufdd0'background-image":cljs.core.str.call(null, "url(", b, ")")}))
-};
-pos.client.util.get_formatted_datetime = function() {
-  var a = new goog.date.DateTime;
-  return(new goog.i18n.DateTimeFormat("EEE, MMM d  h:mm a")).format(a)
-};
-pos.client.util.start_timer = function(a) {
-  var b = new goog.Timer(1E3);
-  b.start();
-  return goog.events.listen(b, goog.Timer.TICK, a)
-};
 var fetch = {util:{}};
 fetch.util.clj__GT_js = function clj__GT_js(b) {
   return cljs.core.truth_(cljs.core.string_QMARK_.call(null, b)) ? b : cljs.core.truth_(cljs.core.keyword_QMARK_.call(null, b)) ? cljs.core.name.call(null, b) : cljs.core.truth_(cljs.core.map_QMARK_.call(null, b)) ? cljs.core.reduce.call(null, function(b, d) {
@@ -9628,7 +9851,7 @@ fetch.util.clj__GT_js = function clj__GT_js(b) {
     return cljs.core.assoc.call(null, b, clj__GT_js.call(null, e), clj__GT_js.call(null, f))
   }, cljs.core.ObjMap.fromObject([], {}), b).strobj : cljs.core.truth_(cljs.core.coll_QMARK_.call(null, b)) ? cljs.core.apply.call(null, cljs.core.array, cljs.core.map.call(null, clj__GT_js, b)) : cljs.core.truth_("\ufdd0'else") ? b : null
 };
-var clojure = {string:{}};
+clojure.string = {};
 clojure.string.seq_reverse = function(a) {
   return cljs.core.reduce.call(null, cljs.core.conj, cljs.core.List.EMPTY, a)
 };
@@ -11698,6 +11921,34 @@ crate.core.html = function() {
   return b
 }();
 pos.client.view = {};
+pos.client.view.render_location = function(a) {
+  a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a;
+  a = cljs.core.get.call(null, a, "\ufdd0'id");
+  a = pos.client.util.from_arr_by_id.call(null, "\ufdd0'locations".call(null, cljs.core.deref.call(null, pos.client.model.data)), a);
+  return cljs.core.truth_(a) ? jayq.core.inner.call(null, jayq.core.$.call(null, "\ufdd0'#location-name"), "\ufdd0'name".call(null, a)) : jayq.core.inner.call(null, jayq.core.$.call(null, "\ufdd0'#location-name"), "Location")
+};
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'location-change"]), function(a, b) {
+  return pos.client.view.render_location.call(null, b)
+});
+pos.client.view.render_employee = function(a) {
+  a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a;
+  a = cljs.core.get.call(null, a, "\ufdd0'id");
+  a = pos.client.util.from_arr_by_id.call(null, "\ufdd0'employees".call(null, cljs.core.deref.call(null, pos.client.model.data)), a);
+  return cljs.core.truth_(a) ? jayq.core.inner.call(null, jayq.core.$.call(null, "\ufdd0'#employee-name"), "\ufdd0'name".call(null, a)) : jayq.core.inner.call(null, jayq.core.$.call(null, "\ufdd0'#employee-name"), "Employee")
+};
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'employee-change"]), function(a, b) {
+  return pos.client.view.render_employee.call(null, b)
+});
+pos.client.view.render_time = function() {
+  var a = pos.client.util.get_formatted_datetime.call(null), b = jayq.core.$.call(null, "\ufdd0'#clock");
+  return jayq.core.inner.call(null, b, a)
+};
+pos.client.view.pie_data = function() {
+  return fetch.util.clj__GT_js.call(null, cljs.core.PersistentVector.fromArray([cljs.core.ObjMap.fromObject(["\ufdd0'label", "\ufdd0'data", "\ufdd0'color"], {"\ufdd0'label":"", "\ufdd0'data":33, "\ufdd0'color":"#5bb75b"}), cljs.core.ObjMap.fromObject(["\ufdd0'label", "\ufdd0'data", "\ufdd0'color"], {"\ufdd0'label":"", "\ufdd0'data":67, "\ufdd0'color":"#52c5c8"})]))
+};
+pos.client.view.draw_pie = function() {
+  return $.plot(jayq.core.$.call(null, "\ufdd0'#pie"), pos.client.view.pie_data.call(null), fetch.util.clj__GT_js.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'series"], {"\ufdd0'series":cljs.core.ObjMap.fromObject(["\ufdd0'pie"], {"\ufdd0'pie":cljs.core.ObjMap.fromObject(["\ufdd0'show", "\ufdd0'stroke"], {"\ufdd0'show":!0, "\ufdd0'stroke":cljs.core.ObjMap.fromObject(["\ufdd0'color", "\ufdd0'width"], {"\ufdd0'color":"#2b2b2b", "\ufdd0'width":0})})})})))
+};
 pos.client.view.get_dropdown_data = function(a, b) {
   return cljs.core.map.call(null, function(a) {
     return cljs.core.merge.call(null, a, cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":"\ufdd0'name".call(null, a)}))
@@ -11723,13 +11974,13 @@ pos.client.view.attach_typeahead_clear_event_listeners = function() {
     return lib.dispatch.fire.call(null, "\ufdd0'item-clear")
   })
 };
-var group__6008__auto____7942 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6008__auto____8547 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.dropdown_row = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'li", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'value":b}), a])]));
-  a.setAttribute("crateGroup", group__6008__auto____7942);
+  a.setAttribute("crateGroup", group__6008__auto____8547);
   return a
 };
-pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____7942;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____8547;
 pos.client.view.populate_dropdowns = function(a) {
   var b = cljs.core.seq.call(null, "\ufdd0'locations".call(null, a));
   if(cljs.core.truth_(b)) {
@@ -11775,16 +12026,6 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'init-data-done"]), funct
   pos.client.view.populate_dropdowns.call(null, cljs.core.deref.call(null, pos.client.model.data));
   return pos.client.view.prepare_dropdowns.call(null)
 });
-pos.client.view.render_time = function() {
-  var a = pos.client.util.get_formatted_datetime.call(null), b = jayq.core.$.call(null, "\ufdd0'#clock");
-  return jayq.core.inner.call(null, b, a)
-};
-pos.client.view.pie_data = function() {
-  return fetch.util.clj__GT_js.call(null, cljs.core.PersistentVector.fromArray([cljs.core.ObjMap.fromObject(["\ufdd0'label", "\ufdd0'data", "\ufdd0'color"], {"\ufdd0'label":"", "\ufdd0'data":33, "\ufdd0'color":"#5bb75b"}), cljs.core.ObjMap.fromObject(["\ufdd0'label", "\ufdd0'data", "\ufdd0'color"], {"\ufdd0'label":"", "\ufdd0'data":67, "\ufdd0'color":"#52c5c8"})]))
-};
-pos.client.view.draw_pie = function() {
-  return $.plot(jayq.core.$.call(null, "\ufdd0'#pie"), pos.client.view.pie_data.call(null), fetch.util.clj__GT_js.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'series"], {"\ufdd0'series":cljs.core.ObjMap.fromObject(["\ufdd0'pie"], {"\ufdd0'pie":cljs.core.ObjMap.fromObject(["\ufdd0'show", "\ufdd0'stroke"], {"\ufdd0'show":!0, "\ufdd0'stroke":cljs.core.ObjMap.fromObject(["\ufdd0'color", "\ufdd0'width"], {"\ufdd0'color":"#2b2b2b", "\ufdd0'width":0})})})})))
-};
 pos.client.view.render_customer = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
   return new cljs.core.MultiFn("render-customer", "\ufdd0'event", "\ufdd0'default", e, a, b, c, d)
@@ -11804,23 +12045,34 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-change"]), func
   var c = "\ufdd0'id".call(null, b);
   return cljs.core.truth_(c) ? pos.client.view.render_customer.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'event", "\ufdd0'id"], {"\ufdd0'event":"\ufdd0'customer-selected", "\ufdd0'id":"\ufdd0'id".call(null, b)})) : pos.client.view.render_customer.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'event"], {"\ufdd0'event":"\ufdd0'customer-deselected"}))
 });
-pos.client.view.render_location = function(a) {
-  a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a;
-  a = cljs.core.get.call(null, a, "\ufdd0'id");
-  a = pos.client.util.from_arr_by_id.call(null, "\ufdd0'locations".call(null, cljs.core.deref.call(null, pos.client.model.data)), a);
-  return cljs.core.truth_(a) ? jayq.core.inner.call(null, jayq.core.$.call(null, "\ufdd0'#location-name"), "\ufdd0'name".call(null, a)) : jayq.core.inner.call(null, jayq.core.$.call(null, "\ufdd0'#location-name"), "Location")
+pos.client.view.add_product = function() {
+  return lib.dispatch.fire.call(null, "\ufdd0'basket-add", "1234567-456")
 };
-lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'location-change"]), function(a, b) {
-  return pos.client.view.render_location.call(null, b)
+var group__6008__auto____8588 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+pos.client.view.basket_item = function(a) {
+  var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'price"), c = cljs.core.get.call(null, b, "\ufdd0'size"), d = cljs.core.get.call(null, b, "\ufdd0'color"), e = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'tr", cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":b}), 
+  cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold", e]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", b]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", c]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", d]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.qty", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":1})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.price", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", 
+  cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.discount", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":0})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold.total", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.close-container", 
+  cljs.core.PersistentVector.fromArray(["\ufdd0'a.close", "x"])])]));
+  a.setAttribute("crateGroup", group__6008__auto____8588);
+  return a
+};
+pos.client.view.basket_item.prototype._crateGroup = group__6008__auto____8588;
+pos.client.view.render_basket = function() {
+  var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
+  return new cljs.core.MultiFn("render-basket", "\ufdd0'type", "\ufdd0'default", e, a, b, c, d)
+}();
+cljs.core._add_method.call(null, pos.client.view.render_basket, "\ufdd0'add", function(a) {
+  a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a;
+  a = cljs.core.get.call(null, a, "\ufdd0'item");
+  a = pos.client.view.basket_item.call(null, a);
+  jayq.core.append.call(null, jayq.core.$.call(null, "\ufdd0'#receipt-table"), a);
+  return jayq.core.bind.call(null, jayq.core.find.call(null, jayq.core.$.call(null, a), ".qty > input"), "click", function() {
+    return alert.call(null, "qty clicked")
+  })
 });
-pos.client.view.render_employee = function(a) {
-  a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a;
-  a = cljs.core.get.call(null, a, "\ufdd0'id");
-  a = pos.client.util.from_arr_by_id.call(null, "\ufdd0'employees".call(null, cljs.core.deref.call(null, pos.client.model.data)), a);
-  return cljs.core.truth_(a) ? jayq.core.inner.call(null, jayq.core.$.call(null, "\ufdd0'#employee-name"), "\ufdd0'name".call(null, a)) : jayq.core.inner.call(null, jayq.core.$.call(null, "\ufdd0'#employee-name"), "Employee")
-};
-lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'employee-change"]), function(a, b) {
-  return pos.client.view.render_employee.call(null, b)
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-change"]), function(a, b) {
+  return pos.client.view.render_basket.call(null, b)
 });
 pos.client.view.prepare_ui = function() {
   pos.client.util.start_timer.call(null, pos.client.view.render_time);
