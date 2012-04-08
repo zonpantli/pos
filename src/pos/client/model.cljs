@@ -5,7 +5,7 @@
     (:require [lib.dispatch :as dispatch]
               [clojure.set :as set])
     (:use [jayq.util :only [log]]
-          [pos.client.util :only [from-arr-by-id default-variant-of-item]]))
+          [pos.client.util :only [from-coll-by-id default-variant-of-item]]))
 
 
 (def ^{:doc "Atom containing data fetched from back-end. Customers,
@@ -72,10 +72,18 @@ controlling the customer typeahead"}
              (cond
               (> (count n) (count o))
               (dispatch/fire :basket-change {:type :add
-                                             :item (first (set/difference n o))}))))
+                                             :item (first (set/difference n o))})
+              (< (count n) (count o))
+              (dispatch/fire :basket-change {:type :remove
+                                             :id (:id (first (set/difference o n)))}))))
 
 (dispatch/react-to #{:basket-add}
                    (fn [_ d]
                      (let [item (default-variant-of-item
-                                  (from-arr-by-id (:items @data) d))]
+                                  (from-coll-by-id (:items @data) d))]
                        (swap! basket conj item))))
+
+(dispatch/react-to #{:basket-remove}
+                   (fn [_ d]
+                     (let [item (from-coll-by-id @basket d)]
+                       (swap! basket disj item))))

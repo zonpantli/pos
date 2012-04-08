@@ -7,16 +7,16 @@
             [goog.events :as events]
             [pos.client.model :as model]
             [pos.client.animation :as animation])
-  (:use [jayq.core :only [$ css append bind inner find]]
+  (:use [jayq.core :only [$ css append bind inner find remove]]
         [jayq.util :only [log wait]]
         [fetch.util :only [clj->js]]
-        [pos.client.util :only [from-arr-by-id value start-timer get-formatted-datetime]])
+        [pos.client.util :only [from-coll-by-id value start-timer get-formatted-datetime]])
   (:require-macros [jayq.macros :as jq])
   (:use-macros [crate.macros :only [defpartial]]))
 
 ;;== location and employee selects =========================
 (defn render-location [{id :id}]
-  (if-let [location (from-arr-by-id (:locations @model/data) id)]
+  (if-let [location (from-coll-by-id (:locations @model/data) id)]
     (inner ($ :#location-name) (:name location))
     (inner ($ :#location-name) "Location")))
 
@@ -25,7 +25,7 @@
                      (render-location d)))
 
 (defn render-employee [{id :id}]
-  (if-let [employee (from-arr-by-id (:employees @model/data) id)]
+  (if-let [employee (from-coll-by-id (:employees @model/data) id)]
     (inner ($ :#employee-name) (:name employee))
     (inner ($ :#employee-name) "Employee")))
 
@@ -117,7 +117,7 @@
 (defmulti render-customer :event)
 
 (defmethod render-customer :customer-selected [{:keys [id]}]
-  (let [customer  (from-arr-by-id (:customers @model/data) id)
+  (let [customer  (from-coll-by-id (:customers @model/data) id)
         el        ($ :#customer-dropdown)]
     (do
       (value el (:name customer))
@@ -142,7 +142,7 @@
 (defmulti render-item :event)
 
 (defmethod render-item :item-select [{:keys [id]}]
-  (let [item  (from-arr-by-id (:items @model/data) id)
+  (let [item  (from-coll-by-id (:items @model/data) id)
         el        ($ :#item-dropdown)]
     (do
       (value el (:name item))
@@ -179,10 +179,16 @@
 (defmulti render-basket :type)
 
 (defmethod render-basket :add [{:keys [item]}]
-  (let [el (basket-item item)]
+  (let [el ($ (basket-item item))]
     (do
       (append ($ :#receipt-table) el)
-      (bind (find ($ el) ".qty > input") "click" #(js/alert "qty clicked")))))
+      (bind (find el ".close-container > a")
+            "click"
+            #(dispatch/fire :basket-remove (:id item))))))
+
+(defmethod render-basket :remove [{:keys [id]}]
+  (let [el ($ (str "tr#" id))]
+    (remove el)))
 
 (dispatch/react-to #{:basket-change}
                    (fn [_ d]

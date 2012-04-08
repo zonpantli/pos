@@ -2,8 +2,8 @@
   (:use [jayq.util :only [log]]))
 
 ;;== data handling  ========================================
-(defn from-arr-by-id [arr id]
-  (first (filter #(= (:id %1) id) arr)))
+(defn from-coll-by-id [xs id]
+  (first (filter #(= (:id %) id) xs)))
 
 (defmulti default-variant coll?)
 
