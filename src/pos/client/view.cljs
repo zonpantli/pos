@@ -8,7 +8,7 @@
             [pos.client.model :as model]
             [pos.client.animation :as animation])
   (:use [jayq.core :only [$ css append bind inner find]]
-        [jayq.util :only [log]]
+        [jayq.util :only [log wait]]
         [fetch.util :only [clj->js]]
         [pos.client.util :only [from-arr-by-id value start-timer get-formatted-datetime]])
   (:require-macros [jayq.macros :as jq])
@@ -63,10 +63,12 @@
   (do
     (.typeahead ($ :#customer-dropdown) (clj->js
                                          {:source (get-dropdown-data :customers data)
-                                          :onselect #(dispatch/fire :customer-select (.-id %1))
+                                          :onselect #(dispatch/fire :customer-select (.-id %))
                                           :trigger ($ :#customer-dropdown-toggle)}))
     (.typeahead ($ :#item-dropdown) (clj->js
-                                     {:source (get-dropdown-data :items data)}))))
+                                     {:source (get-dropdown-data :items data)
+                                      :onselect #(dispatch/fire :item-select (.-id %))
+                                      :trigger ($ :#item-dropdown-toggle)}))))
 
 (defn attach-typeahead-event-listeners []
   (let [el ($ :#customer-dropdown)]
@@ -134,9 +136,32 @@
                        (render-customer {:event :customer-deselected}))))
 
 
-;;== product dropdown ======================================
-(defn add-product []
-  (dispatch/fire :basket-add "1234567-456"))
+;;== item dropdown ======================================
+(declare basket-add-item)
+
+(defmulti render-item :event)
+
+(defmethod render-item :item-select [{:keys [id]}]
+  (let [item  (from-arr-by-id (:items @model/data) id)
+        el        ($ :#item-dropdown)]
+    (do
+      (value el (:name item))
+      (animation/flash-input-border el)
+      (wait 500 #(dispatch/fire :item-clear)))))
+
+(defmethod render-item :item-clear [_]
+  (let [el ($ :#item-dropdown)]
+    (value el nil)))
+
+(dispatch/react-to #{:item-select :item-clear}
+                   (fn [t d]
+                     (do
+                       (when d
+                         (basket-add-item d))
+                       (render-item {:event t :id d}))))
+
+(defn basket-add-item [id]
+  (dispatch/fire :basket-add id))
 
 ;;== basket ================================================
 (defpartial basket-item [{:keys [id name color size price]}]

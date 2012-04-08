@@ -9834,14 +9834,12 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-clear"]), funct
   };
   return b
 }());
-pos.client.model.item = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":null}));
 pos.client.model.basket = cljs.core.atom.call(null, cljs.core.set([]));
 cljs.core.add_watch.call(null, pos.client.model.basket, "\ufdd0'basket-change-key", function(a, b, c, d) {
   return cljs.core.truth_(cljs.core.count.call(null, d) > cljs.core.count.call(null, c)) ? lib.dispatch.fire.call(null, "\ufdd0'basket-change", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'item"], {"\ufdd0'type":"\ufdd0'add", "\ufdd0'item":cljs.core.first.call(null, clojure.set.difference.call(null, d, c))})) : null
 });
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-add"]), function(a, b) {
-  var c = pos.client.util.from_arr_by_id.call(null, "\ufdd0'items".call(null, cljs.core.deref.call(null, pos.client.model.data)), b), c = pos.client.util.default_variant_of_item.call(null, c);
-  jayq.util.log.call(null, c);
+  var c = pos.client.util.default_variant_of_item.call(null, pos.client.util.from_arr_by_id.call(null, "\ufdd0'items".call(null, cljs.core.deref.call(null, pos.client.model.data)), b));
   return cljs.core.swap_BANG_.call(null, pos.client.model.basket, cljs.core.conj, c)
 });
 var fetch = {util:{}};
@@ -11958,7 +11956,9 @@ pos.client.view.prepare_typeaheads = function(a) {
   jayq.core.$.call(null, "\ufdd0'#customer-dropdown").typeahead(fetch.util.clj__GT_js.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'source", "\ufdd0'onselect", "\ufdd0'trigger"], {"\ufdd0'source":pos.client.view.get_dropdown_data.call(null, "\ufdd0'customers", a), "\ufdd0'onselect":function(a) {
     return lib.dispatch.fire.call(null, "\ufdd0'customer-select", a.id)
   }, "\ufdd0'trigger":jayq.core.$.call(null, "\ufdd0'#customer-dropdown-toggle")})));
-  return jayq.core.$.call(null, "\ufdd0'#item-dropdown").typeahead(fetch.util.clj__GT_js.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'source"], {"\ufdd0'source":pos.client.view.get_dropdown_data.call(null, "\ufdd0'items", a)})))
+  return jayq.core.$.call(null, "\ufdd0'#item-dropdown").typeahead(fetch.util.clj__GT_js.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'source", "\ufdd0'onselect", "\ufdd0'trigger"], {"\ufdd0'source":pos.client.view.get_dropdown_data.call(null, "\ufdd0'items", a), "\ufdd0'onselect":function(a) {
+    return lib.dispatch.fire.call(null, "\ufdd0'item-select", a.id)
+  }, "\ufdd0'trigger":jayq.core.$.call(null, "\ufdd0'#item-dropdown-toggle")})))
 };
 pos.client.view.attach_typeahead_event_listeners = function() {
   var a = jayq.core.$.call(null, "\ufdd0'#customer-dropdown");
@@ -11974,13 +11974,13 @@ pos.client.view.attach_typeahead_clear_event_listeners = function() {
     return lib.dispatch.fire.call(null, "\ufdd0'item-clear")
   })
 };
-var group__6008__auto____9367 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6008__auto____10715 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.dropdown_row = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'li", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'value":b}), a])]));
-  a.setAttribute("crateGroup", group__6008__auto____9367);
+  a.setAttribute("crateGroup", group__6008__auto____10715);
   return a
 };
-pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____9367;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____10715;
 pos.client.view.populate_dropdowns = function(a) {
   var b = cljs.core.seq.call(null, "\ufdd0'locations".call(null, a));
   if(cljs.core.truth_(b)) {
@@ -12045,18 +12045,38 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-change"]), func
   var c = "\ufdd0'id".call(null, b);
   return cljs.core.truth_(c) ? pos.client.view.render_customer.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'event", "\ufdd0'id"], {"\ufdd0'event":"\ufdd0'customer-selected", "\ufdd0'id":"\ufdd0'id".call(null, b)})) : pos.client.view.render_customer.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'event"], {"\ufdd0'event":"\ufdd0'customer-deselected"}))
 });
-pos.client.view.add_product = function() {
-  return lib.dispatch.fire.call(null, "\ufdd0'basket-add", "1234567-456")
+pos.client.view.render_item = function() {
+  var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
+  return new cljs.core.MultiFn("render-item", "\ufdd0'event", "\ufdd0'default", e, a, b, c, d)
+}();
+cljs.core._add_method.call(null, pos.client.view.render_item, "\ufdd0'item-select", function(a) {
+  var a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, a, "\ufdd0'id"), a = pos.client.util.from_arr_by_id.call(null, "\ufdd0'items".call(null, cljs.core.deref.call(null, pos.client.model.data)), a), b = jayq.core.$.call(null, "\ufdd0'#item-dropdown");
+  pos.client.util.value.call(null, b, "\ufdd0'name".call(null, a));
+  pos.client.animation.flash_input_border.call(null, b);
+  return jayq.util.wait.call(null, 500, function() {
+    return lib.dispatch.fire.call(null, "\ufdd0'item-clear")
+  })
+});
+cljs.core._add_method.call(null, pos.client.view.render_item, "\ufdd0'item-clear", function() {
+  var a = jayq.core.$.call(null, "\ufdd0'#item-dropdown");
+  return pos.client.util.value.call(null, a, null)
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'item-clear", "\ufdd0'item-select"]), function(a, b) {
+  cljs.core.truth_(b) && pos.client.view.basket_add_item.call(null, b);
+  return pos.client.view.render_item.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'event", "\ufdd0'id"], {"\ufdd0'event":a, "\ufdd0'id":b}))
+});
+pos.client.view.basket_add_item = function(a) {
+  return lib.dispatch.fire.call(null, "\ufdd0'basket-add", a)
 };
-var group__6008__auto____9408 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6008__auto____10769 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.basket_item = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'price"), c = cljs.core.get.call(null, b, "\ufdd0'size"), d = cljs.core.get.call(null, b, "\ufdd0'color"), e = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'tr", cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":b}), 
   cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold", e]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", b]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", c]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", d]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.qty", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":1})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.price", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", 
   cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.discount", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":0})]), "%"]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold.total", cljs.core.str.call(null, a)]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.close-container", cljs.core.PersistentVector.fromArray(["\ufdd0'a.close", "x"])])]));
-  a.setAttribute("crateGroup", group__6008__auto____9408);
+  a.setAttribute("crateGroup", group__6008__auto____10769);
   return a
 };
-pos.client.view.basket_item.prototype._crateGroup = group__6008__auto____9408;
+pos.client.view.basket_item.prototype._crateGroup = group__6008__auto____10769;
 pos.client.view.render_basket = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
   return new cljs.core.MultiFn("render-basket", "\ufdd0'type", "\ufdd0'default", e, a, b, c, d)

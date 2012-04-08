@@ -64,10 +64,6 @@ controlling the customer typeahead"}
                    (fn [& _]
                      (swap! customer assoc :id nil)))
 
-(def ^{:doc "Atom containing selected item and related reactors
-controlling the item typeahead"}
-  item (atom {:id nil}))
-
 (def ^{:doc "Atom containing state of the shopping basket"}
   basket (atom #{}))
 
@@ -80,8 +76,6 @@ controlling the item typeahead"}
 
 (dispatch/react-to #{:basket-add}
                    (fn [_ d]
-                     (let [i (from-arr-by-id (:items @data) d)
-                           item (default-variant-of-item i)]
-                       (do
-                         (log item)
-                         (swap! basket conj item)))))
+                     (let [item (default-variant-of-item
+                                  (from-arr-by-id (:items @data) d))]
+                       (swap! basket conj item))))

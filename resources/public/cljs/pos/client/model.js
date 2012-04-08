@@ -43,10 +43,10 @@ return cljs.core.swap_BANG_.call(null,pos.client.model.employee,cljs.core.assoc,
 */
 pos.client.model.customer = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'id"],{"\uFDD0'id":null}));
 cljs.core.add_watch.call(null,pos.client.model.customer,"\uFDD0'customer-change-key",(function (k,r,o,n){
-if(cljs.core.truth_((function (){var or__3548__auto____7937 = ("\uFDD0'id".call(null,n) === null);
+if(cljs.core.truth_((function (){var or__3548__auto____10211 = ("\uFDD0'id".call(null,n) === null);
 
-if(cljs.core.truth_(or__3548__auto____7937))
-{return or__3548__auto____7937;
+if(cljs.core.truth_(or__3548__auto____10211))
+{return or__3548__auto____10211;
 } else
 {return cljs.core.not_EQ_.call(null,o,n);
 }
@@ -70,29 +70,24 @@ lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-select"]),(funct
 return cljs.core.swap_BANG_.call(null,pos.client.model.customer,cljs.core.assoc,"\uFDD0'id",d);
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-clear"]),(function() { 
-var G__7938__delegate = function (_){
+var G__10212__delegate = function (_){
 return cljs.core.swap_BANG_.call(null,pos.client.model.customer,cljs.core.assoc,"\uFDD0'id",null);
 };
-var G__7938 = function (var_args){
+var G__10212 = function (var_args){
 var _ = null;
 if (goog.isDef(var_args)) {
   _ = cljs.core.array_seq(Array.prototype.slice.call(arguments, 0),0);
 } 
-return G__7938__delegate.call(this, _);
+return G__10212__delegate.call(this, _);
 };
-G__7938.cljs$lang$maxFixedArity = 0;
-G__7938.cljs$lang$applyTo = (function (arglist__7939){
-var _ = cljs.core.seq( arglist__7939 );;
-return G__7938__delegate.call(this, _);
+G__10212.cljs$lang$maxFixedArity = 0;
+G__10212.cljs$lang$applyTo = (function (arglist__10213){
+var _ = cljs.core.seq( arglist__10213 );;
+return G__10212__delegate.call(this, _);
 });
-return G__7938;
+return G__10212;
 })()
 );
-/**
-* Atom containing selected item and related reactors
-* controlling the item typeahead
-*/
-pos.client.model.item = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'id"],{"\uFDD0'id":null}));
 /**
 * Atom containing state of the shopping basket
 */
@@ -105,9 +100,7 @@ if(cljs.core.truth_((cljs.core.count.call(null,n) > cljs.core.count.call(null,o)
 }
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'basket-add"]),(function (_,d){
-var i__7940 = pos.client.util.from_arr_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),d);
-var item__7941 = pos.client.util.default_variant_of_item.call(null,i__7940);
+var item__10214 = pos.client.util.default_variant_of_item.call(null,pos.client.util.from_arr_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),d));
 
-jayq.util.log.call(null,item__7941);
-return cljs.core.swap_BANG_.call(null,pos.client.model.basket,cljs.core.conj,item__7941);
+return cljs.core.swap_BANG_.call(null,pos.client.model.basket,cljs.core.conj,item__10214);
 }));
