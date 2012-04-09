@@ -9840,8 +9840,14 @@ cljs.core.add_watch.call(null, pos.client.model.basket, "\ufdd0'basket-change-ke
   {"\ufdd0'type":"\ufdd0'remove", "\ufdd0'id":"\ufdd0'id".call(null, cljs.core.first.call(null, clojure.set.difference.call(null, c, d)))})) : null
 });
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-add"]), function(a, b) {
-  var c = pos.client.util.default_variant_of_item.call(null, pos.client.util.from_coll_by_id.call(null, "\ufdd0'items".call(null, cljs.core.deref.call(null, pos.client.model.data)), b));
-  return cljs.core.swap_BANG_.call(null, pos.client.model.basket, cljs.core.conj, c)
+  var c = pos.client.util.from_coll_by_id.call(null, cljs.core.deref.call(null, pos.client.model.basket), b);
+  if(cljs.core.truth_(c)) {
+    return"\ufdd0'qty".call(null, c), cljs.core.swap_BANG_.call(null, pos.client.model.basket, function(a, b) {
+      return cljs.core.set.call(null, cljs.core.replace.call(null, cljs.core.HashMap.fromArrays([c], [b]), a))
+    }, cljs.core.update_in.call(null, c, cljs.core.PersistentVector.fromArray(["\ufdd0'qty"]), cljs.core.inc))
+  }
+  var d = pos.client.util.default_variant_of_item.call(null, pos.client.util.from_coll_by_id.call(null, "\ufdd0'items".call(null, cljs.core.deref.call(null, pos.client.model.data)), b));
+  return cljs.core.swap_BANG_.call(null, pos.client.model.basket, cljs.core.conj, cljs.core.merge.call(null, d, cljs.core.ObjMap.fromObject(["\ufdd0'qty", "\ufdd0'discount"], {"\ufdd0'qty":1, "\ufdd0'discount":0})))
 });
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-remove"]), function(a, b) {
   var c = pos.client.util.from_coll_by_id.call(null, cljs.core.deref.call(null, pos.client.model.basket), b);

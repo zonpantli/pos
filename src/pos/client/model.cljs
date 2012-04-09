@@ -79,9 +79,14 @@ controlling the customer typeahead"}
 
 (dispatch/react-to #{:basket-add}
                    (fn [_ d]
-                     (let [item (default-variant-of-item
-                                  (from-coll-by-id (:items @data) d))]
-                       (swap! basket conj item))))
+                     (if-let [item (from-coll-by-id @basket d)]
+                       (let [qty (:qty item)]                            ; item in basket, inc qty
+                         (swap! basket
+                                #(set (replace {item %2} %1))
+                                (update-in item [:qty] inc)))
+                       (let [item (default-variant-of-item               ; new item
+                                    (from-coll-by-id (:items @data) d))]
+                         (swap! basket conj (merge item {:qty 1 :discount 0}))))))
 
 (dispatch/react-to #{:basket-remove}
                    (fn [_ d]
