@@ -46,6 +46,20 @@
                    (fn [_ {:keys [id changed-attr new-val] :as d}]
                      (update-basket-item d)))
 
+;; Total, vat and discount of the whole basket are derived quantites
+;; that are not stored as state of the model, but are rather
+;; recomputed every time that the contents of the basket change
+(dispatch/react-to #{:basket-change}
+                   (fn [& _]
+                     (let [tot      (apply + (map #(* (:price %) (:qty %)) @model/basket))
+                           tot-norm (apply + (map #(*
+                                                    (:price (from-coll-by-id (:items @model/data) (:id %)))
+                                                    (:qty %)) @model/basket))
+                           vat      (* 0.22 tot)
+                           discount (- tot-norm tot)]
+                       (dispatch/fire :update-basket-total {:tot      tot
+                                                            :vat      vat
+                                                            :discount discount}))))
 
 (defn fetch-client-data
   "Fetch inventory and user data"

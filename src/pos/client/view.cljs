@@ -208,7 +208,7 @@
   (let [el ($ (str "tr#" id))]
     (do
       (value (find el "td.qty > div input") qty)
-      (value (find el "td.price > div input") (.toFixed price 2))
+      (value (find el "td.price > div input") (clojure.string/replace (.toFixed price 2) "." ","))
       (value (find el "td.discount > div input") (.toFixed discount))
       (inner (find el "td.total > div") (str (item-total-price item))))))
 
@@ -216,6 +216,18 @@
                    (fn [_ d]
                      (render-basket d)))
 
+(defn render-basket-total [{:keys [tot vat discount]}]
+  (let [$tot      ($ :#total-price)
+        $vat      ($ :#vat-number)
+        $discount ($ :#discount-number)]
+    (do
+      (inner $tot      (clojure.string/replace (.toFixed tot 2) "." ","))
+      (inner $vat      (clojure.string/replace (.toFixed vat 2) "." ","))
+      (inner $discount (clojure.string/replace (.toFixed discount 2) "." ",")))))
+
+(dispatch/react-to #{:update-basket-total}
+                   (fn [_ d]
+                     (render-basket-total d)))
 
 ;;== init ui ================================================
 (defn prepare-ui []
