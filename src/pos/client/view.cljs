@@ -166,15 +166,15 @@
 ;;== basket ================================================
 (defpartial basket-item [{:keys [id name color size price]}]
   [:tr {:id id}
-   [:td.bold name]
-   [:td id]
-   [:td size]
-   [:td color]
-   [:td.qty [:input.num {:value 1}]]
-   [:td.price [:input.price {:value price}]]
-   [:td.discount [:input.num {:value 0}] "%"]
-   [:td.bold.total (str price)]
-   [:td.close-container [:a.close "x"]]])
+   [:td.bold [:div name]]
+   [:td [:div id]]
+   [:td [:div size]]
+   [:td [:div color]]
+   [:td.qty [:div [:input.num {:value 1}]]]
+   [:td.price [:div [:input.price {:value price}]]]
+   [:td.discount [:div [:input.num {:value 0}] "%"]]
+   [:td.bold.total [:div (str price)]]
+   [:td.close-container [:div [:a.close "x"]]]])
 
 (defmulti render-basket :type)
 
@@ -182,13 +182,14 @@
   (let [el ($ (basket-item item))]
     (do
       (append ($ :#receipt-table) el)
-      (bind (find el ".close-container > a")
+      (animation/slide-in-table-row el)
+      (bind (find el ".close-container > div > a")
             "click"
             #(dispatch/fire :basket-remove (:id item))))))
 
 (defmethod render-basket :remove [{:keys [id]}]
   (let [el ($ (str "tr#" id))]
-    (remove el)))
+    (animation/slide-out-table-row el)))
 
 (dispatch/react-to #{:basket-change}
                    (fn [_ d]

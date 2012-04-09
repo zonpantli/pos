@@ -10390,6 +10390,14 @@ pos.client.animation.flash_input_border = function(a) {
     return jayq.core.remove_class.call(null, a, "flashing-animation")
   })
 };
+pos.client.animation.slide_in_table_row = function(a) {
+  return jayq.core.slide_down.call(null, jayq.core.find.call(null, a, "td > div"), 400)
+};
+pos.client.animation.slide_out_table_row = function(a) {
+  return jayq.core.slide_up.call(null, jayq.core.find.call(null, a, "td > div"), 200, function() {
+    return jayq.core.remove.call(null, a)
+  })
+};
 goog.i18n = {};
 goog.i18n.DateTimeSymbols_en_ISO = {ERAS:["BC", "AD"], ERANAMES:["Before Christ", "Anno Domini"], NARROWMONTHS:"J,F,M,A,M,J,J,A,S,O,N,D".split(","), STANDALONENARROWMONTHS:"J,F,M,A,M,J,J,A,S,O,N,D".split(","), MONTHS:"January,February,March,April,May,June,July,August,September,October,November,December".split(","), STANDALONEMONTHS:"January,February,March,April,May,June,July,August,September,October,November,December".split(","), SHORTMONTHS:"Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec".split(","), 
 STANDALONESHORTMONTHS:"Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec".split(","), WEEKDAYS:"Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday".split(","), STANDALONEWEEKDAYS:"Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday".split(","), SHORTWEEKDAYS:"Sun,Mon,Tue,Wed,Thu,Fri,Sat".split(","), STANDALONESHORTWEEKDAYS:"Sun,Mon,Tue,Wed,Thu,Fri,Sat".split(","), NARROWWEEKDAYS:"S,M,T,W,T,F,S".split(","), STANDALONENARROWWEEKDAYS:"S,M,T,W,T,F,S".split(","), SHORTQUARTERS:["Q1", "Q2", "Q3", 
@@ -11979,13 +11987,13 @@ pos.client.view.attach_typeahead_clear_event_listeners = function() {
     return lib.dispatch.fire.call(null, "\ufdd0'item-clear")
   })
 };
-var group__6008__auto____11370 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6008__auto____8286 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.dropdown_row = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'li", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'value":b}), a])]));
-  a.setAttribute("crateGroup", group__6008__auto____11370);
+  a.setAttribute("crateGroup", group__6008__auto____8286);
   return a
 };
-pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____11370;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____8286;
 pos.client.view.populate_dropdowns = function(a) {
   var b = cljs.core.seq.call(null, "\ufdd0'locations".call(null, a));
   if(cljs.core.truth_(b)) {
@@ -12073,15 +12081,16 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'item-clear", "\ufdd0'ite
 pos.client.view.basket_add_item = function(a) {
   return lib.dispatch.fire.call(null, "\ufdd0'basket-add", a)
 };
-var group__6008__auto____11424 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6008__auto____8340 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.basket_item = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'price"), c = cljs.core.get.call(null, b, "\ufdd0'size"), d = cljs.core.get.call(null, b, "\ufdd0'color"), e = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'tr", cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":b}), 
-  cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold", e]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", b]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", c]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", d]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.qty", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":1})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.price", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", 
-  cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.discount", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":0})]), "%"]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold.total", cljs.core.str.call(null, a)]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.close-container", cljs.core.PersistentVector.fromArray(["\ufdd0'a.close", "x"])])]));
-  a.setAttribute("crateGroup", group__6008__auto____11424);
+  cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold", cljs.core.PersistentVector.fromArray(["\ufdd0'div", e])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", b])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", c])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", d])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.qty", 
+  cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":1})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.price", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.discount", cljs.core.PersistentVector.fromArray(["\ufdd0'div", 
+  cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":0})]), "%"])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold.total", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.str.call(null, a)])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.close-container", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'a.close", "x"])])])]));
+  a.setAttribute("crateGroup", group__6008__auto____8340);
   return a
 };
-pos.client.view.basket_item.prototype._crateGroup = group__6008__auto____11424;
+pos.client.view.basket_item.prototype._crateGroup = group__6008__auto____8340;
 pos.client.view.render_basket = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
   return new cljs.core.MultiFn("render-basket", "\ufdd0'type", "\ufdd0'default", e, a, b, c, d)
@@ -12089,7 +12098,8 @@ pos.client.view.render_basket = function() {
 cljs.core._add_method.call(null, pos.client.view.render_basket, "\ufdd0'add", function(a) {
   var a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, b = cljs.core.get.call(null, a, "\ufdd0'item"), a = jayq.core.$.call(null, pos.client.view.basket_item.call(null, b));
   jayq.core.append.call(null, jayq.core.$.call(null, "\ufdd0'#receipt-table"), a);
-  return jayq.core.bind.call(null, jayq.core.find.call(null, a, ".close-container > a"), "click", function() {
+  pos.client.animation.slide_in_table_row.call(null, a);
+  return jayq.core.bind.call(null, jayq.core.find.call(null, a, ".close-container > div > a"), "click", function() {
     return lib.dispatch.fire.call(null, "\ufdd0'basket-remove", "\ufdd0'id".call(null, b))
   })
 });
@@ -12097,7 +12107,7 @@ cljs.core._add_method.call(null, pos.client.view.render_basket, "\ufdd0'remove",
   a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a;
   a = cljs.core.get.call(null, a, "\ufdd0'id");
   a = jayq.core.$.call(null, cljs.core.str.call(null, "tr#", a));
-  return jayq.core.remove.call(null, a)
+  return pos.client.animation.slide_out_table_row.call(null, a)
 });
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-change"]), function(a, b) {
   return pos.client.view.render_basket.call(null, b)

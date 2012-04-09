@@ -294,9 +294,13 @@ table#keypad {
 }
 
 #receipt-table {
-  
+
   width: 100%;
 
+  tr {
+    
+  }
+  
   th {
     background: #9e998b;
     border-top: 1px solid #a39e8f;
@@ -307,7 +311,13 @@ table#keypad {
 
   td {
     border-top: 1px solid #cdc6b1;
+    height: 0px;
+    overflow: hidden;
     
+    div {
+      display: none;
+    }
+
     &.bold {
       font-weight: bold;
     }

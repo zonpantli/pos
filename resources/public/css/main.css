@@ -352,7 +352,7 @@ table#keypad button {
 #receipt-table {
   width: 100%;
 }
-/* line 300, ../../../src/pos/scss/main.scss */
+/* line 304, ../../../src/pos/scss/main.scss */
 #receipt-table th {
   background: #9e998b;
   border-top: 1px solid #a39e8f;
@@ -360,20 +360,26 @@ table#keypad button {
   line-height: 26px;
   text-align: left;
 }
-/* line 308, ../../../src/pos/scss/main.scss */
+/* line 312, ../../../src/pos/scss/main.scss */
 #receipt-table td {
   border-top: 1px solid #cdc6b1;
+  height: 0px;
+  overflow: hidden;
 }
-/* line 311, ../../../src/pos/scss/main.scss */
+/* line 317, ../../../src/pos/scss/main.scss */
+#receipt-table td div {
+  display: none;
+}
+/* line 321, ../../../src/pos/scss/main.scss */
 #receipt-table td.bold {
   font-weight: bold;
 }
-/* line 315, ../../../src/pos/scss/main.scss */
+/* line 325, ../../../src/pos/scss/main.scss */
 #receipt-table td.close-container {
   padding-right: 15px;
   width: 15px;
 }
-/* line 320, ../../../src/pos/scss/main.scss */
+/* line 330, ../../../src/pos/scss/main.scss */
 #receipt-table td input {
   position: relative;
   top: 4px;
@@ -381,35 +387,35 @@ table#keypad button {
   width: 25px;
   margin-right: 5px;
 }
-/* line 327, ../../../src/pos/scss/main.scss */
+/* line 337, ../../../src/pos/scss/main.scss */
 #receipt-table td input.price {
   width: 40px;
 }
 
-/* line 336, ../../../src/pos/scss/main.scss */
+/* line 346, ../../../src/pos/scss/main.scss */
 table#footer-buttons {
   margin-top: 15px;
   width: 100%;
   td-text-align: center;
 }
-/* line 344, ../../../src/pos/scss/main.scss */
+/* line 354, ../../../src/pos/scss/main.scss */
 table#footer-buttons .btn {
   width: 150px;
 }
 
-/* line 356, ../../../src/pos/scss/main.scss */
+/* line 366, ../../../src/pos/scss/main.scss */
 #grid {
   padding-top: 100px;
   margin-bottom: 30px;
 }
 
-/* line 361, ../../../src/pos/scss/main.scss */
+/* line 371, ../../../src/pos/scss/main.scss */
 .show-grid > div {
   background: #888;
   margin-top: 10px;
 }
 
-/* line 368, ../../../src/pos/scss/main.scss */
+/* line 378, ../../../src/pos/scss/main.scss */
 p.alert {
   position: absolute;
   bottom: 10px;

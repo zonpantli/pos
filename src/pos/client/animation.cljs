@@ -1,10 +1,10 @@
 (ns pos.client.animation
   (:require [lib.dispatch :as dispatch])
-  (:use [jayq.core :only [$ anim attr css add-class remove-class]]
+  (:use [jayq.core :only [$ anim attr css add-class remove-class find slide-down slide-up remove]]
         [fetch.util :only [clj->js wait]]
         [jayq.util :only [wait log]]))
 
-;;== swap customer and item icons ==
+;; customer and item typeaheads
 (defn slide-in-icon [type url]
   (let [in-el  ($ (keyword (str "#" type "-slider-icon")))
         out-el ($ (keyword (str "#" type "-icon")))]
@@ -34,3 +34,11 @@
   (do
     (add-class el "flashing-animation")
     (wait 1000 #(remove-class el "flashing-animation"))))
+
+
+;; basket rows
+(defn slide-in-table-row [$tr]
+  (slide-down (find $tr "td > div") 400))
+
+(defn slide-out-table-row [$tr]
+  (slide-up (find $tr "td > div") 200 #(remove $tr)))
