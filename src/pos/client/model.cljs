@@ -71,11 +71,14 @@ controlling the customer typeahead"}
            (fn [k r o n]
              (cond
               (> (count n) (count o))
-              (dispatch/fire :basket-change {:type :add
+              (dispatch/fire :basket-change {:type :add-item
                                              :item (first (set/difference n o))})
               (< (count n) (count o))
-              (dispatch/fire :basket-change {:type :remove
-                                             :id (:id (first (set/difference o n)))}))))
+              (dispatch/fire :basket-change {:type :remove-item
+                                             :id (:id (first (set/difference o n)))})
+              :else
+              (dispatch/fire :basket-change {:type :update-item
+                                             :item (first (set/difference n o))}))))
 
 (dispatch/react-to #{:basket-add}
                    (fn [_ d]

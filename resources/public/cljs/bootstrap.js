@@ -9505,6 +9505,10 @@ cljs.core._add_method.call(null, pos.client.util.default_variant, !1, function(a
 pos.client.util.default_variant_of_item = function(a) {
   return cljs.core.zipmap.call(null, cljs.core.keys.call(null, a), cljs.core.map.call(null, pos.client.util.default_variant, cljs.core.vals.call(null, a)))
 };
+pos.client.util.item_total_price = function(a) {
+  var a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, b = cljs.core.get.call(null, a, "\ufdd0'price"), a = cljs.core.get.call(null, a, "\ufdd0'qty") * b;
+  return clojure.string.replace.call(null, a.toFixed(2), ".", ",")
+};
 pos.client.util.value = function() {
   var a = null;
   return function(a, c) {
@@ -9836,8 +9840,8 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'customer-clear"]), funct
 }());
 pos.client.model.basket = cljs.core.atom.call(null, cljs.core.set([]));
 cljs.core.add_watch.call(null, pos.client.model.basket, "\ufdd0'basket-change-key", function(a, b, c, d) {
-  return cljs.core.truth_(cljs.core.count.call(null, d) > cljs.core.count.call(null, c)) ? lib.dispatch.fire.call(null, "\ufdd0'basket-change", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'item"], {"\ufdd0'type":"\ufdd0'add", "\ufdd0'item":cljs.core.first.call(null, clojure.set.difference.call(null, d, c))})) : cljs.core.truth_(cljs.core.count.call(null, d) < cljs.core.count.call(null, c)) ? lib.dispatch.fire.call(null, "\ufdd0'basket-change", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'id"], 
-  {"\ufdd0'type":"\ufdd0'remove", "\ufdd0'id":"\ufdd0'id".call(null, cljs.core.first.call(null, clojure.set.difference.call(null, c, d)))})) : null
+  return cljs.core.truth_(cljs.core.count.call(null, d) > cljs.core.count.call(null, c)) ? lib.dispatch.fire.call(null, "\ufdd0'basket-change", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'item"], {"\ufdd0'type":"\ufdd0'add-item", "\ufdd0'item":cljs.core.first.call(null, clojure.set.difference.call(null, d, c))})) : cljs.core.truth_(cljs.core.count.call(null, d) < cljs.core.count.call(null, c)) ? lib.dispatch.fire.call(null, "\ufdd0'basket-change", cljs.core.ObjMap.fromObject(["\ufdd0'type", 
+  "\ufdd0'id"], {"\ufdd0'type":"\ufdd0'remove-item", "\ufdd0'id":"\ufdd0'id".call(null, cljs.core.first.call(null, clojure.set.difference.call(null, c, d)))})) : cljs.core.truth_("\ufdd0'else") ? lib.dispatch.fire.call(null, "\ufdd0'basket-change", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'item"], {"\ufdd0'type":"\ufdd0'update-item", "\ufdd0'item":cljs.core.first.call(null, clojure.set.difference.call(null, d, c))})) : null
 });
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-add"]), function(a, b) {
   var c = pos.client.util.from_coll_by_id.call(null, cljs.core.deref.call(null, pos.client.model.basket), b);
@@ -11993,13 +11997,13 @@ pos.client.view.attach_typeahead_clear_event_listeners = function() {
     return lib.dispatch.fire.call(null, "\ufdd0'item-clear")
   })
 };
-var group__6008__auto____8286 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6008__auto____9237 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.dropdown_row = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'li", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'value":b}), a])]));
-  a.setAttribute("crateGroup", group__6008__auto____8286);
+  a.setAttribute("crateGroup", group__6008__auto____9237);
   return a
 };
-pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____8286;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____9237;
 pos.client.view.populate_dropdowns = function(a) {
   var b = cljs.core.seq.call(null, "\ufdd0'locations".call(null, a));
   if(cljs.core.truth_(b)) {
@@ -12087,21 +12091,22 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'item-clear", "\ufdd0'ite
 pos.client.view.basket_add_item = function(a) {
   return lib.dispatch.fire.call(null, "\ufdd0'basket-add", a)
 };
-var group__6008__auto____8340 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6008__auto____9291 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.basket_item = function(a) {
-  var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'price"), c = cljs.core.get.call(null, b, "\ufdd0'size"), d = cljs.core.get.call(null, b, "\ufdd0'color"), e = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'tr", cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":b}), 
-  cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold", cljs.core.PersistentVector.fromArray(["\ufdd0'div", e])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", b])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", c])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", d])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.qty", 
-  cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":1})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.price", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.discount", cljs.core.PersistentVector.fromArray(["\ufdd0'div", 
-  cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":0})]), "%"])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold.total", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.str.call(null, a)])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.close-container", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'a.close", "x"])])])]));
-  a.setAttribute("crateGroup", group__6008__auto____8340);
+  var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'discount"), c = cljs.core.get.call(null, b, "\ufdd0'qty"), d = cljs.core.get.call(null, b, "\ufdd0'price"), e = cljs.core.get.call(null, b, "\ufdd0'size"), f = cljs.core.get.call(null, b, "\ufdd0'color"), g = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'tr", 
+  cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":b}), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold", cljs.core.PersistentVector.fromArray(["\ufdd0'div", g])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", b])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", e])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", 
+  f])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.qty", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":c})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.price", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":d})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.discount", 
+  cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})]), "%"])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold.total", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.str.call(null, d)])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.close-container", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'a.close", 
+  "x"])])])]));
+  a.setAttribute("crateGroup", group__6008__auto____9291);
   return a
 };
-pos.client.view.basket_item.prototype._crateGroup = group__6008__auto____8340;
+pos.client.view.basket_item.prototype._crateGroup = group__6008__auto____9291;
 pos.client.view.render_basket = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
   return new cljs.core.MultiFn("render-basket", "\ufdd0'type", "\ufdd0'default", e, a, b, c, d)
 }();
-cljs.core._add_method.call(null, pos.client.view.render_basket, "\ufdd0'add", function(a) {
+cljs.core._add_method.call(null, pos.client.view.render_basket, "\ufdd0'add-item", function(a) {
   var a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, b = cljs.core.get.call(null, a, "\ufdd0'item"), a = jayq.core.$.call(null, pos.client.view.basket_item.call(null, b));
   jayq.core.append.call(null, jayq.core.$.call(null, "\ufdd0'#receipt-table"), a);
   pos.client.animation.slide_in_table_row.call(null, a);
@@ -12109,11 +12114,19 @@ cljs.core._add_method.call(null, pos.client.view.render_basket, "\ufdd0'add", fu
     return lib.dispatch.fire.call(null, "\ufdd0'basket-remove", "\ufdd0'id".call(null, b))
   })
 });
-cljs.core._add_method.call(null, pos.client.view.render_basket, "\ufdd0'remove", function(a) {
+cljs.core._add_method.call(null, pos.client.view.render_basket, "\ufdd0'remove-item", function(a) {
   a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a;
   a = cljs.core.get.call(null, a, "\ufdd0'id");
   a = jayq.core.$.call(null, cljs.core.str.call(null, "tr#", a));
   return pos.client.animation.slide_out_table_row.call(null, a)
+});
+cljs.core._add_method.call(null, pos.client.view.render_basket, "\ufdd0'update-item", function(a) {
+  var a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, a, "\ufdd0'item"), a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, b = cljs.core.get.call(null, a, "\ufdd0'discount"), c = cljs.core.get.call(null, a, "\ufdd0'qty"), d = cljs.core.get.call(null, a, "\ufdd0'price"), e = cljs.core.get.call(null, a, "\ufdd0'id"), e = jayq.core.$.call(null, 
+  cljs.core.str.call(null, "tr#", e));
+  pos.client.util.value.call(null, jayq.core.find.call(null, e, "td.qty > div input"), c);
+  pos.client.util.value.call(null, jayq.core.find.call(null, e, "td.price > div input"), d);
+  pos.client.util.value.call(null, jayq.core.find.call(null, e, "td.discount > div input"), b);
+  return jayq.core.inner.call(null, jayq.core.find.call(null, e, "td.total > div"), cljs.core.str.call(null, pos.client.util.item_total_price.call(null, a)))
 });
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-change"]), function(a, b) {
   return pos.client.view.render_basket.call(null, b)

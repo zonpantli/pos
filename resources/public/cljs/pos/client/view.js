@@ -12,17 +12,17 @@ goog.require('goog.Timer');
 goog.require('goog.events');
 goog.require('pos.client.model');
 goog.require('pos.client.animation');
-pos.client.view.render_location = (function render_location(p__8266){
-var map__8267__8268 = p__8266;
-var map__8267__8269 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__8267__8268))?cljs.core.apply.call(null,cljs.core.hash_map,map__8267__8268):map__8267__8268);
-var id__8270 = cljs.core.get.call(null,map__8267__8269,"\uFDD0'id");
+pos.client.view.render_location = (function render_location(p__9217){
+var map__9218__9219 = p__9217;
+var map__9218__9220 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__9218__9219))?cljs.core.apply.call(null,cljs.core.hash_map,map__9218__9219):map__9218__9219);
+var id__9221 = cljs.core.get.call(null,map__9218__9220,"\uFDD0'id");
 
-var temp__3695__auto____8271 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'locations".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__8270);
+var temp__3695__auto____9222 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'locations".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__9221);
 
-if(cljs.core.truth_(temp__3695__auto____8271))
-{var location__8272 = temp__3695__auto____8271;
+if(cljs.core.truth_(temp__3695__auto____9222))
+{var location__9223 = temp__3695__auto____9222;
 
-return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#location-name"),"\uFDD0'name".call(null,location__8272));
+return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#location-name"),"\uFDD0'name".call(null,location__9223));
 } else
 {return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#location-name"),"Location");
 }
@@ -30,17 +30,17 @@ return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#location-name"),
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'location-change"]),(function (_,d){
 return pos.client.view.render_location.call(null,d);
 }));
-pos.client.view.render_employee = (function render_employee(p__8273){
-var map__8274__8275 = p__8273;
-var map__8274__8276 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__8274__8275))?cljs.core.apply.call(null,cljs.core.hash_map,map__8274__8275):map__8274__8275);
-var id__8277 = cljs.core.get.call(null,map__8274__8276,"\uFDD0'id");
+pos.client.view.render_employee = (function render_employee(p__9224){
+var map__9225__9226 = p__9224;
+var map__9225__9227 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__9225__9226))?cljs.core.apply.call(null,cljs.core.hash_map,map__9225__9226):map__9225__9226);
+var id__9228 = cljs.core.get.call(null,map__9225__9227,"\uFDD0'id");
 
-var temp__3695__auto____8278 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'employees".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__8277);
+var temp__3695__auto____9229 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'employees".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__9228);
 
-if(cljs.core.truth_(temp__3695__auto____8278))
-{var employee__8279 = temp__3695__auto____8278;
+if(cljs.core.truth_(temp__3695__auto____9229))
+{var employee__9230 = temp__3695__auto____9229;
 
-return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#employee-name"),"\uFDD0'name".call(null,employee__8279));
+return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#employee-name"),"\uFDD0'name".call(null,employee__9230));
 } else
 {return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#employee-name"),"Employee");
 }
@@ -49,10 +49,10 @@ lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'employee-change"]),(funct
 return pos.client.view.render_employee.call(null,d);
 }));
 pos.client.view.render_time = (function render_time(){
-var t__8280 = pos.client.util.get_formatted_datetime.call(null);
-var el__8281 = jayq.core.$.call(null,"\uFDD0'#clock");
+var t__9231 = pos.client.util.get_formatted_datetime.call(null);
+var el__9232 = jayq.core.$.call(null,"\uFDD0'#clock");
 
-return jayq.core.inner.call(null,el__8281,t__8280);
+return jayq.core.inner.call(null,el__9232,t__9231);
 });
 pos.client.view.pie_data = (function pie_data(){
 return fetch.util.clj__GT_js.call(null,cljs.core.PersistentVector.fromArray([cljs.core.ObjMap.fromObject(["\uFDD0'label","\uFDD0'data","\uFDD0'color"],{"\uFDD0'label":"","\uFDD0'data":33,"\uFDD0'color":"#5bb75b"}),cljs.core.ObjMap.fromObject(["\uFDD0'label","\uFDD0'data","\uFDD0'color"],{"\uFDD0'label":"","\uFDD0'data":67,"\uFDD0'color":"#52c5c8"})]));
@@ -61,26 +61,26 @@ pos.client.view.draw_pie = (function draw_pie(){
 return $.plot(jayq.core.$.call(null,"\uFDD0'#pie"),pos.client.view.pie_data.call(null),fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'series"],{"\uFDD0'series":cljs.core.ObjMap.fromObject(["\uFDD0'pie"],{"\uFDD0'pie":cljs.core.ObjMap.fromObject(["\uFDD0'show","\uFDD0'stroke"],{"\uFDD0'show":true,"\uFDD0'stroke":cljs.core.ObjMap.fromObject(["\uFDD0'color","\uFDD0'width"],{"\uFDD0'color":"#2b2b2b","\uFDD0'width":0})})})})));
 });
 pos.client.view.get_dropdown_data = (function get_dropdown_data(data_key,data){
-return cljs.core.map.call(null,(function (p1__8282_SHARP_){
-return cljs.core.merge.call(null,p1__8282_SHARP_,cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":"\uFDD0'name".call(null,p1__8282_SHARP_)}));
+return cljs.core.map.call(null,(function (p1__9233_SHARP_){
+return cljs.core.merge.call(null,p1__9233_SHARP_,cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":"\uFDD0'name".call(null,p1__9233_SHARP_)}));
 }),data_key.call(null,data));
 });
 /**
 * Attach data to typeahead fields for customer and item selcetion
 */
 pos.client.view.prepare_typeaheads = (function prepare_typeaheads(data){
-jayq.core.$.call(null,"\uFDD0'#customer-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source","\uFDD0'onselect","\uFDD0'trigger"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'customers",data),"\uFDD0'onselect":(function (p1__8283_SHARP_){
-return lib.dispatch.fire.call(null,"\uFDD0'customer-select",p1__8283_SHARP_.id);
+jayq.core.$.call(null,"\uFDD0'#customer-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source","\uFDD0'onselect","\uFDD0'trigger"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'customers",data),"\uFDD0'onselect":(function (p1__9234_SHARP_){
+return lib.dispatch.fire.call(null,"\uFDD0'customer-select",p1__9234_SHARP_.id);
 }),"\uFDD0'trigger":jayq.core.$.call(null,"\uFDD0'#customer-dropdown-toggle")})));
-return jayq.core.$.call(null,"\uFDD0'#item-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source","\uFDD0'onselect","\uFDD0'trigger"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'items",data),"\uFDD0'onselect":(function (p1__8284_SHARP_){
-return lib.dispatch.fire.call(null,"\uFDD0'item-select",p1__8284_SHARP_.id);
+return jayq.core.$.call(null,"\uFDD0'#item-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source","\uFDD0'onselect","\uFDD0'trigger"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'items",data),"\uFDD0'onselect":(function (p1__9235_SHARP_){
+return lib.dispatch.fire.call(null,"\uFDD0'item-select",p1__9235_SHARP_.id);
 }),"\uFDD0'trigger":jayq.core.$.call(null,"\uFDD0'#item-dropdown-toggle")})));
 });
 pos.client.view.attach_typeahead_event_listeners = (function attach_typeahead_event_listeners(){
-var el__8285 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
+var el__9236 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
 
-return jayq.core.bind.call(null,el__8285,"keyup",(function (){
-return lib.dispatch.fire.call(null,"\uFDD0'customer-field-changed",pos.client.util.value.call(null,el__8285));
+return jayq.core.bind.call(null,el__9236,"keyup",(function (){
+return lib.dispatch.fire.call(null,"\uFDD0'customer-field-changed",pos.client.util.value.call(null,el__9236));
 }));
 });
 pos.client.view.attach_typeahead_clear_event_listeners = (function attach_typeahead_clear_event_listeners(){
@@ -91,46 +91,46 @@ return jayq.core.bind.call(null,jayq.core.$.call(null,"\uFDD0'#item-clear"),"cli
 return lib.dispatch.fire.call(null,"\uFDD0'item-clear");
 }));
 });
-var group__6008__auto____8286 = cljs.core.swap_BANG_.call(null,crate.core.group_id,cljs.core.inc);
+var group__6008__auto____9237 = cljs.core.swap_BANG_.call(null,crate.core.group_id,cljs.core.inc);
 
-pos.client.view.dropdown_row = (function dropdown_row(p__8287){
-var map__8288__8289 = p__8287;
-var map__8288__8290 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__8288__8289))?cljs.core.apply.call(null,cljs.core.hash_map,map__8288__8289):map__8288__8289);
-var name__8291 = cljs.core.get.call(null,map__8288__8290,"\uFDD0'name");
-var id__8292 = cljs.core.get.call(null,map__8288__8290,"\uFDD0'id");
+pos.client.view.dropdown_row = (function dropdown_row(p__9238){
+var map__9239__9240 = p__9238;
+var map__9239__9241 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__9239__9240))?cljs.core.apply.call(null,cljs.core.hash_map,map__9239__9240):map__9239__9240);
+var name__9242 = cljs.core.get.call(null,map__9239__9241,"\uFDD0'name");
+var id__9243 = cljs.core.get.call(null,map__9239__9241,"\uFDD0'id");
 
-var elem__6009__auto____8293 = crate.core.html.call(null,cljs.core.PersistentVector.fromArray(["\uFDD0'li",cljs.core.PersistentVector.fromArray(["\uFDD0'a",cljs.core.ObjMap.fromObject(["\uFDD0'href","\uFDD0'value"],{"\uFDD0'href":"#","\uFDD0'value":id__8292}),name__8291])]));
+var elem__6009__auto____9244 = crate.core.html.call(null,cljs.core.PersistentVector.fromArray(["\uFDD0'li",cljs.core.PersistentVector.fromArray(["\uFDD0'a",cljs.core.ObjMap.fromObject(["\uFDD0'href","\uFDD0'value"],{"\uFDD0'href":"#","\uFDD0'value":id__9243}),name__9242])]));
 
-elem__6009__auto____8293.setAttribute("crateGroup",group__6008__auto____8286);
-return elem__6009__auto____8293;
+elem__6009__auto____9244.setAttribute("crateGroup",group__6008__auto____9237);
+return elem__6009__auto____9244;
 });
-pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____8286;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____9237;
 pos.client.view.populate_dropdowns = (function populate_dropdowns(data){
-var G__8294__8295 = cljs.core.seq.call(null,"\uFDD0'locations".call(null,data));
+var G__9245__9246 = cljs.core.seq.call(null,"\uFDD0'locations".call(null,data));
 
-if(cljs.core.truth_(G__8294__8295))
-{var loc__8296 = cljs.core.first.call(null,G__8294__8295);
-var G__8294__8297 = G__8294__8295;
+if(cljs.core.truth_(G__9245__9246))
+{var loc__9247 = cljs.core.first.call(null,G__9245__9246);
+var G__9245__9248 = G__9245__9246;
 
 while(true){
-var el__8298 = pos.client.view.dropdown_row.call(null,loc__8296);
+var el__9249 = pos.client.view.dropdown_row.call(null,loc__9247);
 
-jayq.core.append.call(null,jayq.core.$.call(null,"\uFDD0'#location-dropdown-list"),el__8298);
-jayq.core.bind.call(null,jayq.core.$.call(null,el__8298),"click",((function (loc__8296,G__8294__8297,el__8298){
+jayq.core.append.call(null,jayq.core.$.call(null,"\uFDD0'#location-dropdown-list"),el__9249);
+jayq.core.bind.call(null,jayq.core.$.call(null,el__9249),"click",((function (loc__9247,G__9245__9248,el__9249){
 return (function (){
-return lib.dispatch.fire.call(null,"\uFDD0'location-select","\uFDD0'id".call(null,loc__8296));
-});})(loc__8296,G__8294__8297,el__8298))
+return lib.dispatch.fire.call(null,"\uFDD0'location-select","\uFDD0'id".call(null,loc__9247));
+});})(loc__9247,G__9245__9248,el__9249))
 );
-var temp__3698__auto____8299 = cljs.core.next.call(null,G__8294__8297);
+var temp__3698__auto____9250 = cljs.core.next.call(null,G__9245__9248);
 
-if(cljs.core.truth_(temp__3698__auto____8299))
-{var G__8294__8300 = temp__3698__auto____8299;
+if(cljs.core.truth_(temp__3698__auto____9250))
+{var G__9245__9251 = temp__3698__auto____9250;
 
 {
-var G__8308 = cljs.core.first.call(null,G__8294__8300);
-var G__8309 = G__8294__8300;
-loc__8296 = G__8308;
-G__8294__8297 = G__8309;
+var G__9259 = cljs.core.first.call(null,G__9245__9251);
+var G__9260 = G__9245__9251;
+loc__9247 = G__9259;
+G__9245__9248 = G__9260;
 continue;
 }
 } else
@@ -139,31 +139,31 @@ break;
 }
 } else
 {}
-var G__8301__8302 = cljs.core.seq.call(null,"\uFDD0'employees".call(null,data));
+var G__9252__9253 = cljs.core.seq.call(null,"\uFDD0'employees".call(null,data));
 
-if(cljs.core.truth_(G__8301__8302))
-{var empl__8303 = cljs.core.first.call(null,G__8301__8302);
-var G__8301__8304 = G__8301__8302;
+if(cljs.core.truth_(G__9252__9253))
+{var empl__9254 = cljs.core.first.call(null,G__9252__9253);
+var G__9252__9255 = G__9252__9253;
 
 while(true){
-var el__8305 = pos.client.view.dropdown_row.call(null,empl__8303);
+var el__9256 = pos.client.view.dropdown_row.call(null,empl__9254);
 
-jayq.core.append.call(null,jayq.core.$.call(null,"\uFDD0'#employee-dropdown-list"),el__8305);
-jayq.core.bind.call(null,jayq.core.$.call(null,el__8305),"click",((function (empl__8303,G__8301__8304,el__8305){
+jayq.core.append.call(null,jayq.core.$.call(null,"\uFDD0'#employee-dropdown-list"),el__9256);
+jayq.core.bind.call(null,jayq.core.$.call(null,el__9256),"click",((function (empl__9254,G__9252__9255,el__9256){
 return (function (){
-return lib.dispatch.fire.call(null,"\uFDD0'employee-select","\uFDD0'id".call(null,empl__8303));
-});})(empl__8303,G__8301__8304,el__8305))
+return lib.dispatch.fire.call(null,"\uFDD0'employee-select","\uFDD0'id".call(null,empl__9254));
+});})(empl__9254,G__9252__9255,el__9256))
 );
-var temp__3698__auto____8306 = cljs.core.next.call(null,G__8301__8304);
+var temp__3698__auto____9257 = cljs.core.next.call(null,G__9252__9255);
 
-if(cljs.core.truth_(temp__3698__auto____8306))
-{var G__8301__8307 = temp__3698__auto____8306;
+if(cljs.core.truth_(temp__3698__auto____9257))
+{var G__9252__9258 = temp__3698__auto____9257;
 
 {
-var G__8310 = cljs.core.first.call(null,G__8301__8307);
-var G__8311 = G__8301__8307;
-empl__8303 = G__8310;
-G__8301__8304 = G__8311;
+var G__9261 = cljs.core.first.call(null,G__9252__9258);
+var G__9262 = G__9252__9258;
+empl__9254 = G__9261;
+G__9252__9255 = G__9262;
 continue;
 }
 } else
@@ -184,69 +184,69 @@ pos.client.view.prepare_typeaheads.call(null,cljs.core.deref.call(null,pos.clien
 pos.client.view.populate_dropdowns.call(null,cljs.core.deref.call(null,pos.client.model.data));
 return pos.client.view.prepare_dropdowns.call(null);
 }));
-pos.client.view.render_customer = (function (){var method_table__3162__auto____8312 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var prefer_table__3163__auto____8313 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var method_cache__3164__auto____8314 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var cached_hierarchy__3165__auto____8315 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var hierarchy__3166__auto____8316 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+pos.client.view.render_customer = (function (){var method_table__3162__auto____9263 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____9264 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____9265 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____9266 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____9267 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
 
-return (new cljs.core.MultiFn("render-customer","\uFDD0'event","\uFDD0'default",hierarchy__3166__auto____8316,method_table__3162__auto____8312,prefer_table__3163__auto____8313,method_cache__3164__auto____8314,cached_hierarchy__3165__auto____8315));
+return (new cljs.core.MultiFn("render-customer","\uFDD0'event","\uFDD0'default",hierarchy__3166__auto____9267,method_table__3162__auto____9263,prefer_table__3163__auto____9264,method_cache__3164__auto____9265,cached_hierarchy__3165__auto____9266));
 })();
-cljs.core._add_method.call(null,pos.client.view.render_customer,"\uFDD0'customer-selected",(function (p__8317){
-var map__8318__8319 = p__8317;
-var map__8318__8320 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__8318__8319))?cljs.core.apply.call(null,cljs.core.hash_map,map__8318__8319):map__8318__8319);
-var id__8321 = cljs.core.get.call(null,map__8318__8320,"\uFDD0'id");
+cljs.core._add_method.call(null,pos.client.view.render_customer,"\uFDD0'customer-selected",(function (p__9268){
+var map__9269__9270 = p__9268;
+var map__9269__9271 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__9269__9270))?cljs.core.apply.call(null,cljs.core.hash_map,map__9269__9270):map__9269__9270);
+var id__9272 = cljs.core.get.call(null,map__9269__9271,"\uFDD0'id");
 
-var customer__8322 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'customers".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__8321);
-var el__8323 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
+var customer__9273 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'customers".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__9272);
+var el__9274 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
 
-pos.client.util.value.call(null,el__8323,"\uFDD0'name".call(null,customer__8322));
-pos.client.animation.flash_input_border.call(null,el__8323);
-return pos.client.animation.slide_in_customer_icon.call(null,"\uFDD0'image".call(null,customer__8322));
+pos.client.util.value.call(null,el__9274,"\uFDD0'name".call(null,customer__9273));
+pos.client.animation.flash_input_border.call(null,el__9274);
+return pos.client.animation.slide_in_customer_icon.call(null,"\uFDD0'image".call(null,customer__9273));
 }));
 cljs.core._add_method.call(null,pos.client.view.render_customer,"\uFDD0'customer-deselected",(function (_){
-var el__8324 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
+var el__9275 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
 
-pos.client.util.value.call(null,el__8324,null);
+pos.client.util.value.call(null,el__9275,null);
 return pos.client.animation.reset_customer_icon.call(null);
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-change"]),(function (_,d){
-var temp__3695__auto____8325 = "\uFDD0'id".call(null,d);
+var temp__3695__auto____9276 = "\uFDD0'id".call(null,d);
 
-if(cljs.core.truth_(temp__3695__auto____8325))
-{var id__8326 = temp__3695__auto____8325;
+if(cljs.core.truth_(temp__3695__auto____9276))
+{var id__9277 = temp__3695__auto____9276;
 
 return pos.client.view.render_customer.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'event","\uFDD0'id"],{"\uFDD0'event":"\uFDD0'customer-selected","\uFDD0'id":"\uFDD0'id".call(null,d)}));
 } else
 {return pos.client.view.render_customer.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'event"],{"\uFDD0'event":"\uFDD0'customer-deselected"}));
 }
 }));
-pos.client.view.render_item = (function (){var method_table__3162__auto____8327 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var prefer_table__3163__auto____8328 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var method_cache__3164__auto____8329 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var cached_hierarchy__3165__auto____8330 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var hierarchy__3166__auto____8331 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+pos.client.view.render_item = (function (){var method_table__3162__auto____9278 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____9279 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____9280 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____9281 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____9282 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
 
-return (new cljs.core.MultiFn("render-item","\uFDD0'event","\uFDD0'default",hierarchy__3166__auto____8331,method_table__3162__auto____8327,prefer_table__3163__auto____8328,method_cache__3164__auto____8329,cached_hierarchy__3165__auto____8330));
+return (new cljs.core.MultiFn("render-item","\uFDD0'event","\uFDD0'default",hierarchy__3166__auto____9282,method_table__3162__auto____9278,prefer_table__3163__auto____9279,method_cache__3164__auto____9280,cached_hierarchy__3165__auto____9281));
 })();
-cljs.core._add_method.call(null,pos.client.view.render_item,"\uFDD0'item-select",(function (p__8332){
-var map__8333__8334 = p__8332;
-var map__8333__8335 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__8333__8334))?cljs.core.apply.call(null,cljs.core.hash_map,map__8333__8334):map__8333__8334);
-var id__8336 = cljs.core.get.call(null,map__8333__8335,"\uFDD0'id");
+cljs.core._add_method.call(null,pos.client.view.render_item,"\uFDD0'item-select",(function (p__9283){
+var map__9284__9285 = p__9283;
+var map__9284__9286 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__9284__9285))?cljs.core.apply.call(null,cljs.core.hash_map,map__9284__9285):map__9284__9285);
+var id__9287 = cljs.core.get.call(null,map__9284__9286,"\uFDD0'id");
 
-var item__8337 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__8336);
-var el__8338 = jayq.core.$.call(null,"\uFDD0'#item-dropdown");
+var item__9288 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__9287);
+var el__9289 = jayq.core.$.call(null,"\uFDD0'#item-dropdown");
 
-pos.client.util.value.call(null,el__8338,"\uFDD0'name".call(null,item__8337));
-pos.client.animation.flash_input_border.call(null,el__8338);
+pos.client.util.value.call(null,el__9289,"\uFDD0'name".call(null,item__9288));
+pos.client.animation.flash_input_border.call(null,el__9289);
 return jayq.util.wait.call(null,500,(function (){
 return lib.dispatch.fire.call(null,"\uFDD0'item-clear");
 }));
 }));
 cljs.core._add_method.call(null,pos.client.view.render_item,"\uFDD0'item-clear",(function (_){
-var el__8339 = jayq.core.$.call(null,"\uFDD0'#item-dropdown");
+var el__9290 = jayq.core.$.call(null,"\uFDD0'#item-dropdown");
 
-return pos.client.util.value.call(null,el__8339,null);
+return pos.client.util.value.call(null,el__9290,null);
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'item-clear","\uFDD0'item-select"]),(function (t,d){
 if(cljs.core.truth_(d))
@@ -258,52 +258,71 @@ return pos.client.view.render_item.call(null,cljs.core.ObjMap.fromObject(["\uFDD
 pos.client.view.basket_add_item = (function basket_add_item(id){
 return lib.dispatch.fire.call(null,"\uFDD0'basket-add",id);
 });
-var group__6008__auto____8340 = cljs.core.swap_BANG_.call(null,crate.core.group_id,cljs.core.inc);
+var group__6008__auto____9291 = cljs.core.swap_BANG_.call(null,crate.core.group_id,cljs.core.inc);
 
-pos.client.view.basket_item = (function basket_item(p__8341){
-var map__8342__8343 = p__8341;
-var map__8342__8344 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__8342__8343))?cljs.core.apply.call(null,cljs.core.hash_map,map__8342__8343):map__8342__8343);
-var price__8345 = cljs.core.get.call(null,map__8342__8344,"\uFDD0'price");
-var size__8346 = cljs.core.get.call(null,map__8342__8344,"\uFDD0'size");
-var color__8347 = cljs.core.get.call(null,map__8342__8344,"\uFDD0'color");
-var name__8348 = cljs.core.get.call(null,map__8342__8344,"\uFDD0'name");
-var id__8349 = cljs.core.get.call(null,map__8342__8344,"\uFDD0'id");
+pos.client.view.basket_item = (function basket_item(p__9292){
+var map__9293__9294 = p__9292;
+var map__9293__9295 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__9293__9294))?cljs.core.apply.call(null,cljs.core.hash_map,map__9293__9294):map__9293__9294);
+var discount__9296 = cljs.core.get.call(null,map__9293__9295,"\uFDD0'discount");
+var qty__9297 = cljs.core.get.call(null,map__9293__9295,"\uFDD0'qty");
+var price__9298 = cljs.core.get.call(null,map__9293__9295,"\uFDD0'price");
+var size__9299 = cljs.core.get.call(null,map__9293__9295,"\uFDD0'size");
+var color__9300 = cljs.core.get.call(null,map__9293__9295,"\uFDD0'color");
+var name__9301 = cljs.core.get.call(null,map__9293__9295,"\uFDD0'name");
+var id__9302 = cljs.core.get.call(null,map__9293__9295,"\uFDD0'id");
 
-var elem__6009__auto____8350 = crate.core.html.call(null,cljs.core.PersistentVector.fromArray(["\uFDD0'tr",cljs.core.ObjMap.fromObject(["\uFDD0'id"],{"\uFDD0'id":id__8349}),cljs.core.PersistentVector.fromArray(["\uFDD0'td.bold",cljs.core.PersistentVector.fromArray(["\uFDD0'div",name__8348])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td",cljs.core.PersistentVector.fromArray(["\uFDD0'div",id__8349])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td",cljs.core.PersistentVector.fromArray(["\uFDD0'div",size__8346])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td",cljs.core.PersistentVector.fromArray(["\uFDD0'div",color__8347])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.qty",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'input.num",cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":1})])])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.price",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'input.price",cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":price__8345})])])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.discount",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'input.num",cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":0})]),"%"])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.bold.total",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.str.call(null,price__8345)])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.close-container",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'a.close","x"])])])]));
+var elem__6009__auto____9303 = crate.core.html.call(null,cljs.core.PersistentVector.fromArray(["\uFDD0'tr",cljs.core.ObjMap.fromObject(["\uFDD0'id"],{"\uFDD0'id":id__9302}),cljs.core.PersistentVector.fromArray(["\uFDD0'td.bold",cljs.core.PersistentVector.fromArray(["\uFDD0'div",name__9301])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td",cljs.core.PersistentVector.fromArray(["\uFDD0'div",id__9302])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td",cljs.core.PersistentVector.fromArray(["\uFDD0'div",size__9299])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td",cljs.core.PersistentVector.fromArray(["\uFDD0'div",color__9300])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.qty",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'input.num",cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":qty__9297})])])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.price",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'input.price",cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":price__9298})])])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.discount",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'input.num",cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":discount__9296})]),"%"])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.bold.total",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.str.call(null,price__9298)])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.close-container",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'a.close","x"])])])]));
 
-elem__6009__auto____8350.setAttribute("crateGroup",group__6008__auto____8340);
-return elem__6009__auto____8350;
+elem__6009__auto____9303.setAttribute("crateGroup",group__6008__auto____9291);
+return elem__6009__auto____9303;
 });
-pos.client.view.basket_item.prototype._crateGroup = group__6008__auto____8340;
-pos.client.view.render_basket = (function (){var method_table__3162__auto____8351 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var prefer_table__3163__auto____8352 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var method_cache__3164__auto____8353 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var cached_hierarchy__3165__auto____8354 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var hierarchy__3166__auto____8355 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+pos.client.view.basket_item.prototype._crateGroup = group__6008__auto____9291;
+pos.client.view.render_basket = (function (){var method_table__3162__auto____9304 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____9305 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____9306 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____9307 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____9308 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
 
-return (new cljs.core.MultiFn("render-basket","\uFDD0'type","\uFDD0'default",hierarchy__3166__auto____8355,method_table__3162__auto____8351,prefer_table__3163__auto____8352,method_cache__3164__auto____8353,cached_hierarchy__3165__auto____8354));
+return (new cljs.core.MultiFn("render-basket","\uFDD0'type","\uFDD0'default",hierarchy__3166__auto____9308,method_table__3162__auto____9304,prefer_table__3163__auto____9305,method_cache__3164__auto____9306,cached_hierarchy__3165__auto____9307));
 })();
-cljs.core._add_method.call(null,pos.client.view.render_basket,"\uFDD0'add",(function (p__8356){
-var map__8357__8358 = p__8356;
-var map__8357__8359 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__8357__8358))?cljs.core.apply.call(null,cljs.core.hash_map,map__8357__8358):map__8357__8358);
-var item__8360 = cljs.core.get.call(null,map__8357__8359,"\uFDD0'item");
+cljs.core._add_method.call(null,pos.client.view.render_basket,"\uFDD0'add-item",(function (p__9309){
+var map__9310__9311 = p__9309;
+var map__9310__9312 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__9310__9311))?cljs.core.apply.call(null,cljs.core.hash_map,map__9310__9311):map__9310__9311);
+var item__9313 = cljs.core.get.call(null,map__9310__9312,"\uFDD0'item");
 
-var el__8361 = jayq.core.$.call(null,pos.client.view.basket_item.call(null,item__8360));
+var el__9314 = jayq.core.$.call(null,pos.client.view.basket_item.call(null,item__9313));
 
-jayq.core.append.call(null,jayq.core.$.call(null,"\uFDD0'#receipt-table"),el__8361);
-pos.client.animation.slide_in_table_row.call(null,el__8361);
-return jayq.core.bind.call(null,jayq.core.find.call(null,el__8361,".close-container > div > a"),"click",(function (){
-return lib.dispatch.fire.call(null,"\uFDD0'basket-remove","\uFDD0'id".call(null,item__8360));
+jayq.core.append.call(null,jayq.core.$.call(null,"\uFDD0'#receipt-table"),el__9314);
+pos.client.animation.slide_in_table_row.call(null,el__9314);
+return jayq.core.bind.call(null,jayq.core.find.call(null,el__9314,".close-container > div > a"),"click",(function (){
+return lib.dispatch.fire.call(null,"\uFDD0'basket-remove","\uFDD0'id".call(null,item__9313));
 }));
 }));
-cljs.core._add_method.call(null,pos.client.view.render_basket,"\uFDD0'remove",(function (p__8362){
-var map__8363__8364 = p__8362;
-var map__8363__8365 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__8363__8364))?cljs.core.apply.call(null,cljs.core.hash_map,map__8363__8364):map__8363__8364);
-var id__8366 = cljs.core.get.call(null,map__8363__8365,"\uFDD0'id");
+cljs.core._add_method.call(null,pos.client.view.render_basket,"\uFDD0'remove-item",(function (p__9315){
+var map__9316__9317 = p__9315;
+var map__9316__9318 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__9316__9317))?cljs.core.apply.call(null,cljs.core.hash_map,map__9316__9317):map__9316__9317);
+var id__9319 = cljs.core.get.call(null,map__9316__9318,"\uFDD0'id");
 
-var el__8367 = jayq.core.$.call(null,cljs.core.str.call(null,"tr#",id__8366));
+var el__9320 = jayq.core.$.call(null,cljs.core.str.call(null,"tr#",id__9319));
 
-return pos.client.animation.slide_out_table_row.call(null,el__8367);
+return pos.client.animation.slide_out_table_row.call(null,el__9320);
+}));
+cljs.core._add_method.call(null,pos.client.view.render_basket,"\uFDD0'update-item",(function (p__9321){
+var map__9322__9323 = p__9321;
+var map__9322__9324 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__9322__9323))?cljs.core.apply.call(null,cljs.core.hash_map,map__9322__9323):map__9322__9323);
+var item__9325 = cljs.core.get.call(null,map__9322__9324,"\uFDD0'item");
+var item__9326 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,item__9325))?cljs.core.apply.call(null,cljs.core.hash_map,item__9325):item__9325);
+var discount__9327 = cljs.core.get.call(null,item__9326,"\uFDD0'discount");
+var qty__9328 = cljs.core.get.call(null,item__9326,"\uFDD0'qty");
+var price__9329 = cljs.core.get.call(null,item__9326,"\uFDD0'price");
+var id__9330 = cljs.core.get.call(null,item__9326,"\uFDD0'id");
+
+var el__9331 = jayq.core.$.call(null,cljs.core.str.call(null,"tr#",id__9330));
+
+pos.client.util.value.call(null,jayq.core.find.call(null,el__9331,"td.qty > div input"),qty__9328);
+pos.client.util.value.call(null,jayq.core.find.call(null,el__9331,"td.price > div input"),price__9329);
+pos.client.util.value.call(null,jayq.core.find.call(null,el__9331,"td.discount > div input"),discount__9327);
+return jayq.core.inner.call(null,jayq.core.find.call(null,el__9331,"td.total > div"),cljs.core.str.call(null,pos.client.util.item_total_price.call(null,item__9326)));
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'basket-change"]),(function (_,d){
 return pos.client.view.render_basket.call(null,d);

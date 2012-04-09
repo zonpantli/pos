@@ -18,6 +18,10 @@
   [item]
   (zipmap (keys item) (map default-variant (vals item))))
 
+(defn item-total-price [{:keys [qty price]}]
+  (let [total (* qty price)]
+    (clojure.string/replace (.toFixed total 2) "." ",")))
+
 ;;== dom manipulation =====================================
 (defn value
   "Get/set value of input element"

@@ -10,7 +10,8 @@
   (:use [jayq.core :only [$ css append bind inner find remove]]
         [jayq.util :only [log wait]]
         [fetch.util :only [clj->js]]
-        [pos.client.util :only [from-coll-by-id value start-timer get-formatted-datetime]])
+        [pos.client.util :only [from-coll-by-id value start-timer get-formatted-datetime
+                                item-total-price]])
   (:require-macros [jayq.macros :as jq])
   (:use-macros [crate.macros :only [defpartial]]))
 
@@ -164,21 +165,21 @@
   (dispatch/fire :basket-add id))
 
 ;;== basket ================================================
-(defpartial basket-item [{:keys [id name color size price]}]
+(defpartial basket-item [{:keys [id name color size price qty discount]}]
   [:tr {:id id}
    [:td.bold [:div name]]
    [:td [:div id]]
    [:td [:div size]]
    [:td [:div color]]
-   [:td.qty [:div [:input.num {:value 1}]]]
+   [:td.qty [:div [:input.num {:value qty}]]]
    [:td.price [:div [:input.price {:value price}]]]
-   [:td.discount [:div [:input.num {:value 0}] "%"]]
+   [:td.discount [:div [:input.num {:value discount}] "%"]]
    [:td.bold.total [:div (str price)]]
    [:td.close-container [:div [:a.close "x"]]]])
 
 (defmulti render-basket :type)
 
-(defmethod render-basket :add [{:keys [item]}]
+(defmethod render-basket :add-item [{:keys [item]}]
   (let [el ($ (basket-item item))]
     (do
       (append ($ :#receipt-table) el)
@@ -187,9 +188,18 @@
             "click"
             #(dispatch/fire :basket-remove (:id item))))))
 
-(defmethod render-basket :remove [{:keys [id]}]
+(defmethod render-basket :remove-item [{:keys [id]}]
   (let [el ($ (str "tr#" id))]
     (animation/slide-out-table-row el)))
+
+(defmethod render-basket :update-item
+  [{{:keys [id price qty discount] :as item} :item}]
+  (let [el ($ (str "tr#" id))]
+    (do
+      (value (find el "td.qty > div input") qty)
+      (value (find el "td.price > div input") price)
+      (value (find el "td.discount > div input") discount)
+      (inner (find el "td.total > div") (str (item-total-price item))))))
 
 (dispatch/react-to #{:basket-change}
                    (fn [_ d]
