@@ -22,6 +22,11 @@
   (let [total (* qty price)]
     (clojure.string/replace (.toFixed total 2) "." ",")))
 
+(defn field-value-as-num
+  "Parse value from dom input field to num"
+  [v]
+  (js/parseFloat (clojure.string/replace v "," ".")))
+
 ;;== dom manipulation =====================================
 (defn value
   "Get/set value of input element"

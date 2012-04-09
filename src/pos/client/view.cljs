@@ -179,14 +179,25 @@
 
 (defmulti render-basket :type)
 
-(defmethod render-basket :add-item [{:keys [item]}]
-  (let [el ($ (basket-item item))]
+(defmethod render-basket :add-item [{{:keys [id] :as item} :item}]
+  (let [$el        ($ (basket-item item))
+        $qty      (find $el ".qty > div > input")
+        $price    (find $el ".price > div > input")
+        $discount (find $el ".discount > div > input")
+        $close    (find $el ".close-container > div > a")]
     (do
-      (append ($ :#receipt-table) el)
-      (animation/slide-in-table-row el)
-      (bind (find el ".close-container > div > a")
-            "click"
-            #(dispatch/fire :basket-remove (:id item))))))
+      (append ($ :#receipt-table) $el)
+      (animation/slide-in-table-row $el)
+      (bind $qty "keyup" #(dispatch/fire :basket-update {:id id
+                                                         :changed-attr :qty
+                                                         :new-val (value $qty)}))
+      (bind $price "keyup" #(dispatch/fire :basket-update {:id id
+                                                           :changed-attr :price
+                                                           :new-val (value $price)}))
+      (bind $discount "keyup" #(dispatch/fire :basket-update {:id id
+                                                              :changed-attr :discount
+                                                              :new-val (value $discount)}))
+      (bind $close "click" #(dispatch/fire :basket-remove id)))))
 
 (defmethod render-basket :remove-item [{:keys [id]}]
   (let [el ($ (str "tr#" id))]

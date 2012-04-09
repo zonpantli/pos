@@ -80,13 +80,17 @@ controlling the customer typeahead"}
               (dispatch/fire :basket-change {:type :update-item
                                              :item (first (set/difference n o))}))))
 
+(defn swap-in-basket!
+  "Replace old item in basket by new"
+  [basket o n]
+  (swap! basket #(set (replace {o %2} %1)) n))
+
 (dispatch/react-to #{:basket-add}
                    (fn [_ d]
                      (if-let [item (from-coll-by-id @basket d)]
-                       (let [qty (:qty item)]                            ; item in basket, inc qty
-                         (swap! basket
-                                #(set (replace {item %2} %1))
-                                (update-in item [:qty] inc)))
+                       (let [qty      (:qty item)                        ; item in basket, inc qty
+                             new-item (update-in item [:qty] inc)]                            
+                         (swap-in-basket! basket item new-item))
                        (let [item (default-variant-of-item               ; new item
                                     (from-coll-by-id (:items @data) d))]
                          (swap! basket conj (merge item {:qty 1 :discount 0}))))))
@@ -95,3 +99,5 @@ controlling the customer typeahead"}
                    (fn [_ d]
                      (let [item (from-coll-by-id @basket d)]
                        (swap! basket disj item))))
+
+
