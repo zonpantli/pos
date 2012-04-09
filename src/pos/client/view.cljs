@@ -208,8 +208,8 @@
   (let [el ($ (str "tr#" id))]
     (do
       (value (find el "td.qty > div input") qty)
-      (value (find el "td.price > div input") price)
-      (value (find el "td.discount > div input") discount)
+      (value (find el "td.price > div input") (.toFixed price 2))
+      (value (find el "td.discount > div input") (.toFixed discount))
       (inner (find el "td.total > div") (str (item-total-price item))))))
 
 (dispatch/react-to #{:basket-change}

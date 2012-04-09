@@ -27,17 +27,24 @@
            (not (js/isNaN new-as-num))
            (not= new-as-num (:price item)))
       (let [default-price (:price (from-coll-by-id (:items @model/data) id))
-            discount      (/ (- default-price new-as-num) default-price)]
+            discount      (* 100 (/ (- default-price new-as-num) default-price))]
           (model/swap-in-basket! model/basket item (merge item {:price new-as-num
                                                                 :discount discount}))))))
 
 (defmethod update-basket-item :discount [{:keys [id new-val]}]
-  )
+  (let [item       (from-coll-by-id @model/basket id)
+        new-as-num (field-value-as-num new-val)]
+    (when (and
+           (not (js/isNaN new-as-num))
+           (not= new-as-num (:discount item)))
+      (let [default-price (:price (from-coll-by-id (:items @model/data) id))
+            price         (- default-price (* (/ new-as-num 100) default-price))]
+        (model/swap-in-basket! model/basket item (merge item {:discount new-as-num
+                                                              :price price}))))))
 
 (dispatch/react-to #{:basket-update}
                    (fn [_ {:keys [id changed-attr new-val] :as d}]
                      (update-basket-item d)))
-
 
 
 (defn fetch-client-data
