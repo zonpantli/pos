@@ -65,10 +65,37 @@ body {
 //-- tender box --------------------------------------------
 
 #tender {
-  border: 1px solid red;
-  display: none;
-  height: 200px;
+  height: 198px;
   margin-bottom: 13px;
+  position: relative;
+  display: none;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+
+    li label {
+      position: relative;
+      top: 5px;
+      float: left;
+      min-width: 100px;
+      clear: both;
+      font-size: 15px;
+    }
+
+    li input {
+      float: left;
+    }
+  }
+
+  #confirm-tender-button {
+    position: absolute;
+    right: 41px;
+    bottom: 24px;
+    min-width: 120px;
+  }
+  
+  
 }
 
 
@@ -157,7 +184,7 @@ body {
     width: 16px;
     height: 16px;
   }
-
+  
 }
 
 //-- customer and product dropdowns -------------------------
@@ -260,12 +287,9 @@ table#keypad {
 #receipt-number-container {
  float: left;
  margin-left: 10px;
-
- 
-
 }
 
-button[id*='-tender-button'] {
+#receipt-container button[id*='-tender-button'] {
   margin-top: 10px;
   margin-right: 10px;
   float: right;

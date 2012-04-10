@@ -71,12 +71,14 @@
         <div class="left-col span6">
           
           <div id="tender">
-            Total <input type="text" id="tender-total" class="span4">
-            Cash <input type="text" id="tender-cash" class="span4">
-            Card <input type="text" id="tender-card" class="span4">
-            Gift Voucher <input type="text" id="tender-gift" class="span4">
-            <hr>
-            Change <input type="text" id="tender-gift" class="span4">
+            <ul>
+              <li><label>Total</label> <input type="text" id="tender-total" class="span2" disabled="true"></li>
+              <li><label>Cash</label> <input type="text" id="tender-cash" class="span2"></li>
+              <li><label>Card</label> <input type="text" id="tender-card" class="span2"></li>
+              <li><label>Gift Voucher</label> <input type="text" id="tender-gift" class="span2"></li>
+              <li class="bottom"><label>Change</label> <input type="text" id="tender-gift" class="span2" disabled="true"></li>
+            </ul>
+            <button id="confirm-tender-button" class="btn btn-large btn-success">Confirm</button>
           </div>
         
           <div id="weather">
@@ -145,7 +147,6 @@
             <li><button id="transaction-cash" class="btn btn-large">Cash</button></li>
             <li><button id="transaction-credit" class="btn btn-large">Credit Card</button></li>
             <li><button id="transaction-gift" class="btn btn-large">Gift Voucher</button></li>
-            <li><button id="transaction-compensation" class="btn btn-large">Compensation</button></li>
           </ul>
           
           <table id="keypad">
