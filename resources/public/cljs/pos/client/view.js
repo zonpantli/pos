@@ -12,17 +12,17 @@ goog.require('goog.Timer');
 goog.require('goog.events');
 goog.require('pos.client.model');
 goog.require('pos.client.animation');
-pos.client.view.render_location = (function render_location(p__7839){
-var map__7840__7841 = p__7839;
-var map__7840__7842 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7840__7841))?cljs.core.apply.call(null,cljs.core.hash_map,map__7840__7841):map__7840__7841);
-var id__7843 = cljs.core.get.call(null,map__7840__7842,"\uFDD0'id");
+pos.client.view.render_location = (function render_location(p__14237){
+var map__14238__14239 = p__14237;
+var map__14238__14240 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__14238__14239))?cljs.core.apply.call(null,cljs.core.hash_map,map__14238__14239):map__14238__14239);
+var id__14241 = cljs.core.get.call(null,map__14238__14240,"\uFDD0'id");
 
-var temp__3695__auto____7844 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'locations".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__7843);
+var temp__3695__auto____14242 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'locations".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__14241);
 
-if(cljs.core.truth_(temp__3695__auto____7844))
-{var location__7845 = temp__3695__auto____7844;
+if(cljs.core.truth_(temp__3695__auto____14242))
+{var location__14243 = temp__3695__auto____14242;
 
-return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#location-name"),"\uFDD0'name".call(null,location__7845));
+return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#location-name"),"\uFDD0'name".call(null,location__14243));
 } else
 {return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#location-name"),"Location");
 }
@@ -30,17 +30,17 @@ return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#location-name"),
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'location-change"]),(function (_,d){
 return pos.client.view.render_location.call(null,d);
 }));
-pos.client.view.render_employee = (function render_employee(p__7846){
-var map__7847__7848 = p__7846;
-var map__7847__7849 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7847__7848))?cljs.core.apply.call(null,cljs.core.hash_map,map__7847__7848):map__7847__7848);
-var id__7850 = cljs.core.get.call(null,map__7847__7849,"\uFDD0'id");
+pos.client.view.render_employee = (function render_employee(p__14244){
+var map__14245__14246 = p__14244;
+var map__14245__14247 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__14245__14246))?cljs.core.apply.call(null,cljs.core.hash_map,map__14245__14246):map__14245__14246);
+var id__14248 = cljs.core.get.call(null,map__14245__14247,"\uFDD0'id");
 
-var temp__3695__auto____7851 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'employees".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__7850);
+var temp__3695__auto____14249 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'employees".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__14248);
 
-if(cljs.core.truth_(temp__3695__auto____7851))
-{var employee__7852 = temp__3695__auto____7851;
+if(cljs.core.truth_(temp__3695__auto____14249))
+{var employee__14250 = temp__3695__auto____14249;
 
-return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#employee-name"),"\uFDD0'name".call(null,employee__7852));
+return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#employee-name"),"\uFDD0'name".call(null,employee__14250));
 } else
 {return jayq.core.inner.call(null,jayq.core.$.call(null,"\uFDD0'#employee-name"),"Employee");
 }
@@ -49,10 +49,10 @@ lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'employee-change"]),(funct
 return pos.client.view.render_employee.call(null,d);
 }));
 pos.client.view.render_time = (function render_time(){
-var t__7853 = pos.client.util.get_formatted_datetime.call(null);
-var el__7854 = jayq.core.$.call(null,"\uFDD0'#clock");
+var t__14251 = pos.client.util.get_formatted_datetime.call(null);
+var el__14252 = jayq.core.$.call(null,"\uFDD0'#clock");
 
-return jayq.core.inner.call(null,el__7854,t__7853);
+return jayq.core.inner.call(null,el__14252,t__14251);
 });
 pos.client.view.pie_data = (function pie_data(){
 return fetch.util.clj__GT_js.call(null,cljs.core.PersistentVector.fromArray([cljs.core.ObjMap.fromObject(["\uFDD0'label","\uFDD0'data","\uFDD0'color"],{"\uFDD0'label":"","\uFDD0'data":33,"\uFDD0'color":"#5bb75b"}),cljs.core.ObjMap.fromObject(["\uFDD0'label","\uFDD0'data","\uFDD0'color"],{"\uFDD0'label":"","\uFDD0'data":67,"\uFDD0'color":"#52c5c8"})]));
@@ -61,26 +61,26 @@ pos.client.view.draw_pie = (function draw_pie(){
 return $.plot(jayq.core.$.call(null,"\uFDD0'#pie"),pos.client.view.pie_data.call(null),fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'series"],{"\uFDD0'series":cljs.core.ObjMap.fromObject(["\uFDD0'pie"],{"\uFDD0'pie":cljs.core.ObjMap.fromObject(["\uFDD0'show","\uFDD0'stroke"],{"\uFDD0'show":true,"\uFDD0'stroke":cljs.core.ObjMap.fromObject(["\uFDD0'color","\uFDD0'width"],{"\uFDD0'color":"#2b2b2b","\uFDD0'width":0})})})})));
 });
 pos.client.view.get_dropdown_data = (function get_dropdown_data(data_key,data){
-return cljs.core.map.call(null,(function (p1__7855_SHARP_){
-return cljs.core.merge.call(null,p1__7855_SHARP_,cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":"\uFDD0'name".call(null,p1__7855_SHARP_)}));
+return cljs.core.map.call(null,(function (p1__14253_SHARP_){
+return cljs.core.merge.call(null,p1__14253_SHARP_,cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":"\uFDD0'name".call(null,p1__14253_SHARP_)}));
 }),data_key.call(null,data));
 });
 /**
 * Attach data to typeahead fields for customer and item selcetion
 */
 pos.client.view.prepare_typeaheads = (function prepare_typeaheads(data){
-jayq.core.$.call(null,"\uFDD0'#customer-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source","\uFDD0'onselect","\uFDD0'trigger"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'customers",data),"\uFDD0'onselect":(function (p1__7856_SHARP_){
-return lib.dispatch.fire.call(null,"\uFDD0'customer-select",p1__7856_SHARP_.id);
+jayq.core.$.call(null,"\uFDD0'#customer-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source","\uFDD0'onselect","\uFDD0'trigger"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'customers",data),"\uFDD0'onselect":(function (p1__14254_SHARP_){
+return lib.dispatch.fire.call(null,"\uFDD0'customer-select",p1__14254_SHARP_.id);
 }),"\uFDD0'trigger":jayq.core.$.call(null,"\uFDD0'#customer-dropdown-toggle")})));
-return jayq.core.$.call(null,"\uFDD0'#item-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source","\uFDD0'onselect","\uFDD0'trigger"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'items",data),"\uFDD0'onselect":(function (p1__7857_SHARP_){
-return lib.dispatch.fire.call(null,"\uFDD0'item-select",p1__7857_SHARP_.id);
+return jayq.core.$.call(null,"\uFDD0'#item-dropdown").typeahead(fetch.util.clj__GT_js.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'source","\uFDD0'onselect","\uFDD0'trigger"],{"\uFDD0'source":pos.client.view.get_dropdown_data.call(null,"\uFDD0'items",data),"\uFDD0'onselect":(function (p1__14255_SHARP_){
+return lib.dispatch.fire.call(null,"\uFDD0'item-select",p1__14255_SHARP_.id);
 }),"\uFDD0'trigger":jayq.core.$.call(null,"\uFDD0'#item-dropdown-toggle")})));
 });
 pos.client.view.attach_typeahead_event_listeners = (function attach_typeahead_event_listeners(){
-var el__7858 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
+var el__14256 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
 
-return jayq.core.bind.call(null,el__7858,"keyup",(function (){
-return lib.dispatch.fire.call(null,"\uFDD0'customer-field-changed",pos.client.util.value.call(null,el__7858));
+return jayq.core.bind.call(null,el__14256,"keyup",(function (){
+return lib.dispatch.fire.call(null,"\uFDD0'customer-field-changed",pos.client.util.value.call(null,el__14256));
 }));
 });
 pos.client.view.attach_typeahead_clear_event_listeners = (function attach_typeahead_clear_event_listeners(){
@@ -91,46 +91,46 @@ return jayq.core.bind.call(null,jayq.core.$.call(null,"\uFDD0'#item-clear"),"cli
 return lib.dispatch.fire.call(null,"\uFDD0'item-clear");
 }));
 });
-var group__6197__auto____7859 = cljs.core.swap_BANG_.call(null,crate.core.group_id,cljs.core.inc);
+var group__6197__auto____14257 = cljs.core.swap_BANG_.call(null,crate.core.group_id,cljs.core.inc);
 
-pos.client.view.dropdown_row = (function dropdown_row(p__7860){
-var map__7861__7862 = p__7860;
-var map__7861__7863 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7861__7862))?cljs.core.apply.call(null,cljs.core.hash_map,map__7861__7862):map__7861__7862);
-var name__7864 = cljs.core.get.call(null,map__7861__7863,"\uFDD0'name");
-var id__7865 = cljs.core.get.call(null,map__7861__7863,"\uFDD0'id");
+pos.client.view.dropdown_row = (function dropdown_row(p__14258){
+var map__14259__14260 = p__14258;
+var map__14259__14261 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__14259__14260))?cljs.core.apply.call(null,cljs.core.hash_map,map__14259__14260):map__14259__14260);
+var name__14262 = cljs.core.get.call(null,map__14259__14261,"\uFDD0'name");
+var id__14263 = cljs.core.get.call(null,map__14259__14261,"\uFDD0'id");
 
-var elem__6198__auto____7866 = crate.core.html.call(null,cljs.core.PersistentVector.fromArray(["\uFDD0'li",cljs.core.PersistentVector.fromArray(["\uFDD0'a",cljs.core.ObjMap.fromObject(["\uFDD0'href","\uFDD0'value"],{"\uFDD0'href":"#","\uFDD0'value":id__7865}),name__7864])]));
+var elem__6198__auto____14264 = crate.core.html.call(null,cljs.core.PersistentVector.fromArray(["\uFDD0'li",cljs.core.PersistentVector.fromArray(["\uFDD0'a",cljs.core.ObjMap.fromObject(["\uFDD0'href","\uFDD0'value"],{"\uFDD0'href":"#","\uFDD0'value":id__14263}),name__14262])]));
 
-elem__6198__auto____7866.setAttribute("crateGroup",group__6197__auto____7859);
-return elem__6198__auto____7866;
+elem__6198__auto____14264.setAttribute("crateGroup",group__6197__auto____14257);
+return elem__6198__auto____14264;
 });
-pos.client.view.dropdown_row.prototype._crateGroup = group__6197__auto____7859;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6197__auto____14257;
 pos.client.view.populate_dropdowns = (function populate_dropdowns(data){
-var G__7867__7868 = cljs.core.seq.call(null,"\uFDD0'locations".call(null,data));
+var G__14265__14266 = cljs.core.seq.call(null,"\uFDD0'locations".call(null,data));
 
-if(cljs.core.truth_(G__7867__7868))
-{var loc__7869 = cljs.core.first.call(null,G__7867__7868);
-var G__7867__7870 = G__7867__7868;
+if(cljs.core.truth_(G__14265__14266))
+{var loc__14267 = cljs.core.first.call(null,G__14265__14266);
+var G__14265__14268 = G__14265__14266;
 
 while(true){
-var el__7871 = pos.client.view.dropdown_row.call(null,loc__7869);
+var el__14269 = pos.client.view.dropdown_row.call(null,loc__14267);
 
-jayq.core.append.call(null,jayq.core.$.call(null,"\uFDD0'#location-dropdown-list"),el__7871);
-jayq.core.bind.call(null,jayq.core.$.call(null,el__7871),"click",((function (loc__7869,G__7867__7870,el__7871){
+jayq.core.append.call(null,jayq.core.$.call(null,"\uFDD0'#location-dropdown-list"),el__14269);
+jayq.core.bind.call(null,jayq.core.$.call(null,el__14269),"click",((function (loc__14267,G__14265__14268,el__14269){
 return (function (){
-return lib.dispatch.fire.call(null,"\uFDD0'location-select","\uFDD0'id".call(null,loc__7869));
-});})(loc__7869,G__7867__7870,el__7871))
+return lib.dispatch.fire.call(null,"\uFDD0'location-select","\uFDD0'id".call(null,loc__14267));
+});})(loc__14267,G__14265__14268,el__14269))
 );
-var temp__3698__auto____7872 = cljs.core.next.call(null,G__7867__7870);
+var temp__3698__auto____14270 = cljs.core.next.call(null,G__14265__14268);
 
-if(cljs.core.truth_(temp__3698__auto____7872))
-{var G__7867__7873 = temp__3698__auto____7872;
+if(cljs.core.truth_(temp__3698__auto____14270))
+{var G__14265__14271 = temp__3698__auto____14270;
 
 {
-var G__7881 = cljs.core.first.call(null,G__7867__7873);
-var G__7882 = G__7867__7873;
-loc__7869 = G__7881;
-G__7867__7870 = G__7882;
+var G__14279 = cljs.core.first.call(null,G__14265__14271);
+var G__14280 = G__14265__14271;
+loc__14267 = G__14279;
+G__14265__14268 = G__14280;
 continue;
 }
 } else
@@ -139,31 +139,31 @@ break;
 }
 } else
 {}
-var G__7874__7875 = cljs.core.seq.call(null,"\uFDD0'employees".call(null,data));
+var G__14272__14273 = cljs.core.seq.call(null,"\uFDD0'employees".call(null,data));
 
-if(cljs.core.truth_(G__7874__7875))
-{var empl__7876 = cljs.core.first.call(null,G__7874__7875);
-var G__7874__7877 = G__7874__7875;
+if(cljs.core.truth_(G__14272__14273))
+{var empl__14274 = cljs.core.first.call(null,G__14272__14273);
+var G__14272__14275 = G__14272__14273;
 
 while(true){
-var el__7878 = pos.client.view.dropdown_row.call(null,empl__7876);
+var el__14276 = pos.client.view.dropdown_row.call(null,empl__14274);
 
-jayq.core.append.call(null,jayq.core.$.call(null,"\uFDD0'#employee-dropdown-list"),el__7878);
-jayq.core.bind.call(null,jayq.core.$.call(null,el__7878),"click",((function (empl__7876,G__7874__7877,el__7878){
+jayq.core.append.call(null,jayq.core.$.call(null,"\uFDD0'#employee-dropdown-list"),el__14276);
+jayq.core.bind.call(null,jayq.core.$.call(null,el__14276),"click",((function (empl__14274,G__14272__14275,el__14276){
 return (function (){
-return lib.dispatch.fire.call(null,"\uFDD0'employee-select","\uFDD0'id".call(null,empl__7876));
-});})(empl__7876,G__7874__7877,el__7878))
+return lib.dispatch.fire.call(null,"\uFDD0'employee-select","\uFDD0'id".call(null,empl__14274));
+});})(empl__14274,G__14272__14275,el__14276))
 );
-var temp__3698__auto____7879 = cljs.core.next.call(null,G__7874__7877);
+var temp__3698__auto____14277 = cljs.core.next.call(null,G__14272__14275);
 
-if(cljs.core.truth_(temp__3698__auto____7879))
-{var G__7874__7880 = temp__3698__auto____7879;
+if(cljs.core.truth_(temp__3698__auto____14277))
+{var G__14272__14278 = temp__3698__auto____14277;
 
 {
-var G__7883 = cljs.core.first.call(null,G__7874__7880);
-var G__7884 = G__7874__7880;
-empl__7876 = G__7883;
-G__7874__7877 = G__7884;
+var G__14281 = cljs.core.first.call(null,G__14272__14278);
+var G__14282 = G__14272__14278;
+empl__14274 = G__14281;
+G__14272__14275 = G__14282;
 continue;
 }
 } else
@@ -184,69 +184,69 @@ pos.client.view.prepare_typeaheads.call(null,cljs.core.deref.call(null,pos.clien
 pos.client.view.populate_dropdowns.call(null,cljs.core.deref.call(null,pos.client.model.data));
 return pos.client.view.prepare_dropdowns.call(null);
 }));
-pos.client.view.render_customer = (function (){var method_table__3162__auto____7885 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var prefer_table__3163__auto____7886 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var method_cache__3164__auto____7887 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var cached_hierarchy__3165__auto____7888 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var hierarchy__3166__auto____7889 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+pos.client.view.render_customer = (function (){var method_table__3162__auto____14283 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____14284 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____14285 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____14286 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____14287 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
 
-return (new cljs.core.MultiFn("render-customer","\uFDD0'event","\uFDD0'default",hierarchy__3166__auto____7889,method_table__3162__auto____7885,prefer_table__3163__auto____7886,method_cache__3164__auto____7887,cached_hierarchy__3165__auto____7888));
+return (new cljs.core.MultiFn("render-customer","\uFDD0'event","\uFDD0'default",hierarchy__3166__auto____14287,method_table__3162__auto____14283,prefer_table__3163__auto____14284,method_cache__3164__auto____14285,cached_hierarchy__3165__auto____14286));
 })();
-cljs.core._add_method.call(null,pos.client.view.render_customer,"\uFDD0'customer-selected",(function (p__7890){
-var map__7891__7892 = p__7890;
-var map__7891__7893 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7891__7892))?cljs.core.apply.call(null,cljs.core.hash_map,map__7891__7892):map__7891__7892);
-var id__7894 = cljs.core.get.call(null,map__7891__7893,"\uFDD0'id");
+cljs.core._add_method.call(null,pos.client.view.render_customer,"\uFDD0'customer-selected",(function (p__14288){
+var map__14289__14290 = p__14288;
+var map__14289__14291 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__14289__14290))?cljs.core.apply.call(null,cljs.core.hash_map,map__14289__14290):map__14289__14290);
+var id__14292 = cljs.core.get.call(null,map__14289__14291,"\uFDD0'id");
 
-var customer__7895 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'customers".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__7894);
-var el__7896 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
+var customer__14293 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'customers".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__14292);
+var el__14294 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
 
-pos.client.util.value.call(null,el__7896,"\uFDD0'name".call(null,customer__7895));
-pos.client.animation.flash_input_border.call(null,el__7896);
-return pos.client.animation.slide_in_customer_icon.call(null,"\uFDD0'image".call(null,customer__7895));
+pos.client.util.value.call(null,el__14294,"\uFDD0'name".call(null,customer__14293));
+pos.client.animation.flash_input_border.call(null,el__14294);
+return pos.client.animation.slide_in_customer_icon.call(null,"\uFDD0'image".call(null,customer__14293));
 }));
 cljs.core._add_method.call(null,pos.client.view.render_customer,"\uFDD0'customer-deselected",(function (_){
-var el__7897 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
+var el__14295 = jayq.core.$.call(null,"\uFDD0'#customer-dropdown");
 
-pos.client.util.value.call(null,el__7897,null);
+pos.client.util.value.call(null,el__14295,null);
 return pos.client.animation.reset_customer_icon.call(null);
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-change"]),(function (_,d){
-var temp__3695__auto____7898 = "\uFDD0'id".call(null,d);
+var temp__3695__auto____14296 = "\uFDD0'id".call(null,d);
 
-if(cljs.core.truth_(temp__3695__auto____7898))
-{var id__7899 = temp__3695__auto____7898;
+if(cljs.core.truth_(temp__3695__auto____14296))
+{var id__14297 = temp__3695__auto____14296;
 
 return pos.client.view.render_customer.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'event","\uFDD0'id"],{"\uFDD0'event":"\uFDD0'customer-selected","\uFDD0'id":"\uFDD0'id".call(null,d)}));
 } else
 {return pos.client.view.render_customer.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'event"],{"\uFDD0'event":"\uFDD0'customer-deselected"}));
 }
 }));
-pos.client.view.render_item = (function (){var method_table__3162__auto____7900 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var prefer_table__3163__auto____7901 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var method_cache__3164__auto____7902 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var cached_hierarchy__3165__auto____7903 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var hierarchy__3166__auto____7904 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+pos.client.view.render_item = (function (){var method_table__3162__auto____14298 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____14299 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____14300 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____14301 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____14302 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
 
-return (new cljs.core.MultiFn("render-item","\uFDD0'event","\uFDD0'default",hierarchy__3166__auto____7904,method_table__3162__auto____7900,prefer_table__3163__auto____7901,method_cache__3164__auto____7902,cached_hierarchy__3165__auto____7903));
+return (new cljs.core.MultiFn("render-item","\uFDD0'event","\uFDD0'default",hierarchy__3166__auto____14302,method_table__3162__auto____14298,prefer_table__3163__auto____14299,method_cache__3164__auto____14300,cached_hierarchy__3165__auto____14301));
 })();
-cljs.core._add_method.call(null,pos.client.view.render_item,"\uFDD0'item-select",(function (p__7905){
-var map__7906__7907 = p__7905;
-var map__7906__7908 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7906__7907))?cljs.core.apply.call(null,cljs.core.hash_map,map__7906__7907):map__7906__7907);
-var id__7909 = cljs.core.get.call(null,map__7906__7908,"\uFDD0'id");
+cljs.core._add_method.call(null,pos.client.view.render_item,"\uFDD0'item-select",(function (p__14303){
+var map__14304__14305 = p__14303;
+var map__14304__14306 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__14304__14305))?cljs.core.apply.call(null,cljs.core.hash_map,map__14304__14305):map__14304__14305);
+var id__14307 = cljs.core.get.call(null,map__14304__14306,"\uFDD0'id");
 
-var item__7910 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__7909);
-var el__7911 = jayq.core.$.call(null,"\uFDD0'#item-dropdown");
+var item__14308 = pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__14307);
+var el__14309 = jayq.core.$.call(null,"\uFDD0'#item-dropdown");
 
-pos.client.util.value.call(null,el__7911,"\uFDD0'name".call(null,item__7910));
-pos.client.animation.flash_input_border.call(null,el__7911);
+pos.client.util.value.call(null,el__14309,"\uFDD0'name".call(null,item__14308));
+pos.client.animation.flash_input_border.call(null,el__14309);
 return jayq.util.wait.call(null,500,(function (){
 return lib.dispatch.fire.call(null,"\uFDD0'item-clear");
 }));
 }));
 cljs.core._add_method.call(null,pos.client.view.render_item,"\uFDD0'item-clear",(function (_){
-var el__7912 = jayq.core.$.call(null,"\uFDD0'#item-dropdown");
+var el__14310 = jayq.core.$.call(null,"\uFDD0'#item-dropdown");
 
-return pos.client.util.value.call(null,el__7912,null);
+return pos.client.util.value.call(null,el__14310,null);
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'item-clear","\uFDD0'item-select"]),(function (t,d){
 if(cljs.core.truth_(d))
@@ -258,131 +258,131 @@ return pos.client.view.render_item.call(null,cljs.core.ObjMap.fromObject(["\uFDD
 pos.client.view.basket_add_item = (function basket_add_item(id){
 return lib.dispatch.fire.call(null,"\uFDD0'basket-add",id);
 });
-var group__6197__auto____7913 = cljs.core.swap_BANG_.call(null,crate.core.group_id,cljs.core.inc);
+var group__6197__auto____14311 = cljs.core.swap_BANG_.call(null,crate.core.group_id,cljs.core.inc);
 
-pos.client.view.basket_item = (function basket_item(p__7914){
-var map__7915__7916 = p__7914;
-var map__7915__7917 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7915__7916))?cljs.core.apply.call(null,cljs.core.hash_map,map__7915__7916):map__7915__7916);
-var discount__7918 = cljs.core.get.call(null,map__7915__7917,"\uFDD0'discount");
-var qty__7919 = cljs.core.get.call(null,map__7915__7917,"\uFDD0'qty");
-var price__7920 = cljs.core.get.call(null,map__7915__7917,"\uFDD0'price");
-var size__7921 = cljs.core.get.call(null,map__7915__7917,"\uFDD0'size");
-var color__7922 = cljs.core.get.call(null,map__7915__7917,"\uFDD0'color");
-var name__7923 = cljs.core.get.call(null,map__7915__7917,"\uFDD0'name");
-var id__7924 = cljs.core.get.call(null,map__7915__7917,"\uFDD0'id");
+pos.client.view.basket_item = (function basket_item(p__14312){
+var map__14313__14314 = p__14312;
+var map__14313__14315 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__14313__14314))?cljs.core.apply.call(null,cljs.core.hash_map,map__14313__14314):map__14313__14314);
+var discount__14316 = cljs.core.get.call(null,map__14313__14315,"\uFDD0'discount");
+var qty__14317 = cljs.core.get.call(null,map__14313__14315,"\uFDD0'qty");
+var price__14318 = cljs.core.get.call(null,map__14313__14315,"\uFDD0'price");
+var size__14319 = cljs.core.get.call(null,map__14313__14315,"\uFDD0'size");
+var color__14320 = cljs.core.get.call(null,map__14313__14315,"\uFDD0'color");
+var name__14321 = cljs.core.get.call(null,map__14313__14315,"\uFDD0'name");
+var id__14322 = cljs.core.get.call(null,map__14313__14315,"\uFDD0'id");
 
-var elem__6198__auto____7925 = crate.core.html.call(null,cljs.core.PersistentVector.fromArray(["\uFDD0'tr",cljs.core.ObjMap.fromObject(["\uFDD0'id"],{"\uFDD0'id":id__7924}),cljs.core.PersistentVector.fromArray(["\uFDD0'td.bold",cljs.core.PersistentVector.fromArray(["\uFDD0'div",name__7923])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td",cljs.core.PersistentVector.fromArray(["\uFDD0'div",id__7924])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td",cljs.core.PersistentVector.fromArray(["\uFDD0'div",size__7921])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td",cljs.core.PersistentVector.fromArray(["\uFDD0'div",color__7922])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.qty",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'input.num",cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":qty__7919})])])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.price",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'input.price",cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":price__7920})])])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.discount",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'input.num",cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":discount__7918})]),"%"])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.bold.total",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.str.call(null,price__7920)])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.close-container",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'a.close","x"])])])]));
+var elem__6198__auto____14323 = crate.core.html.call(null,cljs.core.PersistentVector.fromArray(["\uFDD0'tr",cljs.core.ObjMap.fromObject(["\uFDD0'id"],{"\uFDD0'id":id__14322}),cljs.core.PersistentVector.fromArray(["\uFDD0'td.bold",cljs.core.PersistentVector.fromArray(["\uFDD0'div",name__14321])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td",cljs.core.PersistentVector.fromArray(["\uFDD0'div",id__14322])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td",cljs.core.PersistentVector.fromArray(["\uFDD0'div",size__14319])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td",cljs.core.PersistentVector.fromArray(["\uFDD0'div",color__14320])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.qty",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'input.num",cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":qty__14317})])])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.price",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'input.price",cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":price__14318})])])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.discount",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'input.num",cljs.core.ObjMap.fromObject(["\uFDD0'value"],{"\uFDD0'value":discount__14316})]),"%"])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.bold.total",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.str.call(null,price__14318)])]),cljs.core.PersistentVector.fromArray(["\uFDD0'td.close-container",cljs.core.PersistentVector.fromArray(["\uFDD0'div",cljs.core.PersistentVector.fromArray(["\uFDD0'a.close","x"])])])]));
 
-elem__6198__auto____7925.setAttribute("crateGroup",group__6197__auto____7913);
-return elem__6198__auto____7925;
+elem__6198__auto____14323.setAttribute("crateGroup",group__6197__auto____14311);
+return elem__6198__auto____14323;
 });
-pos.client.view.basket_item.prototype._crateGroup = group__6197__auto____7913;
-pos.client.view.render_basket = (function (){var method_table__3162__auto____7926 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var prefer_table__3163__auto____7927 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var method_cache__3164__auto____7928 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var cached_hierarchy__3165__auto____7929 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var hierarchy__3166__auto____7930 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+pos.client.view.basket_item.prototype._crateGroup = group__6197__auto____14311;
+pos.client.view.render_basket = (function (){var method_table__3162__auto____14324 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____14325 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____14326 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____14327 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____14328 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
 
-return (new cljs.core.MultiFn("render-basket","\uFDD0'type","\uFDD0'default",hierarchy__3166__auto____7930,method_table__3162__auto____7926,prefer_table__3163__auto____7927,method_cache__3164__auto____7928,cached_hierarchy__3165__auto____7929));
+return (new cljs.core.MultiFn("render-basket","\uFDD0'type","\uFDD0'default",hierarchy__3166__auto____14328,method_table__3162__auto____14324,prefer_table__3163__auto____14325,method_cache__3164__auto____14326,cached_hierarchy__3165__auto____14327));
 })();
-cljs.core._add_method.call(null,pos.client.view.render_basket,"\uFDD0'add-item",(function (p__7931){
-var map__7932__7933 = p__7931;
-var map__7932__7934 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7932__7933))?cljs.core.apply.call(null,cljs.core.hash_map,map__7932__7933):map__7932__7933);
-var item__7935 = cljs.core.get.call(null,map__7932__7934,"\uFDD0'item");
-var item__7936 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,item__7935))?cljs.core.apply.call(null,cljs.core.hash_map,item__7935):item__7935);
-var id__7937 = cljs.core.get.call(null,item__7936,"\uFDD0'id");
+cljs.core._add_method.call(null,pos.client.view.render_basket,"\uFDD0'add-item",(function (p__14329){
+var map__14330__14331 = p__14329;
+var map__14330__14332 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__14330__14331))?cljs.core.apply.call(null,cljs.core.hash_map,map__14330__14331):map__14330__14331);
+var item__14333 = cljs.core.get.call(null,map__14330__14332,"\uFDD0'item");
+var item__14334 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,item__14333))?cljs.core.apply.call(null,cljs.core.hash_map,item__14333):item__14333);
+var id__14335 = cljs.core.get.call(null,item__14334,"\uFDD0'id");
 
-var $el__7938 = jayq.core.$.call(null,pos.client.view.basket_item.call(null,item__7936));
-var $qty__7939 = jayq.core.find.call(null,$el__7938,".qty > div > input");
-var $price__7940 = jayq.core.find.call(null,$el__7938,".price > div > input");
-var $discount__7941 = jayq.core.find.call(null,$el__7938,".discount > div > input");
-var $close__7942 = jayq.core.find.call(null,$el__7938,".close-container > div > a");
+var $el__14336 = jayq.core.$.call(null,pos.client.view.basket_item.call(null,item__14334));
+var $qty__14337 = jayq.core.find.call(null,$el__14336,".qty > div > input");
+var $price__14338 = jayq.core.find.call(null,$el__14336,".price > div > input");
+var $discount__14339 = jayq.core.find.call(null,$el__14336,".discount > div > input");
+var $close__14340 = jayq.core.find.call(null,$el__14336,".close-container > div > a");
 
-jayq.core.append.call(null,jayq.core.$.call(null,"\uFDD0'#receipt-table"),$el__7938);
-pos.client.animation.slide_in_table_row.call(null,$el__7938);
-jayq.core.bind.call(null,$qty__7939,"keyup",(function (){
-return lib.dispatch.fire.call(null,"\uFDD0'basket-update",cljs.core.ObjMap.fromObject(["\uFDD0'id","\uFDD0'changed-attr","\uFDD0'new-val"],{"\uFDD0'id":id__7937,"\uFDD0'changed-attr":"\uFDD0'qty","\uFDD0'new-val":pos.client.util.value.call(null,$qty__7939)}));
+jayq.core.append.call(null,jayq.core.$.call(null,"\uFDD0'#receipt-table"),$el__14336);
+pos.client.animation.slide_in_table_row.call(null,$el__14336);
+jayq.core.bind.call(null,$qty__14337,"keyup",(function (){
+return lib.dispatch.fire.call(null,"\uFDD0'basket-update",cljs.core.ObjMap.fromObject(["\uFDD0'id","\uFDD0'changed-attr","\uFDD0'new-val"],{"\uFDD0'id":id__14335,"\uFDD0'changed-attr":"\uFDD0'qty","\uFDD0'new-val":pos.client.util.value.call(null,$qty__14337)}));
 }));
-jayq.core.bind.call(null,$price__7940,"keyup",(function (){
-return lib.dispatch.fire.call(null,"\uFDD0'basket-update",cljs.core.ObjMap.fromObject(["\uFDD0'id","\uFDD0'changed-attr","\uFDD0'new-val"],{"\uFDD0'id":id__7937,"\uFDD0'changed-attr":"\uFDD0'price","\uFDD0'new-val":pos.client.util.value.call(null,$price__7940)}));
+jayq.core.bind.call(null,$price__14338,"keyup",(function (){
+return lib.dispatch.fire.call(null,"\uFDD0'basket-update",cljs.core.ObjMap.fromObject(["\uFDD0'id","\uFDD0'changed-attr","\uFDD0'new-val"],{"\uFDD0'id":id__14335,"\uFDD0'changed-attr":"\uFDD0'price","\uFDD0'new-val":pos.client.util.value.call(null,$price__14338)}));
 }));
-jayq.core.bind.call(null,$discount__7941,"keyup",(function (){
-return lib.dispatch.fire.call(null,"\uFDD0'basket-update",cljs.core.ObjMap.fromObject(["\uFDD0'id","\uFDD0'changed-attr","\uFDD0'new-val"],{"\uFDD0'id":id__7937,"\uFDD0'changed-attr":"\uFDD0'discount","\uFDD0'new-val":pos.client.util.value.call(null,$discount__7941)}));
+jayq.core.bind.call(null,$discount__14339,"keyup",(function (){
+return lib.dispatch.fire.call(null,"\uFDD0'basket-update",cljs.core.ObjMap.fromObject(["\uFDD0'id","\uFDD0'changed-attr","\uFDD0'new-val"],{"\uFDD0'id":id__14335,"\uFDD0'changed-attr":"\uFDD0'discount","\uFDD0'new-val":pos.client.util.value.call(null,$discount__14339)}));
 }));
-return jayq.core.bind.call(null,$close__7942,"click",(function (){
-return lib.dispatch.fire.call(null,"\uFDD0'basket-remove",id__7937);
+return jayq.core.bind.call(null,$close__14340,"click",(function (){
+return lib.dispatch.fire.call(null,"\uFDD0'basket-remove",id__14335);
 }));
 }));
-cljs.core._add_method.call(null,pos.client.view.render_basket,"\uFDD0'remove-item",(function (p__7943){
-var map__7944__7945 = p__7943;
-var map__7944__7946 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7944__7945))?cljs.core.apply.call(null,cljs.core.hash_map,map__7944__7945):map__7944__7945);
-var id__7947 = cljs.core.get.call(null,map__7944__7946,"\uFDD0'id");
+cljs.core._add_method.call(null,pos.client.view.render_basket,"\uFDD0'remove-item",(function (p__14341){
+var map__14342__14343 = p__14341;
+var map__14342__14344 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__14342__14343))?cljs.core.apply.call(null,cljs.core.hash_map,map__14342__14343):map__14342__14343);
+var id__14345 = cljs.core.get.call(null,map__14342__14344,"\uFDD0'id");
 
-var el__7948 = jayq.core.$.call(null,cljs.core.str.call(null,"tr#",id__7947));
+var el__14346 = jayq.core.$.call(null,cljs.core.str.call(null,"tr#",id__14345));
 
-return pos.client.animation.slide_out_table_row.call(null,el__7948);
+return pos.client.animation.slide_out_table_row.call(null,el__14346);
 }));
-cljs.core._add_method.call(null,pos.client.view.render_basket,"\uFDD0'update-item",(function (p__7949){
-var map__7950__7951 = p__7949;
-var map__7950__7952 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7950__7951))?cljs.core.apply.call(null,cljs.core.hash_map,map__7950__7951):map__7950__7951);
-var item__7953 = cljs.core.get.call(null,map__7950__7952,"\uFDD0'item");
-var item__7954 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,item__7953))?cljs.core.apply.call(null,cljs.core.hash_map,item__7953):item__7953);
-var discount__7955 = cljs.core.get.call(null,item__7954,"\uFDD0'discount");
-var qty__7956 = cljs.core.get.call(null,item__7954,"\uFDD0'qty");
-var price__7957 = cljs.core.get.call(null,item__7954,"\uFDD0'price");
-var id__7958 = cljs.core.get.call(null,item__7954,"\uFDD0'id");
+cljs.core._add_method.call(null,pos.client.view.render_basket,"\uFDD0'update-item",(function (p__14347){
+var map__14348__14349 = p__14347;
+var map__14348__14350 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__14348__14349))?cljs.core.apply.call(null,cljs.core.hash_map,map__14348__14349):map__14348__14349);
+var item__14351 = cljs.core.get.call(null,map__14348__14350,"\uFDD0'item");
+var item__14352 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,item__14351))?cljs.core.apply.call(null,cljs.core.hash_map,item__14351):item__14351);
+var discount__14353 = cljs.core.get.call(null,item__14352,"\uFDD0'discount");
+var qty__14354 = cljs.core.get.call(null,item__14352,"\uFDD0'qty");
+var price__14355 = cljs.core.get.call(null,item__14352,"\uFDD0'price");
+var id__14356 = cljs.core.get.call(null,item__14352,"\uFDD0'id");
 
-var el__7959 = jayq.core.$.call(null,cljs.core.str.call(null,"tr#",id__7958));
+var el__14357 = jayq.core.$.call(null,cljs.core.str.call(null,"tr#",id__14356));
 
-pos.client.util.value.call(null,jayq.core.find.call(null,el__7959,"td.qty > div input"),qty__7956);
-pos.client.util.value.call(null,jayq.core.find.call(null,el__7959,"td.price > div input"),pos.client.util.num_as_field_value.call(null,price__7957));
-pos.client.util.value.call(null,jayq.core.find.call(null,el__7959,"td.discount > div input"),discount__7955.toFixed());
-return jayq.core.inner.call(null,jayq.core.find.call(null,el__7959,"td.total > div"),cljs.core.str.call(null,pos.client.util.item_total_price.call(null,item__7954)));
+pos.client.util.value.call(null,jayq.core.find.call(null,el__14357,"td.qty > div input"),qty__14354);
+pos.client.util.value.call(null,jayq.core.find.call(null,el__14357,"td.price > div input"),pos.client.util.num_as_field_value.call(null,price__14355));
+pos.client.util.value.call(null,jayq.core.find.call(null,el__14357,"td.discount > div input"),discount__14353.toFixed());
+return jayq.core.inner.call(null,jayq.core.find.call(null,el__14357,"td.total > div"),cljs.core.str.call(null,pos.client.util.item_total_price.call(null,item__14352)));
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'basket-change"]),(function (_,d){
 return pos.client.view.render_basket.call(null,d);
 }));
-pos.client.view.render_basket_total = (function render_basket_total(p__7960){
-var map__7961__7962 = p__7960;
-var map__7961__7963 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7961__7962))?cljs.core.apply.call(null,cljs.core.hash_map,map__7961__7962):map__7961__7962);
-var discount__7964 = cljs.core.get.call(null,map__7961__7963,"\uFDD0'discount");
-var vat__7965 = cljs.core.get.call(null,map__7961__7963,"\uFDD0'vat");
-var tot__7966 = cljs.core.get.call(null,map__7961__7963,"\uFDD0'tot");
+pos.client.view.render_basket_total = (function render_basket_total(p__14358){
+var map__14359__14360 = p__14358;
+var map__14359__14361 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__14359__14360))?cljs.core.apply.call(null,cljs.core.hash_map,map__14359__14360):map__14359__14360);
+var discount__14362 = cljs.core.get.call(null,map__14359__14361,"\uFDD0'discount");
+var vat__14363 = cljs.core.get.call(null,map__14359__14361,"\uFDD0'vat");
+var tot__14364 = cljs.core.get.call(null,map__14359__14361,"\uFDD0'tot");
 
-var $tot__7967 = jayq.core.$.call(null,"\uFDD0'#total-price");
-var $vat__7968 = jayq.core.$.call(null,"\uFDD0'#vat-number");
-var $discount__7969 = jayq.core.$.call(null,"\uFDD0'#discount-number");
+var $tot__14365 = jayq.core.$.call(null,"\uFDD0'#total-price");
+var $vat__14366 = jayq.core.$.call(null,"\uFDD0'#vat-number");
+var $discount__14367 = jayq.core.$.call(null,"\uFDD0'#discount-number");
 
-jayq.core.inner.call(null,$tot__7967,pos.client.util.num_as_field_value.call(null,tot__7966));
-jayq.core.inner.call(null,$vat__7968,pos.client.util.num_as_field_value.call(null,vat__7965));
-return jayq.core.inner.call(null,$discount__7969,pos.client.util.num_as_field_value.call(null,discount__7964));
+jayq.core.inner.call(null,$tot__14365,pos.client.util.num_as_field_value.call(null,tot__14364));
+jayq.core.inner.call(null,$vat__14366,pos.client.util.num_as_field_value.call(null,vat__14363));
+return jayq.core.inner.call(null,$discount__14367,pos.client.util.num_as_field_value.call(null,discount__14362));
 });
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'update-basket-total"]),(function (_,d){
 return pos.client.view.render_basket_total.call(null,d);
 }));
 pos.client.view.bind_tender_buttons = (function bind_tender_buttons(){
-var G__7970__7971 = cljs.core.seq.call(null,cljs.core.PersistentVector.fromArray(["proceed-tender","cancel-tender","confirm-tender","transaction-cash","transaction-credit","transaction-gift"]));
+var G__14368__14369 = cljs.core.seq.call(null,cljs.core.PersistentVector.fromArray(["proceed-tender","cancel-tender","confirm-tender","transaction-cash","transaction-credit","transaction-gift"]));
 
-if(cljs.core.truth_(G__7970__7971))
-{var name__7972 = cljs.core.first.call(null,G__7970__7971);
-var G__7970__7973 = G__7970__7971;
+if(cljs.core.truth_(G__14368__14369))
+{var name__14370 = cljs.core.first.call(null,G__14368__14369);
+var G__14368__14371 = G__14368__14369;
 
 while(true){
-jayq.core.bind.call(null,jayq.core.$.call(null,cljs.core.str.call(null,"#",name__7972,"-button")),"click",((function (name__7972,G__7970__7973){
+jayq.core.bind.call(null,jayq.core.$.call(null,cljs.core.str.call(null,"#",name__14370,"-button")),"click",((function (name__14370,G__14368__14371){
 return (function (){
-return lib.dispatch.fire.call(null,cljs.core.keyword.call(null,name__7972));
-});})(name__7972,G__7970__7973))
+return lib.dispatch.fire.call(null,cljs.core.keyword.call(null,name__14370));
+});})(name__14370,G__14368__14371))
 );
-var temp__3698__auto____7974 = cljs.core.next.call(null,G__7970__7973);
+var temp__3698__auto____14372 = cljs.core.next.call(null,G__14368__14371);
 
-if(cljs.core.truth_(temp__3698__auto____7974))
-{var G__7970__7975 = temp__3698__auto____7974;
+if(cljs.core.truth_(temp__3698__auto____14372))
+{var G__14368__14373 = temp__3698__auto____14372;
 
 {
-var G__7976 = cljs.core.first.call(null,G__7970__7975);
-var G__7977 = G__7970__7975;
-name__7972 = G__7976;
-G__7970__7973 = G__7977;
+var G__14374 = cljs.core.first.call(null,G__14368__14373);
+var G__14375 = G__14368__14373;
+name__14370 = G__14374;
+G__14368__14371 = G__14375;
 continue;
 }
 } else
@@ -394,33 +394,48 @@ break;
 {return null;
 }
 });
-pos.client.view.render_tender = (function (){var method_table__3162__auto____7978 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var prefer_table__3163__auto____7979 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var method_cache__3164__auto____7980 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var cached_hierarchy__3165__auto____7981 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var hierarchy__3166__auto____7982 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+pos.client.view.bind_tender_listeners = (function bind_tender_listeners(){
+var $cash__14376 = jayq.core.$.call(null,"\uFDD0'#tender-cash");
+var $credit__14377 = jayq.core.$.call(null,"\uFDD0'#tender-credit");
+var $gift__14378 = jayq.core.$.call(null,"\uFDD0'#tender-gift");
 
-return (new cljs.core.MultiFn("render-tender",cljs.core.empty_QMARK_,"\uFDD0'default",hierarchy__3166__auto____7982,method_table__3162__auto____7978,prefer_table__3163__auto____7979,method_cache__3164__auto____7980,cached_hierarchy__3165__auto____7981));
+jayq.core.bind.call(null,$cash__14376,"change",(function (){
+return lib.dispatch.fire.call(null,"\uFDD0'tender-update",cljs.core.ObjMap.fromObject(["\uFDD0'changed-attr","\uFDD0'new-val"],{"\uFDD0'changed-attr":"\uFDD0'cash","\uFDD0'new-val":pos.client.util.value.call(null,$cash__14376)}));
+}));
+jayq.core.bind.call(null,$credit__14377,"change",(function (){
+return lib.dispatch.fire.call(null,"\uFDD0'tender-update",cljs.core.ObjMap.fromObject(["\uFDD0'changed-attr","\uFDD0'new-val"],{"\uFDD0'changed-attr":"\uFDD0'credit","\uFDD0'new-val":pos.client.util.value.call(null,$credit__14377)}));
+}));
+return jayq.core.bind.call(null,$gift__14378,"change",(function (){
+return lib.dispatch.fire.call(null,"\uFDD0'tender-update",cljs.core.ObjMap.fromObject(["\uFDD0'changed-attr","\uFDD0'new-val"],{"\uFDD0'changed-attr":"\uFDD0'gift","\uFDD0'new-val":pos.client.util.value.call(null,$gift__14378)}));
+}));
+});
+pos.client.view.render_tender = (function (){var method_table__3162__auto____14379 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____14380 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____14381 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____14382 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____14383 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+
+return (new cljs.core.MultiFn("render-tender",cljs.core.empty_QMARK_,"\uFDD0'default",hierarchy__3166__auto____14383,method_table__3162__auto____14379,prefer_table__3163__auto____14380,method_cache__3164__auto____14381,cached_hierarchy__3165__auto____14382));
 })();
 cljs.core._add_method.call(null,pos.client.view.render_tender,true,(function (_){
-var G__7983__7984 = cljs.core.seq.call(null,cljs.core.PersistentVector.fromArray(["\uFDD0'#tender-total","\uFDD0'#tender-cash","\uFDD0'#tender-card","\uFDD0'#tender-gift","\uFDD0'#tender-change"]));
+var G__14385__14386 = cljs.core.seq.call(null,cljs.core.PersistentVector.fromArray(["\uFDD0'#tender-total","\uFDD0'#tender-cash","\uFDD0'#tender-card","\uFDD0'#tender-gift","\uFDD0'#tender-change"]));
 
-if(cljs.core.truth_(G__7983__7984))
-{var id__7985 = cljs.core.first.call(null,G__7983__7984);
-var G__7983__7986 = G__7983__7984;
+if(cljs.core.truth_(G__14385__14386))
+{var id__14387 = cljs.core.first.call(null,G__14385__14386);
+var G__14385__14388 = G__14385__14386;
 
 while(true){
-pos.client.util.value.call(null,jayq.core.$.call(null,id__7985),null);
-var temp__3698__auto____7987 = cljs.core.next.call(null,G__7983__7986);
+pos.client.util.value.call(null,jayq.core.$.call(null,id__14387),null);
+var temp__3698__auto____14389 = cljs.core.next.call(null,G__14385__14388);
 
-if(cljs.core.truth_(temp__3698__auto____7987))
-{var G__7983__7988 = temp__3698__auto____7987;
+if(cljs.core.truth_(temp__3698__auto____14389))
+{var G__14385__14390 = temp__3698__auto____14389;
 
 {
-var G__7989 = cljs.core.first.call(null,G__7983__7988);
-var G__7990 = G__7983__7988;
-id__7985 = G__7989;
-G__7983__7986 = G__7990;
+var G__14391 = cljs.core.first.call(null,G__14385__14390);
+var G__14392 = G__14385__14390;
+id__14387 = G__14391;
+G__14385__14388 = G__14392;
 continue;
 }
 } else
@@ -433,51 +448,63 @@ break;
 }
 }));
 cljs.core._add_method.call(null,pos.client.view.render_tender,false,(function (tender){
-var G__7991__7992 = cljs.core.seq.call(null,cljs.core.keys.call(null,tender));
+var total__14393 = pos.client.util.basket_total.call(null,cljs.core.deref.call(null,pos.client.model.basket));
+var paid__14395 = cljs.core.apply.call(null,cljs.core._PLUS_,cljs.core.map.call(null,(function (p1__14384_SHARP_){
+var or__3548__auto____14394 = p1__14384_SHARP_;
 
-if(cljs.core.truth_(G__7991__7992))
-{var key__7993 = cljs.core.first.call(null,G__7991__7992);
-var G__7991__7994 = G__7991__7992;
-
-while(true){
-pos.client.util.value.call(null,jayq.core.$.call(null,cljs.core.str.call(null,"#tender-",cljs.core.name.call(null,key__7993))),pos.client.util.num_as_field_value.call(null,key__7993.call(null,tender)));
-var temp__3698__auto____7995 = cljs.core.next.call(null,G__7991__7994);
-
-if(cljs.core.truth_(temp__3698__auto____7995))
-{var G__7991__7996 = temp__3698__auto____7995;
-
-{
-var G__7997 = cljs.core.first.call(null,G__7991__7996);
-var G__7998 = G__7991__7996;
-key__7993 = G__7997;
-G__7991__7994 = G__7998;
-continue;
-}
+if(cljs.core.truth_(or__3548__auto____14394))
+{return or__3548__auto____14394;
 } else
-{return null;
+{return 0;
 }
-break;
-}
-} else
-{return null;
-}
+}),cljs.core.vals.call(null,tender)));
+var change__14396 = (paid__14395 - total__14393);
+
+pos.client.util.value.call(null,jayq.core.$.call(null,"\uFDD0'#tender-total"),pos.client.util.num_as_field_value.call(null,total__14393));
+pos.client.util.value.call(null,jayq.core.$.call(null,"\uFDD0'#tender-cash"),pos.client.util.num_as_field_value.call(null,"\uFDD0'cash".call(null,tender)));
+pos.client.util.value.call(null,jayq.core.$.call(null,"\uFDD0'#tender-card"),pos.client.util.num_as_field_value.call(null,"\uFDD0'card".call(null,tender)));
+pos.client.util.value.call(null,jayq.core.$.call(null,"\uFDD0'#tender-gift"),pos.client.util.num_as_field_value.call(null,"\uFDD0'gift".call(null,tender)));
+return pos.client.util.value.call(null,jayq.core.$.call(null,"\uFDD0'#tender-change"),pos.client.util.num_as_field_value.call(null,change__14396));
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'tender-change"]),(function (_,d){
 return pos.client.view.render_tender.call(null,d);
 }));
-pos.client.view.focus_tender_field = (function focus_tender_field(key){
-return jayq.core.$.call(null,"\uFDD0'#tender-cash").focus();
-});
+pos.client.view.focus_tender_field = (function (){var method_table__3162__auto____14397 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____14398 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____14399 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____14400 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____14401 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+
+return (new cljs.core.MultiFn("focus-tender-field",cljs.core.identity,"\uFDD0'default",hierarchy__3166__auto____14401,method_table__3162__auto____14397,prefer_table__3163__auto____14398,method_cache__3164__auto____14399,cached_hierarchy__3165__auto____14400));
+})();
+cljs.core._add_method.call(null,pos.client.view.focus_tender_field,"\uFDD0'transaction-cash",(function (_){
+var $el__14402 = jayq.core.$.call(null,"\uFDD0'#tender-cash");
+
+$el__14402.focus();
+return $el__14402.select();
+}));
+cljs.core._add_method.call(null,pos.client.view.focus_tender_field,"\uFDD0'transaction-credit",(function (_){
+var $el__14403 = jayq.core.$.call(null,"\uFDD0'#tender-card");
+
+$el__14403.focus();
+return $el__14403.select();
+}));
+cljs.core._add_method.call(null,pos.client.view.focus_tender_field,"\uFDD0'transaction-gift",(function (_){
+var $el__14404 = jayq.core.$.call(null,"\uFDD0'#tender-gift");
+
+$el__14404.focus();
+return $el__14404.select();
+}));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'transaction-cash","\uFDD0'transaction-gift","\uFDD0'transaction-credit"]),(function (t,_){
 return pos.client.view.focus_tender_field.call(null,t);
 }));
-pos.client.view.render = (function (){var method_table__3162__auto____7999 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var prefer_table__3163__auto____8000 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var method_cache__3164__auto____8001 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var cached_hierarchy__3165__auto____8002 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var hierarchy__3166__auto____8003 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+pos.client.view.render = (function (){var method_table__3162__auto____14405 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____14406 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____14407 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____14408 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____14409 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
 
-return (new cljs.core.MultiFn("render","\uFDD0'state","\uFDD0'default",hierarchy__3166__auto____8003,method_table__3162__auto____7999,prefer_table__3163__auto____8000,method_cache__3164__auto____8001,cached_hierarchy__3165__auto____8002));
+return (new cljs.core.MultiFn("render","\uFDD0'state","\uFDD0'default",hierarchy__3166__auto____14409,method_table__3162__auto____14405,prefer_table__3163__auto____14406,method_cache__3164__auto____14407,cached_hierarchy__3165__auto____14408));
 })();
 cljs.core._add_method.call(null,pos.client.view.render,cljs.core.PersistentVector.fromArray(["\uFDD0'dashboard","\uFDD0'tender"]),(function (_){
 return pos.client.animation.state_transition.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'slide-in","\uFDD0'slide-out","\uFDD0'in","\uFDD0'out"],{"\uFDD0'slide-in":cljs.core.PersistentVector.fromArray([jayq.core.$.call(null,"\uFDD0'#tender")]),"\uFDD0'slide-out":cljs.core.PersistentVector.fromArray([jayq.core.$.call(null,"\uFDD0'#weather"),jayq.core.$.call(null,"\uFDD0'#item-row")]),"\uFDD0'in":cljs.core.PersistentVector.fromArray([jayq.core.$.call(null,"\uFDD0'#cancel-tender-button")]),"\uFDD0'out":cljs.core.PersistentVector.fromArray([jayq.core.$.call(null,"\uFDD0'#proceed-tender-button")])}));
@@ -492,6 +519,7 @@ pos.client.view.prepare_ui = (function prepare_ui(){
 pos.client.util.start_timer.call(null,pos.client.view.render_time);
 pos.client.view.draw_pie.call(null);
 pos.client.view.bind_tender_buttons.call(null);
+pos.client.view.bind_tender_listeners.call(null);
 pos.client.view.attach_typeahead_event_listeners.call(null);
 return pos.client.view.attach_typeahead_clear_event_listeners.call(null);
 });

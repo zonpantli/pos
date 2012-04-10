@@ -5,7 +5,9 @@
     (:require [lib.dispatch :as dispatch]
               [clojure.set :as set])
     (:use [jayq.util :only [log]]
-          [pos.client.util :only [from-coll-by-id default-variant-of-item]]))
+          [pos.client.util :only [from-coll-by-id
+                                  default-variant-of-item
+                                  field-value-as-num]]))
 
 (def ^{:doc "Atom containing the state of application. Dashboad,
 hotkeys, tender"}
@@ -113,3 +115,7 @@ controlling the customer typeahead"}
 (add-watch tender :tender-change-key
            (fn [k r o n]
              (dispatch/fire :tender-change n)))
+
+(dispatch/react-to #{:tender-update}
+                   (fn [_ {:keys [changed-attr new-val]}]
+                     (swap! tender assoc changed-attr (field-value-as-num new-val))))

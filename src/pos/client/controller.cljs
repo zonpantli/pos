@@ -71,11 +71,9 @@
          (not= (:state @model/state) :tender)
          (not (empty? @model/basket)))
     (do
-      (reset! model/tender {:total  (basket-total @model/basket)
-                            :cash   nil
+      (reset! model/tender {:cash   nil
                             :card   nil
-                            :gift   nil
-                            :change nil})
+                            :gift   nil})
       (swap! model/state assoc :state :tender))))
 
 (defmethod action :cancel-tender [_]

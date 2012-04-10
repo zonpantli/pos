@@ -11,7 +11,7 @@
         [jayq.util :only [log wait]]
         [fetch.util :only [clj->js]]
         [pos.client.util :only [from-coll-by-id value start-timer get-formatted-datetime
-                                item-total-price num-as-field-value]])
+                                item-total-price num-as-field-value basket-total field-value-as-num]])
   (:require-macros [jayq.macros :as jq])
   (:use-macros [crate.macros :only [defpartial]]))
 
@@ -239,6 +239,18 @@
                 "transaction-gift"]]
     (bind ($ (str "#" name "-button")) "click" #(dispatch/fire (keyword name)))))
 
+(defn bind-tender-listeners []
+  (let [$cash   ($ :#tender-cash)
+        $credit ($ :#tender-credit)
+        $gift   ($ :#tender-gift)]
+    (bind $cash   "change" #(dispatch/fire :tender-update {:changed-attr :cash
+                                                           :new-val      (value $cash)}))
+    (bind $credit "change" #(dispatch/fire :tender-update {:changed-attr :credit
+                                                           :new-val      (value
+                                                                         $credit)}))
+    (bind $gift   "change" #(dispatch/fire :tender-update {:changed-attr :gift
+                                                           :new-val      (value $gift)}))))
+
 (defmulti render-tender empty?)
 
 (defmethod render-tender true [_]
@@ -250,15 +262,37 @@
     (value ($ id) nil)))
 
 (defmethod render-tender false [tender]
-  (doseq [key (keys tender)]
-    (value ($ (str "#tender-" (name key))) (num-as-field-value (key tender)))))
+  (let [total  (basket-total @model/basket)
+        paid   (apply + (map #(or % 0) (vals tender)))
+        change (- paid total)]
+    (do
+      (value ($ :#tender-total)  (num-as-field-value total))
+      (value ($ :#tender-cash)   (num-as-field-value (:cash tender)))
+      (value ($ :#tender-card)   (num-as-field-value (:card tender)))
+      (value ($ :#tender-gift)   (num-as-field-value (:gift tender)))
+      (value ($ :#tender-change) (num-as-field-value change)))))
+
 
 (dispatch/react-to #{:tender-change}
                    (fn [_ d]
                      (render-tender d)))
 
-(defn focus-tender-field [key]
-  (.focus ($ :#tender-cash)))
+(defmulti focus-tender-field identity)
+
+(defmethod focus-tender-field :transaction-cash [_]
+  (let [$el ($ :#tender-cash)]
+    (do (.focus $el)
+        (.select $el))))
+
+(defmethod focus-tender-field :transaction-credit [_]
+  (let [$el ($ :#tender-card)]
+    (.focus $el)
+    (.select $el)))
+
+(defmethod focus-tender-field :transaction-gift [_]
+  (let [$el ($ :#tender-gift)]
+    (.focus $el)
+    (.select $el)))
 
 (dispatch/react-to #{:transaction-cash :transaction-credit :transaction-gift}
                    (fn [t _]
@@ -288,6 +322,7 @@
     (start-timer render-time)
     (draw-pie)
     (bind-tender-buttons)
+    (bind-tender-listeners)
     (attach-typeahead-event-listeners)
     (attach-typeahead-clear-event-listeners)))
 
