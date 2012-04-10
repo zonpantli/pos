@@ -9518,7 +9518,7 @@ pos.client.util.field_value_as_num = function(a) {
   return parseFloat.call(null, clojure.string.replace.call(null, a, ",", "."))
 };
 pos.client.util.num_as_field_value = function(a) {
-  return clojure.string.replace.call(null, a.toFixed(2), ".", ",")
+  return cljs.core.truth_(null === a) ? "" : clojure.string.replace.call(null, a.toFixed(2), ".", ",")
 };
 pos.client.util.value = function() {
   var a = null;
@@ -9878,8 +9878,8 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-remove"]), functi
   return cljs.core.swap_BANG_.call(null, pos.client.model.basket, cljs.core.disj, c)
 });
 pos.client.model.tender = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {}));
-cljs.core.add_watch.call(null, pos.client.model.tender, "\ufdd0'tender-change-key", function() {
-  return lib.dispatch.fire.call(null, "\ufdd0'tender-change")
+cljs.core.add_watch.call(null, pos.client.model.tender, "\ufdd0'tender-change-key", function(a, b, c, d) {
+  return lib.dispatch.fire.call(null, "\ufdd0'tender-change", d)
 });
 var fetch = {util:{}};
 fetch.util.clj__GT_js = function clj__GT_js(b) {
@@ -12065,13 +12065,13 @@ pos.client.view.attach_typeahead_clear_event_listeners = function() {
     return lib.dispatch.fire.call(null, "\ufdd0'item-clear")
   })
 };
-var group__6106__auto____14758 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6106__auto____16933 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.dropdown_row = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'li", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'value":b}), a])]));
-  a.setAttribute("crateGroup", group__6106__auto____14758);
+  a.setAttribute("crateGroup", group__6106__auto____16933);
   return a
 };
-pos.client.view.dropdown_row.prototype._crateGroup = group__6106__auto____14758;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6106__auto____16933;
 pos.client.view.populate_dropdowns = function(a) {
   var b = cljs.core.seq.call(null, "\ufdd0'locations".call(null, a));
   if(cljs.core.truth_(b)) {
@@ -12159,17 +12159,17 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'item-clear", "\ufdd0'ite
 pos.client.view.basket_add_item = function(a) {
   return lib.dispatch.fire.call(null, "\ufdd0'basket-add", a)
 };
-var group__6106__auto____14812 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6106__auto____16987 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.basket_item = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'discount"), c = cljs.core.get.call(null, b, "\ufdd0'qty"), d = cljs.core.get.call(null, b, "\ufdd0'price"), e = cljs.core.get.call(null, b, "\ufdd0'size"), f = cljs.core.get.call(null, b, "\ufdd0'color"), g = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'tr", 
   cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":b}), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold", cljs.core.PersistentVector.fromArray(["\ufdd0'div", g])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", b])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", e])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", 
   f])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.qty", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":c})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.price", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":d})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.discount", 
   cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})]), "%"])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold.total", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.str.call(null, d)])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.close-container", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'a.close", 
   "x"])])])]));
-  a.setAttribute("crateGroup", group__6106__auto____14812);
+  a.setAttribute("crateGroup", group__6106__auto____16987);
   return a
 };
-pos.client.view.basket_item.prototype._crateGroup = group__6106__auto____14812;
+pos.client.view.basket_item.prototype._crateGroup = group__6106__auto____16987;
 pos.client.view.render_basket = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
   return new cljs.core.MultiFn("render-basket", "\ufdd0'type", "\ufdd0'default", e, a, b, c, d)
@@ -12219,16 +12219,50 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'update-basket-total"]), 
   return pos.client.view.render_basket_total.call(null, b)
 });
 pos.client.view.bind_tender_buttons = function() {
-  var a = jayq.core.$.call(null, "\ufdd0'#proceed-tender-button"), b = jayq.core.$.call(null, "\ufdd0'#cancel-tender-button");
-  jayq.core.bind.call(null, a, "click", function() {
+  jayq.core.bind.call(null, jayq.core.$.call(null, "\ufdd0'#proceed-tender-button"), "click", function() {
     return lib.dispatch.fire.call(null, "\ufdd0'proceed-tender")
   });
-  return jayq.core.bind.call(null, b, "click", function() {
+  jayq.core.bind.call(null, jayq.core.$.call(null, "\ufdd0'#cancel-tender-button"), "click", function() {
     return lib.dispatch.fire.call(null, "\ufdd0'cancel-tender")
+  });
+  return jayq.core.bind.call(null, jayq.core.$.call(null, "\ufdd0'#confirm-tender-button"), "click", function() {
+    return lib.dispatch.fire.call(null, "\ufdd0'confirm-tender")
   })
 };
-lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'render-tender"]), function() {
-  return jayq.util.log.call(null, "TODO: update tender views")
+pos.client.view.render_tender = function() {
+  var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
+  return new cljs.core.MultiFn("render-tender", cljs.core.empty_QMARK_, "\ufdd0'default", e, a, b, c, d)
+}();
+cljs.core._add_method.call(null, pos.client.view.render_tender, !0, function() {
+  var a = cljs.core.seq.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'#tender-total", "\ufdd0'#tender-cash", "\ufdd0'#tender-card", "\ufdd0'#tender-gift", "\ufdd0'#tender-change"]));
+  if(cljs.core.truth_(a)) {
+    for(var b = cljs.core.first.call(null, a);;) {
+      if(pos.client.util.value.call(null, jayq.core.$.call(null, b), null), b = cljs.core.next.call(null, a), cljs.core.truth_(b)) {
+        a = b, b = cljs.core.first.call(null, a)
+      }else {
+        return null
+      }
+    }
+  }else {
+    return null
+  }
+});
+cljs.core._add_method.call(null, pos.client.view.render_tender, !1, function(a) {
+  var b = cljs.core.seq.call(null, cljs.core.keys.call(null, a));
+  if(cljs.core.truth_(b)) {
+    for(var c = cljs.core.first.call(null, b);;) {
+      if(pos.client.util.value.call(null, jayq.core.$.call(null, cljs.core.str.call(null, "#tender-", cljs.core.name.call(null, c))), pos.client.util.num_as_field_value.call(null, c.call(null, a))), c = cljs.core.next.call(null, b), cljs.core.truth_(c)) {
+        b = c, c = cljs.core.first.call(null, b)
+      }else {
+        return null
+      }
+    }
+  }else {
+    return null
+  }
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'tender-change"]), function(a, b) {
+  return pos.client.view.render_tender.call(null, b)
 });
 pos.client.view.render = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);

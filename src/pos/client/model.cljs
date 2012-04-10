@@ -112,4 +112,4 @@ controlling the customer typeahead"}
 
 (add-watch tender :tender-change-key
            (fn [k r o n]
-             (dispatch/fire :tender-change)))
+             (dispatch/fire :tender-change n)))

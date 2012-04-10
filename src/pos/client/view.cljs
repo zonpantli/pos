@@ -229,16 +229,30 @@
                    (fn [_ d]
                      (render-basket-total d)))
 
+;;== tender ==
 (defn bind-tender-buttons []
-  (let [$proceed ($ :#proceed-tender-button)
-        $cancel  ($ :#cancel-tender-button)]
-    (do
-      (bind $proceed "click" #(dispatch/fire :proceed-tender))
-      (bind $cancel  "click" #(dispatch/fire :cancel-tender)))))
+  (do
+    (bind ($ :#proceed-tender-button) "click" #(dispatch/fire :proceed-tender))
+    (bind ($ :#cancel-tender-button)  "click" #(dispatch/fire :cancel-tender))
+    (bind ($ :#confirm-tender-button) "click" #(dispatch/fire :confirm-tender))))
 
-(dispatch/react-to #{:render-tender}
+(defmulti render-tender empty?)
+
+(defmethod render-tender true [_]
+  (doseq [id [:#tender-total
+              :#tender-cash
+              :#tender-card
+              :#tender-gift
+              :#tender-change]]
+    (value ($ id) nil)))
+
+(defmethod render-tender false [tender]
+  (doseq [key (keys tender)]
+    (value ($ (str "#tender-" (name key))) (num-as-field-value (key tender)))))
+
+(dispatch/react-to #{:tender-change}
                    (fn [_ d]
-                     (log "TODO: update tender views")))
+                     (render-tender d)))
 
 ;;== render states == 
 (defmulti render :state)
