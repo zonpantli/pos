@@ -231,10 +231,13 @@
 
 ;;== tender ==
 (defn bind-tender-buttons []
-  (do
-    (bind ($ :#proceed-tender-button) "click" #(dispatch/fire :proceed-tender))
-    (bind ($ :#cancel-tender-button)  "click" #(dispatch/fire :cancel-tender))
-    (bind ($ :#confirm-tender-button) "click" #(dispatch/fire :confirm-tender))))
+  (doseq [name ["proceed-tender"
+                "cancel-tender"
+                "confirm-tender"
+                "transaction-cash"
+                "transaction-credit"
+                "transaction-gift"]]
+    (bind ($ (str "#" name "-button")) "click" #(dispatch/fire (keyword name)))))
 
 (defmulti render-tender empty?)
 
@@ -254,6 +257,12 @@
                    (fn [_ d]
                      (render-tender d)))
 
+(defn focus-tender-field [key]
+  (.focus ($ :#tender-cash)))
+
+(dispatch/react-to #{:transaction-cash :transaction-credit :transaction-gift}
+                   (fn [t _]
+                     (focus-tender-field t)))
 ;;== render states == 
 (defmulti render :state)
 

@@ -12065,13 +12065,13 @@ pos.client.view.attach_typeahead_clear_event_listeners = function() {
     return lib.dispatch.fire.call(null, "\ufdd0'item-clear")
   })
 };
-var group__6106__auto____16933 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6197__auto____7859 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.dropdown_row = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'li", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'value":b}), a])]));
-  a.setAttribute("crateGroup", group__6106__auto____16933);
+  a.setAttribute("crateGroup", group__6197__auto____7859);
   return a
 };
-pos.client.view.dropdown_row.prototype._crateGroup = group__6106__auto____16933;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6197__auto____7859;
 pos.client.view.populate_dropdowns = function(a) {
   var b = cljs.core.seq.call(null, "\ufdd0'locations".call(null, a));
   if(cljs.core.truth_(b)) {
@@ -12159,17 +12159,17 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'item-clear", "\ufdd0'ite
 pos.client.view.basket_add_item = function(a) {
   return lib.dispatch.fire.call(null, "\ufdd0'basket-add", a)
 };
-var group__6106__auto____16987 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6197__auto____7913 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.basket_item = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'discount"), c = cljs.core.get.call(null, b, "\ufdd0'qty"), d = cljs.core.get.call(null, b, "\ufdd0'price"), e = cljs.core.get.call(null, b, "\ufdd0'size"), f = cljs.core.get.call(null, b, "\ufdd0'color"), g = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'tr", 
   cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":b}), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold", cljs.core.PersistentVector.fromArray(["\ufdd0'div", g])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", b])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", e])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", 
   f])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.qty", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":c})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.price", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":d})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.discount", 
   cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})]), "%"])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold.total", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.str.call(null, d)])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.close-container", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'a.close", 
   "x"])])])]));
-  a.setAttribute("crateGroup", group__6106__auto____16987);
+  a.setAttribute("crateGroup", group__6197__auto____7913);
   return a
 };
-pos.client.view.basket_item.prototype._crateGroup = group__6106__auto____16987;
+pos.client.view.basket_item.prototype._crateGroup = group__6197__auto____7913;
 pos.client.view.render_basket = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
   return new cljs.core.MultiFn("render-basket", "\ufdd0'type", "\ufdd0'default", e, a, b, c, d)
@@ -12219,15 +12219,22 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'update-basket-total"]), 
   return pos.client.view.render_basket_total.call(null, b)
 });
 pos.client.view.bind_tender_buttons = function() {
-  jayq.core.bind.call(null, jayq.core.$.call(null, "\ufdd0'#proceed-tender-button"), "click", function() {
-    return lib.dispatch.fire.call(null, "\ufdd0'proceed-tender")
-  });
-  jayq.core.bind.call(null, jayq.core.$.call(null, "\ufdd0'#cancel-tender-button"), "click", function() {
-    return lib.dispatch.fire.call(null, "\ufdd0'cancel-tender")
-  });
-  return jayq.core.bind.call(null, jayq.core.$.call(null, "\ufdd0'#confirm-tender-button"), "click", function() {
-    return lib.dispatch.fire.call(null, "\ufdd0'confirm-tender")
-  })
+  var a = cljs.core.seq.call(null, cljs.core.PersistentVector.fromArray("proceed-tender,cancel-tender,confirm-tender,transaction-cash,transaction-credit,transaction-gift".split(",")));
+  if(cljs.core.truth_(a)) {
+    for(var b = cljs.core.first.call(null, a);;) {
+      if(jayq.core.bind.call(null, jayq.core.$.call(null, cljs.core.str.call(null, "#", b, "-button")), "click", function(a) {
+        return function() {
+          return lib.dispatch.fire.call(null, cljs.core.keyword.call(null, a))
+        }
+      }(b, a)), b = cljs.core.next.call(null, a), cljs.core.truth_(b)) {
+        a = b, b = cljs.core.first.call(null, a)
+      }else {
+        return null
+      }
+    }
+  }else {
+    return null
+  }
 };
 pos.client.view.render_tender = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
@@ -12263,6 +12270,12 @@ cljs.core._add_method.call(null, pos.client.view.render_tender, !1, function(a) 
 });
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'tender-change"]), function(a, b) {
   return pos.client.view.render_tender.call(null, b)
+});
+pos.client.view.focus_tender_field = function() {
+  return jayq.core.$.call(null, "\ufdd0'#tender-cash").focus()
+};
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'transaction-cash", "\ufdd0'transaction-gift", "\ufdd0'transaction-credit"]), function(a) {
+  return pos.client.view.focus_tender_field.call(null, a)
 });
 pos.client.view.render = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
@@ -14647,7 +14660,7 @@ crate.tags.add_optional_attrs = function(a) {
     return c
   }()
 };
-var func__6119__auto____13589 = function() {
+var func__6210__auto____10254 = function() {
   var a = function(a, b) {
     var e = cljs.core.nth.call(null, a, 0, null), f = cljs.core.nth.call(null, a, 1, null);
     return cljs.core.PersistentVector.fromArray(["\ufdd0'form", cljs.core.ObjMap.fromObject(["\ufdd0'method", "\ufdd0'action"], {"\ufdd0'method":cljs.core.name.call(null, e), "\ufdd0'action":f}), b])
@@ -14663,28 +14676,28 @@ var func__6119__auto____13589 = function() {
   };
   return b
 }();
-crate.tags.form_to = crate.tags.add_optional_attrs.call(null, func__6119__auto____13589);
-var func__6119__auto____13595 = function(a, b, c) {
+crate.tags.form_to = crate.tags.add_optional_attrs.call(null, func__6210__auto____10254);
+var func__6210__auto____10260 = function(a, b, c) {
   return cljs.core.PersistentVector.fromArray(["\ufdd0'input", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'name", "\ufdd0'id", "\ufdd0'value"], {"\ufdd0'type":a, "\ufdd0'name":cljs.core.truth_(b) ? b : null, "\ufdd0'id":cljs.core.truth_(b) ? b : null, "\ufdd0'value":cljs.core.truth_(c) ? c : ""})])
 };
-crate.tags.input_field = crate.tags.add_optional_attrs.call(null, func__6119__auto____13595);
-var func__6119__auto____13596 = function(a, b) {
+crate.tags.input_field = crate.tags.add_optional_attrs.call(null, func__6210__auto____10260);
+var func__6210__auto____10261 = function(a, b) {
   return crate.tags.input_field.call(null, "text", a, b)
 };
-crate.tags.text_field = crate.tags.add_optional_attrs.call(null, func__6119__auto____13596);
-var func__6119__auto____13597 = function(a, b) {
+crate.tags.text_field = crate.tags.add_optional_attrs.call(null, func__6210__auto____10261);
+var func__6210__auto____10262 = function(a, b) {
   return crate.tags.input_field.call(null, "password", a, b)
 };
-crate.tags.password_field = crate.tags.add_optional_attrs.call(null, func__6119__auto____13597);
-var func__6119__auto____13598 = function(a, b) {
+crate.tags.password_field = crate.tags.add_optional_attrs.call(null, func__6210__auto____10262);
+var func__6210__auto____10263 = function(a, b) {
   return cljs.core.PersistentVector.fromArray(["\ufdd0'label", cljs.core.ObjMap.fromObject(["\ufdd0'for"], {"\ufdd0'for":a}), b])
 };
-crate.tags.label = crate.tags.add_optional_attrs.call(null, func__6119__auto____13598);
-var func__6119__auto____13599 = function(a) {
+crate.tags.label = crate.tags.add_optional_attrs.call(null, func__6210__auto____10263);
+var func__6210__auto____10264 = function(a) {
   return crate.tags.input_field.call(null, "submit", null, a)
 };
-crate.tags.submit_button = crate.tags.add_optional_attrs.call(null, func__6119__auto____13599);
-var func__6119__auto____13600 = function() {
+crate.tags.submit_button = crate.tags.add_optional_attrs.call(null, func__6210__auto____10264);
+var func__6210__auto____10265 = function() {
   var a = function(a, b) {
     return cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href"], {"\ufdd0'href":a}), b])
   }, b = function(b, d) {
@@ -14699,7 +14712,7 @@ var func__6119__auto____13600 = function() {
   };
   return b
 }();
-crate.tags.link_to = crate.tags.add_optional_attrs.call(null, func__6119__auto____13600);
+crate.tags.link_to = crate.tags.add_optional_attrs.call(null, func__6210__auto____10265);
 cljs.reader = {};
 cljs.reader.PushbackReader = {};
 cljs.reader.read_char = function(a) {
@@ -16482,14 +16495,14 @@ noir.cljs.client.watcher.get_mode = function(a) {
   })
 };
 noir.cljs.client.watcher.buttons = cljs.core.PersistentVector.fromArray([cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'advanced", "\ufdd0'label":"A"}), cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'simple", "\ufdd0'label":"S"}), cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'interactive", "\ufdd0'label":"I"})]);
-var group__6106__auto____13559 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6197__auto____10224 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 noir.cljs.client.watcher.selector_button = function() {
   var a = function(a, b) {
     var e = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, f = cljs.core.get.call(null, e, "\ufdd0'label"), g = cljs.core.get.call(null, e, "\ufdd0'mode"), h = cljs.core.nth.call(null, b, 0, null), e = crate.core.html.call(null, function() {
       var a = cljs.core.str.call(null, "noir-cljs-button ", cljs.core.truth_(cljs.core._EQ_.call(null, g, h)) ? "active" : null);
       return cljs.core.PersistentVector.fromArray(["\ufdd0'li", crate.tags.link_to.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'class", "\ufdd0'data-mode"], {"\ufdd0'class":a, "\ufdd0'data-mode":g}), "#", f)])
     }());
-    e.setAttribute("crateGroup", group__6106__auto____13559);
+    e.setAttribute("crateGroup", group__6197__auto____10224);
     return e
   }, b = function(b, d) {
     var e = null;
@@ -16503,17 +16516,17 @@ noir.cljs.client.watcher.selector_button = function() {
   };
   return b
 }();
-noir.cljs.client.watcher.selector_button.prototype._crateGroup = group__6106__auto____13559;
-var group__6106__auto____13573 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+noir.cljs.client.watcher.selector_button.prototype._crateGroup = group__6197__auto____10224;
+var group__6197__auto____10238 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 noir.cljs.client.watcher.selector = function(a) {
   var b = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'style", cljs.core.ObjMap.fromObject(["\ufdd0'type"], {"\ufdd0'type":"text/css"}), "#noir-cljs-selector {position:fixed; bottom:15px; right:30px; list-style:none; }\n     #noir-cljs-selector li {}\n     #noir-cljs-selector a { float:left; display:inline; text-decoration:none; line-height:1em; height:19px; padding:5px 10px; background:#77c; width:10px; border:1px solid #55c; text-align:center; border-radius:5px; margin-bottom:8px; color:#449; }\n     #noir-cljs-selector a:hover {background:#99f;}\n     #noir-cljs-selector .active {background:#7cc; border-color:#599;} "]), 
   cljs.core.PersistentVector.fromArray(["\ufdd0'ul#noir-cljs-selector", cljs.core.map.call(null, function(b) {
     return noir.cljs.client.watcher.selector_button.call(null, b, a)
   }, noir.cljs.client.watcher.buttons)])]));
-  b.setAttribute("crateGroup", group__6106__auto____13573);
+  b.setAttribute("crateGroup", group__6197__auto____10238);
   return b
 };
-noir.cljs.client.watcher.selector.prototype._crateGroup = group__6106__auto____13573;
+noir.cljs.client.watcher.selector.prototype._crateGroup = group__6197__auto____10238;
 jayq.core.delegate.call(null, noir.cljs.client.watcher.$body, "\ufdd0'.noir-cljs-button", "\ufdd0'click", function(a) {
   a.preventDefault();
   jayq.core.remove_class.call(null, jayq.core.find.call(null, jayq.core.$.call(null, noir.cljs.client.watcher.selector), "\ufdd0'.noir-cljs-button"), "\ufdd0'active");
