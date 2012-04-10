@@ -298,6 +298,12 @@
                    (fn [t _]
                      (focus-tender-field t)))
 
+(dispatch/react-to #{:confirm-tender}
+                   (fn [& _]
+                     (do
+                       (dispatch/fire :cancel-tender)
+                       (.modal ($ :#tender-success)))))
+
 ;;== keypad ==
 (comment
   (defn key-press [char]
