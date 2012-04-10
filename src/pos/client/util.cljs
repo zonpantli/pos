@@ -27,6 +27,10 @@
   [v]
   (js/parseFloat (clojure.string/replace v "," ".")))
 
+(defn num-as-field-value
+  "Format number to a price shown in an input field"
+  [v]
+  (clojure.string/replace (.toFixed v 2) "." ","))
 ;;== dom manipulation =====================================
 (defn value
   "Get/set value of input element"

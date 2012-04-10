@@ -7,6 +7,17 @@
     (:use [jayq.util :only [log]]
           [pos.client.util :only [from-coll-by-id default-variant-of-item]]))
 
+(def ^{:doc "Atom containing the state of application. Dashboad,
+hotkeys, tender"}
+  state (atom {:state :dashboard}))
+
+(add-watch state :state-change-key
+           (fn [k r o n]
+             (dispatch/fire :state-change [(:state o) (:state n)])))
+
+(dispatch/react-to #{:state-change}
+                   (fn [_ d]
+                     (log d)))
 
 (def ^{:doc "Atom containing data fetched from back-end. Customers,
 items, eployees and locations"}

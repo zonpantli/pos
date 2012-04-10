@@ -11,7 +11,7 @@
         [jayq.util :only [log wait]]
         [fetch.util :only [clj->js]]
         [pos.client.util :only [from-coll-by-id value start-timer get-formatted-datetime
-                                item-total-price]])
+                                item-total-price num-as-field-value]])
   (:require-macros [jayq.macros :as jq])
   (:use-macros [crate.macros :only [defpartial]]))
 
@@ -208,7 +208,7 @@
   (let [el ($ (str "tr#" id))]
     (do
       (value (find el "td.qty > div input") qty)
-      (value (find el "td.price > div input") (clojure.string/replace (.toFixed price 2) "." ","))
+      (value (find el "td.price > div input") (num-as-field-value price))
       (value (find el "td.discount > div input") (.toFixed discount))
       (inner (find el "td.total > div") (str (item-total-price item))))))
 
@@ -221,19 +221,24 @@
         $vat      ($ :#vat-number)
         $discount ($ :#discount-number)]
     (do
-      (inner $tot      (clojure.string/replace (.toFixed tot 2) "." ","))
-      (inner $vat      (clojure.string/replace (.toFixed vat 2) "." ","))
-      (inner $discount (clojure.string/replace (.toFixed discount 2) "." ",")))))
+      (inner $tot      (num-as-field-value tot))
+      (inner $vat      (num-as-field-value vat))
+      (inner $discount (num-as-field-value discount)))))
 
 (dispatch/react-to #{:update-basket-total}
                    (fn [_ d]
                      (render-basket-total d)))
+
+(defn bind-proceed-button []
+  (let [$el ($ :#proceed-button)]
+    (bind $el "click" #(dispatch/fire :proceed))))
 
 ;;== init ui ================================================
 (defn prepare-ui []
   (do
     (start-timer render-time)
     (draw-pie)
+    (bind-proceed-button)
     (attach-typeahead-event-listeners)
     (attach-typeahead-clear-event-listeners)))
 

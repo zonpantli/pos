@@ -61,6 +61,21 @@
                                                             :vat      vat
                                                             :discount discount}))))
 
+(defmulti action
+  "Accepts mat of information about action to be performed"
+  :type)
+
+(defmethod action :proceed [_]
+  (when (and
+         (not= (:state @model/state) :tender)
+         (not (empty? @model/basket)))
+    (swap! model/state assoc :state :tender)))
+
+(dispatch/react-to #{:proceed}
+                   (fn [t d]
+                     (action {:type t
+                              :data d})))
+
 (defn fetch-client-data
   "Fetch inventory and user data"
   []
@@ -82,5 +97,5 @@
   []
   (do
     (fetch-client-data)
-    (bind-pusher-listener)
+    ;; (bind-pusher-listener)
     (view/prepare-ui)))

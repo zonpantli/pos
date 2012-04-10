@@ -9512,6 +9512,9 @@ pos.client.util.item_total_price = function(a) {
 pos.client.util.field_value_as_num = function(a) {
   return parseFloat.call(null, clojure.string.replace.call(null, a, ",", "."))
 };
+pos.client.util.num_as_field_value = function(a) {
+  return clojure.string.replace.call(null, a.toFixed(2), ".", ",")
+};
 pos.client.util.value = function() {
   var a = null;
   return function(a, c) {
@@ -9795,6 +9798,13 @@ clojure.set.superset_QMARK_ = function(a, b) {
   }, b) : c
 };
 pos.client.model = {};
+pos.client.model.state = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'state"], {"\ufdd0'state":"\ufdd0'dashboard"}));
+cljs.core.add_watch.call(null, pos.client.model.state, "\ufdd0'state-change-key", function(a, b, c, d) {
+  return lib.dispatch.fire.call(null, "\ufdd0'state-change", cljs.core.PersistentVector.fromArray(["\ufdd0'state".call(null, c), "\ufdd0'state".call(null, d)]))
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'state-change"]), function(a, b) {
+  return jayq.util.log.call(null, b)
+});
 pos.client.model.data = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {}));
 pos.client.model.location = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":null}));
 cljs.core.add_watch.call(null, pos.client.model.location, "\ufdd0'location-change-key", function(a, b, c, d) {
@@ -12005,13 +12015,13 @@ pos.client.view.attach_typeahead_clear_event_listeners = function() {
     return lib.dispatch.fire.call(null, "\ufdd0'item-clear")
   })
 };
-var group__6008__auto____9553 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6106__auto____8246 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.dropdown_row = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'li", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'value":b}), a])]));
-  a.setAttribute("crateGroup", group__6008__auto____9553);
+  a.setAttribute("crateGroup", group__6106__auto____8246);
   return a
 };
-pos.client.view.dropdown_row.prototype._crateGroup = group__6008__auto____9553;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6106__auto____8246;
 pos.client.view.populate_dropdowns = function(a) {
   var b = cljs.core.seq.call(null, "\ufdd0'locations".call(null, a));
   if(cljs.core.truth_(b)) {
@@ -12099,17 +12109,17 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'item-clear", "\ufdd0'ite
 pos.client.view.basket_add_item = function(a) {
   return lib.dispatch.fire.call(null, "\ufdd0'basket-add", a)
 };
-var group__6008__auto____9607 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6106__auto____8300 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.basket_item = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'discount"), c = cljs.core.get.call(null, b, "\ufdd0'qty"), d = cljs.core.get.call(null, b, "\ufdd0'price"), e = cljs.core.get.call(null, b, "\ufdd0'size"), f = cljs.core.get.call(null, b, "\ufdd0'color"), g = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'tr", 
   cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":b}), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold", cljs.core.PersistentVector.fromArray(["\ufdd0'div", g])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", b])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", e])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", 
   f])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.qty", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":c})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.price", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":d})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.discount", 
   cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})]), "%"])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold.total", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.str.call(null, d)])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.close-container", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'a.close", 
   "x"])])])]));
-  a.setAttribute("crateGroup", group__6008__auto____9607);
+  a.setAttribute("crateGroup", group__6106__auto____8300);
   return a
 };
-pos.client.view.basket_item.prototype._crateGroup = group__6008__auto____9607;
+pos.client.view.basket_item.prototype._crateGroup = group__6106__auto____8300;
 pos.client.view.render_basket = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
   return new cljs.core.MultiFn("render-basket", "\ufdd0'type", "\ufdd0'default", e, a, b, c, d)
@@ -12142,7 +12152,7 @@ cljs.core._add_method.call(null, pos.client.view.render_basket, "\ufdd0'update-i
   var a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, a, "\ufdd0'item"), a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, b = cljs.core.get.call(null, a, "\ufdd0'discount"), c = cljs.core.get.call(null, a, "\ufdd0'qty"), d = cljs.core.get.call(null, a, "\ufdd0'price"), e = cljs.core.get.call(null, a, "\ufdd0'id"), e = jayq.core.$.call(null, 
   cljs.core.str.call(null, "tr#", e));
   pos.client.util.value.call(null, jayq.core.find.call(null, e, "td.qty > div input"), c);
-  pos.client.util.value.call(null, jayq.core.find.call(null, e, "td.price > div input"), clojure.string.replace.call(null, d.toFixed(2), ".", ","));
+  pos.client.util.value.call(null, jayq.core.find.call(null, e, "td.price > div input"), pos.client.util.num_as_field_value.call(null, d));
   pos.client.util.value.call(null, jayq.core.find.call(null, e, "td.discount > div input"), b.toFixed());
   return jayq.core.inner.call(null, jayq.core.find.call(null, e, "td.total > div"), cljs.core.str.call(null, pos.client.util.item_total_price.call(null, a)))
 });
@@ -12151,16 +12161,23 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-change"]), functi
 });
 pos.client.view.render_basket_total = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'discount"), c = cljs.core.get.call(null, b, "\ufdd0'vat"), b = cljs.core.get.call(null, b, "\ufdd0'tot"), d = jayq.core.$.call(null, "\ufdd0'#total-price"), e = jayq.core.$.call(null, "\ufdd0'#vat-number"), f = jayq.core.$.call(null, "\ufdd0'#discount-number");
-  jayq.core.inner.call(null, d, clojure.string.replace.call(null, b.toFixed(2), ".", ","));
-  jayq.core.inner.call(null, e, clojure.string.replace.call(null, c.toFixed(2), ".", ","));
-  return jayq.core.inner.call(null, f, clojure.string.replace.call(null, a.toFixed(2), ".", ","))
+  jayq.core.inner.call(null, d, pos.client.util.num_as_field_value.call(null, b));
+  jayq.core.inner.call(null, e, pos.client.util.num_as_field_value.call(null, c));
+  return jayq.core.inner.call(null, f, pos.client.util.num_as_field_value.call(null, a))
 };
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'update-basket-total"]), function(a, b) {
   return pos.client.view.render_basket_total.call(null, b)
 });
+pos.client.view.bind_proceed_button = function() {
+  var a = jayq.core.$.call(null, "\ufdd0'#proceed-button");
+  return jayq.core.bind.call(null, a, "click", function() {
+    return lib.dispatch.fire.call(null, "\ufdd0'proceed")
+  })
+};
 pos.client.view.prepare_ui = function() {
   pos.client.util.start_timer.call(null, pos.client.view.render_time);
   pos.client.view.draw_pie.call(null);
+  pos.client.view.bind_proceed_button.call(null);
   pos.client.view.attach_typeahead_event_listeners.call(null);
   return pos.client.view.attach_typeahead_clear_event_listeners.call(null)
 };
@@ -15012,6 +15029,19 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-change"]), functi
   };
   return b
 }());
+pos.client.controller.action = function() {
+  var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
+  return new cljs.core.MultiFn("action", "\ufdd0'type", "\ufdd0'default", e, a, b, c, d)
+}();
+cljs.core._add_method.call(null, pos.client.controller.action, "\ufdd0'proceed", function() {
+  return cljs.core.truth_(function() {
+    var a = cljs.core.not_EQ_.call(null, "\ufdd0'state".call(null, cljs.core.deref.call(null, pos.client.model.state)), "\ufdd0'tender");
+    return cljs.core.truth_(a) ? cljs.core.not.call(null, cljs.core.empty_QMARK_.call(null, cljs.core.deref.call(null, pos.client.model.basket))) : a
+  }()) ? cljs.core.swap_BANG_.call(null, pos.client.model.state, cljs.core.assoc, "\ufdd0'state", "\ufdd0'tender") : null
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'proceed"]), function(a, b) {
+  return pos.client.controller.action.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'data"], {"\ufdd0'type":a, "\ufdd0'data":b}))
+});
 pos.client.controller.fetch_client_data = function() {
   return fetch.remotes.remote_callback.call(null, "get-db", cljs.core.PersistentVector.fromArray([]), function(a) {
     cljs.core.swap_BANG_.call(null, pos.client.model.data, cljs.core.merge, a);
@@ -15025,7 +15055,6 @@ pos.client.controller.bind_pusher_listener = function() {
 };
 pos.client.controller.init = function() {
   pos.client.controller.fetch_client_data.call(null);
-  pos.client.controller.bind_pusher_listener.call(null);
   return pos.client.view.prepare_ui.call(null)
 };
 goog.net.xpc.Transport = function(a) {

@@ -5,6 +5,17 @@ goog.require('jayq.util');
 goog.require('lib.dispatch');
 goog.require('clojure.set');
 /**
+* Atom containing the state of application. Dashboad,
+* hotkeys, tender
+*/
+pos.client.model.state = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'state"],{"\uFDD0'state":"\uFDD0'dashboard"}));
+cljs.core.add_watch.call(null,pos.client.model.state,"\uFDD0'state-change-key",(function (k,r,o,n){
+return lib.dispatch.fire.call(null,"\uFDD0'state-change",cljs.core.PersistentVector.fromArray(["\uFDD0'state".call(null,o),"\uFDD0'state".call(null,n)]));
+}));
+lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'state-change"]),(function (_,d){
+return jayq.util.log.call(null,d);
+}));
+/**
 * Atom containing data fetched from back-end. Customers,
 * items, eployees and locations
 */
@@ -43,10 +54,10 @@ return cljs.core.swap_BANG_.call(null,pos.client.model.employee,cljs.core.assoc,
 */
 pos.client.model.customer = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'id"],{"\uFDD0'id":null}));
 cljs.core.add_watch.call(null,pos.client.model.customer,"\uFDD0'customer-change-key",(function (k,r,o,n){
-if(cljs.core.truth_((function (){var or__3548__auto____7728 = ("\uFDD0'id".call(null,n) === null);
+if(cljs.core.truth_((function (){var or__3548__auto____8428 = ("\uFDD0'id".call(null,n) === null);
 
-if(cljs.core.truth_(or__3548__auto____7728))
-{return or__3548__auto____7728;
+if(cljs.core.truth_(or__3548__auto____8428))
+{return or__3548__auto____8428;
 } else
 {return cljs.core.not_EQ_.call(null,o,n);
 }
@@ -70,22 +81,22 @@ lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-select"]),(funct
 return cljs.core.swap_BANG_.call(null,pos.client.model.customer,cljs.core.assoc,"\uFDD0'id",d);
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-clear"]),(function() { 
-var G__7729__delegate = function (_){
+var G__8429__delegate = function (_){
 return cljs.core.swap_BANG_.call(null,pos.client.model.customer,cljs.core.assoc,"\uFDD0'id",null);
 };
-var G__7729 = function (var_args){
+var G__8429 = function (var_args){
 var _ = null;
 if (goog.isDef(var_args)) {
   _ = cljs.core.array_seq(Array.prototype.slice.call(arguments, 0),0);
 } 
-return G__7729__delegate.call(this, _);
+return G__8429__delegate.call(this, _);
 };
-G__7729.cljs$lang$maxFixedArity = 0;
-G__7729.cljs$lang$applyTo = (function (arglist__7730){
-var _ = cljs.core.seq( arglist__7730 );;
-return G__7729__delegate.call(this, _);
+G__8429.cljs$lang$maxFixedArity = 0;
+G__8429.cljs$lang$applyTo = (function (arglist__8430){
+var _ = cljs.core.seq( arglist__8430 );;
+return G__8429__delegate.call(this, _);
 });
-return G__7729;
+return G__8429;
 })()
 );
 /**
@@ -111,28 +122,28 @@ if(cljs.core.truth_((cljs.core.count.call(null,n) > cljs.core.count.call(null,o)
 * Replace old item in basket by new
 */
 pos.client.model.swap_in_basket_BANG_ = (function swap_in_basket_BANG_(basket,o,n){
-return cljs.core.swap_BANG_.call(null,basket,(function (p1__7732_SHARP_,p2__7731_SHARP_){
-return cljs.core.set.call(null,cljs.core.replace.call(null,cljs.core.HashMap.fromArrays([o],[p2__7731_SHARP_]),p1__7732_SHARP_));
+return cljs.core.swap_BANG_.call(null,basket,(function (p1__8432_SHARP_,p2__8431_SHARP_){
+return cljs.core.set.call(null,cljs.core.replace.call(null,cljs.core.HashMap.fromArrays([o],[p2__8431_SHARP_]),p1__8432_SHARP_));
 }),n);
 });
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'basket-add"]),(function (_,d){
-var temp__3695__auto____7733 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),d);
+var temp__3695__auto____8433 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),d);
 
-if(cljs.core.truth_(temp__3695__auto____7733))
-{var item__7734 = temp__3695__auto____7733;
+if(cljs.core.truth_(temp__3695__auto____8433))
+{var item__8434 = temp__3695__auto____8433;
 
-var qty__7735 = "\uFDD0'qty".call(null,item__7734);
-var new_item__7736 = cljs.core.update_in.call(null,item__7734,cljs.core.PersistentVector.fromArray(["\uFDD0'qty"]),cljs.core.inc);
+var qty__8435 = "\uFDD0'qty".call(null,item__8434);
+var new_item__8436 = cljs.core.update_in.call(null,item__8434,cljs.core.PersistentVector.fromArray(["\uFDD0'qty"]),cljs.core.inc);
 
-return pos.client.model.swap_in_basket_BANG_.call(null,pos.client.model.basket,item__7734,new_item__7736);
+return pos.client.model.swap_in_basket_BANG_.call(null,pos.client.model.basket,item__8434,new_item__8436);
 } else
-{var item__7737 = pos.client.util.default_variant_of_item.call(null,pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),d));
+{var item__8437 = pos.client.util.default_variant_of_item.call(null,pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),d));
 
-return cljs.core.swap_BANG_.call(null,pos.client.model.basket,cljs.core.conj,cljs.core.merge.call(null,item__7737,cljs.core.ObjMap.fromObject(["\uFDD0'qty","\uFDD0'discount"],{"\uFDD0'qty":1,"\uFDD0'discount":0})));
+return cljs.core.swap_BANG_.call(null,pos.client.model.basket,cljs.core.conj,cljs.core.merge.call(null,item__8437,cljs.core.ObjMap.fromObject(["\uFDD0'qty","\uFDD0'discount"],{"\uFDD0'qty":1,"\uFDD0'discount":0})));
 }
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'basket-remove"]),(function (_,d){
-var item__7738 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),d);
+var item__8438 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),d);
 
-return cljs.core.swap_BANG_.call(null,pos.client.model.basket,cljs.core.disj,item__7738);
+return cljs.core.swap_BANG_.call(null,pos.client.model.basket,cljs.core.disj,item__8438);
 }));
