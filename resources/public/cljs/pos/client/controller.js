@@ -11,139 +11,139 @@ goog.require('pos.client.model');
 * Called when user edits item in the basket, this
 * function updates the basket according the field that was changed
 */
-pos.client.controller.update_basket_item = (function (){var method_table__3162__auto____10807 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var prefer_table__3163__auto____10808 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var method_cache__3164__auto____10809 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var cached_hierarchy__3165__auto____10810 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var hierarchy__3166__auto____10811 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+pos.client.controller.update_basket_item = (function (){var method_table__3162__auto____7778 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____7779 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____7780 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____7781 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____7782 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
 
-return (new cljs.core.MultiFn("update-basket-item","\uFDD0'changed-attr","\uFDD0'default",hierarchy__3166__auto____10811,method_table__3162__auto____10807,prefer_table__3163__auto____10808,method_cache__3164__auto____10809,cached_hierarchy__3165__auto____10810));
+return (new cljs.core.MultiFn("update-basket-item","\uFDD0'changed-attr","\uFDD0'default",hierarchy__3166__auto____7782,method_table__3162__auto____7778,prefer_table__3163__auto____7779,method_cache__3164__auto____7780,cached_hierarchy__3165__auto____7781));
 })();
-cljs.core._add_method.call(null,pos.client.controller.update_basket_item,"\uFDD0'qty",(function (p__10812){
-var map__10813__10814 = p__10812;
-var map__10813__10815 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__10813__10814))?cljs.core.apply.call(null,cljs.core.hash_map,map__10813__10814):map__10813__10814);
-var new_val__10816 = cljs.core.get.call(null,map__10813__10815,"\uFDD0'new-val");
-var id__10817 = cljs.core.get.call(null,map__10813__10815,"\uFDD0'id");
+cljs.core._add_method.call(null,pos.client.controller.update_basket_item,"\uFDD0'qty",(function (p__7783){
+var map__7784__7785 = p__7783;
+var map__7784__7786 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7784__7785))?cljs.core.apply.call(null,cljs.core.hash_map,map__7784__7785):map__7784__7785);
+var new_val__7787 = cljs.core.get.call(null,map__7784__7786,"\uFDD0'new-val");
+var id__7788 = cljs.core.get.call(null,map__7784__7786,"\uFDD0'id");
 
-var item__10818 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),id__10817);
-var new_as_num__10819 = pos.client.util.field_value_as_num.call(null,new_val__10816);
+var item__7789 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),id__7788);
+var new_as_num__7790 = pos.client.util.field_value_as_num.call(null,new_val__7787);
 
-if(cljs.core.truth_((function (){var and__3546__auto____10820 = cljs.core.not.call(null,isNaN.call(null,new_as_num__10819));
+if(cljs.core.truth_((function (){var and__3546__auto____7791 = cljs.core.not.call(null,isNaN.call(null,new_as_num__7790));
 
-if(cljs.core.truth_(and__3546__auto____10820))
-{return cljs.core.not_EQ_.call(null,new_as_num__10819,"\uFDD0'qty".call(null,item__10818));
+if(cljs.core.truth_(and__3546__auto____7791))
+{return cljs.core.not_EQ_.call(null,new_as_num__7790,"\uFDD0'qty".call(null,item__7789));
 } else
-{return and__3546__auto____10820;
+{return and__3546__auto____7791;
 }
 })()))
-{return pos.client.model.swap_in_basket_BANG_.call(null,pos.client.model.basket,item__10818,cljs.core.merge.call(null,item__10818,cljs.core.ObjMap.fromObject(["\uFDD0'qty"],{"\uFDD0'qty":new_as_num__10819})));
+{return pos.client.model.swap_in_basket_BANG_.call(null,pos.client.model.basket,item__7789,cljs.core.merge.call(null,item__7789,cljs.core.ObjMap.fromObject(["\uFDD0'qty"],{"\uFDD0'qty":new_as_num__7790})));
 } else
 {return null;
 }
 }));
-cljs.core._add_method.call(null,pos.client.controller.update_basket_item,"\uFDD0'price",(function (p__10821){
-var map__10822__10823 = p__10821;
-var map__10822__10824 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__10822__10823))?cljs.core.apply.call(null,cljs.core.hash_map,map__10822__10823):map__10822__10823);
-var new_val__10825 = cljs.core.get.call(null,map__10822__10824,"\uFDD0'new-val");
-var id__10826 = cljs.core.get.call(null,map__10822__10824,"\uFDD0'id");
+cljs.core._add_method.call(null,pos.client.controller.update_basket_item,"\uFDD0'price",(function (p__7792){
+var map__7793__7794 = p__7792;
+var map__7793__7795 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7793__7794))?cljs.core.apply.call(null,cljs.core.hash_map,map__7793__7794):map__7793__7794);
+var new_val__7796 = cljs.core.get.call(null,map__7793__7795,"\uFDD0'new-val");
+var id__7797 = cljs.core.get.call(null,map__7793__7795,"\uFDD0'id");
 
-var item__10827 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),id__10826);
-var new_as_num__10828 = pos.client.util.field_value_as_num.call(null,new_val__10825);
+var item__7798 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),id__7797);
+var new_as_num__7799 = pos.client.util.field_value_as_num.call(null,new_val__7796);
 
-if(cljs.core.truth_((function (){var and__3546__auto____10829 = cljs.core.not.call(null,isNaN.call(null,new_as_num__10828));
+if(cljs.core.truth_((function (){var and__3546__auto____7800 = cljs.core.not.call(null,isNaN.call(null,new_as_num__7799));
 
-if(cljs.core.truth_(and__3546__auto____10829))
-{return cljs.core.not_EQ_.call(null,new_as_num__10828,"\uFDD0'price".call(null,item__10827));
+if(cljs.core.truth_(and__3546__auto____7800))
+{return cljs.core.not_EQ_.call(null,new_as_num__7799,"\uFDD0'price".call(null,item__7798));
 } else
-{return and__3546__auto____10829;
+{return and__3546__auto____7800;
 }
 })()))
-{var default_price__10830 = "\uFDD0'price".call(null,pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__10826));
-var discount__10831 = (100 * ((default_price__10830 - new_as_num__10828) / default_price__10830));
+{var default_price__7801 = "\uFDD0'price".call(null,pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__7797));
+var discount__7802 = (100 * ((default_price__7801 - new_as_num__7799) / default_price__7801));
 
-return pos.client.model.swap_in_basket_BANG_.call(null,pos.client.model.basket,item__10827,cljs.core.merge.call(null,item__10827,cljs.core.ObjMap.fromObject(["\uFDD0'price","\uFDD0'discount"],{"\uFDD0'price":new_as_num__10828,"\uFDD0'discount":discount__10831})));
+return pos.client.model.swap_in_basket_BANG_.call(null,pos.client.model.basket,item__7798,cljs.core.merge.call(null,item__7798,cljs.core.ObjMap.fromObject(["\uFDD0'price","\uFDD0'discount"],{"\uFDD0'price":new_as_num__7799,"\uFDD0'discount":discount__7802})));
 } else
 {return null;
 }
 }));
-cljs.core._add_method.call(null,pos.client.controller.update_basket_item,"\uFDD0'discount",(function (p__10832){
-var map__10833__10834 = p__10832;
-var map__10833__10835 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__10833__10834))?cljs.core.apply.call(null,cljs.core.hash_map,map__10833__10834):map__10833__10834);
-var new_val__10836 = cljs.core.get.call(null,map__10833__10835,"\uFDD0'new-val");
-var id__10837 = cljs.core.get.call(null,map__10833__10835,"\uFDD0'id");
+cljs.core._add_method.call(null,pos.client.controller.update_basket_item,"\uFDD0'discount",(function (p__7803){
+var map__7804__7805 = p__7803;
+var map__7804__7806 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7804__7805))?cljs.core.apply.call(null,cljs.core.hash_map,map__7804__7805):map__7804__7805);
+var new_val__7807 = cljs.core.get.call(null,map__7804__7806,"\uFDD0'new-val");
+var id__7808 = cljs.core.get.call(null,map__7804__7806,"\uFDD0'id");
 
-var item__10838 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),id__10837);
-var new_as_num__10839 = pos.client.util.field_value_as_num.call(null,new_val__10836);
+var item__7809 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),id__7808);
+var new_as_num__7810 = pos.client.util.field_value_as_num.call(null,new_val__7807);
 
-if(cljs.core.truth_((function (){var and__3546__auto____10840 = cljs.core.not.call(null,isNaN.call(null,new_as_num__10839));
+if(cljs.core.truth_((function (){var and__3546__auto____7811 = cljs.core.not.call(null,isNaN.call(null,new_as_num__7810));
 
-if(cljs.core.truth_(and__3546__auto____10840))
-{return cljs.core.not_EQ_.call(null,new_as_num__10839,"\uFDD0'discount".call(null,item__10838));
+if(cljs.core.truth_(and__3546__auto____7811))
+{return cljs.core.not_EQ_.call(null,new_as_num__7810,"\uFDD0'discount".call(null,item__7809));
 } else
-{return and__3546__auto____10840;
+{return and__3546__auto____7811;
 }
 })()))
-{var default_price__10841 = "\uFDD0'price".call(null,pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__10837));
-var price__10842 = (default_price__10841 - ((new_as_num__10839 / 100) * default_price__10841));
+{var default_price__7812 = "\uFDD0'price".call(null,pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),id__7808));
+var price__7813 = (default_price__7812 - ((new_as_num__7810 / 100) * default_price__7812));
 
-return pos.client.model.swap_in_basket_BANG_.call(null,pos.client.model.basket,item__10838,cljs.core.merge.call(null,item__10838,cljs.core.ObjMap.fromObject(["\uFDD0'discount","\uFDD0'price"],{"\uFDD0'discount":new_as_num__10839,"\uFDD0'price":price__10842})));
+return pos.client.model.swap_in_basket_BANG_.call(null,pos.client.model.basket,item__7809,cljs.core.merge.call(null,item__7809,cljs.core.ObjMap.fromObject(["\uFDD0'discount","\uFDD0'price"],{"\uFDD0'discount":new_as_num__7810,"\uFDD0'price":price__7813})));
 } else
 {return null;
 }
 }));
-lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'basket-update"]),(function (_,p__10844){
-var d__10845 = p__10844;
-var d__10846 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,d__10845))?cljs.core.apply.call(null,cljs.core.hash_map,d__10845):d__10845);
-var new_val__10847 = cljs.core.get.call(null,d__10846,"\uFDD0'new-val");
-var changed_attr__10848 = cljs.core.get.call(null,d__10846,"\uFDD0'changed-attr");
-var id__10849 = cljs.core.get.call(null,d__10846,"\uFDD0'id");
+lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'basket-update"]),(function (_,p__7815){
+var d__7816 = p__7815;
+var d__7817 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,d__7816))?cljs.core.apply.call(null,cljs.core.hash_map,d__7816):d__7816);
+var new_val__7818 = cljs.core.get.call(null,d__7817,"\uFDD0'new-val");
+var changed_attr__7819 = cljs.core.get.call(null,d__7817,"\uFDD0'changed-attr");
+var id__7820 = cljs.core.get.call(null,d__7817,"\uFDD0'id");
 
-return pos.client.controller.update_basket_item.call(null,d__10846);
+return pos.client.controller.update_basket_item.call(null,d__7817);
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'basket-change"]),(function() { 
-var G__10854__delegate = function (_){
-var tot__10850 = pos.client.util.basket_total.call(null,cljs.core.deref.call(null,pos.client.model.basket));
-var tot_norm__10851 = cljs.core.apply.call(null,cljs.core._PLUS_,cljs.core.map.call(null,(function (p1__10843_SHARP_){
-return ("\uFDD0'price".call(null,pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),"\uFDD0'id".call(null,p1__10843_SHARP_))) * "\uFDD0'qty".call(null,p1__10843_SHARP_));
+var G__7825__delegate = function (_){
+var tot__7821 = pos.client.util.basket_total.call(null,cljs.core.deref.call(null,pos.client.model.basket));
+var tot_norm__7822 = cljs.core.apply.call(null,cljs.core._PLUS_,cljs.core.map.call(null,(function (p1__7814_SHARP_){
+return ("\uFDD0'price".call(null,pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),"\uFDD0'id".call(null,p1__7814_SHARP_))) * "\uFDD0'qty".call(null,p1__7814_SHARP_));
 }),cljs.core.deref.call(null,pos.client.model.basket)));
-var vat__10852 = (0.22 * tot__10850);
-var discount__10853 = (tot_norm__10851 - tot__10850);
+var vat__7823 = (0.22 * tot__7821);
+var discount__7824 = (tot_norm__7822 - tot__7821);
 
-return lib.dispatch.fire.call(null,"\uFDD0'update-basket-total",cljs.core.ObjMap.fromObject(["\uFDD0'tot","\uFDD0'vat","\uFDD0'discount"],{"\uFDD0'tot":tot__10850,"\uFDD0'vat":vat__10852,"\uFDD0'discount":discount__10853}));
+return lib.dispatch.fire.call(null,"\uFDD0'update-basket-total",cljs.core.ObjMap.fromObject(["\uFDD0'tot","\uFDD0'vat","\uFDD0'discount"],{"\uFDD0'tot":tot__7821,"\uFDD0'vat":vat__7823,"\uFDD0'discount":discount__7824}));
 };
-var G__10854 = function (var_args){
+var G__7825 = function (var_args){
 var _ = null;
 if (goog.isDef(var_args)) {
   _ = cljs.core.array_seq(Array.prototype.slice.call(arguments, 0),0);
 } 
-return G__10854__delegate.call(this, _);
+return G__7825__delegate.call(this, _);
 };
-G__10854.cljs$lang$maxFixedArity = 0;
-G__10854.cljs$lang$applyTo = (function (arglist__10855){
-var _ = cljs.core.seq( arglist__10855 );;
-return G__10854__delegate.call(this, _);
+G__7825.cljs$lang$maxFixedArity = 0;
+G__7825.cljs$lang$applyTo = (function (arglist__7826){
+var _ = cljs.core.seq( arglist__7826 );;
+return G__7825__delegate.call(this, _);
 });
-return G__10854;
+return G__7825;
 })()
 );
 /**
 * Accepts mat of information about action to be performed
 */
-pos.client.controller.action = (function (){var method_table__3162__auto____10856 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var prefer_table__3163__auto____10857 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var method_cache__3164__auto____10858 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var cached_hierarchy__3165__auto____10859 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
-var hierarchy__3166__auto____10860 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
+pos.client.controller.action = (function (){var method_table__3162__auto____7827 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var prefer_table__3163__auto____7828 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var method_cache__3164__auto____7829 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var cached_hierarchy__3165__auto____7830 = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([],{}));
+var hierarchy__3166__auto____7831 = cljs.core.get.call(null,cljs.core.ObjMap.fromObject([],{}),"\uFDD0'hierarchy",cljs.core.global_hierarchy);
 
-return (new cljs.core.MultiFn("action","\uFDD0'type","\uFDD0'default",hierarchy__3166__auto____10860,method_table__3162__auto____10856,prefer_table__3163__auto____10857,method_cache__3164__auto____10858,cached_hierarchy__3165__auto____10859));
+return (new cljs.core.MultiFn("action","\uFDD0'type","\uFDD0'default",hierarchy__3166__auto____7831,method_table__3162__auto____7827,prefer_table__3163__auto____7828,method_cache__3164__auto____7829,cached_hierarchy__3165__auto____7830));
 })();
 cljs.core._add_method.call(null,pos.client.controller.action,"\uFDD0'proceed-tender",(function (_){
-if(cljs.core.truth_((function (){var and__3546__auto____10861 = cljs.core.not_EQ_.call(null,"\uFDD0'state".call(null,cljs.core.deref.call(null,pos.client.model.state)),"\uFDD0'tender");
+if(cljs.core.truth_((function (){var and__3546__auto____7832 = cljs.core.not_EQ_.call(null,"\uFDD0'state".call(null,cljs.core.deref.call(null,pos.client.model.state)),"\uFDD0'tender");
 
-if(cljs.core.truth_(and__3546__auto____10861))
+if(cljs.core.truth_(and__3546__auto____7832))
 {return cljs.core.not.call(null,cljs.core.empty_QMARK_.call(null,cljs.core.deref.call(null,pos.client.model.basket)));
 } else
-{return and__3546__auto____10861;
+{return and__3546__auto____7832;
 }
 })()))
 {cljs.core.reset_BANG_.call(null,pos.client.model.tender,cljs.core.ObjMap.fromObject(["\uFDD0'cash","\uFDD0'card","\uFDD0'gift"],{"\uFDD0'cash":null,"\uFDD0'card":null,"\uFDD0'gift":null}));
@@ -172,11 +172,11 @@ return lib.dispatch.fire.call(null,"\uFDD0'init-data-done");
 * Bind pusher websocket listener for NFC events
 */
 pos.client.controller.bind_pusher_listener = (function bind_pusher_listener(){
-var pusher__10863 = (new Pusher("a32696b95bcc47185377"));
-var channel__10864 = pusher__10863.subscribe("kovalo-pos");
+var pusher__7834 = (new Pusher("a32696b95bcc47185377"));
+var channel__7835 = pusher__7834.subscribe("kovalo-pos");
 
-return channel__10864.bind("customer-nfc",(function (p1__10862_SHARP_){
-return lib.dispatch.fire.call(null,"\uFDD0'pusher-customer-nfc",p1__10862_SHARP_);
+return channel__7835.bind("customer-nfc",(function (p1__7833_SHARP_){
+return lib.dispatch.fire.call(null,"\uFDD0'pusher-customer-nfc",p1__7833_SHARP_);
 }));
 });
 /**

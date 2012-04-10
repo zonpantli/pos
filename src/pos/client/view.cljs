@@ -297,6 +297,21 @@
 (dispatch/react-to #{:transaction-cash :transaction-credit :transaction-gift}
                    (fn [t _]
                      (focus-tender-field t)))
+
+;;== keypad ==
+(comment
+  (defn key-press [char]
+   (.trigger (.event js/$) (clj->js {:type  "keypress"
+                                     :which (.charcodeAt char 0)})))
+
+  (defn bind-keypad-triggers []
+    (bind ($ :#keypad-7)
+          "click"
+          #(do
+             (.preventDefault %) 
+             (key-press "7")))))
+
+
 ;;== render states == 
 (defmulti render :state)
 

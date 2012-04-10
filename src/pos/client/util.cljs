@@ -34,7 +34,7 @@
   "Format number to a price shown in an input field. Return empty
   string for nil"
   [v]
-  (if (nil? v)
+  (if (nil? v) 
     ""
     (clojure.string/replace (.toFixed v 2) "." ",")))
 

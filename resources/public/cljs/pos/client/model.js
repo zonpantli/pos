@@ -51,10 +51,10 @@ return cljs.core.swap_BANG_.call(null,pos.client.model.employee,cljs.core.assoc,
 */
 pos.client.model.customer = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject(["\uFDD0'id"],{"\uFDD0'id":null}));
 cljs.core.add_watch.call(null,pos.client.model.customer,"\uFDD0'customer-change-key",(function (k,r,o,n){
-if(cljs.core.truth_((function (){var or__3548__auto____13539 = ("\uFDD0'id".call(null,n) === null);
+if(cljs.core.truth_((function (){var or__3548__auto____7836 = ("\uFDD0'id".call(null,n) === null);
 
-if(cljs.core.truth_(or__3548__auto____13539))
-{return or__3548__auto____13539;
+if(cljs.core.truth_(or__3548__auto____7836))
+{return or__3548__auto____7836;
 } else
 {return cljs.core.not_EQ_.call(null,o,n);
 }
@@ -78,22 +78,22 @@ lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-select"]),(funct
 return cljs.core.swap_BANG_.call(null,pos.client.model.customer,cljs.core.assoc,"\uFDD0'id",d);
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'customer-clear"]),(function() { 
-var G__13540__delegate = function (_){
+var G__7837__delegate = function (_){
 return cljs.core.swap_BANG_.call(null,pos.client.model.customer,cljs.core.assoc,"\uFDD0'id",null);
 };
-var G__13540 = function (var_args){
+var G__7837 = function (var_args){
 var _ = null;
 if (goog.isDef(var_args)) {
   _ = cljs.core.array_seq(Array.prototype.slice.call(arguments, 0),0);
 } 
-return G__13540__delegate.call(this, _);
+return G__7837__delegate.call(this, _);
 };
-G__13540.cljs$lang$maxFixedArity = 0;
-G__13540.cljs$lang$applyTo = (function (arglist__13541){
-var _ = cljs.core.seq( arglist__13541 );;
-return G__13540__delegate.call(this, _);
+G__7837.cljs$lang$maxFixedArity = 0;
+G__7837.cljs$lang$applyTo = (function (arglist__7838){
+var _ = cljs.core.seq( arglist__7838 );;
+return G__7837__delegate.call(this, _);
 });
-return G__13540;
+return G__7837;
 })()
 );
 /**
@@ -119,30 +119,30 @@ if(cljs.core.truth_((cljs.core.count.call(null,n) > cljs.core.count.call(null,o)
 * Replace old item in basket by new
 */
 pos.client.model.swap_in_basket_BANG_ = (function swap_in_basket_BANG_(basket,o,n){
-return cljs.core.swap_BANG_.call(null,basket,(function (p1__13543_SHARP_,p2__13542_SHARP_){
-return cljs.core.set.call(null,cljs.core.replace.call(null,cljs.core.HashMap.fromArrays([o],[p2__13542_SHARP_]),p1__13543_SHARP_));
+return cljs.core.swap_BANG_.call(null,basket,(function (p1__7840_SHARP_,p2__7839_SHARP_){
+return cljs.core.set.call(null,cljs.core.replace.call(null,cljs.core.HashMap.fromArrays([o],[p2__7839_SHARP_]),p1__7840_SHARP_));
 }),n);
 });
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'basket-add"]),(function (_,d){
-var temp__3695__auto____13544 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),d);
+var temp__3695__auto____7841 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),d);
 
-if(cljs.core.truth_(temp__3695__auto____13544))
-{var item__13545 = temp__3695__auto____13544;
+if(cljs.core.truth_(temp__3695__auto____7841))
+{var item__7842 = temp__3695__auto____7841;
 
-var qty__13546 = "\uFDD0'qty".call(null,item__13545);
-var new_item__13547 = cljs.core.update_in.call(null,item__13545,cljs.core.PersistentVector.fromArray(["\uFDD0'qty"]),cljs.core.inc);
+var qty__7843 = "\uFDD0'qty".call(null,item__7842);
+var new_item__7844 = cljs.core.update_in.call(null,item__7842,cljs.core.PersistentVector.fromArray(["\uFDD0'qty"]),cljs.core.inc);
 
-return pos.client.model.swap_in_basket_BANG_.call(null,pos.client.model.basket,item__13545,new_item__13547);
+return pos.client.model.swap_in_basket_BANG_.call(null,pos.client.model.basket,item__7842,new_item__7844);
 } else
-{var item__13548 = pos.client.util.default_variant_of_item.call(null,pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),d));
+{var item__7845 = pos.client.util.default_variant_of_item.call(null,pos.client.util.from_coll_by_id.call(null,"\uFDD0'items".call(null,cljs.core.deref.call(null,pos.client.model.data)),d));
 
-return cljs.core.swap_BANG_.call(null,pos.client.model.basket,cljs.core.conj,cljs.core.merge.call(null,item__13548,cljs.core.ObjMap.fromObject(["\uFDD0'qty","\uFDD0'discount"],{"\uFDD0'qty":1,"\uFDD0'discount":0})));
+return cljs.core.swap_BANG_.call(null,pos.client.model.basket,cljs.core.conj,cljs.core.merge.call(null,item__7845,cljs.core.ObjMap.fromObject(["\uFDD0'qty","\uFDD0'discount"],{"\uFDD0'qty":1,"\uFDD0'discount":0})));
 }
 }));
 lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'basket-remove"]),(function (_,d){
-var item__13549 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),d);
+var item__7846 = pos.client.util.from_coll_by_id.call(null,cljs.core.deref.call(null,pos.client.model.basket),d);
 
-return cljs.core.swap_BANG_.call(null,pos.client.model.basket,cljs.core.disj,item__13549);
+return cljs.core.swap_BANG_.call(null,pos.client.model.basket,cljs.core.disj,item__7846);
 }));
 /**
 * Atom holding the state of current tender transaction
@@ -151,11 +151,11 @@ pos.client.model.tender = cljs.core.atom.call(null,cljs.core.ObjMap.fromObject([
 cljs.core.add_watch.call(null,pos.client.model.tender,"\uFDD0'tender-change-key",(function (k,r,o,n){
 return lib.dispatch.fire.call(null,"\uFDD0'tender-change",n);
 }));
-lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'tender-update"]),(function (_,p__13550){
-var map__13551__13552 = p__13550;
-var map__13551__13553 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__13551__13552))?cljs.core.apply.call(null,cljs.core.hash_map,map__13551__13552):map__13551__13552);
-var new_val__13554 = cljs.core.get.call(null,map__13551__13553,"\uFDD0'new-val");
-var changed_attr__13555 = cljs.core.get.call(null,map__13551__13553,"\uFDD0'changed-attr");
+lib.dispatch.react_to.call(null,cljs.core.set(["\uFDD0'tender-update"]),(function (_,p__7847){
+var map__7848__7849 = p__7847;
+var map__7848__7850 = (cljs.core.truth_(cljs.core.seq_QMARK_.call(null,map__7848__7849))?cljs.core.apply.call(null,cljs.core.hash_map,map__7848__7849):map__7848__7849);
+var new_val__7851 = cljs.core.get.call(null,map__7848__7850,"\uFDD0'new-val");
+var changed_attr__7852 = cljs.core.get.call(null,map__7848__7850,"\uFDD0'changed-attr");
 
-return cljs.core.swap_BANG_.call(null,pos.client.model.tender,cljs.core.assoc,changed_attr__13555,pos.client.util.field_value_as_num.call(null,new_val__13554));
+return cljs.core.swap_BANG_.call(null,pos.client.model.tender,cljs.core.assoc,changed_attr__7852,pos.client.util.field_value_as_num.call(null,new_val__7851));
 }));
