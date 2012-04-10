@@ -5,7 +5,8 @@
             [pos.client.model :as model])
   (:use [fetch.util :only [clj->js]]
         [jayq.util :only [log]]
-        [pos.client.util :only [from-coll-by-id field-value-as-num]])
+        [pos.client.util :only [from-coll-by-id field-value-as-num
+                                basket-total]])
   (:require-macros [fetch.macros :as fm]))
 
 (defmulti ^{:doc "Called when user edits item in the basket, this
@@ -51,7 +52,7 @@
 ;; recomputed every time that the contents of the basket change
 (dispatch/react-to #{:basket-change}
                    (fn [& _]
-                     (let [tot      (apply + (map #(* (:price %) (:qty %)) @model/basket))
+                     (let [tot      (basket-total @model/basket)
                            tot-norm (apply + (map #(*
                                                     (:price (from-coll-by-id (:items @model/data) (:id %)))
                                                     (:qty %)) @model/basket))
@@ -65,13 +66,24 @@
   "Accepts mat of information about action to be performed"
   :type)
 
-(defmethod action :proceed [_]
+(defmethod action :proceed-tender [_]
   (when (and
          (not= (:state @model/state) :tender)
          (not (empty? @model/basket)))
-    (swap! model/state assoc :state :tender)))
+    (do
+      (reset! model/tender {:total  (basket-total @model/basket)
+                            :cash   nil
+                            :card   nil
+                            :gift   nil
+                            :change nil})
+      (swap! model/state assoc :state :tender))))
 
-(dispatch/react-to #{:proceed}
+(defmethod action :cancel-tender [_]
+  (do
+    (reset! model/tender {})
+    (swap! model/state assoc :state :dashboard)))
+
+(dispatch/react-to #{:proceed-tender :cancel-tender}
                    (fn [t d]
                      (action {:type t
                               :data d})))

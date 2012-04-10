@@ -1,6 +1,7 @@
 (ns pos.client.animation
   (:require [lib.dispatch :as dispatch])
-  (:use [jayq.core :only [$ anim attr css add-class remove-class find slide-down slide-up remove]]
+  (:use [jayq.core :only [$ anim attr css add-class remove-class find
+                          slide-down slide-up remove hide show]]
         [fetch.util :only [clj->js wait]]
         [jayq.util :only [wait log]]))
 
@@ -42,3 +43,11 @@
 
 (defn slide-out-table-row [$tr]
   (slide-up (find $tr "td > div") 200 #(remove $tr)))
+
+;; state transitions
+(defn state-transition [{:keys [in out slide-in slide-out]}]
+  (do
+    (doseq [o slide-out] (slide-up o 200))
+    (doseq [i slide-in]  (slide-down i 200))
+    (doseq [o out]       (hide o))
+    (doseq [i in]        (show i))))

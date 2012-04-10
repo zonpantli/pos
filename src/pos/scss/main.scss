@@ -64,10 +64,11 @@ body {
 
 //-- tender box --------------------------------------------
 
-#tender-container {
+#tender {
   border: 1px solid red;
   display: none;
-  height: 150px;
+  height: 200px;
+  margin-bottom: 13px;
 }
 
 
@@ -264,11 +265,15 @@ table#keypad {
 
 }
 
-#proceed-button {
+button[id*='-tender-button'] {
   margin-top: 10px;
   margin-right: 10px;
   float: right;
   min-width: 120px;
+}
+
+#cancel-tender-button {
+  display: none;
 }
 
 #total-price {

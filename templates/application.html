@@ -70,14 +70,19 @@
         <!-- Left column -->
         <div class="left-col span6">
           
-          <div id="tender-container">
-            
+          <div id="tender">
+            Total <input type="text" id="tender-total" class="span4">
+            Cash <input type="text" id="tender-cash" class="span4">
+            Card <input type="text" id="tender-card" class="span4">
+            Gift Voucher <input type="text" id="tender-gift" class="span4">
+            <hr>
+            Change <input type="text" id="tender-gift" class="span4">
           </div>
         
           <div id="weather">
             <img src="img/weather_icon.png" alt="Mostly cloudy">
             <div class="top-row">
-              <span id="temperature">9&deg;C</span>
+              <span id="temperature">15&deg;C</span>
               <span id="humidity" class="weather-number">93%</span>
               <span class="weather-unit">humidity</span>
               <span id="mmHg" class="weather-number">785</span>
@@ -180,7 +185,8 @@
             Receipt: <span id="receipt-number">215</span>
           </div>
           
-          <button id="proceed-button" class="btn btn-large btn-success">Proceed</button>
+          <button id="proceed-tender-button" class="btn btn-large btn-success">Proceed</button>
+          <button id="cancel-tender-button" class="btn btn-large btn-warning">Cancel</button>
           <div id="total-price">0,00</div>
           <div id="vat-container">
             Incl. VAT: <span id="vat-number">0,00</span>

@@ -9509,6 +9509,11 @@ pos.client.util.item_total_price = function(a) {
   var a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, b = cljs.core.get.call(null, a, "\ufdd0'price"), a = cljs.core.get.call(null, a, "\ufdd0'qty") * b;
   return clojure.string.replace.call(null, a.toFixed(2), ".", ",")
 };
+pos.client.util.basket_total = function(a) {
+  return cljs.core.apply.call(null, cljs.core._PLUS_, cljs.core.map.call(null, function(a) {
+    return"\ufdd0'price".call(null, a) * "\ufdd0'qty".call(null, a)
+  }, a))
+};
 pos.client.util.field_value_as_num = function(a) {
   return parseFloat.call(null, clojure.string.replace.call(null, a, ",", "."))
 };
@@ -9802,9 +9807,6 @@ pos.client.model.state = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([
 cljs.core.add_watch.call(null, pos.client.model.state, "\ufdd0'state-change-key", function(a, b, c, d) {
   return lib.dispatch.fire.call(null, "\ufdd0'state-change", cljs.core.PersistentVector.fromArray(["\ufdd0'state".call(null, c), "\ufdd0'state".call(null, d)]))
 });
-lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'state-change"]), function(a, b) {
-  return jayq.util.log.call(null, b)
-});
 pos.client.model.data = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {}));
 pos.client.model.location = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":null}));
 cljs.core.add_watch.call(null, pos.client.model.location, "\ufdd0'location-change-key", function(a, b, c, d) {
@@ -9875,6 +9877,7 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-remove"]), functi
   var c = pos.client.util.from_coll_by_id.call(null, cljs.core.deref.call(null, pos.client.model.basket), b);
   return cljs.core.swap_BANG_.call(null, pos.client.model.basket, cljs.core.disj, c)
 });
+pos.client.model.tender = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {}));
 var fetch = {util:{}};
 fetch.util.clj__GT_js = function clj__GT_js(b) {
   return cljs.core.truth_(cljs.core.string_QMARK_.call(null, b)) ? b : cljs.core.truth_(cljs.core.keyword_QMARK_.call(null, b)) ? cljs.core.name.call(null, b) : cljs.core.truth_(cljs.core.map_QMARK_.call(null, b)) ? cljs.core.reduce.call(null, function(b, d) {
@@ -10425,6 +10428,50 @@ pos.client.animation.slide_out_table_row = function(a) {
   return jayq.core.slide_up.call(null, jayq.core.find.call(null, a, "td > div"), 200, function() {
     return jayq.core.remove.call(null, a)
   })
+};
+pos.client.animation.state_transition = function(a) {
+  var a = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, b = cljs.core.get.call(null, a, "\ufdd0'slide-out"), c = cljs.core.get.call(null, a, "\ufdd0'slide-in"), d = cljs.core.get.call(null, a, "\ufdd0'out"), a = cljs.core.get.call(null, a, "\ufdd0'in"), e = cljs.core.seq.call(null, b);
+  if(cljs.core.truth_(e)) {
+    for(b = cljs.core.first.call(null, e);;) {
+      if(jayq.core.slide_up.call(null, b, 200), b = cljs.core.next.call(null, e), cljs.core.truth_(b)) {
+        e = b, b = cljs.core.first.call(null, e)
+      }else {
+        break
+      }
+    }
+  }
+  b = cljs.core.seq.call(null, c);
+  if(cljs.core.truth_(b)) {
+    for(c = cljs.core.first.call(null, b);;) {
+      if(jayq.core.slide_down.call(null, c, 200), c = cljs.core.next.call(null, b), cljs.core.truth_(c)) {
+        b = c, c = cljs.core.first.call(null, b)
+      }else {
+        break
+      }
+    }
+  }
+  c = cljs.core.seq.call(null, d);
+  if(cljs.core.truth_(c)) {
+    for(d = cljs.core.first.call(null, c);;) {
+      if(jayq.core.hide.call(null, d), d = cljs.core.next.call(null, c), cljs.core.truth_(d)) {
+        c = d, d = cljs.core.first.call(null, c)
+      }else {
+        break
+      }
+    }
+  }
+  d = cljs.core.seq.call(null, a);
+  if(cljs.core.truth_(d)) {
+    for(a = cljs.core.first.call(null, d);;) {
+      if(jayq.core.show.call(null, a), a = cljs.core.next.call(null, d), cljs.core.truth_(a)) {
+        d = a, a = cljs.core.first.call(null, d)
+      }else {
+        return null
+      }
+    }
+  }else {
+    return null
+  }
 };
 goog.i18n = {};
 goog.i18n.DateTimeSymbols_en_ISO = {ERAS:["BC", "AD"], ERANAMES:["Before Christ", "Anno Domini"], NARROWMONTHS:"J,F,M,A,M,J,J,A,S,O,N,D".split(","), STANDALONENARROWMONTHS:"J,F,M,A,M,J,J,A,S,O,N,D".split(","), MONTHS:"January,February,March,April,May,June,July,August,September,October,November,December".split(","), STANDALONEMONTHS:"January,February,March,April,May,June,July,August,September,October,November,December".split(","), SHORTMONTHS:"Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec".split(","), 
@@ -12015,13 +12062,13 @@ pos.client.view.attach_typeahead_clear_event_listeners = function() {
     return lib.dispatch.fire.call(null, "\ufdd0'item-clear")
   })
 };
-var group__6106__auto____8246 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6106__auto____14609 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.dropdown_row = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'li", cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href", "\ufdd0'value"], {"\ufdd0'href":"#", "\ufdd0'value":b}), a])]));
-  a.setAttribute("crateGroup", group__6106__auto____8246);
+  a.setAttribute("crateGroup", group__6106__auto____14609);
   return a
 };
-pos.client.view.dropdown_row.prototype._crateGroup = group__6106__auto____8246;
+pos.client.view.dropdown_row.prototype._crateGroup = group__6106__auto____14609;
 pos.client.view.populate_dropdowns = function(a) {
   var b = cljs.core.seq.call(null, "\ufdd0'locations".call(null, a));
   if(cljs.core.truth_(b)) {
@@ -12109,17 +12156,17 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'item-clear", "\ufdd0'ite
 pos.client.view.basket_add_item = function(a) {
   return lib.dispatch.fire.call(null, "\ufdd0'basket-add", a)
 };
-var group__6106__auto____8300 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+var group__6106__auto____14663 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 pos.client.view.basket_item = function(a) {
   var b = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, a = cljs.core.get.call(null, b, "\ufdd0'discount"), c = cljs.core.get.call(null, b, "\ufdd0'qty"), d = cljs.core.get.call(null, b, "\ufdd0'price"), e = cljs.core.get.call(null, b, "\ufdd0'size"), f = cljs.core.get.call(null, b, "\ufdd0'color"), g = cljs.core.get.call(null, b, "\ufdd0'name"), b = cljs.core.get.call(null, b, "\ufdd0'id"), a = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'tr", 
   cljs.core.ObjMap.fromObject(["\ufdd0'id"], {"\ufdd0'id":b}), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold", cljs.core.PersistentVector.fromArray(["\ufdd0'div", g])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", b])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", e])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td", cljs.core.PersistentVector.fromArray(["\ufdd0'div", 
   f])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.qty", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":c})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.price", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.price", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":d})])])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.discount", 
   cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'input.num", cljs.core.ObjMap.fromObject(["\ufdd0'value"], {"\ufdd0'value":a})]), "%"])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.bold.total", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.str.call(null, d)])]), cljs.core.PersistentVector.fromArray(["\ufdd0'td.close-container", cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'a.close", 
   "x"])])])]));
-  a.setAttribute("crateGroup", group__6106__auto____8300);
+  a.setAttribute("crateGroup", group__6106__auto____14663);
   return a
 };
-pos.client.view.basket_item.prototype._crateGroup = group__6106__auto____8300;
+pos.client.view.basket_item.prototype._crateGroup = group__6106__auto____14663;
 pos.client.view.render_basket = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
   return new cljs.core.MultiFn("render-basket", "\ufdd0'type", "\ufdd0'default", e, a, b, c, d)
@@ -12168,16 +12215,34 @@ pos.client.view.render_basket_total = function(a) {
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'update-basket-total"]), function(a, b) {
   return pos.client.view.render_basket_total.call(null, b)
 });
-pos.client.view.bind_proceed_button = function() {
-  var a = jayq.core.$.call(null, "\ufdd0'#proceed-button");
-  return jayq.core.bind.call(null, a, "click", function() {
-    return lib.dispatch.fire.call(null, "\ufdd0'proceed")
+pos.client.view.bind_tender_buttons = function() {
+  var a = jayq.core.$.call(null, "\ufdd0'#proceed-tender-button"), b = jayq.core.$.call(null, "\ufdd0'#cancel-tender-button");
+  jayq.core.bind.call(null, a, "click", function() {
+    return lib.dispatch.fire.call(null, "\ufdd0'proceed-tender")
+  });
+  return jayq.core.bind.call(null, b, "click", function() {
+    return lib.dispatch.fire.call(null, "\ufdd0'cancel-tender")
   })
 };
+pos.client.view.render = function() {
+  var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
+  return new cljs.core.MultiFn("render", "\ufdd0'state", "\ufdd0'default", e, a, b, c, d)
+}();
+cljs.core._add_method.call(null, pos.client.view.render, cljs.core.PersistentVector.fromArray(["\ufdd0'dashboard", "\ufdd0'tender"]), function() {
+  return pos.client.animation.state_transition.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'slide-in", "\ufdd0'slide-out", "\ufdd0'in", "\ufdd0'out"], {"\ufdd0'slide-in":cljs.core.PersistentVector.fromArray([jayq.core.$.call(null, "\ufdd0'#tender")]), "\ufdd0'slide-out":cljs.core.PersistentVector.fromArray([jayq.core.$.call(null, "\ufdd0'#weather"), jayq.core.$.call(null, "\ufdd0'#item-row")]), "\ufdd0'in":cljs.core.PersistentVector.fromArray([jayq.core.$.call(null, "\ufdd0'#cancel-tender-button")]), 
+  "\ufdd0'out":cljs.core.PersistentVector.fromArray([jayq.core.$.call(null, "\ufdd0'#proceed-tender-button")])}))
+});
+cljs.core._add_method.call(null, pos.client.view.render, cljs.core.PersistentVector.fromArray(["\ufdd0'tender", "\ufdd0'dashboard"]), function() {
+  return pos.client.animation.state_transition.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'slide-in", "\ufdd0'slide-out", "\ufdd0'in", "\ufdd0'out"], {"\ufdd0'slide-in":cljs.core.PersistentVector.fromArray([jayq.core.$.call(null, "\ufdd0'#weather"), jayq.core.$.call(null, "\ufdd0'#item-row")]), "\ufdd0'slide-out":cljs.core.PersistentVector.fromArray([jayq.core.$.call(null, "\ufdd0'#tender")]), "\ufdd0'in":cljs.core.PersistentVector.fromArray([jayq.core.$.call(null, "\ufdd0'#proceed-tender-button")]), 
+  "\ufdd0'out":cljs.core.PersistentVector.fromArray([jayq.core.$.call(null, "\ufdd0'#cancel-tender-button")])}))
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'state-change"]), function(a, b) {
+  return pos.client.view.render.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'state"], {"\ufdd0'state":b}))
+});
 pos.client.view.prepare_ui = function() {
   pos.client.util.start_timer.call(null, pos.client.view.render_time);
   pos.client.view.draw_pie.call(null);
-  pos.client.view.bind_proceed_button.call(null);
+  pos.client.view.bind_tender_buttons.call(null);
   pos.client.view.attach_typeahead_event_listeners.call(null);
   return pos.client.view.attach_typeahead_clear_event_listeners.call(null)
 };
@@ -14542,7 +14607,7 @@ crate.tags.add_optional_attrs = function(a) {
     return c
   }()
 };
-var func__6071__auto____9926 = function() {
+var func__6119__auto____13589 = function() {
   var a = function(a, b) {
     var e = cljs.core.nth.call(null, a, 0, null), f = cljs.core.nth.call(null, a, 1, null);
     return cljs.core.PersistentVector.fromArray(["\ufdd0'form", cljs.core.ObjMap.fromObject(["\ufdd0'method", "\ufdd0'action"], {"\ufdd0'method":cljs.core.name.call(null, e), "\ufdd0'action":f}), b])
@@ -14558,28 +14623,28 @@ var func__6071__auto____9926 = function() {
   };
   return b
 }();
-crate.tags.form_to = crate.tags.add_optional_attrs.call(null, func__6071__auto____9926);
-var func__6071__auto____9932 = function(a, b, c) {
+crate.tags.form_to = crate.tags.add_optional_attrs.call(null, func__6119__auto____13589);
+var func__6119__auto____13595 = function(a, b, c) {
   return cljs.core.PersistentVector.fromArray(["\ufdd0'input", cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'name", "\ufdd0'id", "\ufdd0'value"], {"\ufdd0'type":a, "\ufdd0'name":cljs.core.truth_(b) ? b : null, "\ufdd0'id":cljs.core.truth_(b) ? b : null, "\ufdd0'value":cljs.core.truth_(c) ? c : ""})])
 };
-crate.tags.input_field = crate.tags.add_optional_attrs.call(null, func__6071__auto____9932);
-var func__6071__auto____9933 = function(a, b) {
+crate.tags.input_field = crate.tags.add_optional_attrs.call(null, func__6119__auto____13595);
+var func__6119__auto____13596 = function(a, b) {
   return crate.tags.input_field.call(null, "text", a, b)
 };
-crate.tags.text_field = crate.tags.add_optional_attrs.call(null, func__6071__auto____9933);
-var func__6071__auto____9934 = function(a, b) {
+crate.tags.text_field = crate.tags.add_optional_attrs.call(null, func__6119__auto____13596);
+var func__6119__auto____13597 = function(a, b) {
   return crate.tags.input_field.call(null, "password", a, b)
 };
-crate.tags.password_field = crate.tags.add_optional_attrs.call(null, func__6071__auto____9934);
-var func__6071__auto____9935 = function(a, b) {
+crate.tags.password_field = crate.tags.add_optional_attrs.call(null, func__6119__auto____13597);
+var func__6119__auto____13598 = function(a, b) {
   return cljs.core.PersistentVector.fromArray(["\ufdd0'label", cljs.core.ObjMap.fromObject(["\ufdd0'for"], {"\ufdd0'for":a}), b])
 };
-crate.tags.label = crate.tags.add_optional_attrs.call(null, func__6071__auto____9935);
-var func__6071__auto____9936 = function(a) {
+crate.tags.label = crate.tags.add_optional_attrs.call(null, func__6119__auto____13598);
+var func__6119__auto____13599 = function(a) {
   return crate.tags.input_field.call(null, "submit", null, a)
 };
-crate.tags.submit_button = crate.tags.add_optional_attrs.call(null, func__6071__auto____9936);
-var func__6071__auto____9937 = function() {
+crate.tags.submit_button = crate.tags.add_optional_attrs.call(null, func__6119__auto____13599);
+var func__6119__auto____13600 = function() {
   var a = function(a, b) {
     return cljs.core.PersistentVector.fromArray(["\ufdd0'a", cljs.core.ObjMap.fromObject(["\ufdd0'href"], {"\ufdd0'href":a}), b])
   }, b = function(b, d) {
@@ -14594,7 +14659,7 @@ var func__6071__auto____9937 = function() {
   };
   return b
 }();
-crate.tags.link_to = crate.tags.add_optional_attrs.call(null, func__6071__auto____9937);
+crate.tags.link_to = crate.tags.add_optional_attrs.call(null, func__6119__auto____13600);
 cljs.reader = {};
 cljs.reader.PushbackReader = {};
 cljs.reader.read_char = function(a) {
@@ -15011,9 +15076,7 @@ lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-update"]), functi
 });
 lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'basket-change"]), function() {
   var a = function() {
-    var a = cljs.core.apply.call(null, cljs.core._PLUS_, cljs.core.map.call(null, function(a) {
-      return"\ufdd0'price".call(null, a) * "\ufdd0'qty".call(null, a)
-    }, cljs.core.deref.call(null, pos.client.model.basket))), b = cljs.core.apply.call(null, cljs.core._PLUS_, cljs.core.map.call(null, function(a) {
+    var a = pos.client.util.basket_total.call(null, cljs.core.deref.call(null, pos.client.model.basket)), b = cljs.core.apply.call(null, cljs.core._PLUS_, cljs.core.map.call(null, function(a) {
       return"\ufdd0'price".call(null, pos.client.util.from_coll_by_id.call(null, "\ufdd0'items".call(null, cljs.core.deref.call(null, pos.client.model.data)), "\ufdd0'id".call(null, a))) * "\ufdd0'qty".call(null, a)
     }, cljs.core.deref.call(null, pos.client.model.basket)));
     return lib.dispatch.fire.call(null, "\ufdd0'update-basket-total", cljs.core.ObjMap.fromObject(["\ufdd0'tot", "\ufdd0'vat", "\ufdd0'discount"], {"\ufdd0'tot":a, "\ufdd0'vat":0.22 * a, "\ufdd0'discount":b - a}))
@@ -15033,13 +15096,17 @@ pos.client.controller.action = function() {
   var a = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), b = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), c = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), d = cljs.core.atom.call(null, cljs.core.ObjMap.fromObject([], {})), e = cljs.core.get.call(null, cljs.core.ObjMap.fromObject([], {}), "\ufdd0'hierarchy", cljs.core.global_hierarchy);
   return new cljs.core.MultiFn("action", "\ufdd0'type", "\ufdd0'default", e, a, b, c, d)
 }();
-cljs.core._add_method.call(null, pos.client.controller.action, "\ufdd0'proceed", function() {
+cljs.core._add_method.call(null, pos.client.controller.action, "\ufdd0'proceed-tender", function() {
   return cljs.core.truth_(function() {
     var a = cljs.core.not_EQ_.call(null, "\ufdd0'state".call(null, cljs.core.deref.call(null, pos.client.model.state)), "\ufdd0'tender");
     return cljs.core.truth_(a) ? cljs.core.not.call(null, cljs.core.empty_QMARK_.call(null, cljs.core.deref.call(null, pos.client.model.basket))) : a
-  }()) ? cljs.core.swap_BANG_.call(null, pos.client.model.state, cljs.core.assoc, "\ufdd0'state", "\ufdd0'tender") : null
+  }()) ? (cljs.core.reset_BANG_.call(null, pos.client.model.tender, cljs.core.ObjMap.fromObject(["\ufdd0'total", "\ufdd0'cash", "\ufdd0'card", "\ufdd0'gift", "\ufdd0'change"], {"\ufdd0'total":pos.client.util.basket_total.call(null, cljs.core.deref.call(null, pos.client.model.basket)), "\ufdd0'cash":null, "\ufdd0'card":null, "\ufdd0'gift":null, "\ufdd0'change":null})), cljs.core.swap_BANG_.call(null, pos.client.model.state, cljs.core.assoc, "\ufdd0'state", "\ufdd0'tender")) : null
 });
-lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'proceed"]), function(a, b) {
+cljs.core._add_method.call(null, pos.client.controller.action, "\ufdd0'cancel-tender", function() {
+  cljs.core.reset_BANG_.call(null, pos.client.model.tender, cljs.core.ObjMap.fromObject([], {}));
+  return cljs.core.swap_BANG_.call(null, pos.client.model.state, cljs.core.assoc, "\ufdd0'state", "\ufdd0'dashboard")
+});
+lib.dispatch.react_to.call(null, cljs.core.set(["\ufdd0'cancel-tender", "\ufdd0'proceed-tender"]), function(a, b) {
   return pos.client.controller.action.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'type", "\ufdd0'data"], {"\ufdd0'type":a, "\ufdd0'data":b}))
 });
 pos.client.controller.fetch_client_data = function() {
@@ -15071,94 +15138,6 @@ goog.net.xpc.Transport.prototype.getWindow = function() {
 };
 goog.net.xpc.Transport.prototype.getName = function() {
   return goog.net.xpc.TransportNames[this.transportType] || ""
-};
-var noir = {cljs:{}};
-noir.cljs.client = {};
-noir.cljs.client.watcher = {};
-noir.cljs.client.watcher.wait = function(a, b) {
-  return setTimeout(b, a)
-};
-noir.cljs.client.watcher.$body = jayq.core.$.call(null, "\ufdd0'body");
-noir.cljs.client.watcher.callbacks = cljs.core.atom.call(null, cljs.core.PersistentVector.fromArray([]));
-noir.cljs.client.watcher.cur_mode = cljs.core.atom.call(null, "\ufdd0'simple");
-noir.cljs.client.watcher.poll = function poll() {
-  return noir.cljs.client.watcher.wait.call(null, 100, function() {
-    return fetch.core.xhr.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'get", "/noir-cljs-get-updated"]), cljs.core.ObjMap.fromObject([], {}), function(b) {
-      if(cljs.core.truth_(cljs.core.truth_(b) ? cljs.core.not_EQ_.call(null, b, "") : b)) {
-        eval.call(null, b);
-        var c = cljs.core.seq.call(null, cljs.core.deref.call(null, noir.cljs.client.watcher.callbacks));
-        if(cljs.core.truth_(c)) {
-          for(var d = cljs.core.first.call(null, c);;) {
-            if(d.call(null, b), d = cljs.core.next.call(null, c), cljs.core.truth_(d)) {
-              c = d, d = cljs.core.first.call(null, c)
-            }else {
-              break
-            }
-          }
-        }
-      }
-      return cljs.core.truth_(cljs.core._EQ_.call(null, cljs.core.deref.call(null, noir.cljs.client.watcher.cur_mode), "\ufdd0'interactive")) ? poll.call(null) : null
-    })
-  })
-};
-noir.cljs.client.watcher.on_update = function(a) {
-  return cljs.core.swap_BANG_.call(null, noir.cljs.client.watcher.callbacks, cljs.core.conj, a)
-};
-noir.cljs.client.watcher.set_mode = function(a) {
-  return fetch.core.xhr.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'post", "/noir-cljs-mode"]), cljs.core.ObjMap.fromObject(["\ufdd0'm"], {"\ufdd0'm":a}), function() {
-    cljs.core.reset_BANG_.call(null, noir.cljs.client.watcher.cur_mode, a);
-    return cljs.core.truth_(cljs.core._EQ_.call(null, a, "\ufdd0'interactive")) ? noir.cljs.client.watcher.poll.call(null) : null
-  })
-};
-noir.cljs.client.watcher.get_mode = function(a) {
-  return fetch.core.xhr.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'get", "/noir-cljs-mode"]), cljs.core.ObjMap.fromObject([], {}), function(b) {
-    return a.call(null, cljs.reader.read_string.call(null, b))
-  })
-};
-noir.cljs.client.watcher.buttons = cljs.core.PersistentVector.fromArray([cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'advanced", "\ufdd0'label":"A"}), cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'simple", "\ufdd0'label":"S"}), cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'interactive", "\ufdd0'label":"I"})]);
-var group__6058__auto____9896 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
-noir.cljs.client.watcher.selector_button = function() {
-  var a = function(a, b) {
-    var e = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, f = cljs.core.get.call(null, e, "\ufdd0'label"), g = cljs.core.get.call(null, e, "\ufdd0'mode"), h = cljs.core.nth.call(null, b, 0, null), e = crate.core.html.call(null, function() {
-      var a = cljs.core.str.call(null, "noir-cljs-button ", cljs.core.truth_(cljs.core._EQ_.call(null, g, h)) ? "active" : null);
-      return cljs.core.PersistentVector.fromArray(["\ufdd0'li", crate.tags.link_to.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'class", "\ufdd0'data-mode"], {"\ufdd0'class":a, "\ufdd0'data-mode":g}), "#", f)])
-    }());
-    e.setAttribute("crateGroup", group__6058__auto____9896);
-    return e
-  }, b = function(b, d) {
-    var e = null;
-    goog.isDef(d) && (e = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1), 0));
-    return a.call(this, b, e)
-  };
-  b.cljs$lang$maxFixedArity = 1;
-  b.cljs$lang$applyTo = function(b) {
-    var d = cljs.core.first(b), b = cljs.core.rest(b);
-    return a.call(this, d, b)
-  };
-  return b
-}();
-noir.cljs.client.watcher.selector_button.prototype._crateGroup = group__6058__auto____9896;
-var group__6058__auto____9910 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
-noir.cljs.client.watcher.selector = function(a) {
-  var b = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'style", cljs.core.ObjMap.fromObject(["\ufdd0'type"], {"\ufdd0'type":"text/css"}), "#noir-cljs-selector {position:fixed; bottom:15px; right:30px; list-style:none; }\n     #noir-cljs-selector li {}\n     #noir-cljs-selector a { float:left; display:inline; text-decoration:none; line-height:1em; height:19px; padding:5px 10px; background:#77c; width:10px; border:1px solid #55c; text-align:center; border-radius:5px; margin-bottom:8px; color:#449; }\n     #noir-cljs-selector a:hover {background:#99f;}\n     #noir-cljs-selector .active {background:#7cc; border-color:#599;} "]), 
-  cljs.core.PersistentVector.fromArray(["\ufdd0'ul#noir-cljs-selector", cljs.core.map.call(null, function(b) {
-    return noir.cljs.client.watcher.selector_button.call(null, b, a)
-  }, noir.cljs.client.watcher.buttons)])]));
-  b.setAttribute("crateGroup", group__6058__auto____9910);
-  return b
-};
-noir.cljs.client.watcher.selector.prototype._crateGroup = group__6058__auto____9910;
-jayq.core.delegate.call(null, noir.cljs.client.watcher.$body, "\ufdd0'.noir-cljs-button", "\ufdd0'click", function(a) {
-  a.preventDefault();
-  jayq.core.remove_class.call(null, jayq.core.find.call(null, jayq.core.$.call(null, noir.cljs.client.watcher.selector), "\ufdd0'.noir-cljs-button"), "\ufdd0'active");
-  var a = jayq.core.$.call(null, this), b = jayq.core.data.call(null, a, "\ufdd0'mode");
-  jayq.core.add_class.call(null, a, "\ufdd0'active");
-  return noir.cljs.client.watcher.set_mode.call(null, b)
-});
-noir.cljs.client.watcher.init = function() {
-  return noir.cljs.client.watcher.get_mode.call(null, function(a) {
-    return jayq.core.append.call(null, noir.cljs.client.watcher.$body, noir.cljs.client.watcher.selector.call(null, a))
-  })
 };
 clojure.browser = {};
 clojure.browser.event = {};
@@ -16417,6 +16396,94 @@ clojure.browser.repl.connect = function(a) {
   });
   return clojure.browser.net.connect.call(null, b, cljs.core.constantly.call(null, null), function(a) {
     return a.style.display = "none"
+  })
+};
+var noir = {cljs:{}};
+noir.cljs.client = {};
+noir.cljs.client.watcher = {};
+noir.cljs.client.watcher.wait = function(a, b) {
+  return setTimeout(b, a)
+};
+noir.cljs.client.watcher.$body = jayq.core.$.call(null, "\ufdd0'body");
+noir.cljs.client.watcher.callbacks = cljs.core.atom.call(null, cljs.core.PersistentVector.fromArray([]));
+noir.cljs.client.watcher.cur_mode = cljs.core.atom.call(null, "\ufdd0'simple");
+noir.cljs.client.watcher.poll = function poll() {
+  return noir.cljs.client.watcher.wait.call(null, 100, function() {
+    return fetch.core.xhr.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'get", "/noir-cljs-get-updated"]), cljs.core.ObjMap.fromObject([], {}), function(b) {
+      if(cljs.core.truth_(cljs.core.truth_(b) ? cljs.core.not_EQ_.call(null, b, "") : b)) {
+        eval.call(null, b);
+        var c = cljs.core.seq.call(null, cljs.core.deref.call(null, noir.cljs.client.watcher.callbacks));
+        if(cljs.core.truth_(c)) {
+          for(var d = cljs.core.first.call(null, c);;) {
+            if(d.call(null, b), d = cljs.core.next.call(null, c), cljs.core.truth_(d)) {
+              c = d, d = cljs.core.first.call(null, c)
+            }else {
+              break
+            }
+          }
+        }
+      }
+      return cljs.core.truth_(cljs.core._EQ_.call(null, cljs.core.deref.call(null, noir.cljs.client.watcher.cur_mode), "\ufdd0'interactive")) ? poll.call(null) : null
+    })
+  })
+};
+noir.cljs.client.watcher.on_update = function(a) {
+  return cljs.core.swap_BANG_.call(null, noir.cljs.client.watcher.callbacks, cljs.core.conj, a)
+};
+noir.cljs.client.watcher.set_mode = function(a) {
+  return fetch.core.xhr.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'post", "/noir-cljs-mode"]), cljs.core.ObjMap.fromObject(["\ufdd0'm"], {"\ufdd0'm":a}), function() {
+    cljs.core.reset_BANG_.call(null, noir.cljs.client.watcher.cur_mode, a);
+    return cljs.core.truth_(cljs.core._EQ_.call(null, a, "\ufdd0'interactive")) ? noir.cljs.client.watcher.poll.call(null) : null
+  })
+};
+noir.cljs.client.watcher.get_mode = function(a) {
+  return fetch.core.xhr.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'get", "/noir-cljs-mode"]), cljs.core.ObjMap.fromObject([], {}), function(b) {
+    return a.call(null, cljs.reader.read_string.call(null, b))
+  })
+};
+noir.cljs.client.watcher.buttons = cljs.core.PersistentVector.fromArray([cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'advanced", "\ufdd0'label":"A"}), cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'simple", "\ufdd0'label":"S"}), cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'interactive", "\ufdd0'label":"I"})]);
+var group__6106__auto____13559 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+noir.cljs.client.watcher.selector_button = function() {
+  var a = function(a, b) {
+    var e = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, f = cljs.core.get.call(null, e, "\ufdd0'label"), g = cljs.core.get.call(null, e, "\ufdd0'mode"), h = cljs.core.nth.call(null, b, 0, null), e = crate.core.html.call(null, function() {
+      var a = cljs.core.str.call(null, "noir-cljs-button ", cljs.core.truth_(cljs.core._EQ_.call(null, g, h)) ? "active" : null);
+      return cljs.core.PersistentVector.fromArray(["\ufdd0'li", crate.tags.link_to.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'class", "\ufdd0'data-mode"], {"\ufdd0'class":a, "\ufdd0'data-mode":g}), "#", f)])
+    }());
+    e.setAttribute("crateGroup", group__6106__auto____13559);
+    return e
+  }, b = function(b, d) {
+    var e = null;
+    goog.isDef(d) && (e = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1), 0));
+    return a.call(this, b, e)
+  };
+  b.cljs$lang$maxFixedArity = 1;
+  b.cljs$lang$applyTo = function(b) {
+    var d = cljs.core.first(b), b = cljs.core.rest(b);
+    return a.call(this, d, b)
+  };
+  return b
+}();
+noir.cljs.client.watcher.selector_button.prototype._crateGroup = group__6106__auto____13559;
+var group__6106__auto____13573 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+noir.cljs.client.watcher.selector = function(a) {
+  var b = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'style", cljs.core.ObjMap.fromObject(["\ufdd0'type"], {"\ufdd0'type":"text/css"}), "#noir-cljs-selector {position:fixed; bottom:15px; right:30px; list-style:none; }\n     #noir-cljs-selector li {}\n     #noir-cljs-selector a { float:left; display:inline; text-decoration:none; line-height:1em; height:19px; padding:5px 10px; background:#77c; width:10px; border:1px solid #55c; text-align:center; border-radius:5px; margin-bottom:8px; color:#449; }\n     #noir-cljs-selector a:hover {background:#99f;}\n     #noir-cljs-selector .active {background:#7cc; border-color:#599;} "]), 
+  cljs.core.PersistentVector.fromArray(["\ufdd0'ul#noir-cljs-selector", cljs.core.map.call(null, function(b) {
+    return noir.cljs.client.watcher.selector_button.call(null, b, a)
+  }, noir.cljs.client.watcher.buttons)])]));
+  b.setAttribute("crateGroup", group__6106__auto____13573);
+  return b
+};
+noir.cljs.client.watcher.selector.prototype._crateGroup = group__6106__auto____13573;
+jayq.core.delegate.call(null, noir.cljs.client.watcher.$body, "\ufdd0'.noir-cljs-button", "\ufdd0'click", function(a) {
+  a.preventDefault();
+  jayq.core.remove_class.call(null, jayq.core.find.call(null, jayq.core.$.call(null, noir.cljs.client.watcher.selector), "\ufdd0'.noir-cljs-button"), "\ufdd0'active");
+  var a = jayq.core.$.call(null, this), b = jayq.core.data.call(null, a, "\ufdd0'mode");
+  jayq.core.add_class.call(null, a, "\ufdd0'active");
+  return noir.cljs.client.watcher.set_mode.call(null, b)
+});
+noir.cljs.client.watcher.init = function() {
+  return noir.cljs.client.watcher.get_mode.call(null, function(a) {
+    return jayq.core.append.call(null, noir.cljs.client.watcher.$body, noir.cljs.client.watcher.selector.call(null, a))
   })
 };
 pos.client.core = {};

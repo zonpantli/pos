@@ -15,10 +15,6 @@ hotkeys, tender"}
            (fn [k r o n]
              (dispatch/fire :state-change [(:state o) (:state n)])))
 
-(dispatch/react-to #{:state-change}
-                   (fn [_ d]
-                     (log d)))
-
 (def ^{:doc "Atom containing data fetched from back-end. Customers,
 items, eployees and locations"}
   data (atom {}))
@@ -111,4 +107,7 @@ controlling the customer typeahead"}
                      (let [item (from-coll-by-id @basket d)]
                        (swap! basket disj item))))
 
+(def ^{:doc "Atom holding the state of current tender transaction"}
+  tender (atom {}))
 
+;; TODO listen tender, update tender fields

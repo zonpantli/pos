@@ -229,16 +229,38 @@
                    (fn [_ d]
                      (render-basket-total d)))
 
-(defn bind-proceed-button []
-  (let [$el ($ :#proceed-button)]
-    (bind $el "click" #(dispatch/fire :proceed))))
+(defn bind-tender-buttons []
+  (let [$proceed ($ :#proceed-tender-button)
+        $cancel  ($ :#cancel-tender-button)]
+    (do
+      (bind $proceed "click" #(dispatch/fire :proceed-tender))
+      (bind $cancel  "click" #(dispatch/fire :cancel-tender)))))
 
-;;== init ui ================================================
+;;== render states == 
+(defmulti render :state)
+
+(defmethod render [:dashboard :tender] [_]
+  (animation/state-transition {:slide-in  [($ :#tender)]
+                               :slide-out [($ :#weather) ($ :#item-row)]
+                               :in        [($ :#cancel-tender-button)]
+                               :out       [($ :#proceed-tender-button)]}))
+
+(defmethod render [:tender :dashboard] [_]
+  (animation/state-transition {:slide-in  [($ :#weather) ($ :#item-row)]
+                               :slide-out [($ :#tender)]
+                               :in        [($ :#proceed-tender-button)]
+                               :out       [($ :#cancel-tender-button)]}))
+
+(dispatch/react-to #{:state-change}
+                   (fn [_ d]
+                     (render {:state d})))
+
+;;== init ui ==
 (defn prepare-ui []
   (do
     (start-timer render-time)
     (draw-pie)
-    (bind-proceed-button)
+    (bind-tender-buttons)
     (attach-typeahead-event-listeners)
     (attach-typeahead-clear-event-listeners)))
 

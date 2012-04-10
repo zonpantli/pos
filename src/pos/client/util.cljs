@@ -22,6 +22,9 @@
   (let [total (* qty price)]
     (clojure.string/replace (.toFixed total 2) "." ",")))
 
+(defn basket-total [basket]
+  (apply + (map #(* (:price %) (:qty %)) basket)))
+
 (defn field-value-as-num
   "Parse value from dom input field to num"
   [v]
