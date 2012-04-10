@@ -236,6 +236,10 @@
       (bind $proceed "click" #(dispatch/fire :proceed-tender))
       (bind $cancel  "click" #(dispatch/fire :cancel-tender)))))
 
+(dispatch/react-to #{:render-tender}
+                   (fn [_ d]
+                     (log "TODO: update tender views")))
+
 ;;== render states == 
 (defmulti render :state)
 

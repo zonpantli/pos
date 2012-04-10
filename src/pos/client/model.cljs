@@ -110,4 +110,6 @@ controlling the customer typeahead"}
 (def ^{:doc "Atom holding the state of current tender transaction"}
   tender (atom {}))
 
-;; TODO listen tender, update tender fields
+(add-watch tender :tender-change-key
+           (fn [k r o n]
+             (dispatch/fire :tender-change)))
