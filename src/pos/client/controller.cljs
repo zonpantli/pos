@@ -107,5 +107,5 @@
   []
   (do
     (fetch-client-data)
-    ;; (bind-pusher-listener)
+    (bind-pusher-listener)
     (view/prepare-ui)))

@@ -15220,6 +15220,7 @@ pos.client.controller.bind_pusher_listener = function() {
 };
 pos.client.controller.init = function() {
   pos.client.controller.fetch_client_data.call(null);
+  pos.client.controller.bind_pusher_listener.call(null);
   return pos.client.view.prepare_ui.call(null)
 };
 goog.net.xpc.Transport = function(a) {
