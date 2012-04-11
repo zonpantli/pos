@@ -11,15 +11,17 @@
 ;; (watcher/init)
 
 ;; Browser connected repl, run clojure in inferior-lisp
-(repl/connect "http://localhost:9000/repl")
+;; (repl/connect "http://localhost:9000/repl")
 
-(def $content ($ :#content))
+
 
 (comment
- (defpartial up-and-running []
-   [:p.alert "CLJS is compiled and active... Time to build something!"])
 
- (append $content (up-and-running)))
+  (def $content ($ :#content))
+  (defpartial up-and-running []
+    [:p.alert "CLJS is compiled and active... Time to build something!"])
+
+  (append $content (up-and-running)))
 
 
 ;;== init app ==================================================

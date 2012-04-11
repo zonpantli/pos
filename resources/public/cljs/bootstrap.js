@@ -15238,94 +15238,6 @@ goog.net.xpc.Transport.prototype.getWindow = function() {
 goog.net.xpc.Transport.prototype.getName = function() {
   return goog.net.xpc.TransportNames[this.transportType] || ""
 };
-var noir = {cljs:{}};
-noir.cljs.client = {};
-noir.cljs.client.watcher = {};
-noir.cljs.client.watcher.wait = function(a, b) {
-  return setTimeout(b, a)
-};
-noir.cljs.client.watcher.$body = jayq.core.$.call(null, "\ufdd0'body");
-noir.cljs.client.watcher.callbacks = cljs.core.atom.call(null, cljs.core.PersistentVector.fromArray([]));
-noir.cljs.client.watcher.cur_mode = cljs.core.atom.call(null, "\ufdd0'simple");
-noir.cljs.client.watcher.poll = function poll() {
-  return noir.cljs.client.watcher.wait.call(null, 100, function() {
-    return fetch.core.xhr.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'get", "/noir-cljs-get-updated"]), cljs.core.ObjMap.fromObject([], {}), function(b) {
-      if(cljs.core.truth_(cljs.core.truth_(b) ? cljs.core.not_EQ_.call(null, b, "") : b)) {
-        eval.call(null, b);
-        var c = cljs.core.seq.call(null, cljs.core.deref.call(null, noir.cljs.client.watcher.callbacks));
-        if(cljs.core.truth_(c)) {
-          for(var d = cljs.core.first.call(null, c);;) {
-            if(d.call(null, b), d = cljs.core.next.call(null, c), cljs.core.truth_(d)) {
-              c = d, d = cljs.core.first.call(null, c)
-            }else {
-              break
-            }
-          }
-        }
-      }
-      return cljs.core.truth_(cljs.core._EQ_.call(null, cljs.core.deref.call(null, noir.cljs.client.watcher.cur_mode), "\ufdd0'interactive")) ? poll.call(null) : null
-    })
-  })
-};
-noir.cljs.client.watcher.on_update = function(a) {
-  return cljs.core.swap_BANG_.call(null, noir.cljs.client.watcher.callbacks, cljs.core.conj, a)
-};
-noir.cljs.client.watcher.set_mode = function(a) {
-  return fetch.core.xhr.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'post", "/noir-cljs-mode"]), cljs.core.ObjMap.fromObject(["\ufdd0'm"], {"\ufdd0'm":a}), function() {
-    cljs.core.reset_BANG_.call(null, noir.cljs.client.watcher.cur_mode, a);
-    return cljs.core.truth_(cljs.core._EQ_.call(null, a, "\ufdd0'interactive")) ? noir.cljs.client.watcher.poll.call(null) : null
-  })
-};
-noir.cljs.client.watcher.get_mode = function(a) {
-  return fetch.core.xhr.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'get", "/noir-cljs-mode"]), cljs.core.ObjMap.fromObject([], {}), function(b) {
-    return a.call(null, cljs.reader.read_string.call(null, b))
-  })
-};
-noir.cljs.client.watcher.buttons = cljs.core.PersistentVector.fromArray([cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'advanced", "\ufdd0'label":"A"}), cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'simple", "\ufdd0'label":"S"}), cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'interactive", "\ufdd0'label":"I"})]);
-var group__6197__auto____10267 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
-noir.cljs.client.watcher.selector_button = function() {
-  var a = function(a, b) {
-    var e = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, f = cljs.core.get.call(null, e, "\ufdd0'label"), g = cljs.core.get.call(null, e, "\ufdd0'mode"), h = cljs.core.nth.call(null, b, 0, null), e = crate.core.html.call(null, function() {
-      var a = cljs.core.str.call(null, "noir-cljs-button ", cljs.core.truth_(cljs.core._EQ_.call(null, g, h)) ? "active" : null);
-      return cljs.core.PersistentVector.fromArray(["\ufdd0'li", crate.tags.link_to.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'class", "\ufdd0'data-mode"], {"\ufdd0'class":a, "\ufdd0'data-mode":g}), "#", f)])
-    }());
-    e.setAttribute("crateGroup", group__6197__auto____10267);
-    return e
-  }, b = function(b, d) {
-    var e = null;
-    goog.isDef(d) && (e = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1), 0));
-    return a.call(this, b, e)
-  };
-  b.cljs$lang$maxFixedArity = 1;
-  b.cljs$lang$applyTo = function(b) {
-    var d = cljs.core.first(b), b = cljs.core.rest(b);
-    return a.call(this, d, b)
-  };
-  return b
-}();
-noir.cljs.client.watcher.selector_button.prototype._crateGroup = group__6197__auto____10267;
-var group__6197__auto____10281 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
-noir.cljs.client.watcher.selector = function(a) {
-  var b = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'style", cljs.core.ObjMap.fromObject(["\ufdd0'type"], {"\ufdd0'type":"text/css"}), "#noir-cljs-selector {position:fixed; bottom:15px; right:30px; list-style:none; }\n     #noir-cljs-selector li {}\n     #noir-cljs-selector a { float:left; display:inline; text-decoration:none; line-height:1em; height:19px; padding:5px 10px; background:#77c; width:10px; border:1px solid #55c; text-align:center; border-radius:5px; margin-bottom:8px; color:#449; }\n     #noir-cljs-selector a:hover {background:#99f;}\n     #noir-cljs-selector .active {background:#7cc; border-color:#599;} "]), 
-  cljs.core.PersistentVector.fromArray(["\ufdd0'ul#noir-cljs-selector", cljs.core.map.call(null, function(b) {
-    return noir.cljs.client.watcher.selector_button.call(null, b, a)
-  }, noir.cljs.client.watcher.buttons)])]));
-  b.setAttribute("crateGroup", group__6197__auto____10281);
-  return b
-};
-noir.cljs.client.watcher.selector.prototype._crateGroup = group__6197__auto____10281;
-jayq.core.delegate.call(null, noir.cljs.client.watcher.$body, "\ufdd0'.noir-cljs-button", "\ufdd0'click", function(a) {
-  a.preventDefault();
-  jayq.core.remove_class.call(null, jayq.core.find.call(null, jayq.core.$.call(null, noir.cljs.client.watcher.selector), "\ufdd0'.noir-cljs-button"), "\ufdd0'active");
-  var a = jayq.core.$.call(null, this), b = jayq.core.data.call(null, a, "\ufdd0'mode");
-  jayq.core.add_class.call(null, a, "\ufdd0'active");
-  return noir.cljs.client.watcher.set_mode.call(null, b)
-});
-noir.cljs.client.watcher.init = function() {
-  return noir.cljs.client.watcher.get_mode.call(null, function(a) {
-    return jayq.core.append.call(null, noir.cljs.client.watcher.$body, noir.cljs.client.watcher.selector.call(null, a))
-  })
-};
 clojure.browser = {};
 clojure.browser.event = {};
 clojure.browser.event.EventType = {};
@@ -16585,9 +16497,95 @@ clojure.browser.repl.connect = function(a) {
     return a.style.display = "none"
   })
 };
+var noir = {cljs:{}};
+noir.cljs.client = {};
+noir.cljs.client.watcher = {};
+noir.cljs.client.watcher.wait = function(a, b) {
+  return setTimeout(b, a)
+};
+noir.cljs.client.watcher.$body = jayq.core.$.call(null, "\ufdd0'body");
+noir.cljs.client.watcher.callbacks = cljs.core.atom.call(null, cljs.core.PersistentVector.fromArray([]));
+noir.cljs.client.watcher.cur_mode = cljs.core.atom.call(null, "\ufdd0'simple");
+noir.cljs.client.watcher.poll = function poll() {
+  return noir.cljs.client.watcher.wait.call(null, 100, function() {
+    return fetch.core.xhr.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'get", "/noir-cljs-get-updated"]), cljs.core.ObjMap.fromObject([], {}), function(b) {
+      if(cljs.core.truth_(cljs.core.truth_(b) ? cljs.core.not_EQ_.call(null, b, "") : b)) {
+        eval.call(null, b);
+        var c = cljs.core.seq.call(null, cljs.core.deref.call(null, noir.cljs.client.watcher.callbacks));
+        if(cljs.core.truth_(c)) {
+          for(var d = cljs.core.first.call(null, c);;) {
+            if(d.call(null, b), d = cljs.core.next.call(null, c), cljs.core.truth_(d)) {
+              c = d, d = cljs.core.first.call(null, c)
+            }else {
+              break
+            }
+          }
+        }
+      }
+      return cljs.core.truth_(cljs.core._EQ_.call(null, cljs.core.deref.call(null, noir.cljs.client.watcher.cur_mode), "\ufdd0'interactive")) ? poll.call(null) : null
+    })
+  })
+};
+noir.cljs.client.watcher.on_update = function(a) {
+  return cljs.core.swap_BANG_.call(null, noir.cljs.client.watcher.callbacks, cljs.core.conj, a)
+};
+noir.cljs.client.watcher.set_mode = function(a) {
+  return fetch.core.xhr.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'post", "/noir-cljs-mode"]), cljs.core.ObjMap.fromObject(["\ufdd0'm"], {"\ufdd0'm":a}), function() {
+    cljs.core.reset_BANG_.call(null, noir.cljs.client.watcher.cur_mode, a);
+    return cljs.core.truth_(cljs.core._EQ_.call(null, a, "\ufdd0'interactive")) ? noir.cljs.client.watcher.poll.call(null) : null
+  })
+};
+noir.cljs.client.watcher.get_mode = function(a) {
+  return fetch.core.xhr.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'get", "/noir-cljs-mode"]), cljs.core.ObjMap.fromObject([], {}), function(b) {
+    return a.call(null, cljs.reader.read_string.call(null, b))
+  })
+};
+noir.cljs.client.watcher.buttons = cljs.core.PersistentVector.fromArray([cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'advanced", "\ufdd0'label":"A"}), cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'simple", "\ufdd0'label":"S"}), cljs.core.ObjMap.fromObject(["\ufdd0'mode", "\ufdd0'label"], {"\ufdd0'mode":"\ufdd0'interactive", "\ufdd0'label":"I"})]);
+var group__6197__auto____10267 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+noir.cljs.client.watcher.selector_button = function() {
+  var a = function(a, b) {
+    var e = cljs.core.truth_(cljs.core.seq_QMARK_.call(null, a)) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, f = cljs.core.get.call(null, e, "\ufdd0'label"), g = cljs.core.get.call(null, e, "\ufdd0'mode"), h = cljs.core.nth.call(null, b, 0, null), e = crate.core.html.call(null, function() {
+      var a = cljs.core.str.call(null, "noir-cljs-button ", cljs.core.truth_(cljs.core._EQ_.call(null, g, h)) ? "active" : null);
+      return cljs.core.PersistentVector.fromArray(["\ufdd0'li", crate.tags.link_to.call(null, cljs.core.ObjMap.fromObject(["\ufdd0'class", "\ufdd0'data-mode"], {"\ufdd0'class":a, "\ufdd0'data-mode":g}), "#", f)])
+    }());
+    e.setAttribute("crateGroup", group__6197__auto____10267);
+    return e
+  }, b = function(b, d) {
+    var e = null;
+    goog.isDef(d) && (e = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1), 0));
+    return a.call(this, b, e)
+  };
+  b.cljs$lang$maxFixedArity = 1;
+  b.cljs$lang$applyTo = function(b) {
+    var d = cljs.core.first(b), b = cljs.core.rest(b);
+    return a.call(this, d, b)
+  };
+  return b
+}();
+noir.cljs.client.watcher.selector_button.prototype._crateGroup = group__6197__auto____10267;
+var group__6197__auto____10281 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
+noir.cljs.client.watcher.selector = function(a) {
+  var b = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0'div", cljs.core.PersistentVector.fromArray(["\ufdd0'style", cljs.core.ObjMap.fromObject(["\ufdd0'type"], {"\ufdd0'type":"text/css"}), "#noir-cljs-selector {position:fixed; bottom:15px; right:30px; list-style:none; }\n     #noir-cljs-selector li {}\n     #noir-cljs-selector a { float:left; display:inline; text-decoration:none; line-height:1em; height:19px; padding:5px 10px; background:#77c; width:10px; border:1px solid #55c; text-align:center; border-radius:5px; margin-bottom:8px; color:#449; }\n     #noir-cljs-selector a:hover {background:#99f;}\n     #noir-cljs-selector .active {background:#7cc; border-color:#599;} "]), 
+  cljs.core.PersistentVector.fromArray(["\ufdd0'ul#noir-cljs-selector", cljs.core.map.call(null, function(b) {
+    return noir.cljs.client.watcher.selector_button.call(null, b, a)
+  }, noir.cljs.client.watcher.buttons)])]));
+  b.setAttribute("crateGroup", group__6197__auto____10281);
+  return b
+};
+noir.cljs.client.watcher.selector.prototype._crateGroup = group__6197__auto____10281;
+jayq.core.delegate.call(null, noir.cljs.client.watcher.$body, "\ufdd0'.noir-cljs-button", "\ufdd0'click", function(a) {
+  a.preventDefault();
+  jayq.core.remove_class.call(null, jayq.core.find.call(null, jayq.core.$.call(null, noir.cljs.client.watcher.selector), "\ufdd0'.noir-cljs-button"), "\ufdd0'active");
+  var a = jayq.core.$.call(null, this), b = jayq.core.data.call(null, a, "\ufdd0'mode");
+  jayq.core.add_class.call(null, a, "\ufdd0'active");
+  return noir.cljs.client.watcher.set_mode.call(null, b)
+});
+noir.cljs.client.watcher.init = function() {
+  return noir.cljs.client.watcher.get_mode.call(null, function(a) {
+    return jayq.core.append.call(null, noir.cljs.client.watcher.$body, noir.cljs.client.watcher.selector.call(null, a))
+  })
+};
 pos.client.core = {};
-clojure.browser.repl.connect.call(null, "http://localhost:9000/repl");
-pos.client.core.$content = jayq.core.$.call(null, "\ufdd0'#content");
 jayq.core.document_ready.call(null, function() {
   return pos.client.controller.init.call(null)
 });
