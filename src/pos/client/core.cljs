@@ -10,7 +10,7 @@
 (comment
   (watcher/init)
 
-  ;; Browser connected repl, run clojure in inferior-lisp
+  ;; ## Browser connected repl, run clojure in inferior-lisp
   (repl/connect "http://localhost:9000/repl")
 
   (def $content ($ :#content))
@@ -20,6 +20,6 @@
   (append $content (up-and-running)))
 
 
-;;== init app ==
+;; ## init app 
 (jq/ready
  (controller/init))

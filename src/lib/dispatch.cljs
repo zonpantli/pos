@@ -1,5 +1,5 @@
-;; Dispatch system is directly copied from clojurescript one
-;; http://clojurescriptone.com/documentation.html#one.dispatch
+;; Dispatch system is directly copied from Clojurescript One's
+;; [one.dispatch](http://clojurescriptone.com/documentation.html#one.dispatch)
 
 (ns ^{:doc "Event dispatching.
 

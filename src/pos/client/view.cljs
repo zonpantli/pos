@@ -15,7 +15,7 @@
   (:require-macros [jayq.macros :as jq])
   (:use-macros [crate.macros :only [defpartial]]))
 
-;;== location and employee selects ==
+;; ## location and employee selects
 (defn render-location [{id :id}]
   (if-let [location (from-coll-by-id (:locations @model/data) id)]
     (inner ($ :#location-name) (:name location))
@@ -34,14 +34,14 @@
                    (fn [_ d]
                      (render-employee d)))
 
-;;== DateTime ==
+;; ## DateTime 
 (defn render-time []
   (let [t (get-formatted-datetime)
         el ($ :#clock)]
     (inner el t)))
 
 
-;;== populate info box ==
+;; ## populate info box
 (defn pie-data []
   (clj->js
    [{:label "" :data 33 :color "#5bb75b"}
@@ -54,7 +54,7 @@
                                   :stroke {:color "#2b2b2b"
                                            :width 0}}}})))
 
-;;== populate typeaheads and dropdowns ==
+;; ## populate typeaheads and dropdowns
 (defn get-dropdown-data [data-key data]
   (map #(merge % {:value (:name %)}) (data-key data)))
 
@@ -114,7 +114,7 @@
                        (prepare-dropdowns))))
 
 
-;;== customer dropdown ==
+;; ## customer dropdown 
 (defmulti render-customer :event)
 
 (defmethod render-customer :customer-selected [{:keys [id]}]
@@ -137,7 +137,7 @@
                        (render-customer {:event :customer-deselected}))))
 
 
-;;== item dropdown ==
+;; ## item dropdown
 (declare basket-add-item)
 
 (defmulti render-item :event)
@@ -164,7 +164,7 @@
 (defn basket-add-item [id]
   (dispatch/fire :basket-add id))
 
-;;== basket ==
+;; ## basket
 (defpartial basket-item [{:keys [id name color size price qty discount]}]
   [:tr {:id id}
    [:td.bold [:div name]]
@@ -229,7 +229,7 @@
                    (fn [_ d]
                      (render-basket-total d)))
 
-;;== tender ==
+;; ## tender
 (defn bind-tender-buttons []
   (doseq [name ["proceed-tender"
                 "cancel-tender"
@@ -304,7 +304,7 @@
                        (dispatch/fire :cancel-tender)
                        (.modal ($ :#tender-success)))))
 
-;;== keypad ==
+;; ## keypad
 (comment
   (defn key-press [char]
    (.trigger (.event js/$) (clj->js {:type  "keypress"
@@ -318,7 +318,7 @@
              (key-press "7")))))
 
 
-;;== render states == 
+;; ## render states
 (defmulti render :state)
 
 (defmethod render [:dashboard :tender] [_]
@@ -337,14 +337,14 @@
                    (fn [_ d]
                      (render {:state d})))
 
-;;== field focus listener ==
+;; ## field focus listener
 (comment
   (defn bind-input-focus-listeners []
    (doseq [input ($ :input)]
      (bind input
            "focus"))))
 
-;;== init ui ==
+;; ## init ui 
 (defn prepare-ui []
   (do
     (start-timer render-time)

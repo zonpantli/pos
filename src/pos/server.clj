@@ -10,10 +10,10 @@
 (def handler (server/gen-handler {:mode :dev
                                   :ns 'pos}))
 
-;; init in mem database
+;; ## init in mem database
 (pos.api/init-database)
 
-;; serve static html directly from application.html
+;; ## serve static html directly from `application.html`
 (defpage "/" [] (emit* (html-resource "application.html")))
 
 (defn -main [& m]

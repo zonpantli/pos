@@ -5,7 +5,7 @@
         [fetch.util :only [clj->js wait]]
         [jayq.util :only [wait log]]))
 
-;; customer and item typeaheads
+;; ## customer and item typeaheads
 (defn slide-in-icon [type url]
   (let [in-el  ($ (keyword (str "#" type "-slider-icon")))
         out-el ($ (keyword (str "#" type "-icon")))]
@@ -37,14 +37,14 @@
     (wait 1000 #(remove-class el "flashing-animation"))))
 
 
-;; basket rows
+;; ## basket rows
 (defn slide-in-table-row [$tr]
   (slide-down (find $tr "td > div") 400))
 
 (defn slide-out-table-row [$tr]
   (slide-up (find $tr "td > div") 200 #(remove $tr)))
 
-;; state transitions
+;; ## state transitions
 (defn state-transition [{:keys [in out slide-in slide-out]}]
   (do
     (doseq [o slide-out] (slide-up o 200))

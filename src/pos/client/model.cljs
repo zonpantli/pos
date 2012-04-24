@@ -1,7 +1,8 @@
-(ns ^{:doc "Contains client side state. Use atom for every element
-    with state and add watchers to dispatch event when state changes.
-    Validators would go here too, i we ever decide to write them"}
-    pos.client.model
+(ns ^{:doc "Contains client side state. Use atom corresponding every
+            element of ui with state and add watchers to dispatch
+            event when the state changes. Validators would go here
+            too, i we ever decide to write them."}
+  pos.client.model
     (:require [lib.dispatch :as dispatch]
               [clojure.set :as set])
     (:use [jayq.util :only [log]]
@@ -10,7 +11,7 @@
                                   field-value-as-num]]))
 
 (def ^{:doc "Atom containing the state of application. Dashboad,
-hotkeys, tender"}
+             hotkeys, tender"}
   state (atom {:state :dashboard}))
 
 (add-watch state :state-change-key
@@ -55,7 +56,7 @@ controlling the customer typeahead"}
              (when (or (nil? (:id n)) (not= o n))
                (dispatch/fire :customer-change n))))
 
-;; select random customer when using nfc
+;; ### select random customer when using nfc
 (dispatch/react-to #{:pusher-customer-nfc}
                    (fn [_ d]
                      (swap! customer assoc :id (:id (rand-nth (:customers @data))))))

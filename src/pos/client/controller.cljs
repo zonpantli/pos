@@ -47,7 +47,7 @@
                    (fn [_ {:keys [id changed-attr new-val] :as d}]
                      (update-basket-item d)))
 
-;; Total, vat and discount of the whole basket are derived quantites
+;; `total`, `vat` and `discount` of the whole basket are derived quantites
 ;; that are not stored as state of the model, but are rather
 ;; recomputed every time that the contents of the basket change
 (dispatch/react-to #{:basket-change}
@@ -63,7 +63,8 @@
                                                             :discount discount}))))
 
 (defmulti action
-  "Accepts mat of information about action to be performed"
+  "Transfer betveen general states of the app.
+   Accepts map of information about action to be performed."
   :type)
 
 (defmethod action :proceed-tender [_]
