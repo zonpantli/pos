@@ -37,11 +37,14 @@
 
 ;; endpoints for Kovalo Merch NFC reader
 (defn trigger-nfc-customer
+  "Trigger a pusher event with random user-id"
   ([] (trigger-nfc-customer (rand-int 100)))
   ([id]
-   (with-pusher-auth ["17901" "a32696b95bcc47185377" "919327202b26cfbf512a"]
-     (with-pusher-channel "kovalo-pos"
-       (trigger "customer-nfc" {:id id})))))
+     (with-pusher-auth [(System/getenv "PUSHER_APP_ID")
+                        (System/getenv "PUSHER_KEY")
+                        (System/getenv "PUSHER_SECRET")]
+       (with-pusher-channel "kovalo-pos"
+         (trigger "customer-nfc" {:id id})))))
 
 (defpage "/nfc/customer/:id" {:keys [id]}
   (do
