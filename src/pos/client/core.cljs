@@ -7,15 +7,11 @@
   (:require-macros [fetch.macros :as fm]
                    [jayq.macros :as jq]))
 
-;; watcher interface to switch between compilation modes
-;; (watcher/init)
-
-;; Browser connected repl, run clojure in inferior-lisp
-;; (repl/connect "http://localhost:9000/repl")
-
-
-
 (comment
+  (watcher/init)
+
+  ;; Browser connected repl, run clojure in inferior-lisp
+  (repl/connect "http://localhost:9000/repl")
 
   (def $content ($ :#content))
   (defpartial up-and-running []
@@ -24,6 +20,6 @@
   (append $content (up-and-running)))
 
 
-;;== init app ==================================================
+;;== init app ==
 (jq/ready
  (controller/init))

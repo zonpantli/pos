@@ -1,6 +1,6 @@
 (defproject pos "0.1.0-SNAPSHOT"
-  :description "FIXME: write this!"
-  :url "http://exampl.com/FIXME"
+  :description "Prototype of Kovalo POS system"
+  :url "http://kovalo-pos.herokuapp.com"
   :dependencies [[org.clojure/clojure "1.3.0"]
                  [noir-cljs "0.3.0" :exclusions [jayq org.clojure/clojurescript]]
                  [jayq "0.1.0-alpha3"]

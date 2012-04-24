@@ -10,7 +10,7 @@
             [pos.models.employee :as employee])
   (:import [java.io BufferedReader InputStreamReader]))
 
-;; mock database ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;== mock database ==
 (defonce ^:dynamic *database* (atom {:items     []
                                      :customers []
                                      :employees []
@@ -30,12 +30,12 @@
     (swap! *database* #(update-in %1 [:locations] replace []))
     (swap! *database* #(update-in %1 [:employees] replace []))))
 
-;; remote endpoints for accessing database
+;;== remote endpoints for accessing database ==
 (defremote get-db []
   (do
     @*database*))
 
-;; endpoints for Kovalo Merch NFC reader
+;;== endpoints for Kovalo Merch NFC reader ==
 (defn trigger-nfc-customer
   "Trigger a pusher event with random user-id"
   ([] (trigger-nfc-customer (rand-int 100)))

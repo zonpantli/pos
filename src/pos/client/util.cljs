@@ -38,7 +38,7 @@
     ""
     (clojure.string/replace (.toFixed v 2) "." ",")))
 
-;;== dom manipulation =====================================
+;;== dom manipulation ==
 (defn value
   "Get/set value of input element"
   ([el]
@@ -49,7 +49,7 @@
 (defn background-image [el url]
   (css el {:background-image (str "url(" url ")")}))
 
-;;== timer ================================================
+;;== timer ==
 (defn get-formatted-datetime []
   (let [d (goog.date.DateTime.)
         dtf (goog.i18n.DateTimeFormat. "EEE, MMM d  h:mm a")]
